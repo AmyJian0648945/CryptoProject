@@ -1,6 +1,7 @@
 /******* Header Files *******/
 
 /******* Variables *******/
+// Function outputs first, then input!
 
 
 int main(){
@@ -10,10 +11,11 @@ int main(){
 
 
 
-/***** Todo list ******
+/*************** Todo list ****************
 1. Define word length (16 bit or 32 bit)
-2. 
+2. Generate private/public key pair for Alice and Bob
+3. 
 
 
 
-***********************/
+*******************************************/

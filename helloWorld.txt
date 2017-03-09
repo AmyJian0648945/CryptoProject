@@ -1,4 +1,0 @@
-helloWorld
-update
-stuff
-word
