@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include "sha.h"
+#include"sha2.h"
+#include <sys/time.h>
 
 
 /** To compile:
@@ -46,14 +47,15 @@ int main(){
 
 	// initialise variables
 	uint32_t pseudoRandNum[67] = {0}; // first bit indicates array length, the rest are 0s
-	uint32_t numBitLength = 20; // random: 2~2048
-	uint32_t seed[10] = {0}; 	//SAME for g, random for x,y
+	uint32_t numBitLength = 512; // random: 2~2048
+	uint32_t seed = 12345; 	// SAME for g, random for x,y
+	uint32_t i = 0;
 
+	generateCPRNG(pseudoRandNum, numBitLength, seed);
 
-	generateCPRNG(pseudoRandNum, 2048, 10);
-
-	printf("num: %d\n", pseudoRandNum[0]);
-
+	for(i=0; i<numBitLength/(32*4); i++){
+		printf("%d  %d  %d  %d\n", pseudoRandNum[i],pseudoRandNum[i+1],pseudoRandNum[i+2],pseudoRandNum[i+3]);
+	}
 
 
 
