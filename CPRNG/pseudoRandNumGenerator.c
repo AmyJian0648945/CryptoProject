@@ -1,7 +1,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include"sha2.h"
-#include <sys/time.h>
+#include"test.h"
+//#include <sys/time.h>
 
 
 /** To compile:
@@ -51,12 +52,13 @@ int main(){
 	uint32_t seed = 12345; 	// SAME for g, random for x,y
 	uint32_t i = 0;
 
-	generateCPRNG(pseudoRandNum, numBitLength, seed);
+	//generateCPRNG(pseudoRandNum, numBitLength, seed);
 
+/*
 	for(i=0; i<numBitLength/(32*4); i++){
 		printf("%d  %d  %d  %d\n", pseudoRandNum[i],pseudoRandNum[i+1],pseudoRandNum[i+2],pseudoRandNum[i+3]);
 	}
-
+*/
 
 
 	
