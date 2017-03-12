@@ -1,42 +1,58 @@
+/*** Define Macros Here ***********************/
+
+//#define SHA2_USE_INTTYPES_H TRUE // uses <inttypes.h>
+	    
+
+
+/*** Include functions ***********************/
 #include<stdlib.h>
 #include<stdio.h>
+#include<string.h>
 #include"sha2.h"
-#include"test.h"
-//#include <sys/time.h>
-
-
-/** To compile:
-1. get to the folder
-2. gcc -o outputVariable CPRNG.c
-	then ./outputVariable
-OR
-2. gcc -o outputFileName.c CPRNG.c
-**/
-
-
+#include"useSHA256.h"
+#include"sha2.c"
+//#include"test.h"
 
 // Concatenate
-
 // Take a subset 
 
-// SHA256
-void sha256(uint32_t output, uint32_t input){}
 
 
-void generateCPRNG(uint32_t* PRNoutput, uint32_t PRNlength, uint32_t seed){
-	// Hash initial seed
 
 
-	PRNoutput[0] = 10;
+/*** generateCPRNG ***********************
+What it does: generates a pseudo random number of length 
+	PRNlength based on the input seed (of any length)
+
+Variables:
+PRNoutput 	- the pseudo random number output, of size 
+				'PRNlength' bits, type hex
+seed 		- the initial seed given to the CPRNG (to make
+				it random), type hex
+PRNlength	- specifies output length in bits
+*********************/
+
+
+void PRNG(uint8_t* PRNoutput, uint8_t* input, uint32_t PRNlength){
+	// hash the inputMessage (32 bits), output it in PRNoutput
+	hash(PRNoutput, input);
+
+
+	////////// Steps to implement:
+	// XOR seed with time
+	// Hash the XOR-ed values
+
+	//PRNoutput[0] = 13;
+	//uint32_t inputMessage[10] = {0};
+	//inputMessage[0] = 22;
+
+
 	/*
 	while(currBitLength < numBitLength){
 		// Seed = Concatenate the rest + num=(count up from numBitLength * large number)
 		// 		else num = rand for x, y
-
 		// Hash the seed
-
 		// Take a subset, add it to pseudoRandNum
-
 		// update currBithLength
 	}
 	*/
@@ -47,18 +63,20 @@ void generateCPRNG(uint32_t* PRNoutput, uint32_t PRNlength, uint32_t seed){
 int main(){
 
 	// initialise variables
-	uint32_t pseudoRandNum[67] = {0}; // first bit indicates array length, the rest are 0s
-	uint32_t numBitLength = 512; // random: 2~2048
-	uint32_t seed = 12345; 	// SAME for g, random for x,y
+	uint8_t pseudoRandNum[256] = {0}; // first bit indicates array length, the rest are 0s
+	uint16_t numBitLength = 20; // random: 2~2048
+	uint8_t seed[256] = "abcef12345"; 	// SAME for g, random for x,y
 	uint32_t i = 0;
 
-	//generateCPRNG(pseudoRandNum, numBitLength, seed);
 
-/*
-	for(i=0; i<numBitLength/(32*4); i++){
-		printf("%d  %d  %d  %d\n", pseudoRandNum[i],pseudoRandNum[i+1],pseudoRandNum[i+2],pseudoRandNum[i+3]);
+	PRNG(pseudoRandNum, seed, 10);
+
+	printf("\n\nSeed: %s\nHashed message: %s\n\n",seed,pseudoRandNum[0]);
+	
+	for(i=0; i<numBitLength; i++){
+		printf("%d\t", pseudoRandNum[i]);
+		if(i%6 == 5) printf("\n");
 	}
-*/
 
 
 	
@@ -69,6 +87,14 @@ int main(){
 
 
 
+
+/** To compile:
+1. get to the folder
+2. gcc -o outputVariable CPRNG.c
+	then ./outputVariable
+OR
+2. gcc -o outputFileName.c CNG.c
+**/
 
 
 

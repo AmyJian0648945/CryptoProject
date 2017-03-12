@@ -12,7 +12,7 @@ extern "C" {
 
 #ifdef SHA2_USE_INTTYPES_H
 
-printf("SHA2_USE_INTTYPES_H\n");
+#define HELLO 32
 
 #include <inttypes.h>
 
@@ -35,15 +35,15 @@ typedef unsigned long long u_int64_t;	/* 8-bytes (64-bits) */
 
 
 
-#ifdef SHA2_USE_INTTYPES_H
-printf("we're still using the SHA2_USE_INTTYPES_H\n");
+//#ifdef SHA2_USE_INTTYPES_H
+//printf("we're still using the SHA2_USE_INTTYPES_H\n");
 
-#else /* SHA2_USE_INTTYPES_H */
-printf(":O we're not using the SHA2_USE_INTTYPES_H\n");
+//#else /* SHA2_USE_INTTYPES_H */
+//printf("nope\n");
 
-#endif /* SHA2_USE_INTTYPES_H */
+//#endif /* SHA2_USE_INTTYPES_H */
 
-typedef SHA512_CTX SHA384_CTX;
+//typedef SHA512_CTX SHA384_CTX;
 
 
 
