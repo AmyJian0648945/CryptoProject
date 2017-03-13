@@ -8,8 +8,6 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-#include"sha2.h"
-#include"sha2.c"
 #include"useSHA256.h" // hashes messages
 
 //#include"test.h"
@@ -35,6 +33,7 @@ PRNlength	- specifies output length in bits
 
 
 void PRNG(uint8_t* PRNoutput, uint8_t* input, uint32_t PRNlength){
+
 	// hash the inputMessage (32 bits), output it in PRNoutput
 	hash(PRNoutput, input);
 
@@ -66,22 +65,19 @@ int main(){
 	// initialise variables
 	uint8_t pseudoRandNum[256] = {0}; // first bit indicates array length, the rest are 0s
 	uint16_t numBitLength = 20; // random: 2~2048
-
-	uint8_t seed[3] = "abc"; 	// SAME for g, random for x,y
+	uint8_t *seed;
 	uint32_t i = 0;
 
+	// Define seed
+	seed = "helloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworld";
+
 	
+
 	PRNG(pseudoRandNum, seed, 10);
 
-
-
-
-
-
-	printf("\n\nSeed: %s\n",seed);
+	
 
 	// Print hashed message
-	printf("0x");
 	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
 		printf("%02x", pseudoRandNum[i]);
 	}
