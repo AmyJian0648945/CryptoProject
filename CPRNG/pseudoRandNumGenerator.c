@@ -9,8 +9,9 @@
 #include<stdio.h>
 #include<string.h>
 #include"sha2.h"
-#include"useSHA256.h"
 #include"sha2.c"
+#include"useSHA256.h" // hashes messages
+
 //#include"test.h"
 
 // Concatenate
@@ -65,21 +66,27 @@ int main(){
 	// initialise variables
 	uint8_t pseudoRandNum[256] = {0}; // first bit indicates array length, the rest are 0s
 	uint16_t numBitLength = 20; // random: 2~2048
-	uint8_t seed[256] = "abcef12345"; 	// SAME for g, random for x,y
+
+	uint8_t seed[3] = "abc"; 	// SAME for g, random for x,y
 	uint32_t i = 0;
 
-
+	
 	PRNG(pseudoRandNum, seed, 10);
 
-	printf("\n\nSeed: %s\nHashed message: %s\n\n",seed,pseudoRandNum[0]);
-	
-	for(i=0; i<numBitLength; i++){
-		printf("%d\t", pseudoRandNum[i]);
-		if(i%6 == 5) printf("\n");
+
+
+
+
+
+	printf("\n\nSeed: %s\n",seed);
+
+	// Print hashed message
+	printf("0x");
+	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
+		printf("%02x", pseudoRandNum[i]);
 	}
+	printf("\n");
 
-
-	
 	return 0;
 }
 
