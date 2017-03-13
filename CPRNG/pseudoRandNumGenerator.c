@@ -19,7 +19,7 @@
 
 
 
-/*** generateCPRNG ***********************
+/*** PRNG ***********************
 What it does: generates a pseudo random number of length 
 	PRNlength based on the input seed (of any length)
 
@@ -68,14 +68,11 @@ int main(){
 	uint8_t *seed;
 	uint32_t i = 0;
 
-	// Define seed
-	seed = "helloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworld";
-
-	
+	// Define seed (i.e. the message to be hashed)
+	seed = "1234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz1234567890";
 
 	PRNG(pseudoRandNum, seed, 10);
 
-	
 
 	// Print hashed message
 	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){

@@ -27,31 +27,9 @@ void hash(uint8_t* output, uint8_t* input){
 	// Initialise SHA256	
 	SHA256_Init(&ctx); 
 
-
-
-
-
-
-	printf("length of input: %d\n", lengthOfInput);
-
-	// Checks if input size is larger than digest; call "update" as many 
-	//	times as needed to input all data
-
-/*
-	do{
-		SHA256_Update(&ctx, input, lengthOfInput); 
-		lengthOfInput -= SHA256_DIGEST_LENGTH;
-	} while(lengthOfInput > SHA256_DIGEST_LENGTH)
-*/
+	// Input data into hash function
+	SHA256_Update(&ctx, input, lengthOfInput);
 	
-	SHA256_Update(&ctx, input, lengthOfInput); 
-
-
-
-
-
-
-
 	// writes the hashing output onto output variable
 	SHA256_Final(output, &ctx); 
 
