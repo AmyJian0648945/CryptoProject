@@ -22,12 +22,13 @@ outputLength
 #include<stdio.h>
 #include<string.h>
 #include<time.h>
+//#include <sys/time.h>
 #include"useSHA256.h" // hashes messages
 
 
 /*** Function Declarations ***********************/
 void PRNG(uint8_t*, uint8_t*, uint32_t);
-void RNG(uint8_t*, uint8_t*, uint32_t);
+void RNG(uint8_t*, uint32_t);
 
 
 
@@ -40,25 +41,54 @@ void RNG(uint8_t*, uint8_t*, uint32_t);
 // Concatenate
 // Take a subset 
 
-void RNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
+void RNG(uint8_t* output, uint32_t desiredOutputLength){
 	SHA256_CTX ctx;  // structure used in SHA256
-	size_t lengthOfInput = strlen(input); 
-	uint32_t i = 0;
+	static uint8_t* seed = NULL; // this will use previous results's hash as the seed
 	time_t current_time;
+	struct timeval tv;
+	uint32_t i = 0;
+
+	// Obtain current time to microseconds
+	time_t curtime;
+
+
+	// generate a new seed
+	if(seed == NULL) seed = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
+	else simpleHash(seed,seed);
+
+
+
+
+/*
 
 	// Initialise SHA256	
 	SHA256_Init(&ctx); 
 
-	// Obtain current time
-	current_time = time(NULL);
-	printf("current time: %d\n", current_time);
-
+	desiredOutputLength /= 50;
 
 	// Input data into hash function
-	SHA256_Update(&ctx, input, lengthOfInput);
+	//SHA256_Update(&ctx, input, lengthOfInput);
+
+	for(i=0; i<5; i++){
+
+		// Obtain current time
+		current_time = time(NULL);
+
+
+		//size_t lengthOfInput = strlen(input); 
+
+
+	}
+
+	
+	
+	
+*/
+
+	
 
 	// writes the hashing output onto output variable
-	SHA256_Final(output, &ctx); 
+	//SHA256_Final(output, &ctx); 
 
 
 }		
@@ -104,8 +134,13 @@ int main(){
 	// Define seed (i.e. the message to be hashed)
 	seed = "12345";
 
-	PRNG(pseudoRandNum, seed, 10);
-	RNG(pseudoRandNum, seed, 10);
+	//PRNG(pseudoRandNum, seed, 10);
+	RNG(pseudoRandNum, 500);
+	RNG(pseudoRandNum, 500);
+	RNG(pseudoRandNum, 500);
+	RNG(pseudoRandNum, 500);
+	RNG(pseudoRandNum, 500);
+
 
 	// Print hashed message
 	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
