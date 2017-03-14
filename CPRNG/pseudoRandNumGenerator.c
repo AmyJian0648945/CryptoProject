@@ -1,42 +1,75 @@
-/*** Define Macros Here ***********************/
+/* * * * * * * * * * * * * * * * * * * * * * * *
+What it does: generates a (pseudo) random number of length 
+	PRNlength based on the input seed (of any length)
 
+Variables:
+PRNoutput 	- pseudo random number output
+RNoutput	- random number ouput
+seed 		- the initial seed given to the CPRNG (to make
+				it random), type hex
+outputLength	
+			- specifies output length in bits
+
+* * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+/*** Define Macros Here ***********************/
 //#define SHA2_USE_INTTYPES_H TRUE // uses <inttypes.h>
 	    
-
 
 /*** Include functions ***********************/
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+#include<time.h>
 #include"useSHA256.h" // hashes messages
 
-//#include"test.h"
+
+/*** Function Declarations ***********************/
+void PRNG(uint8_t*, uint8_t*, uint32_t);
+void RNG(uint8_t*, uint8_t*, uint32_t);
+
+
+
+
+
+
+
+
 
 // Concatenate
 // Take a subset 
 
+void RNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
+	SHA256_CTX ctx;  // structure used in SHA256
+	size_t lengthOfInput = strlen(input); 
+	uint32_t i = 0;
+	time_t current_time;
+
+	// Initialise SHA256	
+	SHA256_Init(&ctx); 
+
+	// Obtain current time
+	current_time = time(NULL);
+	printf("current time: %d\n", current_time);
 
 
+	// Input data into hash function
+	SHA256_Update(&ctx, input, lengthOfInput);
+
+	// writes the hashing output onto output variable
+	SHA256_Final(output, &ctx); 
 
 
-/*** PRNG ***********************
-What it does: generates a pseudo random number of length 
-	PRNlength based on the input seed (of any length)
+}		
 
-Variables:
-PRNoutput 	- the pseudo random number output, of size 
-				'PRNlength' bits, type hex
-seed 		- the initial seed given to the CPRNG (to make
-				it random), type hex
-PRNlength	- specifies output length in bits
-*********************/
-
-
-void PRNG(uint8_t* PRNoutput, uint8_t* input, uint32_t PRNlength){
+void PRNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
 
 	// hash the inputMessage (32 bits), output it in PRNoutput
-	hash(PRNoutput, input);
+	simpleHash(output, input);
 
+
+	strncat(output, input, strlen(input));
 
 	////////// Steps to implement:
 	// XOR seed with time
@@ -69,13 +102,13 @@ int main(){
 	uint32_t i = 0;
 
 	// Define seed (i.e. the message to be hashed)
-	seed = "1234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901234567890abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz1234567890";
+	seed = "12345";
 
 	PRNG(pseudoRandNum, seed, 10);
-
+	RNG(pseudoRandNum, seed, 10);
 
 	// Print hashed message
-	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
+	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
 		printf("%02x", pseudoRandNum[i]);
 	}
 	printf("\n");
