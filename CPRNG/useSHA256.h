@@ -16,6 +16,10 @@ http://www.freeformatter.com/sha256-generator.html#ad-output
 #include"sha2.h"
 #include"sha2.c"
 
+void simpleHash(uint8_t*, uint8_t*);
+void intToString(uint8_t*, uint32_t);
+
+
 
 void simpleHash(uint8_t* output, uint8_t* input){
 
@@ -34,6 +38,32 @@ void simpleHash(uint8_t* output, uint8_t* input){
 	SHA256_Final(output, &ctx); 
 
 }
+
+void intToString(uint8_t* output, uint32_t num){
+	uint8_t* temp = output;
+
+
+
+
+
+
+
+	//printf("Here2 = %c %c %c\n", temp[0],temp[1],temp[2]);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

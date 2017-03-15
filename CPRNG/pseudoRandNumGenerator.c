@@ -42,22 +42,40 @@ void RNG(uint8_t*, uint32_t);
 // Take a subset 
 
 void RNG(uint8_t* output, uint32_t desiredOutputLength){
-	SHA256_CTX ctx;  // structure used in SHA256
-	static uint8_t* seed = NULL; // this will use previous results's hash as the seed
-	time_t current_time;
-	struct timeval tv;
+	SHA256_CTX ctx;  /* structure used in SHA256 */
+	static uint8_t* seed; /* this will use previous results's hash as the seed */
+	uint8_t* timeHash;
+
+	struct timeval tv; /* tv is the time variable */
 	uint32_t i = 0;
 
 	// Obtain current time to microseconds
-	time_t curtime;
+	gettimeofday(&tv, NULL);
+
+
+	timeHash = "12345";
+	// Convert time data: int--> string
+	intToString(timeHash, (uint32_t)tv.tv_usec);
+
+	
+	
+
+	//simpleHash(timeHash, tv.tv_usec);
 
 
 	// generate a new seed
 	if(seed == NULL) seed = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
-	else simpleHash(seed,seed);
+	//else {}
+
+	printf("time = %s \n", timeHash);
+	printf("seed = %s  %c\n", seed, seed[6]);
+
+	//xor each each element of timeHash and seed
 
 
 
+
+	
 
 /*
 
@@ -99,7 +117,7 @@ void PRNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
 	simpleHash(output, input);
 
 
-	strncat(output, input, strlen(input));
+	//strncat(output, input, strlen(input));
 
 	////////// Steps to implement:
 	// XOR seed with time
