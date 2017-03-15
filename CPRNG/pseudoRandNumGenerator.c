@@ -40,18 +40,18 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 
 	// Initialise Variables
 	SHA256_CTX ctx;  /* structure used in SHA256 */
-	static uint8_t* seed; /* this will use previous results's hash as the seed */
+	static uint8_t seed[257] = {0}; /* this will use previous results's hash as the seed */
 	uint32_t i = 0;
 
 	
 	
 	// generate a new seed
-	if(seed == NULL) seed = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
+	if(seed[0] == 0) strncpy(seed, "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb", 256); 
 	else hashWithTime(seed);
 	
-	printf("seed1 = %s\n",seed);
+	printf("seed1 = %c  %c\n",seed[0],seed[1]);
 	hashWithTime(seed);
-	printf("seed2 = %s\n",seed);
+	printf("seed1 = %c  %c\n",seed[0],seed[1]);
 
 	
 
@@ -129,11 +129,11 @@ int main(){
 	// initialise variables
 	uint8_t pseudoRandNum[256] = {0}; // first bit indicates array length, the rest are 0s
 	uint16_t numBitLength = 20; // random: 2~2048
-	uint8_t *seed;
+	char seed[257] = "12345";	// message - to initialise some hashings
 	uint32_t i = 0;
 
-	// Define seed (i.e. the message to be hashed)
-	seed = "12345";
+	
+	
 
 	//PRNG(pseudoRandNum, seed, 10);
 	RNG(pseudoRandNum, 500);
@@ -158,7 +158,7 @@ int main(){
 
 //uint8_t* timeHash[TIME_DATA_LENGTH];
 //simpleHash(timeHash, tv.tv_usec);
-
+//seed = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
 
 
 /** To compile:

@@ -15,6 +15,7 @@ http://www.freeformatter.com/sha256-generator.html#ad-output
 
 #define TIME_DATA_LENGTH 6
 #define TIME_DATA_BASE 10
+#define ASCII_SHIFT 48
 
 #include"sha2.h"
 #include"sha2.c"
@@ -57,7 +58,12 @@ void hashWithTime(uint8_t* output){
 
 	timeValue = timeData();
 
-	printf("\n\noutput = %d  %d\n",output[i],timeValue % TIME_DATA_BASE);
+
+	output[0] = (char) (timeValue % TIME_DATA_BASE + ASCII_SHIFT);
+	printf("output = %c\n",output[0]);
+	
+	//MEMCPY_BCOPY(output*, 3, 1);
+
 	//output[i] ^= timeValue % TIME_DATA_BASE;
 	//printf("output = %d\n",output[i]);
 
