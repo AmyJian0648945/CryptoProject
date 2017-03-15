@@ -13,13 +13,26 @@ http://www.freeformatter.com/sha256-generator.html#ad-output
 
 * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#define TIME_DATA_LENGTH 6
+#define TIME_DATA_BASE 10
+
 #include"sha2.h"
 #include"sha2.c"
-
-void simpleHash(uint8_t*, uint8_t*);
-void intToString(uint8_t*, uint32_t);
+#include<time.h>
 
 
+////////// Function Declarations //////////
+
+void simpleHash(uint8_t*, uint8_t*); 	// Does a single SHA256 hash
+void hashWithTime(uint8_t*);	// XORs input with time data, then hashed
+
+// Helpful functions
+uint8_t timeData(); // Obtain current time to microseconds
+
+
+
+
+////////// Function Implementation //////////
 
 void simpleHash(uint8_t* output, uint8_t* input){
 
@@ -36,30 +49,37 @@ void simpleHash(uint8_t* output, uint8_t* input){
 	
 	// writes the hashing output onto output variable
 	SHA256_Final(output, &ctx); 
-
 }
 
-void intToString(uint8_t* output, uint32_t num){
-	uint8_t* temp = output;
+void hashWithTime(uint8_t* output){
+	uint8_t i = 0;
+	uint8_t timeValue = 0;
 
+	timeValue = timeData();
 
+	printf("\n\noutput = %d  %d\n",output[i],timeValue % TIME_DATA_BASE);
+	//output[i] ^= timeValue % TIME_DATA_BASE;
+	//printf("output = %d\n",output[i]);
 
+	/*
+	for(i = 0; i < TIME_DATA_LENGTH; i++){
+		output[i] ^= timeValue % TIME_DATA_BASE;
+		timeValue /= 10;
+	}
+	
+*/
 
-
-
-
-	//printf("Here2 = %c %c %c\n", temp[0],temp[1],temp[2]);
-
-
-
+	//printf("Here2 = %c %c\n",output[0],output[1]);
 }
 
 
 
+uint8_t timeData(){
+	struct timeval tv; /* tv is the time variable */
 
-
-
-
+	gettimeofday(&tv, NULL);
+	return tv.tv_usec;
+}
 
 
 

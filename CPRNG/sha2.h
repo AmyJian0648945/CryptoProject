@@ -1,5 +1,5 @@
+/* FILE:	sha2.h */
 /*
- * FILE:	sha2.h
  * AUTHOR:	Aaron D. Gifford <me@aarongifford.com>
  * 
  * Copyright (c) 2000-2001, Aaron D. Gifford

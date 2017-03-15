@@ -12,69 +12,52 @@ outputLength
 
 * * * * * * * * * * * * * * * * * * * * * * * * */
 
-
-/*** Define Macros Here ***********************/
+////////// Define Macros Here //////////
 //#define SHA2_USE_INTTYPES_H TRUE // uses <inttypes.h>
-	    
 
-/*** Include functions ***********************/
+
+
+////////// Include Functions //////////
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-#include<time.h>
-//#include <sys/time.h>
 #include"useSHA256.h" // hashes messages
 
 
-/*** Function Declarations ***********************/
-void PRNG(uint8_t*, uint8_t*, uint32_t);
-void RNG(uint8_t*, uint32_t);
+
+////////// Function Declarations //////////
+void PRNG(uint8_t*, uint8_t*, uint32_t); // Obtains pseudo random number, based on seed
+void RNG(uint8_t*, uint32_t); // Obtains random number
 
 
 
 
 
 
-
-
-
-// Concatenate
-// Take a subset 
+////////// Function Implementation //////////
 
 void RNG(uint8_t* output, uint32_t desiredOutputLength){
+
+	// Initialise Variables
 	SHA256_CTX ctx;  /* structure used in SHA256 */
 	static uint8_t* seed; /* this will use previous results's hash as the seed */
-	uint8_t* timeHash;
-
-	struct timeval tv; /* tv is the time variable */
 	uint32_t i = 0;
 
-	// Obtain current time to microseconds
-	gettimeofday(&tv, NULL);
-
-
-	timeHash = "12345";
-	// Convert time data: int--> string
-	intToString(timeHash, (uint32_t)tv.tv_usec);
-
 	
 	
-
-	//simpleHash(timeHash, tv.tv_usec);
-
-
 	// generate a new seed
 	if(seed == NULL) seed = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
-	//else {}
+	else hashWithTime(seed);
+	
+	printf("seed1 = %s\n",seed);
+	hashWithTime(seed);
+	printf("seed2 = %s\n",seed);
 
-	printf("time = %s \n", timeHash);
-	printf("seed = %s  %c\n", seed, seed[6]);
+	
 
-	//xor each each element of timeHash and seed
+	//hashWithInt(seed, timeData());
 
-
-
-
+	//printf("seed = %s\n",seed);
 	
 
 /*
@@ -154,11 +137,12 @@ int main(){
 
 	//PRNG(pseudoRandNum, seed, 10);
 	RNG(pseudoRandNum, 500);
+	/*
 	RNG(pseudoRandNum, 500);
 	RNG(pseudoRandNum, 500);
 	RNG(pseudoRandNum, 500);
 	RNG(pseudoRandNum, 500);
-
+	*/
 
 	// Print hashed message
 	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
@@ -171,6 +155,9 @@ int main(){
 
 
 
+
+//uint8_t* timeHash[TIME_DATA_LENGTH];
+//simpleHash(timeHash, tv.tv_usec);
 
 
 
