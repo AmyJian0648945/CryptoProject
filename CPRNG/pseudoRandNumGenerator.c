@@ -41,20 +41,39 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 	// Initialise Variables
 	SHA256_CTX ctx;  /* structure used in SHA256 */
 	static uint8_t seed[257] = {0}; /* this will use previous results's hash as the seed */
+	uint8_t const randString[257] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
 	uint32_t i = 0;
 
 	
-	
 	// generate a new seed
-	if(seed[0] == 0) strncpy(seed, "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb", 256); 
-	else hashWithTime(seed);
+	//if(seed[0] == 0) strncpy(seed, "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb", 256); 
+	//else hashWithTime(seed);
 	
-	printf("seed1 = %c  %c\n",seed[0],seed[1]);
+	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
+		printf("%02x", randString[i]);
+	}
+
+	if(seed[0] == 0){
+		for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
+			seed[i] = randString[i];
+		}
+	}
+	
+
+	printf("ZERO ONE\n");
+	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
+		printf("%02x", seed[i]);
+	}
+
 	hashWithTime(seed);
-	printf("seed1 = %c  %c\n",seed[0],seed[1]);
 
+/*
 	
 
+	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
+		printf("%02x", seed[i]);
+	}
+*/
 	//hashWithInt(seed, timeData());
 
 	//printf("seed = %s\n",seed);
@@ -145,6 +164,7 @@ int main(){
 	*/
 
 	// Print hashed message
+	printf("\nhashed message\n");
 	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
 		printf("%02x", pseudoRandNum[i]);
 	}

@@ -28,7 +28,7 @@ void simpleHash(uint8_t*, uint8_t*); 	// Does a single SHA256 hash
 void hashWithTime(uint8_t*);	// XORs input with time data, then hashed
 
 // Helpful functions
-uint8_t timeData(); // Obtain current time to microseconds
+uint32_t timeData(); // Obtain current time to microseconds
 
 
 
@@ -54,33 +54,22 @@ void simpleHash(uint8_t* output, uint8_t* input){
 
 void hashWithTime(uint8_t* output){
 	uint8_t i = 0;
-	uint8_t timeValue = 0;
+	uint32_t timeValue = 0;
 
 	timeValue = timeData();
-
-
-	output[0] = (char) (timeValue % TIME_DATA_BASE + ASCII_SHIFT);
-	printf("output = %c\n",output[0]);
 	
-	//MEMCPY_BCOPY(output*, 3, 1);
-
-	//output[i] ^= timeValue % TIME_DATA_BASE;
-	//printf("output = %d\n",output[i]);
-
-	/*
-	for(i = 0; i < TIME_DATA_LENGTH; i++){
-		output[i] ^= timeValue % TIME_DATA_BASE;
-		timeValue /= 10;
+	while(timeValue > 0){
+		output[i] = timeValue % TIME_DATA_BASE;
+		timeValue /= 10; 
+		i++;
 	}
 	
-*/
-
-	//printf("Here2 = %c %c\n",output[0],output[1]);
+	simpleHash(output, output);
 }
 
 
 
-uint8_t timeData(){
+uint32_t timeData(){
 	struct timeval tv; /* tv is the time variable */
 
 	gettimeofday(&tv, NULL);
