@@ -643,8 +643,8 @@ unsigned char *SHA256_End(SHA256_CTX* context, unsigned char buffer[]) {
 
 	if (buffer != (unsigned char*)0) {
 		SHA256_Final(digest, context);
-
 		for (i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+
 			*buffer++ = sha2_hex_digits[(*d & 0xf0) >> 4];
 			*buffer++ = sha2_hex_digits[*d & 0x0f];
 			d++;

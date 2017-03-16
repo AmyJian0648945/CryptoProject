@@ -14,7 +14,8 @@ outputLength
 
 ////////// Define Macros Here //////////
 //#define SHA2_USE_INTTYPES_H TRUE // uses <inttypes.h>
-
+#define RNG_Block_Length 50
+#define RandNumLength 60
 
 
 ////////// Include Functions //////////
@@ -25,10 +26,12 @@ outputLength
 
 
 
+
+
 ////////// Function Declarations //////////
 void PRNG(uint8_t*, uint8_t*, uint32_t); // Obtains pseudo random number, based on seed
 void RNG(uint8_t*, uint32_t); // Obtains random number
-
+void printArray(uint8_t*, uint32_t){ // prints the array
 
 
 
@@ -36,50 +39,72 @@ void RNG(uint8_t*, uint32_t); // Obtains random number
 
 ////////// Function Implementation //////////
 
+void printArray(uint8_t* output, uint32_t iter){
+	uint32_t i=0;
+	
+	for(i=0; i<iter; i++)printf("%02x", output[i]);
+	printf("\n");
+}
+
+
 void RNG(uint8_t* output, uint32_t desiredOutputLength){
 
 	// Initialise Variables
 	SHA256_CTX ctx;  /* structure used in SHA256 */
 	static uint8_t seed[257] = {0}; /* this will use previous results's hash as the seed */
 	uint8_t const randString[257] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
-	uint32_t i = 0;
+		/* This will be used to initialise the hash function at the very beginning - i.e. rand value that is not zero*/
+	uint32_t i = 0, j = 0, count = 0;
 
-	
+
 	// generate a new seed
-	//if(seed[0] == 0) strncpy(seed, "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb", 256); 
-	//else hashWithTime(seed);
-	
-	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
-		printf("%02x", randString[i]);
+	if(seed[0] == 0) {
+		for(i = 0; i < SHA256_DIGEST_LENGTH; i++) seed[i] = randString[i];
+		hashWithTime(seed);			
 	}
+	else hashWithTime(seed);
 
-	if(seed[0] == 0){
-		for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
-			seed[i] = randString[i];
+	printf("begin:\n");
+	for(i = 0; i < 320; i++) printf("%02x", output[i]);
+	printf("\n\n");
+
+
+	count = 0;
+	// if the desiredOutputLength > RNG_Block_Length
+	while (desiredOutputLength > RNG_Block_Length){		
+		hashWithTime(seed);
+		j = 0;
+		for(i = count; i < count + RNG_Block_Length; i++){
+			output[i] = seed[j];
+			j++;
+			if(j==10) printf("\n");
 		}
-	}
-	
 
-	printf("ZERO ONE\n");
-	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
-		printf("%02x", seed[i]);
-	}
+		printf("Iteration num %d:\n",count);
+		for(i = 0; i < 320; i++) printf("%02x", output[i]);
+		printf("\n\n");
 
+		// Loop statements
+		count += RNG_Block_Length;
+		desiredOutputLength -= RNG_Block_Length;
+
+	} 
+
+	printf("Iteration num %d:\n",count);
+	for(i = 0; i < 320; i++) printf("%02x", output[i]);
+	printf("\n\n");
+
+	// operation when the random values needed < RNG_Block_Length
 	hashWithTime(seed);
-
-/*
-	
-
-	for(i = 0; i < SHA256_DIGEST_LENGTH; i++){
-		printf("%02x", seed[i]);
+	for(i = count; i < count + desiredOutputLength; i++){
+		output[i] = seed[i];
 	}
-*/
-	//hashWithInt(seed, timeData());
 
-	//printf("seed = %s\n",seed);
-	
 
-/*
+
+
+
+	/*
 
 	// Initialise SHA256	
 	SHA256_Init(&ctx); 
@@ -99,16 +124,23 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 
 
 	}
-
 	
 	
-	
-*/
+	*/
 
 	
 
 	// writes the hashing output onto output variable
 	//SHA256_Final(output, &ctx); 
+
+	// Print the output
+	/*
+	printf("RN = \n");
+	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
+		printf("%02x", seed[i]);
+	}
+	printf("\n");
+	*/
 
 
 }		
@@ -146,30 +178,30 @@ void PRNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
 int main(){
 
 	// initialise variables
-	uint8_t pseudoRandNum[256] = {0}; // first bit indicates array length, the rest are 0s
+	uint8_t pseudoRandNum[RandNumLength] = {0}; // first bit indicates array length, the rest are 0s
 	uint16_t numBitLength = 20; // random: 2~2048
 	char seed[257] = "12345";	// message - to initialise some hashings
 	uint32_t i = 0;
 
-	
-	
-
-	//PRNG(pseudoRandNum, seed, 10);
-	RNG(pseudoRandNum, 500);
-	/*
-	RNG(pseudoRandNum, 500);
-	RNG(pseudoRandNum, 500);
-	RNG(pseudoRandNum, 500);
-	RNG(pseudoRandNum, 500);
-	*/
-
-	// Print hashed message
-	printf("\nhashed message\n");
-	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
+	printf("The random number: \n");
+	for(i = 0; i < RandNumLength+1; i++){
 		printf("%02x", pseudoRandNum[i]);
 	}
 	printf("\n");
+	
 
+	//PRNG(pseudoRandNum, seed, 10);
+	RNG(pseudoRandNum, RandNumLength);
+
+	
+
+	// Print hashed message
+	printf("The random number: \n");
+	for(i = 0; i < RandNumLength+1; i++){
+		printf("%02x", pseudoRandNum[i]);
+	}
+	printf("\n");
+	
 	return 0;
 }
 

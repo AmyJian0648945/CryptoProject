@@ -52,6 +52,7 @@ void simpleHash(uint8_t* output, uint8_t* input){
 	SHA256_Final(output, &ctx); 
 }
 
+
 void hashWithTime(uint8_t* output){
 	uint8_t i = 0;
 	uint32_t timeValue = 0;
@@ -66,7 +67,6 @@ void hashWithTime(uint8_t* output){
 	
 	simpleHash(output, output);
 }
-
 
 
 uint32_t timeData(){
