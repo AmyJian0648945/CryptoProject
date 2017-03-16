@@ -1,21 +1,23 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
 What it does: generates a (pseudo) random number of length 
-	PRNlength based on the input seed (of any length)
+	PRNlength (each element of type uint_8) based on the input 
+	seed (of any length)
 
-Variables:
-PRNoutput 	- pseudo random number output
-RNoutput	- random number ouput
-seed 		- the initial seed given to the CPRNG (to make
-				it random), type hex
-outputLength	
-			- specifies output length in bits
+/// Function Description ///
+void printArray(message To Be Printed, length Of Message In uint8_t);	
+void PRNG(Pseudo Random Number, input seed, length of desired pseudo random number in uint8_t); 	
+void RNG(Random number output, length of random number in uint8_t); 	
+	-> Doesn't require input seed
+
+
+
 
 * * * * * * * * * * * * * * * * * * * * * * * * */
 
 ////////// Define Macros Here //////////
-//#define SHA2_USE_INTTYPES_H TRUE 	// uses <inttypes.h>
 #define RNG_Block_Length 	30 		// must be <256/8 = 32!!!
 #define RandNumLength 		60		// for testing purposes
+
 
 
 ////////// Include Functions //////////
@@ -27,11 +29,11 @@ outputLength
 
 
 
-
 ////////// Function Declarations //////////
-void PRNG(uint8_t*, uint8_t*, uint32_t); 	// Obtains pseudo random number, based on seed - last element is in BYTES
-void RNG(uint8_t*, uint32_t); 			// Obtains random number, length in BYTES
-void printArray(uint8_t*, uint32_t);	// prints the array
+void printArray(uint8_t*, uint32_t);	/* prints the array */
+void PRNG(uint8_t*, uint8_t*, uint32_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
+void RNG(uint8_t*, uint32_t); 			/* Obtains random number, length in BYTES */
+
 
 
 
@@ -39,27 +41,26 @@ void printArray(uint8_t*, uint32_t);	// prints the array
 
 ////////// Function Implementation //////////
 
+
 void printArray(uint8_t* output, uint32_t iter){
 	uint32_t i=0;
 
-	for(i=0; i<iter; i++) printf("%02x ", output[i]);
+	for(i=0; i<iter; i++) printf("%x", output[i]);
 	printf("\n\n");
 }
-
-
 
 
 void RNG(uint8_t* output, uint32_t desiredOutputLength){
 
 	// Initialise Variables
-	SHA256_CTX ctx;  /* structure used in SHA256 */
-	static uint8_t seed[32] = {0}; /* this will use previous results's hash as the seed */
+	SHA256_CTX ctx;  	/* structure used in SHA256 */
+	static uint8_t seed[32] = {0}; 		/* this will use previous results's hash as the seed */
 	uint8_t const randString[32] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
 		/* This will be used to initialise the hash function at the very beginning - i.e. rand value that is not zero*/
 	uint32_t i = 0, j = 0, count = 0;
 
 
-	// generate a new seed
+	// Refresh seed, or define a new one AND hash it
 	if(seed[0] == 0) {
 		for(i = 0; i < SHA256_DIGEST_LENGTH; i++) seed[i] = randString[i];
 		hashWithTime(seed);			
@@ -67,76 +68,33 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 	else hashWithTime(seed);
 
 
+	// Operation if the desiredOutputLength > RNG_Block_Length 
 	count = 0;
-	while (desiredOutputLength > RNG_Block_Length){ /* if the desiredOutputLength > RNG_Block_Length */
-		hashWithTime(seed);
+	while (desiredOutputLength > RNG_Block_Length){ 
 		j = 0;
+
+		// Get new hash
+		hashWithTime(seed);
+		
+		// Copy hash array over to output array
 		for(i = count; i < count + RNG_Block_Length; i++){	
 			output[i] = seed[j];
 			j++;
 		}
 
-
 		// Loop statements
 		count += RNG_Block_Length;
 		desiredOutputLength -= RNG_Block_Length;
-
 	} 
 
-	j = 0;
 
 	// operation when the random values needed < RNG_Block_Length
 	hashWithTime(seed);
+	j = 0;
 	for(i = count; i < count + desiredOutputLength; i++){
-
-		
 		output[i] = seed[j];
-		//printf("loop stuff: i=%d j=%d count=%d output=%x\n\n",i,j,count,output[i]);
 		j++;
 	}
-
-
-	printArray(seed,60);
-
-
-	/*
-
-	// Initialise SHA256	
-	SHA256_Init(&ctx); 
-
-	desiredOutputLength /= 50;
-
-	// Input data into hash function
-	//SHA256_Update(&ctx, input, lengthOfInput);
-
-	for(i=0; i<5; i++){
-
-		// Obtain current time
-		current_time = time(NULL);
-
-
-		//size_t lengthOfInput = strlen(input); 
-
-
-	}
-	
-	
-	*/
-
-	
-
-	// writes the hashing output onto output variable
-	//SHA256_Final(output, &ctx); 
-
-	// Print the output
-	/*
-	printf("RN = \n");
-	for(i = 0; i < SHA256_DIGEST_LENGTH+10; i++){
-		printf("%02x", seed[i]);
-	}
-	printf("\n");
-	*/
-
 
 }		
 
@@ -149,8 +107,6 @@ void PRNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
 	//strncat(output, input, strlen(input));
 
 	////////// Steps to implement:
-	// XOR seed with time
-	// Hash the XOR-ed values
 
 	//PRNoutput[0] = 13;
 	//uint32_t inputMessage[10] = {0};
@@ -178,11 +134,7 @@ int main(){
 	char seed[257] = "12345";	// message - to initialise some hashings
 	uint32_t i = 0;
 
-	printf("The random number: \n");
-	for(i = 0; i < RandNumLength+1; i++){
-		printf("%02x", pseudoRandNum[i]);
-	}
-	printf("\n");
+
 	
 
 	//PRNG(pseudoRandNum, seed, 10);
