@@ -47,6 +47,8 @@ void simpleHash(uint8_t* output, uint8_t* input){
 
 	// Input data into hash function
 	SHA256_Update(&ctx, input, lengthOfInput);
+
+	SHA256_Update(&ctx, input, lengthOfInput);
 	
 	// writes the hashing output onto output variable
 	SHA256_Final(output, &ctx); 
