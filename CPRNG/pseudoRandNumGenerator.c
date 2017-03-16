@@ -29,9 +29,9 @@ outputLength
 
 
 ////////// Function Declarations //////////
-void PRNG(uint8_t*, uint8_t*, uint32_t); // Obtains pseudo random number, based on seed
-void RNG(uint8_t*, uint32_t); // Obtains random number
-void printArray(uint8_t*, uint32_t){ // prints the array
+void PRNG(uint8_t*, uint8_t*, uint32_t); 	// Obtains pseudo random number, based on seed
+void RNG(uint8_t*, uint32_t); 			// Obtains random number
+void printArray(uint8_t*, uint32_t);	// prints the array
 
 
 
@@ -41,7 +41,7 @@ void printArray(uint8_t*, uint32_t){ // prints the array
 
 void printArray(uint8_t* output, uint32_t iter){
 	uint32_t i=0;
-	
+
 	for(i=0; i<iter; i++)printf("%02x", output[i]);
 	printf("\n");
 }
@@ -65,8 +65,8 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 	else hashWithTime(seed);
 
 	printf("begin:\n");
-	for(i = 0; i < 320; i++) printf("%02x", output[i]);
-	printf("\n\n");
+	printArray(output, )
+
 
 
 	count = 0;
