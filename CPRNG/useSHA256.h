@@ -34,12 +34,15 @@ void hashOfLength(uint8_t*, uint8_t*, uint32_t); /* Gives a hashed value of spec
 
 // Helpful functions
 uint32_t timeData(); // Obtain current time to microseconds
-void copyArray(uint32_t*, uint32_t*, uint32_t, uint32_t); /* Copies array over from input to output, starting from "index"*/
 
+void copyArray(uint32_t*, uint32_t*, uint32_t, uint32_t); /* Copies array over from input to output, starting from "index"*/
+void printArray(uint8_t*, uint32_t);	/* prints the array */
 
 
 
 ////////// Function Implementation //////////
+
+
 
 void simpleHash(uint8_t* output, uint8_t* input){
 
@@ -59,6 +62,7 @@ void simpleHash(uint8_t* output, uint8_t* input){
 }
 
 
+
 void hashWithTime(uint8_t* output){
 	uint8_t i = 0;
 	uint32_t timeValue = 0;
@@ -75,25 +79,16 @@ void hashWithTime(uint8_t* output){
 }
 
 
-uint32_t timeData(){
-	struct timeval tv; /* tv is the time variable */
-
-	gettimeofday(&tv, NULL);
-	return tv.tv_usec;
-}
-
-void copyArray(uint32_t* output, uint32_t* input, uint32_t startingIndex, uint32_t lengthToCopy){
-	uint32_t i = 0;
-	for(i=0; i<lengthToCopy; i++) output[startingIndex + i] = input[i];
-}
-
 void hashOfLength(uint8_t* output, uint8_t* seed, uint32_t lengthOfHash){
 	uint32_t tempHashStorage[32] = {0};
 	uint32_t output_count = 0, temp_count = 0, count_ref = 0;
 
 	// Hash once
 	simpleHash(tempHashStorage, seed);
-	
+
+
+
+
 	// While lengthOfHash > SHA256_DIGEST_LENGTH, iteratively add hashed values over to output
 	count_ref = 0;
 	while (lengthOfHash > SHA256_DIGEST_LENGTH){ 
@@ -101,18 +96,71 @@ void hashOfLength(uint8_t* output, uint8_t* seed, uint32_t lengthOfHash){
 		simpleHash(tempHashStorage, tempHashStorage);
 		
 		// Copy hash array over to output array
-		copyArray(uint32_t* output, uint32_t* tempHashStorage, uint32_t count_ref, SHA256_DIGEST_LENGTH){
+		//copyArray(output, tempHashStorage, count_ref, SHA256_DIGEST_LENGTH);
+
 
 		// Loop statements
 		count_ref += SHA256_DIGEST_LENGTH;
 		lengthOfHash -= SHA256_DIGEST_LENGTH;
 	} 
 
-	// When lengthOfHash > SHA256_DIGEST_LENGTH, Add hashed values one last time (same operation as in while loop)
+
+	// When lengthOfHash < SHA256_DIGEST_LENGTH, Add hashed values one last time (same operation as in while loop)
 	simpleHash(tempHashStorage, tempHashStorage);
-	copyArray(uint32_t* output, uint32_t* tempHashStorage, uint32_t count_ref, SHA256_DIGEST_LENGTH){
+	copyArray(output, tempHashStorage, count_ref, lengthOfHash);
+
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+uint32_t timeData(){
+	struct timeval tv; /* tv is the time variable */
+
+	gettimeofday(&tv, NULL);
+	return tv.tv_usec;
+}
+
+
+void copyArray(uint32_t* output, uint32_t* input, uint32_t startingIndex, uint32_t lengthToCopy){
+	uint32_t i = 0;
+
+	printf("DEBUG: %x  %d\n\n",startingIndex + lengthToCopy, &output[startingIndex + lengthToCopy ]);
+
+	/*
+	for(i = 0; i < lengthToCopy; i++) {
+		printf("%d ",startingIndex + i);
+		output[startingIndex + i] = input[i];
+	}*/
+	//printf("somt %x\n", output[startingIndex]);
+}
+
+
+void printArray(uint8_t* output, uint32_t iter){
+	uint32_t i=0;
+
+	for(i = 0; i < iter; i++) {
+
+		printf("%x\t", output[i]);
+
+		if(i%5 == 4) 	printf("\n");
+		if(i%25 == 24) 	printf("\n");
+	}
+	printf("\n\n");
+}
+
+
 
 
 

@@ -35,7 +35,7 @@ void PRNG(uint8_t*, uint8_t*, uint32_t); 	/*Obtains pseudo random number, based 
 void RNG(uint8_t*, uint32_t); 			/* Obtains random number, length in BYTES */
 
 
-void printArray(uint8_t*, uint32_t);	/* prints the array */
+
 void updateQueue(uint8_t*);
 
 
@@ -43,12 +43,7 @@ void updateQueue(uint8_t*);
 ////////// Function Implementation //////////
 
 
-void printArray(uint8_t* output, uint32_t iter){
-	uint32_t i=0;
 
-	for(i=0; i<iter; i++) printf("%x", output[i]);
-	printf("\n\n");
-}
 
 
 
@@ -57,7 +52,7 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 	// Initialise Variables
 	SHA256_CTX ctx;  	/* structure used in SHA256 */
 	static uint8_t seed[32] = {0}; 		/* this will use previous results's hash as the seed */
-	uint8_t const randString[32] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
+	uint8_t const randString[SHA256_DIGEST_LENGTH] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
 		/* This will be used to initialise the hash function at the very beginning - i.e. rand value that is not zero*/
 	uint32_t i = 0, j = 0, count = 0;
 
@@ -97,14 +92,18 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 		output[i] = seed[j];
 		j++;
 	}
-
 }		
 
+
+
 void PRNG(uint8_t* output, uint8_t* seed, uint32_t outputLength){
+	
+	printf("PRNG - Initial:\n"); printArray(output, outputLength);
 
+	hashOfLength(output, seed, outputLength);
+
+	printf("PRNG - After Hashing:\n"); printArray(output, outputLength);
 	// initiliase the streams with seed
-
-
 }
 
 
@@ -112,7 +111,7 @@ void PRNG(uint8_t* output, uint8_t* seed, uint32_t outputLength){
 int main(){
 
 	// initialise variables
-	uint8_t pseudoRandNum[RandNumLength] = {0}; // first bit indicates array length, the rest are 0s
+	uint8_t pseudoRandNum[RandNumLength+10] = {0}; // first bit indicates array length, the rest are 0s
 	uint16_t numBitLength = 20; // random: 2~2048
 	uint8_t seed[36] = "1234567890abcdefghijklmnopqrstuvwxyz";	// message - to initialise some hashings
 	uint32_t i = 0;
@@ -120,17 +119,12 @@ int main(){
 
 	
 
-	PRNG(pseudoRandNum, seed, 10);
-	//RNG(pseudoRandNum, 60);
+	PRNG(pseudoRandNum, seed, RandNumLength);
+	//RNG(pseudoRandNum, RandNumLength);
 
 	
 
 	// Print hashed message
-	printf("The random number: \n");
-	for(i = 0; i < RandNumLength+1; i++){
-		printf("%02x", pseudoRandNum[i]);
-	}
-	printf("\n");
 	
 	return 0;
 }
