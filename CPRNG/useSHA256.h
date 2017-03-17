@@ -9,26 +9,32 @@ Variables:
 
 
 To check the validity of results, compare with:
-http://www.freeformatter.com/sha256-generator.html#ad-output 
+
+
 
 * * * * * * * * * * * * * * * * * * * * * * * * */
+#ifndef SHA256_DIGEST_LENGTH
+#define SHA256_DIGEST_LENGTH	32 	/* Also defined in sha2.h, here for clarification and just-in-case purposes */
+#endif /* SHA256_DIGEST_LENGTH */
 
-#define TIME_DATA_LENGTH 6
-#define TIME_DATA_BASE 10
-#define ASCII_SHIFT 48
+#define TIME_DATA_BASE			10
 
+
+#include<time.h>
 #include"sha2.h"
 #include"sha2.c"
-#include<time.h>
+
 
 
 ////////// Function Declarations //////////
 
 void simpleHash(uint8_t*, uint8_t*); 	// Does a single SHA256 hash
 void hashWithTime(uint8_t*);	// XORs input with time data, then hashed
+void hashOfLength(uint8_t*, uint8_t*, uint32_t); /* Gives a hashed value of specified length based on seed*/ 
 
 // Helpful functions
 uint32_t timeData(); // Obtain current time to microseconds
+void copyArray(uint32_t*, uint32_t*, uint32_t, uint32_t); /* Copies array over from input to output, starting from "index"*/
 
 
 
@@ -46,8 +52,6 @@ void simpleHash(uint8_t* output, uint8_t* input){
 	SHA256_Init(&ctx); 
 
 	// Input data into hash function
-	SHA256_Update(&ctx, input, lengthOfInput);
-
 	SHA256_Update(&ctx, input, lengthOfInput);
 	
 	// writes the hashing output onto output variable
@@ -78,6 +82,50 @@ uint32_t timeData(){
 	return tv.tv_usec;
 }
 
+void copyArray(uint32_t* output, uint32_t* input, uint32_t startingIndex, uint32_t lengthToCopy){
+	uint32_t i = 0;
+	for(i=0; i<lengthToCopy; i++) output[startingIndex + i] = input[i];
+}
+
+void hashOfLength(uint8_t* output, uint8_t* seed, uint32_t lengthOfHash){
+	uint32_t tempHashStorage[32] = {0};
+	uint32_t output_count = 0, temp_count = 0, length_ref = 0;
+
+	// Hash once
+	simpleHash(tempHashStorage, seed);
+
+/*
+	while(lengthOfHash > RNG_Block_Length){ 
+		simpleHash(tempHashStorage, tempHashStorage);
+		copyArray(output, );
+	}
+*/
+
+
+	/*
+	count = 0;
+	while (desiredOutputLength > SHA256_DIGEST_LENGTH){ 
+		
+		j=0;
+		// Get new hash
+		hashWithTime(seed);
+		
+		// Copy hash array over to output array
+		for(i = count; i < count + RNG_Block_Length; i++){	
+			output[i] = seed[j];
+			j++;
+		}
+
+		// Loop statements
+		count += RNG_Block_Length;
+		desiredOutputLength -= RNG_Block_Length;
+	} 
+
+	*/
+
+
+	
+}
 
 
 

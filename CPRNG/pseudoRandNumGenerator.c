@@ -30,12 +30,13 @@ void RNG(Random number output, length of random number in uint8_t);
 
 
 ////////// Function Declarations //////////
-void printArray(uint8_t*, uint32_t);	/* prints the array */
+
 void PRNG(uint8_t*, uint8_t*, uint32_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
 void RNG(uint8_t*, uint32_t); 			/* Obtains random number, length in BYTES */
 
 
-
+void printArray(uint8_t*, uint32_t);	/* prints the array */
+void updateQueue(uint8_t*);
 
 
 
@@ -48,6 +49,7 @@ void printArray(uint8_t* output, uint32_t iter){
 	for(i=0; i<iter; i++) printf("%x", output[i]);
 	printf("\n\n");
 }
+
 
 
 void RNG(uint8_t* output, uint32_t desiredOutputLength){
@@ -98,30 +100,11 @@ void RNG(uint8_t* output, uint32_t desiredOutputLength){
 
 }		
 
-void PRNG(uint8_t* output, uint8_t* input, uint32_t outputLength){
+void PRNG(uint8_t* output, uint8_t* seed, uint32_t outputLength){
 
-	// hash the inputMessage (32 bits), output it in PRNoutput
-	simpleHash(output, input);
-
-
-	//strncat(output, input, strlen(input));
-
-	////////// Steps to implement:
-
-	//PRNoutput[0] = 13;
-	//uint32_t inputMessage[10] = {0};
-	//inputMessage[0] = 22;
+	// initiliase the streams with seed
 
 
-	/*
-	while(currBitLength < numBitLength){
-		// Seed = Concatenate the rest + num=(count up from numBitLength * large number)
-		// 		else num = rand for x, y
-		// Hash the seed
-		// Take a subset, add it to pseudoRandNum
-		// update currBithLength
-	}
-	*/
 }
 
 
@@ -131,14 +114,14 @@ int main(){
 	// initialise variables
 	uint8_t pseudoRandNum[RandNumLength] = {0}; // first bit indicates array length, the rest are 0s
 	uint16_t numBitLength = 20; // random: 2~2048
-	char seed[257] = "12345";	// message - to initialise some hashings
+	uint8_t seed[36] = "1234567890abcdefghijklmnopqrstuvwxyz";	// message - to initialise some hashings
 	uint32_t i = 0;
 
 
 	
 
-	//PRNG(pseudoRandNum, seed, 10);
-	RNG(pseudoRandNum, 60);
+	PRNG(pseudoRandNum, seed, 10);
+	//RNG(pseudoRandNum, 60);
 
 	
 
