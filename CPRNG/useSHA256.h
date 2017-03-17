@@ -89,42 +89,29 @@ void copyArray(uint32_t* output, uint32_t* input, uint32_t startingIndex, uint32
 
 void hashOfLength(uint8_t* output, uint8_t* seed, uint32_t lengthOfHash){
 	uint32_t tempHashStorage[32] = {0};
-	uint32_t output_count = 0, temp_count = 0, length_ref = 0;
+	uint32_t output_count = 0, temp_count = 0, count_ref = 0;
 
 	// Hash once
 	simpleHash(tempHashStorage, seed);
-
-/*
-	while(lengthOfHash > RNG_Block_Length){ 
-		simpleHash(tempHashStorage, tempHashStorage);
-		copyArray(output, );
-	}
-*/
-
-
-	/*
-	count = 0;
-	while (desiredOutputLength > SHA256_DIGEST_LENGTH){ 
-		
-		j=0;
+	
+	// While lengthOfHash > SHA256_DIGEST_LENGTH, iteratively add hashed values over to output
+	count_ref = 0;
+	while (lengthOfHash > SHA256_DIGEST_LENGTH){ 
 		// Get new hash
-		hashWithTime(seed);
+		simpleHash(tempHashStorage, tempHashStorage);
 		
 		// Copy hash array over to output array
-		for(i = count; i < count + RNG_Block_Length; i++){	
-			output[i] = seed[j];
-			j++;
-		}
+		copyArray(uint32_t* output, uint32_t* tempHashStorage, uint32_t count_ref, SHA256_DIGEST_LENGTH){
 
 		// Loop statements
-		count += RNG_Block_Length;
-		desiredOutputLength -= RNG_Block_Length;
+		count_ref += SHA256_DIGEST_LENGTH;
+		lengthOfHash -= SHA256_DIGEST_LENGTH;
 	} 
 
-	*/
+	// When lengthOfHash > SHA256_DIGEST_LENGTH, Add hashed values one last time (same operation as in while loop)
+	simpleHash(tempHashStorage, tempHashStorage);
+	copyArray(uint32_t* output, uint32_t* tempHashStorage, uint32_t count_ref, SHA256_DIGEST_LENGTH){
 
-
-	
 }
 
 
