@@ -54,7 +54,7 @@ void RNG(Random number output, length of random number in uint8_t);
 
 ////////// Function Declarations //////////
 
-void PRNG(uint8_t*, uint8_t*, uint16_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
+void PRNG(uint8_t*, uint8_t*, uint16_t, uint16_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
 void RNG(uint8_t*, uint16_t); 			/* Obtains random number, length in BYTES */
 
 void updateFSR(uint8_t*, uint16_t);
@@ -74,10 +74,9 @@ void RNG(uint8_t* output, uint16_t desiredOutputLength){
 	// Initialise Variables
 	SHA256_CTX ctx;  	/* structure used in SHA256 */
 	static uint8_t seed[32] = {0}; 		/* this will use previous results's hash as the seed */
-	uint8_t const randString[SHA256_DIGEST_LENGTH] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
+	uint8_t const randString[SHA256_DIGEST_LENGTH*2] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
 		/* This will be used to initialise the hash function at the very beginning - i.e. rand value that is not zero*/
 	uint16_t i = 0, j = 0, count = 0;
-
 
 	// Refresh seed, or define a new one AND hash it
 	if(seed[0] == 0) {
@@ -85,7 +84,6 @@ void RNG(uint8_t* output, uint16_t desiredOutputLength){
 		hashWithTime(seed);			
 	}
 	else hashWithTime(seed);
-
 
 	// Operation if the desiredOutputLength > RNG_Block_Length 
 	count = 0;
@@ -105,7 +103,6 @@ void RNG(uint8_t* output, uint16_t desiredOutputLength){
 		count += RNG_Block_Length;
 		desiredOutputLength -= RNG_Block_Length;
 	} 
-
 
 	// operation when the random values needed < RNG_Block_Length
 	hashWithTime(seed);
@@ -165,7 +162,7 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 }
 
 
-void PRNG(uint8_t* output, uint8_t* seed, uint16_t outputLength){
+void PRNG(uint8_t* output, uint8_t* seed, uint16_t outputLength, uint16_t lengthOfSeed){
 	uint8_t FSR1[PRNG_FSR1_LENGTH] = {0}, FSR2[PRNG_FSR2_LENGTH] = {0}, FSR3[PRNG_FSR3_LENGTH] = {0}; /* FSR = feedback shift registers */ 
 	uint8_t flag = 0;
 	uint16_t i = 0;
@@ -173,15 +170,15 @@ void PRNG(uint8_t* output, uint8_t* seed, uint16_t outputLength){
 
 	// Generate shift registers
 	printf("FSR1///////////////:\n");
-	hashOfLength(FSR1, seed, PRNG_FSR1_LENGTH);
+	hashOfLength(FSR1, seed, PRNG_FSR1_LENGTH, lengthOfSeed);
 	//printArray(FSR1, PRNG_FSR1_LENGTH);
 
 	printf("FSR2///////////////:\n");
-	hashOfLength(FSR2, FSR1, PRNG_FSR2_LENGTH);
+	hashOfLength(FSR2, FSR1, PRNG_FSR2_LENGTH, PRNG_FSR1_LENGTH);
 	//printArray(FSR2, PRNG_FSR2_LENGTH);
 
 	printf("FSR3///////////////:\n");
-	hashOfLength(FSR3, FSR2, PRNG_FSR3_LENGTH);
+	hashOfLength(FSR3, FSR2, PRNG_FSR3_LENGTH, PRNG_FSR2_LENGTH);
 	//printArray(FSR3, PRNG_FSR3_LENGTH);
 
 	
@@ -215,7 +212,7 @@ int main(){
 
 	printf("PRNG - Initial:\n"); printArray(pseudoRandNum, RandNumLength);
 
-	PRNG(pseudoRandNum, seed, RandNumLength);
+	PRNG(pseudoRandNum, seed, RandNumLength, 36);
 	//RNG(pseudoRandNum, RandNumLength);
 
 	//printf("PRNG - After Hashing:\n"); printArray(pseudoRandNum, RandNumLength);

@@ -122,7 +122,7 @@ void hashOfLength(uint8_t* output, uint8_t* seed, uint16_t lengthOfHash, size_t 
 
 
 	// When lengthOfHash < SHA256_DIGEST_LENGTH, Add hashed values one last time (same operation as in while loop)
-	simpleHash(tempHashStorage, tempHashStorage, lengthOfHash);
+	simpleHashWithLength(tempHashStorage, tempHashStorage, lengthOfHash);
 	copyArray(output, tempHashStorage, count_ref, lengthOfHash);
 
 }
