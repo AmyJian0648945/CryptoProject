@@ -131,12 +131,11 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 
 	while(1){
 		if( FSR1[ref] == FSR2[ref] 	&& 	FSR1[ref] == FSR3[ref] ) {
-			printf("update all: %d %d %d ",FSR1[ref], FSR2[ref], FSR3[ref]);
 			updateFSR(FSR1, PRNG_FSR1_LENGTH); 
 			updateFSR(FSR2, PRNG_FSR2_LENGTH); 
 			updateFSR(FSR3, PRNG_FSR3_LENGTH); 
 			
-			printf("%d \n",FSR1[ref-1]);
+			printf("%x\t",FSR1[ref-1]);
 			return FSR1[ref-1];
 		}
 		else if( FSR1[ref] == FSR2[ref] ){ 
@@ -155,8 +154,9 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 			updateFSR(FSR3, PRNG_FSR3_LENGTH); 
 		}
 		else{
-			printf("ERROR in pseudoRandNumGenerator.c, compareFSR: Comparison doesn't work. \n");
-			return -1;
+			updateFSR(FSR1, PRNG_FSR1_LENGTH); 
+			updateFSR(FSR2, PRNG_FSR2_LENGTH); 
+			updateFSR(FSR3, PRNG_FSR3_LENGTH); 
 		}
 	}
 }
@@ -181,23 +181,16 @@ void PRNG(uint8_t* output, uint8_t* seed, uint16_t outputLength, uint16_t length
 	hashOfLength(FSR3, FSR2, PRNG_FSR3_LENGTH, PRNG_FSR2_LENGTH);
 	//printArray(FSR3, PRNG_FSR3_LENGTH);
 
-	
+	printf("Compare: %x\n",compareFSR(FSR1, FSR2, FSR3, PRNG_CMP_LOCATION));
 
 	
-	
 
-	
-	
-
-	
-	
-/*
 	for(i=0; outputLength > 0; i++){
 		output[i] = compareFSR(FSR1, FSR2, FSR3, PRNG_CMP_LOCATION);
-		//printf("%x ",output[i]);
+		if(i%5 == 4) printf("\n");
 		outputLength--;
 	}
-*/
+
 }
 
 
@@ -215,7 +208,7 @@ int main(){
 	PRNG(pseudoRandNum, seed, RandNumLength, 36);
 	//RNG(pseudoRandNum, RandNumLength);
 
-	//printf("PRNG - After Hashing:\n"); printArray(pseudoRandNum, RandNumLength);
+	printf("PRNG - After Hashing:\n"); printArray(pseudoRandNum, RandNumLength);
 
 	// Print hashed message
 	

@@ -47,35 +47,22 @@ void printArray(uint8_t*, uint16_t);	/* prints the array */
 
 void simpleHash(uint8_t* output, uint8_t* input){
 
-	// initialise variables
-	SHA256_CTX ctx;  // structure used in SHA256
+	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
 	size_t lengthOfInput = strlen(input); 
-	printf("length = %d\n",lengthOfInput);
-
-	// Initialise SHA256	
-	SHA256_Init(&ctx); 
-
-	// Input data into hash function
-	SHA256_Update(&ctx, input, lengthOfInput);
 	
-	// writes the hashing output onto output variable
-	SHA256_Final(output, &ctx); 
+	SHA256_Init(&ctx); /* Initialise SHA256 */
+	SHA256_Update(&ctx, input, lengthOfInput); /* Input data into hash function */
+	SHA256_Final(output, &ctx); /* writes the hashing output onto output variable */
 }
 
 
 void simpleHashWithLength(uint8_t* output, uint8_t* input, size_t lengthOfInput){
 
-	// initialise variables
-	SHA256_CTX ctx;  // structure used in SHA256
+	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
 
-	// Initialise SHA256	
-	SHA256_Init(&ctx); 
-
-	// Input data into hash function
-	SHA256_Update(&ctx, input, lengthOfInput);
-	
-	// writes the hashing output onto output variable
-	SHA256_Final(output, &ctx); 
+	SHA256_Init(&ctx); /* Initialise SHA256 */
+	SHA256_Update(&ctx, input, lengthOfInput); /* Input data into hash function */
+	SHA256_Final(output, &ctx); /* writes the hashing output onto output variable */
 }
 
 
@@ -99,12 +86,8 @@ void hashOfLength(uint8_t* output, uint8_t* seed, uint16_t lengthOfHash, size_t 
 	uint16_t tempHashStorage[SHA256_DIGEST_LENGTH] = {0};
 	uint16_t output_count = 0, temp_count = 0, count_ref = 0;
 
-
-	printf("simpleHash:\n"); printArray(seed, 75);
-
 	// Hash once
 	simpleHashWithLength(tempHashStorage, seed, lengthOfSeed);
-	//printf("simpleHash:\n"); printArray(tempHashStorage, 32);
 
 	// While lengthOfHash > SHA256_DIGEST_LENGTH, iteratively add hashed values over to output
 	count_ref = 0;
