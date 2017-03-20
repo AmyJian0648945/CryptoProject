@@ -53,21 +53,16 @@ void RNG(Random number output, length of random number in uint8_t);
 
 
 ////////// Function Declarations //////////
-
-void PRNG(uint8_t*, uint8_t*, uint16_t, uint16_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
 void RNG(uint8_t*, uint16_t); 			/* Obtains random number, length in BYTES */
+void PRNG(uint8_t*, uint8_t*, uint16_t, uint16_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
 
 void updateFSR(uint8_t*, uint16_t);
 uint8_t compareFSR(uint8_t*, uint8_t*, uint8_t*, uint16_t);
 
 
 
+
 ////////// Function Implementation //////////
-
-
-
-
-
 
 void RNG(uint8_t* output, uint16_t desiredOutputLength){
 
@@ -113,7 +108,22 @@ void RNG(uint8_t* output, uint16_t desiredOutputLength){
 	}
 }		
 
+void PRNG(uint8_t* output, uint8_t* seed, uint16_t outputLength, uint16_t lengthOfSeed){
+	uint8_t FSR1[PRNG_FSR1_LENGTH] = {0}, FSR2[PRNG_FSR2_LENGTH] = {0}, FSR3[PRNG_FSR3_LENGTH] = {0}; /* FSR = feedback shift registers */ 
+	uint16_t i = 0;
 
+	// Generate shift registers
+	hashOfLength(FSR1, seed, PRNG_FSR1_LENGTH, lengthOfSeed);
+	hashOfLength(FSR2, FSR1, PRNG_FSR2_LENGTH, PRNG_FSR1_LENGTH);
+	hashOfLength(FSR3, FSR2, PRNG_FSR3_LENGTH, PRNG_FSR2_LENGTH);
+
+	// For each iteration, generate a random character
+	for(i=0; outputLength > 0; i++){
+		output[i] = compareFSR(FSR1, FSR2, FSR3, PRNG_CMP_LOCATION);
+		outputLength--;
+	}
+
+}
 
 
 void updateFSR(uint8_t* output, uint16_t size){
@@ -134,22 +144,18 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 			updateFSR(FSR1, PRNG_FSR1_LENGTH); 
 			updateFSR(FSR2, PRNG_FSR2_LENGTH); 
 			updateFSR(FSR3, PRNG_FSR3_LENGTH); 
-			
-			printf("%x\t",FSR1[ref-1]);
+
 			return FSR1[ref-1];
 		}
 		else if( FSR1[ref] == FSR2[ref] ){ 
-
 			updateFSR(FSR1, PRNG_FSR1_LENGTH); 
 			updateFSR(FSR2, PRNG_FSR2_LENGTH); 
 		}
 		else if( FSR2[ref] == FSR3[ref] ){ 
-
 			updateFSR(FSR2, PRNG_FSR2_LENGTH); 
 			updateFSR(FSR3, PRNG_FSR3_LENGTH); 
 		}
 		else if( FSR1[ref] == FSR3[ref] ){ 
-
 			updateFSR(FSR1, PRNG_FSR1_LENGTH); 
 			updateFSR(FSR3, PRNG_FSR3_LENGTH); 
 		}
@@ -161,37 +167,6 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 	}
 }
 
-
-void PRNG(uint8_t* output, uint8_t* seed, uint16_t outputLength, uint16_t lengthOfSeed){
-	uint8_t FSR1[PRNG_FSR1_LENGTH] = {0}, FSR2[PRNG_FSR2_LENGTH] = {0}, FSR3[PRNG_FSR3_LENGTH] = {0}; /* FSR = feedback shift registers */ 
-	uint8_t flag = 0;
-	uint16_t i = 0;
-	
-
-	// Generate shift registers
-	printf("FSR1///////////////:\n");
-	hashOfLength(FSR1, seed, PRNG_FSR1_LENGTH, lengthOfSeed);
-	//printArray(FSR1, PRNG_FSR1_LENGTH);
-
-	printf("FSR2///////////////:\n");
-	hashOfLength(FSR2, FSR1, PRNG_FSR2_LENGTH, PRNG_FSR1_LENGTH);
-	//printArray(FSR2, PRNG_FSR2_LENGTH);
-
-	printf("FSR3///////////////:\n");
-	hashOfLength(FSR3, FSR2, PRNG_FSR3_LENGTH, PRNG_FSR2_LENGTH);
-	//printArray(FSR3, PRNG_FSR3_LENGTH);
-
-	printf("Compare: %x\n",compareFSR(FSR1, FSR2, FSR3, PRNG_CMP_LOCATION));
-
-	
-
-	for(i=0; outputLength > 0; i++){
-		output[i] = compareFSR(FSR1, FSR2, FSR3, PRNG_CMP_LOCATION);
-		if(i%5 == 4) printf("\n");
-		outputLength--;
-	}
-
-}
 
 
 

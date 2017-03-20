@@ -24,19 +24,16 @@ To check the validity of results, compare with:
 #include"sha2.h"
 #include"sha2.c"
 
-
-
 ////////// Function Declarations //////////
 
-void simpleHash(uint8_t*, uint8_t*); 	// Does a single SHA256 hash
-void simpleHashWithLength(uint8_t*, uint8_t*, size_t); // same as simpleHash, but with specified length
-void hashWithTime(uint8_t*);	// XORs input with time data, then hashed
-void hashOfLength(uint8_t*, uint8_t*, uint16_t, size_t); /* Gives a hashed value of specified length based on seed*/ 
+void simpleHash(uint8_t*, uint8_t*); 	/* Does a single SHA256 hash */
+void simpleHashWithLength(uint8_t*, uint8_t*, size_t); /* same as simpleHash, but with specified length */
+void hashWithTime(uint8_t*);	/* XORs input with time data, then hashed */
+void hashOfLength(uint8_t*, uint8_t*, uint16_t, size_t); /* Gives a hashed value of specified length based on seed */ 
 
 // Helpful functions
-uint16_t timeData(); // Obtain current time to microseconds
-
-void copyArray(uint8_t*, uint8_t*, uint16_t, uint16_t); /* Copies array over from input to output, starting from "index"*/
+uint16_t timeData(); /* Obtain current time to microseconds */
+void copyArray(uint8_t*, uint8_t*, uint16_t, uint16_t); /* Copies array over from input to output, starting from "index" */
 void printArray(uint8_t*, uint16_t);	/* prints the array */
 
 
@@ -109,16 +106,6 @@ void hashOfLength(uint8_t* output, uint8_t* seed, uint16_t lengthOfHash, size_t 
 	copyArray(output, tempHashStorage, count_ref, lengthOfHash);
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 uint16_t timeData(){
