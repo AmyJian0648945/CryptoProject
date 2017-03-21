@@ -203,7 +203,6 @@ int main(){
 	findRandNum();
 
 
-
 	//printf("PRNG - Initial:\n"); printArray(pseudoRandNum, RandNumLength);
 
 	//PRNG(pseudoRandNum, seed, RandNumLength, 36);
