@@ -47,8 +47,8 @@ void RNG(Random number output, length of random number in uint8_t);
 #endif /* SHA256_DIGEST_LENGTH */
 
 ////////// Include Functions //////////
-#include<stdlib.h>
-#include<stdio.h>
+//#include<stdlib.h>
+//#include<stdio.h>
 #include<string.h>
 #include"useSHA256.h" // hashes messages
 
@@ -191,7 +191,7 @@ uint32_t findRandNum(){
 
 	return 0; // if return 0, it has failed
 }
-
+/*
 
 int main(){
 
@@ -213,41 +213,4 @@ int main(){
 	
 	return 0;
 }
-
-
-
-
-//uint8_t* timeHash[TIME_DATA_LENGTH];
-//simpleHash(timeHash, tv.tv_usec);
-//seed = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
-
-
-/** To compile:
-1. get to the folder
-2. gcc -o outputVariable CPRNG.c
-	then ./outputVariable
-OR
-2. gcc -o outputFileName.c CNG.c
-**/
-
-
-/*
-
-		switch(compareFSR(FSR1, FSR2, FSR3, PRNG_CMP_LOCATION)) {
-	   		case 12: 	
-	      		break; 
-	   		case 23: 	
-	      		break; 
-	      	case 13: 	
-	      		break;
-	      	case 123: 	
-	      		break;
-	   		default :	
-	   			printf("ERROR in pseudoRandNumGenerator.c, PRNG: Switch statement doesn't work. \n");
-	   			break;
-		}
-
 */
-
-
-
