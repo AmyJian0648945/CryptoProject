@@ -27,10 +27,8 @@ int verifySignature(uint8_t *message, uint8_t *encodedMessage){
 	}
 	
 	// STEP  7 //	
-	// Mask Generation Function //
 	uint8_t dbmask[emlen-hlen-1];
 	maskGenerationFunction(H, dbmask);
-	// End Mask Generation Function //
 	
 	// STEP 8 //
 	uint8_t db[emlen-hlen-1];
@@ -71,7 +69,7 @@ int verifySignature(uint8_t *message, uint8_t *encodedMessage){
 	copyArray8(output,hash2,hlen);
 
 	// STEP 14 //	
-		int i;
+	int i;
 	for(i=0;i<hlen;i++){
 		if (hash2[i] != H[i])
 			return 0;

@@ -1,65 +1,76 @@
 
 int signatureMessage(uint8_t *message, uint8_t *encodedMessage){
 
-	//emlen = 256
-	//hlen = 32
-	//slen = 32
+	uint16_t emlen = 256;
+	uint16_t hlen = 32;
+	uint16_t slen = 32;
 
-	uint8_t output[32];
-	simpleHashWithLength(output, message,256);
+	// STEP 2 //
+	uint8_t output[hlen];
+	simpleHashWithLength(output, message,emlen);
 
-	uint8_t hash1[32];
-	copyArray8(output,hash1,32);
+	uint8_t hash1[hlen];
+	copyArray8(output,hash1,hlen);
 
-	uint8_t zeros[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
+	// STEP 3 //
+	if (emlen < hlen + slen + 2)
+		return 0;
+	
+	// STEP 4 //
 	uint8_t salt[32] = {0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01};
 
-	uint8_t result[72] = {};
+	// STEP 5 //
+	uint8_t zeros[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+	uint8_t result[hlen+slen+8];
 	int k;
-	for (k=0; k<72; k++){
+	for (k=0; k<(hlen+slen+8); k++){
 		if (k<8)
 			result[k] = zeros[k];
-		else if (k < 40)
+		else if (k < (8+hlen))
 			result[k] = output[k-8];
 		else
-			result[k] = salt[k-40];
+			result[k] = salt[k-(8+hlen)];
 	}
 	
-	simpleHashWithLength(output, result, 72);
-	uint8_t hash2[32];
-	copyArray8(output,hash2,32);
+	// STEP 6 //
+	simpleHashWithLength(output, result, hlen+slen+8);
+	uint8_t hash2[hlen];
+	copyArray8(output,hash2,hlen);
 
-	uint8_t ps[190];
-	for (k=0;k<190;k++){
+	// STEP 7 //
+	uint8_t ps[emlen-hlen-slen-2];
+	for (k=0;k<(emlen-hlen-slen-2);k++){
 		ps[k] = 0;
 	}
 
-	uint8_t db[223];
-	for (k=0;k<223;k++){
-		if (k<190)
+	// STEP 8 //
+	uint8_t db[emlen-hlen-1];
+	for (k=0;k<(emlen-hlen-1);k++){
+		if (k<(emlen-hlen-slen-2))
 			db[k] = ps[k];
-		else if (k<191)
+		else if (k<(emlen-hlen-slen-1))
 			db[k] = 0x01;
 		else
-			db[k] = salt[k-191];
+			db[k] = salt[k-(emlen-hlen-slen-1)];
 	}
 
-	// Mask generation function //
-	uint8_t dbmask[223];
+	// STEP 9 - Mask generation function //
+	uint8_t dbmask[emlen-hlen-1];
 	maskGenerationFunction(hash2,dbmask);
-	// End mask generation function //
 
-	uint8_t maskeddb[223];
-	for (k=0;k<223;k++){
+	// STEP 10 //
+	uint8_t maskeddb[emlen-hlen-1];
+	for (k=0;k<(emlen-hlen-1);k++){
 		maskeddb[k] = db[k] ^ dbmask[k];
 	}
 	
-	for (k=0;k<256;k++){
-		if (k<223)
+	// STEP 12 //
+	for (k=0;k<emlen;k++){
+		if (k<(emlen-hlen-1))
 			encodedMessage[k] = maskeddb[k];
-		else if (k<255)
-			encodedMessage[k] = hash2[k-223];
+		else if (k<(emlen-1))
+			encodedMessage[k] = hash2[k-(emlen-hlen-1)];
 		else
 			encodedMessage[k] = 0xbc;
 	}

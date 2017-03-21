@@ -18,7 +18,7 @@ To check the validity of results, compare with:
 #endif /* SHA256_DIGEST_LENGTH */
 
 #define TIME_DATA_BASE			10
-
+#define SHA2_USE_INTTYPES_H
 
 #include<time.h>
 #include"sha2.h"

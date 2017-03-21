@@ -633,8 +633,7 @@ void SHA256_Final(sha2_byte digest[], SHA256_CTX* context) {
 	MEMSET_BZERO(context, sizeof(context));
 	usedspace = 0;
 }
- unsigned char* SHA256_End(SHA256_CTX* context, unsigned char buffer[]) {
-//char* SHA256_End(SHA256_CTX* context, unsigned char buffer[]) {
+char* SHA256_End(SHA256_CTX* context, unsigned char buffer[]) {
 	sha2_byte	digest[SHA256_DIGEST_LENGTH], *d = digest;
 	int		i;
 
@@ -656,8 +655,7 @@ void SHA256_Final(sha2_byte digest[], SHA256_CTX* context) {
 	MEMSET_BZERO(digest, SHA256_DIGEST_LENGTH);
 	return buffer;
 }
- unsigned char* SHA256_Data(const uint8_t* data, size_t len, unsigned char digest[SHA256_DIGEST_STRING_LENGTH]) {
-//char* SHA256_Data(const uint8_t* data, size_t len, char digest[SHA256_DIGEST_STRING_LENGTH]) {
+char* SHA256_Data(const uint8_t* data, size_t len, char digest[SHA256_DIGEST_STRING_LENGTH]) {
 	SHA256_CTX	context;
 
 	SHA256_Init(&context);
