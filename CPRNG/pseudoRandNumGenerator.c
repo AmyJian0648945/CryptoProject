@@ -67,7 +67,7 @@ uint8_t compareFSR(uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void RNG(uint8_t* output, uint16_t desiredOutputLength){
 
 	// Initialise Variables
-	SHA256_CTX ctx;  	/* structure used in SHA256 */
+	
 	static uint8_t seed[32] = {0}; 		/* this will use previous results's hash as the seed */
 	uint8_t const randString[SHA256_DIGEST_LENGTH*2] = "8bc73c890d2dd2977128d97ecfcdeb203ca9c27da294454595c61bb1e2684fbb";
 		/* This will be used to initialise the hash function at the very beginning - i.e. rand value that is not zero*/
@@ -167,14 +167,23 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 	}
 }
 
-
+/*
+uint32_t findRandNum(){
+	uint8_t randnum[2] = {0};
+	RNG(randnum, 2);
+	printf("Rand num = %x %x \n", randnum[0], randnum[1]);
+	return 0;
+}*/
 
 
 int main(){
 
 	// initialise variables
 	uint8_t pseudoRandNum[RandNumLength+10] = {0}; // first bit indicates array length, the rest are 0s
-	uint8_t seed[36] = "1234567890abcdefghijklmnopqrstuvwxyz";	// message - to initialise some hashings
+	uint8_t seed[36] = "4567890abcdefghijklmnopqrstuvwxyz";	// message - to initialise some hashings
+
+
+	//findRandNum();
 
 
 
@@ -185,7 +194,6 @@ int main(){
 
 	printf("PRNG - After Hashing:\n"); printArray(pseudoRandNum, RandNumLength);
 
-	// Print hashed message
 	
 	return 0;
 }

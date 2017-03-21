@@ -80,7 +80,7 @@ void hashWithTime(uint8_t* output){
 
 
 void hashOfLength(uint8_t* output, uint8_t* seed, uint16_t lengthOfHash, size_t lengthOfSeed){
-	uint16_t tempHashStorage[SHA256_DIGEST_LENGTH] = {0};
+	uint8_t tempHashStorage[SHA256_DIGEST_LENGTH] = {0};
 	uint16_t output_count = 0, temp_count = 0, count_ref = 0;
 
 	// Hash once
