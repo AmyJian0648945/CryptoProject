@@ -27,6 +27,9 @@ void RNG(Random number output, length of random number in uint8_t);
 #define RNG_Block_Length 	30 		// must be <256/8 = 32!!!
 #define RandNumLength 		60		// for testing purposes
 
+#define MaxRandNumLength	2048	// for up / down boundaries of x,y,g
+#define MinRandNumLength	2
+
 #define PRNG_FSR1_LENGTH	64
 #define PRNG_FSR2_LENGTH	65
 #define PRNG_FSR3_LENGTH	72
@@ -53,8 +56,9 @@ void RNG(Random number output, length of random number in uint8_t);
 
 
 ////////// Function Declarations //////////
-void RNG(uint8_t*, uint16_t); 			/* Obtains random number, length in BYTES */
+void RNG(uint8_t*, uint16_t); 		/* Obtains random number, length in BYTES */
 void PRNG(uint8_t*, uint8_t*, uint16_t, uint16_t); 	/*Obtains pseudo random number, based on seed - last element is in BYTES */
+uint32_t findRandNum(); /* gets a number*/
 
 void updateFSR(uint8_t*, uint16_t);
 uint8_t compareFSR(uint8_t*, uint8_t*, uint8_t*, uint16_t);
@@ -167,13 +171,26 @@ uint8_t compareFSR(uint8_t* FSR1, uint8_t* FSR2, uint8_t* FSR3, uint16_t ref){
 	}
 }
 
-/*
+
 uint32_t findRandNum(){
-	uint8_t randnum[2] = {0};
-	RNG(randnum, 2);
-	printf("Rand num = %x %x \n", randnum[0], randnum[1]);
-	return 0;
-}*/
+	uint8_t getNum[2] = {0};
+	uint32_t randNum = 0;
+
+	while(1){
+		RNG(getNum, 2); 
+
+		// concatenate 2 hex values
+		randNum = getNum[0];
+		randNum <<= 8;
+		randNum += getNum[1];
+
+		// Make sure its smaller than 2048
+		if(randNum > MaxRandNumLength) randNum %= MaxRandNumLength;
+		if(randNum > MinRandNumLength) return randNum;
+	}
+
+	return 0; // if return 0, it has failed
+}
 
 
 int main(){
@@ -183,16 +200,16 @@ int main(){
 	uint8_t seed[36] = "4567890abcdefghijklmnopqrstuvwxyz";	// message - to initialise some hashings
 
 
-	//findRandNum();
+	findRandNum();
 
 
 
-	printf("PRNG - Initial:\n"); printArray(pseudoRandNum, RandNumLength);
+	//printf("PRNG - Initial:\n"); printArray(pseudoRandNum, RandNumLength);
 
-	PRNG(pseudoRandNum, seed, RandNumLength, 36);
+	//PRNG(pseudoRandNum, seed, RandNumLength, 36);
 	//RNG(pseudoRandNum, RandNumLength);
 
-	printf("PRNG - After Hashing:\n"); printArray(pseudoRandNum, RandNumLength);
+	//printf("PRNG - After Hashing:\n"); printArray(pseudoRandNum, RandNumLength);
 
 	
 	return 0;
