@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include "useSHA256.h"
+#include "pseudoRandNumGenerator.h"
 #include "additionalFunctions.h"
 #include "maskGenerationFunction.h"
 #include "signatureMessage.h"
