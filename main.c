@@ -1,21 +1,33 @@
-/******* Header Files *******/
 
-/******* Variables *******/
-// Function outputs first, then input!
+
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+
+//#include"ciphers/sha2/sha2.h"
+//#include"ciphers/sha2/sha2.c"
+
+#include"CPRNG/useSHA256.h"
+#include"CPRNG/pseudoRandNumGenerator.h"
+#include"HMAC/hmac.h"
+
+
 
 
 int main(){
-	printf("Hello World!");
+	uint8_t output[SHA256_DIGEST_LENGTH] = {0};
+    hmac(output, output);
+
+
+
+
 	return 0;
 }
 
 
 
-/*************** Todo list ****************
-1. Define word length (16 bit or 32 bit)
-2. Generate private/public key pair for Alice and Bob
-3. 
-*******************************************/
+
+
 
 
 
