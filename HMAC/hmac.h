@@ -60,7 +60,7 @@ To verify the code, see http://www.freeformatter.com/hmac-generator.html
 
 void hmac(uint8_t* output, uint8_t* secretKey){
 
-
+	printf("TIME = %d\n", timeData());
 
 
 

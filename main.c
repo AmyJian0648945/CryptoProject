@@ -8,11 +8,11 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-#include"useSHA256.h" // hashes messages
-#include"hmac.h"
+#include"sha/useSHA256.h" // hashes messages
+#include"HMAC/hmac.h"
 
 int main(){
-	uint8_t output[32] = {0};
+	uint8_t output[SHA256_DIGEST_LENGTH] = {0};
     hmac(output, output);
 
 
