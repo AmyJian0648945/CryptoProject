@@ -1,21 +1,18 @@
 
 
+#ifndef SHA256_DIGEST_LENGTH     
+#define SHA256_DIGEST_LENGTH    32  
+#endif /* SHA256_DIGEST_LENGTH */
+
+
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-
-//#include"ciphers/sha2/sha2.h"
-//#include"ciphers/sha2/sha2.c"
-
-#include"CPRNG/useSHA256.h"
-#include"CPRNG/pseudoRandNumGenerator.h"
-#include"HMAC/hmac.h"
-
-
-
+#include"useSHA256.h" // hashes messages
+#include"hmac.h"
 
 int main(){
-	uint8_t output[SHA256_DIGEST_LENGTH] = {0};
+	uint8_t output[32] = {0};
     hmac(output, output);
 
 

@@ -19,9 +19,10 @@ To check the validity of results, compare with:
 
 #define TIME_DATA_BASE			10
 
+
 #include<time.h>
-#include"ciphers/sha2/sha2.h"
-#include"ciphers/sha2/sha2.c"
+#include"sha2.h"
+#include"sha2.c"
 
 ////////// Function Declarations //////////
 

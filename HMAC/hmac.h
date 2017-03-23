@@ -31,7 +31,8 @@ below.
 	H = SHA256 
 	K = Secret key 
 
-For more information, see https://tools.ietf.org/html/rfc2104  
+For more information about the protocol, see https://tools.ietf.org/html/rfc2104  
+To verify the code, see http://www.freeformatter.com/hmac-generator.html
 * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
@@ -78,9 +79,7 @@ void hmac(uint8_t* output, uint8_t* secretKey){
 
 
 
-
-
-#endif HMAC_H
+#endif /* HMAC_H */
 
 
 
