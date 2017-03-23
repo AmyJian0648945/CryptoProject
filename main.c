@@ -5,15 +5,26 @@
 #endif /* SHA256_DIGEST_LENGTH */
 
 
+
+
+
+
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-#include"sha/useSHA256.h" // hashes messages
+
+#include"sha2/useSHA256.h" // hashes messages
 #include"HMAC/hmac.h"
+
 
 int main(){
 	uint8_t output[SHA256_DIGEST_LENGTH] = {0};
-    hmac(output, output);
+
+    uint32_t keySize = 128;
+    
+
+    hmac(output, output, output);
+
 
 
 
