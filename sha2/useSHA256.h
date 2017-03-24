@@ -127,13 +127,22 @@ void copyArray(uint8_t* output, uint8_t* input, uint16_t startingIndex, uint16_t
 
 void printArray(uint8_t* output, uint16_t iter){
 	uint16_t i = 0;
-
+	printf("\n");
 	for(i = 0; i < iter; i++) {
 		printf("%x\t", output[i]);
 
 		if(i%5 == 4) 	printf("\n");
 		if(i%25 == 24) 	printf("\n");
 	}
+	if(i%25 != 24) printf("\n");
+}
+void printArrayNoSpaces(uint8_t* output, uint16_t iter){
+	uint16_t i = 0;
+	printf("\n");
+	for(i = 0; i < iter; i++) {
+		printf("%x", output[i]);
+	}
+	printf("\n");
 }
 
 
