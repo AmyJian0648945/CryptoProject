@@ -18,7 +18,7 @@ To check the validity of results, compare with:
 #endif /* SHA256_DIGEST_LENGTH */
 
 #define TIME_DATA_BASE			10
-
+#define TIME_DATA_LENGTH		16
 
 #include<time.h>
 #include"sha2.h"
@@ -26,7 +26,7 @@ To check the validity of results, compare with:
 
 ////////// Function Declarations //////////
 
-void simpleHash(uint8_t*, uint8_t*); 	/* Does a single SHA256 hash */
+//void simpleHash(uint8_t*, uint8_t*); 	/* Does a single SHA256 hash */
 void simpleHashWithLength(uint8_t*, uint8_t*, size_t); /* same as simpleHash, but with specified length */
 void hashWithTime(uint8_t*);	/* XORs input with time data, then hashed */
 void hashOfLength(uint8_t*, uint8_t*, uint16_t, size_t); /* Gives a hashed value of specified length based on seed */ 
@@ -34,31 +34,37 @@ void hashOfLength(uint8_t*, uint8_t*, uint16_t, size_t); /* Gives a hashed value
 // Helpful functions
 uint16_t timeData(); /* Obtain current time to microseconds */
 void copyArray(uint8_t*, uint8_t*, uint16_t, uint16_t); /* Copies array over from input to output, starting from "index" */
+void hexToString(uint8_t*, uint8_t*, size_t); /* hex --> String (in capital letters) */
 void printArray(uint8_t*, uint16_t);	/* prints the array */
+
 
 
 
 ////////// Function Implementation //////////
 
 
-
+/*
 void simpleHash(uint8_t* output, uint8_t* input){
-
-	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
+	SHA256_CTX ctx;  
 	size_t lengthOfInput = strlen(input); 
-	
-	SHA256_Init(&ctx); /* Initialise SHA256 */
-	SHA256_Update(&ctx, input, lengthOfInput); /* Input data into hash function */
-	SHA256_Final(output, &ctx); /* writes the hashing output onto output variable */
+
+	SHA256_Init(&ctx); 
+	SHA256_Update(&ctx, input, lengthOfInput); 
+	SHA256_Final(output, &ctx); 
 }
+*/
 
 
 void simpleHashWithLength(uint8_t* output, uint8_t* input, size_t lengthOfInput){
-
 	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
+	uint8_t inputString[MAX_MESSAGE_LENGTH] = {0};
+	
+	// Convert hex to string
+	hexToString(inputString, input, lengthOfInput);
 
+	// Hash and output
 	SHA256_Init(&ctx); /* Initialise SHA256 */
-	SHA256_Update(&ctx, input, lengthOfInput); /* Input data into hash function */
+	SHA256_Update(&ctx, inputString, lengthOfInput); /* Input data into hash function */
 	SHA256_Final(output, &ctx); /* writes the hashing output onto output variable */
 }
 
@@ -75,7 +81,7 @@ void hashWithTime(uint8_t* output){
 		i++;
 	}
 	
-	simpleHash(output, output);
+	simpleHashWithLength(output, output, TIME_DATA_LENGTH);
 }
 
 
@@ -125,22 +131,34 @@ void copyArray(uint8_t* output, uint8_t* input, uint16_t startingIndex, uint16_t
 }
 
 
+void hexToString(uint8_t* output, uint8_t* input, size_t lengthOfInput){ /* let the default hashing style of hex be of capital letters*/
+	uint16_t i = 0;
+
+	for(i = 0; i < lengthOfInput; i++){
+		output[i] = input[i] + 48;
+		if(output[i] > 57) output[i] += 7;
+	}
+}
+
+
 void printArray(uint8_t* output, uint16_t iter){
 	uint16_t i = 0;
 	printf("\n");
 	for(i = 0; i < iter; i++) {
-		printf("%x\t", output[i]);
+		printf("%02x\t", output[i]);
 
 		if(i%5 == 4) 	printf("\n");
 		if(i%25 == 24) 	printf("\n");
 	}
 	if(i%25 != 24) printf("\n");
 }
+
+
 void printArrayNoSpaces(uint8_t* output, uint16_t iter){
 	uint16_t i = 0;
 	printf("\n");
 	for(i = 0; i < iter; i++) {
-		printf("%x", output[i]);
+		printf("%02x", output[i]);
 	}
 	printf("\n");
 }

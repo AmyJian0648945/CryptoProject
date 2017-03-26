@@ -1,5 +1,5 @@
-/* FILE:	sha2.h */
 /*
+ * FILE:	sha2.h
  * AUTHOR:	Aaron D. Gifford <me@aarongifford.com>
  * 
  * Copyright (c) 2000-2001, Aaron D. Gifford
@@ -56,13 +56,13 @@ extern "C" {
 
 /*** SHA-256/384/512 Various Length Definitions ***********************/
 #define SHA256_BLOCK_LENGTH		64
-#define SHA256_DIGEST_LENGTH	32
+#define SHA256_DIGEST_LENGTH		32
 #define SHA256_DIGEST_STRING_LENGTH	(SHA256_DIGEST_LENGTH * 2 + 1)
 #define SHA384_BLOCK_LENGTH		128
-#define SHA384_DIGEST_LENGTH	48
+#define SHA384_DIGEST_LENGTH		48
 #define SHA384_DIGEST_STRING_LENGTH	(SHA384_DIGEST_LENGTH * 2 + 1)
 #define SHA512_BLOCK_LENGTH		128
-#define SHA512_DIGEST_LENGTH	64
+#define SHA512_DIGEST_LENGTH		64
 #define SHA512_DIGEST_STRING_LENGTH	(SHA512_DIGEST_LENGTH * 2 + 1)
 
 

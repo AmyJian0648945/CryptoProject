@@ -102,11 +102,11 @@ void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg){
 	// (2) output = H(result1, text)
 	concat(result1, inputMsg, DATA_BLOCK_SIZE, MSG_LENGTH);
 	
-	printf("Debug1 results:"); printArrayNoSpaces(result1, DATA_BLOCK_SIZE + MSG_LENGTH);
+	//printf("Debug1 results:"); printArrayNoSpaces(result1, DATA_BLOCK_SIZE + MSG_LENGTH);
 
 	simpleHashWithLength(output, result1, DATA_BLOCK_SIZE + MSG_LENGTH); 
 	
-	printf("Debug2 results:"); printArrayNoSpaces(output, SHA256_DIGEST_LENGTH);
+	//printf("Debug2 results:"); printArrayNoSpaces(output, SHA256_DIGEST_LENGTH);
 	// (3) output = H(result2, output)
 	concat(result2, output, DATA_BLOCK_SIZE, SHA256_DIGEST_LENGTH);
 	simpleHashWithLength(output, result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
