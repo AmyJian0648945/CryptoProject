@@ -95,8 +95,17 @@ void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg, uint16_t secre
 		opad[i] = 0x5C;
 	}
 
+	// Check if the key is too long
+	if(secretKeySize > DATA_BLOCK_SIZE){
+		simpleHashWithLength(paddedKey, secretKey, secretKeySize);
+	}
+	else{
+		for(i=0; i<secretKeySize; i++) paddedKey[i] = secretKey[i];
+	}
+
+
 	// Initialise the key (the rest is already 0s), make sure everything is in char
-	for(i=0; i<secretKeySize; i++) paddedKey[i] = secretKey[i];
+	
 
 	// (1) result = key XOR ipad (or opad)
 	XOR(result1, paddedKey, ipad, DATA_BLOCK_SIZE); /* result1 = K XOR ipad */
