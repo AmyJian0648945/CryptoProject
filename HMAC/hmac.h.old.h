@@ -87,31 +87,67 @@ void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg){
 	uint8_t result2[DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH] = {0};
 	uint8_t resultHash[SHA256_DIGEST_LENGTH] = {0};
 
-	uint8_t tempString[MAX_MESSAGE_LENGTH*2] = {0};
-
 	// Initialise ipad and opad
 	for(i=0; i<DATA_BLOCK_SIZE; i++){ 
 		ipad[i] = 0x36;  
 		opad[i] = 0x5C;
 	}
 
-	// Initialise the key (the rest is already 0s), make sure everything is in char
+	// Initialise the key (the rest is already 0s)
 	for(i=0; i<HMAC_SECRET_KEY_SIZE; i++) paddedKey[i] = secretKey[i];
+	
+	printf("--------------------Debug0:--------------------\n");
+	printf("Padded Secret Key: "); printArrayNoSpaces(paddedKey, DATA_BLOCK_SIZE);
 
 
 	// (1) result = key XOR ipad (or opad)
 	XOR(result1, paddedKey, ipad, DATA_BLOCK_SIZE); /* result1 = K XOR ipad */
 	XOR(result2, paddedKey, opad, DATA_BLOCK_SIZE); /* result2 = K XOR opad */
 
+	printf("--------------------V Debug1: check XOR--------------------\n");
+	printf("result1"); printArrayNoSpaces(result1, DATA_BLOCK_SIZE + MSG_LENGTH);
+	printf("input1. secret key"); printArrayNoSpaces(paddedKey, DATA_BLOCK_SIZE);
+	printf("input2. ipad"); printArrayNoSpaces(ipad, DATA_BLOCK_SIZE);
+	
+
+
+	printf("--------------------V Debug2: check concat--------------------\n");
+	printf("input1. result1"); printArrayNoSpaces(result1, DATA_BLOCK_SIZE + MSG_LENGTH);
+	printf("input2. inputMsg"); printArrayNoSpaces(inputMsg, MSG_LENGTH);
 	// (2) output = H(result1, text)
 	concat(result1, inputMsg, DATA_BLOCK_SIZE, MSG_LENGTH);
+	
+	printf("result1"); printArrayNoSpaces(result1, DATA_BLOCK_SIZE + MSG_LENGTH);
+	
+
+	printf("--------------------V Debug3: check hash--------------------\n");
+	
 	simpleHashWithLength(output, result1, DATA_BLOCK_SIZE + MSG_LENGTH); 
 	
+	printf("output"); printArrayNoSpaces(output, SHA256_DIGEST_LENGTH);
+	printf("input1. result1"); printArrayNoSpaces(result1, DATA_BLOCK_SIZE + MSG_LENGTH);
+	
+
+
+	printf("--------------------V Debug4: check concat--------------------\n");
+	printf("input1. result2"); printArrayNoSpaces(result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
+	printf("input2. output"); printArrayNoSpaces(output, SHA256_DIGEST_LENGTH);
+
 	// (3) output = H(result2, output)
 	concat(result2, output, DATA_BLOCK_SIZE, SHA256_DIGEST_LENGTH);
+	
+	printf("output: result2"); printArrayNoSpaces(result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
+	
+
+
+	printf("--------------------V Debug5: check hash--------------------\n");
 	simpleHashWithLength(output, result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
 
 	
+	printf("output"); printArrayNoSpaces(output, SHA256_DIGEST_LENGTH);
+	printf("input1. result2"); printArrayNoSpaces(result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
+
+
 
 }
 

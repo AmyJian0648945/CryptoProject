@@ -70,17 +70,14 @@ void simpleHash(uint8_t* output, uint8_t* input){
 
 void simpleHashWithLength(uint8_t* output, uint8_t* input, size_t lengthOfInput){
 	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
-	uint8_t inputString[MAX_MESSAGE_LENGTH*2] = {0};
-
-	//printf("the input string for hash BEFORE: "); printArray(input, lengthOfInput);
+	
 	// Convert hex to string
-	hexToString(inputString, input, lengthOfInput);
-
-	printf("the input string for hash AFTER: "); printCharNoSpaces(inputString, lengthOfInput*2);
+	//uint8_t inputString[MAX_MESSAGE_LENGTH*2] = {0};
+	//hexToString(inputString, input, lengthOfInput);
 
 	// Hash and output
 	SHA256_Init(&ctx); /* Initialise SHA256 */
-	SHA256_Update(&ctx, inputString, lengthOfInput*2); /* Input data into hash function */
+	SHA256_Update(&ctx, input, lengthOfInput); /* Input data into hash function */
 	SHA256_Final(output, &ctx); /* writes the hashing output onto output variable */
 }
 
@@ -149,6 +146,10 @@ void copyArray(uint8_t* output, uint8_t* input, uint16_t startingIndex, uint16_t
 
 void hexToString(uint8_t* output, uint8_t* input, size_t lengthOfInput){ /* let the default hashing style of hex be of capital letters*/
 	uint16_t i = 0, j = 0;
+
+	// Clear the output first
+	for(i=0; i<lengthOfInput*2; i++) output[i] = 0;
+	
 	// Separate the first and second digit of each array element
 	for(i = 0; i < lengthOfInput; i++){
 		output[j] = input[i] / 16;
