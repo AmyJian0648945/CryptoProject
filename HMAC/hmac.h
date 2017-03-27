@@ -48,7 +48,9 @@ below.
 ////////// Function Declarations //////////
 void concat(uint8_t*, uint8_t*, uint16_t, uint16_t);
 void XOR(uint8_t*, uint8_t*, uint8_t*, uint16_t);
-void hmac(uint8_t*, uint8_t*, uint8_t*);
+void hexToString(uint8_t*, uint8_t*, size_t); 
+	/* hex --> String (in capital letters) */
+void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);
 
 
 ////////// Function Implementation //////////
@@ -68,22 +70,42 @@ void XOR(uint8_t* output, uint8_t* input1, uint8_t* input2, uint16_t lengthToXOR
 	}
 }
 
+void hexToString(uint8_t* output, uint8_t* input, size_t lengthOfInput){ /* let the default hashing style of hex be of capital letters*/
+	uint16_t i = 0, j = 0;
 
-/* * * * * Algorithm naming: * * * * * 
+	// Clear the output first
+	for(i=0; i<lengthOfInput*2; i++) output[i] = 0;
+	
+	// Separate the first and second digit of each array element
+	for(i = 0; i < lengthOfInput; i++){
+		output[j] = input[i] / 16;
+		output[j+1] = input[i] % 16;
+		j+=2;
+	}
+
+	// convert each array element into output
+	for(i = 0; i < lengthOfInput*2; i++){
+		output[i] = output[i] + 48;
+		if(output[i] > 57) output[i] += 7;
+	}
+}
+
+
+/* * * * * Algorithm subparts: * * * * * 
 
 	H(K XOR opad, H(K XOR ipad, msg))
 =	H(  result2 , H(  result1 , msg))	...(1)
 =	H(  result2 , 	      output	)	...(2)
 =	 	  		output	 				...(3)
 
-* * * * * * * * * * * * * * * * * * */
+* * * * * * * * * * * * * * * * * * * * */
 
-void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg){
+void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg, uint16_t secretKeySize, uint16_t inputMsgSize){
 	uint8_t ipad[DATA_BLOCK_SIZE] = {0}, opad[DATA_BLOCK_SIZE] = {0};
 	uint8_t paddedKey[DATA_BLOCK_SIZE] = {0};
 	uint16_t i = 0;
 
-	uint8_t result1[DATA_BLOCK_SIZE + MSG_LENGTH] = {0};
+	uint8_t result1[DATA_BLOCK_SIZE + MAX_MESSAGE_LENGTH] = {0};
 	uint8_t result2[DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH] = {0};
 	uint8_t resultHash[SHA256_DIGEST_LENGTH] = {0};
 
@@ -96,23 +118,19 @@ void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg){
 	}
 
 	// Initialise the key (the rest is already 0s), make sure everything is in char
-	for(i=0; i<HMAC_SECRET_KEY_SIZE; i++) paddedKey[i] = secretKey[i];
-
+	for(i=0; i<secretKeySize; i++) paddedKey[i] = secretKey[i];
 
 	// (1) result = key XOR ipad (or opad)
 	XOR(result1, paddedKey, ipad, DATA_BLOCK_SIZE); /* result1 = K XOR ipad */
 	XOR(result2, paddedKey, opad, DATA_BLOCK_SIZE); /* result2 = K XOR opad */
 
 	// (2) output = H(result1, text)
-	concat(result1, inputMsg, DATA_BLOCK_SIZE, MSG_LENGTH);
-	simpleHashWithLength(output, result1, DATA_BLOCK_SIZE + MSG_LENGTH); 
+	concat(result1, inputMsg, DATA_BLOCK_SIZE, inputMsgSize);
+	simpleHashWithLength(output, result1, DATA_BLOCK_SIZE + inputMsgSize); 
 	
 	// (3) output = H(result2, output)
 	concat(result2, output, DATA_BLOCK_SIZE, SHA256_DIGEST_LENGTH);
 	simpleHashWithLength(output, result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
-
-	
-
 }
 
 
