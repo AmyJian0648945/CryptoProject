@@ -154,7 +154,11 @@ uint16_t modularInverseShort(uint16_t *x, uint16_t *y, uint16_t *a_result, uint1
 		resultIsZero = numberIsZero(u, modLength);
 		} while (resultIsZero != 1);
 		
-		copyArray(C,a_result,modLength);
+		for(i=0;i<(modLength-1);i++){
+			a_result[i] = C[i+1];
+		}
+		char namea[2] = "a";
+		printArray(a_result,namea,sizeX);
 		char name[9] = "b_result";
 		printArray(D,name,modLength);
 		printf("g = %x ",g);

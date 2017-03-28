@@ -62,16 +62,16 @@ int main(void){
 	printArray(result,nameSumAB,sizeResult);
 	subtraction(a,b,result,sizeA);
 	printArray(result,nameSubAB,sizeResult);
-	//mod(a,b,result,sizeA,sizeB);
-	//printArray(result,nameModAB,sizeResult);
-	//mod(b,m,result,sizeB,sizeM);
-	//printArray(result,nameModBM,sizeResult);
+	mod(a,b,result,sizeA,sizeB);
+	printArray(result,nameModAB,sizeResult);
+	mod(b,m,result,sizeB,sizeM);
+	printArray(result,nameModBM,sizeResult);
 	multiplication(a,b,result16,sizeA,sizeB);
 	printArray(result16,nameMultAB,sizeResult16);
 	multiplication(a,s,result9,sizeA,1);
 	printArray(result9,nameMultSA,sizeResult9);
-	//mod(p,q,result9,sizePQ,sizePQ);
-	//printArray(result9,nameModPQ,sizeResult9);
+	mod(p,q,result9,sizePQ,sizePQ);
+	printArray(result9,nameModPQ,sizeResult9);
 	modularInverseShort(p,q,result9,sizePQ,sizePQ);
 	printArray(result9,nameInvPQ,sizeResult9);
 
