@@ -1,5 +1,5 @@
 
-void ifElseClauseSub(uint16_t *x, uint16_t *y, uint16_t modLength, int *reversed1, int *reversed2){
+void ifElseClauseSub(uint16_t *x, uint16_t *y, uint16_t modLength, uint16_t *reversed1, uint16_t *reversed2){
 	if (*reversed1 != 1)
 	{
 		if (*reversed2 != 1) {
@@ -20,7 +20,17 @@ void ifElseClauseSub(uint16_t *x, uint16_t *y, uint16_t modLength, int *reversed
 	}
 }
 
-uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t modLength){
+uint16_t modularInverseShort(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t sizeX, uint16_t modLength){
+		
+		// Extend x //
+		uint16_t xExtended[modLength];
+		int i;
+		for(i=0;i<modLength;i++){
+			if(i<modLength-sizeX)
+				xExtended[i] = 0x00;
+			else
+				xExtended[i] = x[i-(modLength-sizeX)];
+		}
 		
 		// Step 1 //
 		uint16_t g = 1;
@@ -29,14 +39,14 @@ uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t m
 		uint16_t v[modLength];
 		
 		// Step 2 //
-		if ((x[modLength-1]%2 == 0) && (y[modLength-1]%2 == 0)){
-			divideByTwo(x, modLength);
+		if ((xExtended[modLength-1]%2 == 0) && (y[modLength-1]%2 == 0)){
+			divideByTwo(xExtended, modLength);
 			divideByTwo(y, modLength);
 			g = g<<1;
 		}
 		
 		// Step 3 //
-		copyArray(x,u,modLength);
+		copyArray(xExtended,u,modLength);
 		copyArray(y,v,modLength);
 
 		uint16_t zeros[modLength];
@@ -52,22 +62,21 @@ uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t m
 		copyArray(zeros,D,modLength);
 		D[modLength-1] = 0x01;
 		
-		int resultIsZero = 0;
-		int reversedBInt;
-		int reversedDInt;
-		int reversedCInt;
-		int reversedAInt;
-		int reversedVInt;
-		int reversedUInt;
-		int *reversedB = &reversedBInt;
-		int *reversedD = &reversedDInt;
-		int *reversedA = &reversedAInt;
-		int *reversedC = &reversedCInt;
-		int *reversedV = &reversedVInt;
-		int *reversedU = &reversedUInt;
+		uint16_t resultIsZero = 0;
+		uint16_t reversedBInt = 0;
+		uint16_t reversedDInt = 0;
+		uint16_t reversedCInt = 0;
+		uint16_t reversedAInt = 0;
+		uint16_t reversedVInt = 0;
+		uint16_t reversedUInt = 0;
+		uint16_t *reversedB = &reversedBInt;
+		uint16_t *reversedD = &reversedDInt;
+		uint16_t *reversedA = &reversedAInt;
+		uint16_t *reversedC = &reversedCInt;
+		uint16_t *reversedV = &reversedVInt;
+		uint16_t *reversedU = &reversedUInt;
 
 		do {
-			
 			// Step 4 //
 			while (u[modLength-1]%2 == 0) {
 				divideByTwo(u, modLength);
@@ -84,10 +93,10 @@ uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t m
 					divideByTwo(A, modLength);
 					
 					if (reversedBInt != 1)
-						reversedBInt = subtraction(B,x,B,modLength);
+						reversedBInt = subtraction(B,xExtended,B,modLength);
 					else
 					{
-						addition(B,x,B,modLength);
+						addition(B,xExtended,B,modLength);
 						reversedBInt = 1;
 					}
 					divideByTwo(B, modLength);
@@ -112,9 +121,9 @@ uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t m
 					}
 					
 					if (reversedDInt != 1)
-						reversedDInt = subtraction(D,x,D,modLength);
+						reversedDInt = subtraction(D,xExtended,D,modLength);
 					else {
-						addition(D,x,D,modLength);
+						addition(D,xExtended,D,modLength);
 						reversedDInt = 1;
 					}
 					divideByTwo(D, modLength);
@@ -139,7 +148,7 @@ uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t m
 				ifElseClauseSub(C,A,modLength,reversedC,reversedA);
 
 				ifElseClauseSub(D,B,modLength,reversedD,reversedB);
-				}
+			}
 		
 		//Step 7 //
 		resultIsZero = numberIsZero(u, modLength);
@@ -148,7 +157,11 @@ uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t m
 		copyArray(C,a_result,modLength);
 		char name[9] = "b_result";
 		printArray(D,name,modLength);
+		printf("g = %x ",g);
+		char nameV[2] = "v";
+		printArray(v,nameV,modLength);
 		
+		printf("reversedCInt = %u\n",reversedCInt);
 		printf("reversedC = %u\n",*reversedC);
 		printf("reversedD  %u\n",*reversedD);
 		return reversedCInt;
