@@ -17,16 +17,27 @@ information (HMAC and IV) to allow for decryption.
 #define ENCRYPT_H
 
 
-// define Macros here
+
+/* * * DEBUGGING STAAAAAATION! * * * * * * * * */ 
+//#define step1 
+#define step3 1
+
+/* * * Uncomment if you want to activate! * * */
 
 
 
-// Function introduction
+
+
+// Function Introduction
 void encrypt(uint8_t*, uint8_t*, uint16_t, uint16_t);
 
 
 
 
+
+
+
+// Function Definition
 void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgLength){
 
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
@@ -34,23 +45,39 @@ void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgL
 	uint8_t paddedData[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
 	uint16_t dataLength[1] = {0};
 
-	*dataLength = 1;
+	//*dataLength = 1;
+	//printf("test = %d\n\n", *dataLength);
+	//printf("TEST: "); printArray(key + encryptKeyLength, 32);
 
 
 
-	
-	printf("test = %d\n\n", *dataLength);
 
-	/*
 	// (1) Hash the key; k = {encryptKey, macKey}
 	simpleHashWithLength(key, inputKey, keyLength);
+
+	#ifdef step1 
+	printf(">> Before hash:"); printChar(inputKey, keyLength); 
+	printf(">> After hash: "); printArray(key, SHA256_DIGEST_LENGTH);
+	#endif
+
 
 	// (2) Generate a random IV of 128 bits.
 	RNG(IV, IVlength);
 
 	// (3) Pad the data until length is 16x
-	padding(paddedData, msgLength, data, msgLength);
+	#ifdef step3
+	printf("Before padding, size is: %d", msgLength);
+	printArray(data, msgLength);
+	#endif
 
+	padding(data, msgLength);
+
+	#ifdef step3
+	printf("After padding, size is: %d", msgLength);
+	printArray(data, msgLength);
+	#endif
+
+	/*
 	// (4) Encrypt the data, using: paddedData, IV, key
 	AES_CBC(ciphertext, paddedData, IV, key);
 	*/

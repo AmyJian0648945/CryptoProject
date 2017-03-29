@@ -37,6 +37,11 @@ int main(){
     printf("\n\n");
 
 
+
+
+
+    
+
     /* * * Using hex numbers to calculate HMAC * * */
 
     uint8_t secretKeyHEX[MAX_MESSAGE_LENGTH] = {0x10, 0x01, 0x02, 0x03, 0x0A, 0x0B, 0xFF};

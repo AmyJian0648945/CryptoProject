@@ -19,6 +19,10 @@
 #include "HMAC/hmac.h"
 #include "aes/useAES.h"
 #include "dataTransmission/encrypt.h"
+#include "helpfulFunctions.h"
+
+
+
 
 
 
@@ -26,14 +30,24 @@
 
 int main()
 {
-    
-    uint8_t key[encryptKeyLength] = {0x00, 0x11, 0x22};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there";
+    uint8_t keyInString[encryptKeyLength] = {0};
+    uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
+    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789";
 
-	encrypt(key, data, encryptKeyLength, MAX_MESSAGE_LENGTH);
+    // Processing keys = make sure its in char
+    uint16_t keySize = strlen(key); 	/* Not guaranteed to work if first input is 0*/
+    uint16_t msgSize = strlen(data); 	/* Not guaranteed to work if first input is 0*/
+
+    hexToString(keyInString, key, keySize);
+	encrypt(keyInString, data, keySize*2, msgSize);
 	// find a way to detect key + message length?
 
+	
 
+
+
+
+	
 
 
 

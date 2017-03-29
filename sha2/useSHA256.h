@@ -174,6 +174,7 @@ void printArray(uint8_t* output, uint16_t iter){
 		if(i%25 == 24) 	printf("\n");
 	}
 	if(i%25 != 24) printf("\n");
+	printf("\n");
 }
 
 
@@ -196,6 +197,7 @@ void printChar(uint8_t* output, uint16_t iter){
 		if(i%25 == 24) 	printf("\n");
 	}
 	if(i%25 != 24) printf("\n");
+	printf("\n");
 }
 
 void printCharNoSpaces(uint8_t* output, uint16_t iter){
