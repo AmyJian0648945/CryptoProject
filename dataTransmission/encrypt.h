@@ -10,18 +10,14 @@ information (HMAC and IV) to allow for decryption.
 
 
 
-
-
-
-
-
 *** For more info about Encrypt-then-Mac, see https://goo.gl/8wAanl
+*** For more info about PKCS#7, see https://tools.ietf.org/html/rfc5652#section-6.3
 * * * * * * * * * * * * * * * * * * * * * * * * */
-
-// define Macros here
 #ifndef ENCRYPT_H
 #define ENCRYPT_H
 
+
+// define Macros here
 
 
 
@@ -31,18 +27,64 @@ void encrypt(uint8_t*, uint8_t*, uint16_t, uint16_t);
 
 
 
+void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgLength){
+
+	uint8_t key[encryptKeyLength + macKeyLength] = {0};
+	uint8_t IV[IVlength] = {0};
+	uint8_t paddedData[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
+	uint16_t dataLength[1] = {0};
+
+	*dataLength = 1;
 
 
-void encrypt(uint8_t* inputKey, uint8_t* message, uint16_t keyLength, uint16_t msgLength){
 
-	uint8_t key[SHA256_DIGEST_LENGTH];
+	
+	printf("test = %d\n\n", *dataLength);
 
+	/*
 	// (1) Hash the key; k = {encryptKey, macKey}
 	simpleHashWithLength(key, inputKey, keyLength);
 
-	// (2)
+	// (2) Generate a random IV of 128 bits.
+	RNG(IV, IVlength);
+
+	// (3) Pad the data until length is 16x
+	padding(paddedData, msgLength, data, msgLength);
+
+	// (4) Encrypt the data, using: paddedData, IV, key
+	AES_CBC(ciphertext, paddedData, IV, key);
+	*/
+
 
 }
+
+
+
+
+
+
+#endif	
+
+
+/* Operation:
+(1)	Hash the key K with SHA-256 so as to get 256 bits of "key material". 
+	Split that hash into two halves: 128 bits for encryption (encryptKey), 128 bits for MAC (macKey).
+
+(2)	Generate a random IV of 128 bits. You need a new one every time you encrypt. 
+
+(3) Pad the data (usual PKCS#5 padding) so that its length is a multiple of the AES block size (16 bytes).
+
+(4)	Encrypt the data with AES in CBC mode, using the IV generated just above, and Ke as key. Let's call C the resulting ciphertext.
+
+(5)	Compute HMAC/SHA-256 with key Km over the concatenation of IV and C, in that order. Call M the resulting value. 
+	// It is crucial that the IV is part of the input to HMAC.
+
+(6)	Concatenate IV, C and M, in that order. This is your "registration key".
+
+(7)	When receiving a registration request, first verify the HMAC (by recomputing it), then (and only then) proceed to the decryption step.
+
+*/
+
 
 
 
@@ -62,28 +104,6 @@ void encrypt(uint8_t* inputKey, uint8_t* message, uint16_t keyLength, uint16_t m
 
 
 
-#endif	
-
-
-/* Operation:
-(1)	Hash the key K with SHA-256 so as to get 256 bits of "key material". 
-
-(2) Split that hash into two halves: 128 bits for encryption (encryptKey), 128 bits for MAC (macKey).
-
-(3)	Generate a random IV of 128 bits. You need a new one every time you encrypt. 
-
-(4) Pad the data (usual PKCS#5 padding) so that its length is a multiple of the AES block size (16 bytes).
-
-(5)	Encrypt the data with AES in CBC mode, using the IV generated just above, and Ke as key. Let's call C the resulting ciphertext.
-
-(6)	Compute HMAC/SHA-256 with key Km over the concatenation of IV and C, in that order. Call M the resulting value. 
-	// It is crucial that the IV is part of the input to HMAC.
-
-(7)	Concatenate IV, C and M, in that order. This is your "registration key".
-
-(8)	When receiving a registration request, first verify the HMAC (by recomputing it), then (and only then) proceed to the decryption step.
-
-*/
 
 
 

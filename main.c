@@ -2,16 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* * * Needed for encrypt.h * * */
+#define encryptKeyLength 	16
+#define macKeyLength	 	16
+#define IVlength			16
 
-#include "aes/useAES.h"
+/* * * Needed for hmac.h * * */
+#define DATA_BLOCK_SIZE         64
+
+#define MAX_MESSAGE_LENGTH 			 	500 // CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!!
+#define MAX_TRANSMISSION_BLOCK_LENGTH 	512 // CURRENTLY A PATCH: needs to be 16x
+
+
 #include "sha2/useSHA256.h"
+#include "CPRNG/pseudoRandNumGenerator.h"
+#include "HMAC/hmac.h"
+#include "aes/useAES.h"
 #include "dataTransmission/encrypt.h"
+
+
 
 
 
 int main()
 {
     
+    uint8_t key[encryptKeyLength] = {0x00, 0x11, 0x22};
+    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there";
+
+	encrypt(key, data, encryptKeyLength, MAX_MESSAGE_LENGTH);
+	// find a way to detect key + message length?
 
 
 
@@ -19,8 +39,6 @@ int main()
 
 
 
-
-    
     return 0;
 }
 

@@ -49,8 +49,8 @@ void RNG(Random number output, length of random number in uint8_t);
 ////////// Include Functions //////////
 //#include<stdlib.h>
 //#include<stdio.h>
-#include<string.h>
-#include"useSHA256.h" // hashes messages
+//#include<string.h>
+//#include"useSHA256.h" // hashes messages
 
 
 
