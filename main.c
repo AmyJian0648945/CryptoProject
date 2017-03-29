@@ -1,29 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "aes.h"
+#include <string.h>
+
+
+#include "aes/useAES.h"
+#include "sha2/useSHA256.h"
+#include "dataTransmission/encrypt.h"
+
+
 
 int main()
 {
-aes_key key;
-unsigned char output[16];
+    
 
-    // Encryption
-    aes_set_encrypt_key(&key, "\x2b\x7e\x15\x16\x28\xae\xd2\xa6\xab\xf7\x15\x88\x09\xcf\x4f\x3c", 128);
-    aes_encrypt(&key, "\x6b\xc1\xbe\xe2\x2e\x40\x9f\x96\xe9\x3d\x7e\x11\x73\x93\x17\x2a", output);
-  
-    if (memcmp(output, "\x3a\xd7\x7b\xb4\x0d\x7a\x36\x60\xa8\x9e\xca\xf3\x24\x66\xef\x97", 16) != 0) {
-        fprintf(stderr, "Encryption failed\n");
-        abort();
-    }
 
-    // Decryption
-    aes_set_decrypt_key(&key, "\x2b\x7e\x15\x16\x28\xae\xd2\xa6\xab\xf7\x15\x88\x09\xcf\x4f\x3c", 128);
-    aes_decrypt(&key, "\x3a\xd7\x7b\xb4\x0d\x7a\x36\x60\xa8\x9e\xca\xf3\x24\x66\xef\x97", output);
 
-    if (memcmp(output, "\x6b\xc1\xbe\xe2\x2e\x40\x9f\x96\xe9\x3d\x7e\x11\x73\x93\x17\x2a", 16) != 0) {
-        fprintf(stderr, "Decryption failed\n");
-        abort();
-    }
-  
+
+
+
+
+
+    
     return 0;
 }
+
+/* Operation:
+-   Hash the key K with SHA-256 so as to get 256 bits of "key material". 
+	Split that into two halves: 128 bits for encryption (Ke), 128 bits for MAC (Km).
+
+-   Generate a random IV of 128 bits. 
+
+-   Pad the data (usual PKCS#5 padding) so that its length is a multiple of the AES block size (16 bytes).
+
+-   Encrypt the data with AES in CBC mode, using the IV generated just above, and Ke as key. Let's call C the resulting ciphertext.
+Compute HMAC/SHA-256 with key Km over the concatenation of IV and C, in that order. Call M the resulting value. It is crucial that the IV is part of the input to HMAC.
+
+-   Concatenate IV, C and M, in that order. This is your "registration key".
+
+-   When receiving a registration request, first verify the HMAC (by recomputing it), then (and only then) proceed to the decryption step.
+
+*/
