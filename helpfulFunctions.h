@@ -12,6 +12,9 @@ void hexToString(uint8_t*, uint8_t*, size_t);
     /* hex --> String (in capital letters) */
 void copyArray(uint8_t*, uint8_t*, uint16_t, uint16_t); 
     /* Copies array over from input to output, starting from "index" */
+void copyArrayFrom0(uint8_t*, uint8_t*, uint16_t);
+
+
 
 
 /* Printing Functions */
@@ -23,8 +26,9 @@ void printCharNoSpaces(uint8_t*, uint16_t);
 void printChar(uint8_t*, uint16_t);
 
 
-
-
+/* For ease of debugging */
+void seeTheDifference(uint8_t*, uint8_t*, uint16_t);
+    /* subtracts the two inputs; if they are the same, */
 
 
 
@@ -86,6 +90,17 @@ void copyArray(uint8_t* output, uint8_t* input, uint16_t startingIndex, uint16_t
 }
 
 
+void copyArrayFrom0(uint8_t* output, uint8_t* input, uint16_t lengthToCopy){
+    uint16_t i = 0;
+
+    for(i = 0; i < lengthToCopy; i++) {
+        output[i] = input[i];
+    }
+}
+
+
+
+
 void printArray(uint8_t* output, uint16_t iter){
     uint16_t i = 0;
     printf("\n");
@@ -135,7 +150,14 @@ void printCharNoSpaces(uint8_t* output, uint16_t iter){
 
 
 
-
+void seeTheDifference(uint8_t* input1, uint8_t* input2, uint16_t lengthToCompare){
+    uint16_t i = 0;
+    printf("Difference?: ");
+    for(i = 0; i < lengthToCompare; i++){
+        if(input1[i] - input2[i] != 0) printf("--> Yes: @ i=%d\n",i);
+    }
+    if(i == lengthToCompare) printf("--> No :)\n");
+}
 
 
 
