@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 /* * * Needed for encrypt.h * * */
 #define encryptKeyLength 	16
@@ -13,13 +14,13 @@
 #define MAX_MESSAGE_LENGTH 			 	500 // CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!!
 #define MAX_TRANSMISSION_BLOCK_LENGTH 	512 // CURRENTLY A PATCH: needs to be 16x
 
-
+#include "helpfulFunctions.h"
 #include "sha2/useSHA256.h"
 #include "CPRNG/pseudoRandNumGenerator.h"
 #include "HMAC/hmac.h"
 #include "aes/useAES.h"
 #include "dataTransmission/encrypt.h"
-#include "helpfulFunctions.h"
+
 
 
 

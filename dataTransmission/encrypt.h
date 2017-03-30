@@ -64,6 +64,8 @@ void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgL
 	// (2) Generate a random IV of 128 bits.
 	RNG(IV, IVlength);
 
+
+
 	// (3) Pad the data until length is 16x
 	#ifdef step3
 	printf("Before padding, size is: %d", msgLength);
@@ -77,10 +79,11 @@ void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgL
 	printArray(data, msgLength);
 	#endif
 
-	/*
+
+
 	// (4) Encrypt the data, using: paddedData, IV, key
-	AES_CBC(ciphertext, paddedData, IV, key);
-	*/
+	AES_CBC(ciphertext, paddedData, msgLength, IV, key);
+	
 
 
 }

@@ -46,29 +46,11 @@ below.
 
 
 ////////// Function Declarations //////////
-void concat(uint8_t*, uint8_t*, uint16_t, uint16_t);
-void XOR(uint8_t*, uint8_t*, uint8_t*, uint16_t);
+
 void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);
 
 
 ////////// Function Implementation //////////
-void concat(uint8_t* base, uint8_t* arrayToAppend, uint16_t baseLength, uint16_t lengthToAppend){
-	uint16_t i = 0, j = 0;
-
-	for(i=baseLength; i<baseLength + lengthToAppend; i++){
-		base[i] = arrayToAppend[j];
-		j++;
-	}
-}
-
-void XOR(uint8_t* output, uint8_t* input1, uint8_t* input2, uint16_t lengthToXOR){
-	uint16_t i = 0;
-	for(i=0; i<lengthToXOR; i++) { 
-		output[i] = input1[i] ^ input2[i];
-	}
-}
-
-
 /* * * * * Algorithm subparts: * * * * * 
 
 	H(K XOR opad, H(K XOR ipad, msg))
