@@ -14,7 +14,6 @@ void copyArray(uint8_t*, uint8_t*, uint16_t, uint16_t);
     /* Copies array over from input to output, starting from "index" */
 
 
-
 /* Printing Functions */
 void printArray(uint8_t*, uint16_t);    
     /* prints the array */

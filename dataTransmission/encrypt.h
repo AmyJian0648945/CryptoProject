@@ -21,7 +21,7 @@ information (HMAC and IV) to allow for decryption.
 /* * * DEBUGGING STAAAAAATION! * * * * * * * * */ 
 //#define step1 1
 //#define step3 1
-//#define step4 1
+#define step4 1
 
 /* * * Uncomment if you want to activate! * * */
 
@@ -44,7 +44,7 @@ void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t key
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t IV[IVlength] = {0};
 	uint8_t paddedData[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
-	uint16_t dataLength[1] = {0};
+	
 
 	//*dataLength = 1;
 	//printf("test = %d\n\n", *dataLength);
@@ -74,7 +74,7 @@ void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t key
 	printArray(data, msgLength);
 	#endif
 
-	padding(data, msgLength);
+	padding(data, &msgLength);
 
 	#ifdef step3
 	printf(">> After padding, size is: %d", msgLength);
@@ -85,13 +85,13 @@ void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t key
 
 	// (4) Encrypt the data, using: paddedData, IV, key
 	#ifdef step4
-	printf(">> Before AES_CBC:"); printChar(ciphertext, MAX_TRANSMISSION_BLOCK_LENGTH); 
+	printf(">> Before AES_CBC:"); printArray(ciphertext, msgLength); 
 	#endif
 
-	//AES_CBC(ciphertext, paddedData, msgLength, IV, key);
+	AES_CBC(ciphertext, paddedData, &msgLength, IV, key);
 	
 	#ifdef step4
-	printf(">> After AES_CBC:"); printChar(ciphertext, MAX_TRANSMISSION_BLOCK_LENGTH); 
+	printf(">> After AES_CBC:"); printArray(ciphertext, msgLength); 
 	#endif
 
 }
