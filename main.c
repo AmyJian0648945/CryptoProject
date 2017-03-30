@@ -33,14 +33,15 @@ int main()
 {
     uint8_t keyInString[encryptKeyLength] = {0};
     uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789";
+    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789 hello there 0123456789 hello there 0123456789 hello there 0123456789 hello there 0123456789 hello there 0123456789 hello there 0123456789";
+    uint8_t ciphertext[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
 
     // Processing keys = make sure its in char
     uint16_t keySize = strlen(key); 	/* Not guaranteed to work if first input is 0*/
-    uint16_t msgSize = strlen(data); 	/* Not guaranteed to work if first input is 0*/
+    uint8_t msgSize = strlen(data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
-	encrypt(keyInString, data, keySize*2, msgSize);
+	encrypt(ciphertext, keyInString, data, keySize*2, msgSize);
 	// find a way to detect key + message length?
 
 	

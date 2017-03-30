@@ -45,8 +45,6 @@ below.
 #define HMAC_H
 
 
-////////// Function Declarations //////////
-
 void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);
 
 
@@ -101,9 +99,6 @@ void hmac(uint8_t* output, uint8_t* secretKey, uint8_t* inputMsg, uint16_t secre
 	concat(result2, output, DATA_BLOCK_SIZE, SHA256_DIGEST_LENGTH);
 	simpleHashWithLength(output, result2, DATA_BLOCK_SIZE + SHA256_DIGEST_LENGTH);
 }
-
-
-
 
 
 #endif /* HMAC_H */

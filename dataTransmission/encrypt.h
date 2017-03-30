@@ -19,8 +19,9 @@ information (HMAC and IV) to allow for decryption.
 
 
 /* * * DEBUGGING STAAAAAATION! * * * * * * * * */ 
-//#define step1 
-#define step3 1
+//#define step1 1
+//#define step3 1
+//#define step4 1
 
 /* * * Uncomment if you want to activate! * * */
 
@@ -29,7 +30,7 @@ information (HMAC and IV) to allow for decryption.
 
 
 // Function Introduction
-void encrypt(uint8_t*, uint8_t*, uint16_t, uint16_t);
+void encrypt(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint8_t);
 
 
 
@@ -38,7 +39,7 @@ void encrypt(uint8_t*, uint8_t*, uint16_t, uint16_t);
 
 
 // Function Definition
-void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgLength){
+void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint8_t msgLength){
 
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t IV[IVlength] = {0};
@@ -56,9 +57,10 @@ void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgL
 	simpleHashWithLength(key, inputKey, keyLength);
 
 	#ifdef step1 
-	printf(">> Before hash:"); printChar(inputKey, keyLength); 
+	printf(">> Before hash:"); printArray(inputKey, keyLength); 
 	printf(">> After hash: "); printArray(key, SHA256_DIGEST_LENGTH);
 	#endif
+
 
 
 	// (2) Generate a random IV of 128 bits.
@@ -68,23 +70,29 @@ void encrypt(uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint16_t msgL
 
 	// (3) Pad the data until length is 16x
 	#ifdef step3
-	printf("Before padding, size is: %d", msgLength);
+	printf(">> Before padding, size is: %d", msgLength);
 	printArray(data, msgLength);
 	#endif
 
 	padding(data, msgLength);
 
 	#ifdef step3
-	printf("After padding, size is: %d", msgLength);
+	printf(">> After padding, size is: %d", msgLength);
 	printArray(data, msgLength);
 	#endif
 
 
 
 	// (4) Encrypt the data, using: paddedData, IV, key
-	AES_CBC(ciphertext, paddedData, msgLength, IV, key);
-	
+	#ifdef step4
+	printf(">> Before AES_CBC:"); printChar(ciphertext, MAX_TRANSMISSION_BLOCK_LENGTH); 
+	#endif
 
+	//AES_CBC(ciphertext, paddedData, msgLength, IV, key);
+	
+	#ifdef step4
+	printf(">> After AES_CBC:"); printChar(ciphertext, MAX_TRANSMISSION_BLOCK_LENGTH); 
+	#endif
 
 }
 
