@@ -46,11 +46,12 @@ void encrypt(uint8_t* output, uint8_t* inputKey, uint8_t* data, uint16_t keyLeng
 	uint8_t IV[IVlength] = {0};
 	uint8_t paddedData[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
 
+	uint8_t IV_ciphertextLength = 0;
 	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; // 16 is a safety number
-	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0}
+	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 
-	
+
 	//*dataLength = 1;
 	//printf("test = %d\n\n", *dataLength);
 	//printf("TEST: "); printArray(key + encryptKeyLength, 32);
@@ -108,20 +109,25 @@ void encrypt(uint8_t* output, uint8_t* inputKey, uint8_t* data, uint16_t keyLeng
 	/*** (5)+(6) {IV || C || HMAC(IV || C) } = registKey (i.e. output) ***/
 	// IVciphertextConcat = IV || C
 	copyArrayFrom0(IVciphertextConcat, IV, IVlength);
-	copyArray(IVciphertextConcat, ciphertext, IVlength, &msgLength);
+	copyArray(IVciphertextConcat, output, IVlength, &msgLength);
+
+	// get the length of the current array
+	IV_ciphertextLength = IVlength + msgLength;
+	printf("length = %d", IV_ciphertextLength);
+
 
 	// copy IVciphertextConcat to the regist key
-	copyArrayFrom0(output, IVciphertextConcat, IVlength + &msgLength);
+	copyArrayFrom0(output, IVciphertextConcat, IV_ciphertextLength);
  	
 	// convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex)
-	hexToString(IVciphertextConcat_String, IVciphertextConcat, IVlength + &msgLength);
+	hexToString(IVciphertextConcat_String, IVciphertextConcat, IV_ciphertextLength);
 	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength);
 
 	// HMAC
-	hmac(hmacData, IVciphertextConcat_String, macKeyLength, (IVlength + &msgLength)*2);
+	hmac(hmacData, macKey_String, IVciphertextConcat_String, macKeyLength, IV_ciphertextLength*2);
 
 	// {IV || C || HMAC(IV || C) } = regist key
-	copyArray(output, IVciphertextConcat, IVlength + &msgLength, SHA256_DIGEST_LENGTH);
+	copyArray(output, IVciphertextConcat, IV_ciphertextLength, SHA256_DIGEST_LENGTH);
 
 
 
