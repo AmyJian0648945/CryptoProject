@@ -21,7 +21,7 @@ information (HMAC and IV) to allow for decryption.
 /* * * DEBUGGING STAAAAAATION! * * * * * * * * */ 
 //#define step1 1
 //#define step3 1
-#define step4 1
+//#define step4 1
 
 /* * * Uncomment if you want to activate! * * */
 
@@ -31,7 +31,7 @@ information (HMAC and IV) to allow for decryption.
 
 // Function Introduction
 void encrypt(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint8_t);
-
+void decrypt();
 
 
 
@@ -39,13 +39,18 @@ void encrypt(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint8_t);
 
 
 // Function Definition
-void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint8_t msgLength){
+void encrypt(uint8_t* output, uint8_t* inputKey, uint8_t* data, uint16_t keyLength, uint8_t msgLength){
 
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
+	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
 	uint8_t paddedData[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
-	
 
+	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; // 16 is a safety number
+	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0}
+	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
+
+	
 	//*dataLength = 1;
 	//printf("test = %d\n\n", *dataLength);
 	//printf("TEST: "); printArray(key + encryptKeyLength, 32);
@@ -53,8 +58,8 @@ void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t key
 
 
 
-	// (1) Hash the key; k = {encryptKey, macKey}
-	simpleHashWithLength(key, inputKey, keyLength);
+	/*** (1) Hash the key; k = {encryptKey, macKey} ***/ 
+	simpleHashWithLength(key, inputKey, keyLength); // key is already in string!
 
 	#ifdef step1 
 	printf(">> Before hash:"); printArray(inputKey, keyLength); 
@@ -63,40 +68,79 @@ void encrypt(uint8_t* ciphertext, uint8_t* inputKey, uint8_t* data, uint16_t key
 
 
 
-	// (2) Generate a random IV of 128 bits.
+	/*** (2) Generate a random IV of 128 bits. ***/
 	RNG(IV, IVlength);
 
 
-
-	// (3) Pad the data until length is 16x
+	/*** (3) Pad the data until length is 16x ***/
 	#ifdef step3
 	printf(">> Before padding, size is: %d", msgLength);
-	printArray(data, msgLength);
+	printChar(data, msgLength);
 	#endif
 
 	padding(data, &msgLength);
 
 	#ifdef step3
 	printf(">> After padding, size is: %d", msgLength);
-	printArray(data, msgLength);
+	printChar(data, msgLength);
 	#endif
 
 
-
-	// (4) Encrypt the data, using: paddedData, IV, key
-	#ifdef step4
-	printf(">> Before AES_CBC:"); printArray(ciphertext, msgLength); 
-	#endif
-
-	AES_CBC(ciphertext, paddedData, &msgLength, IV, key);
 	
-	#ifdef step4
-	printf(">> After AES_CBC:"); printArray(ciphertext, msgLength); 
+
+
+	/*** (4) Encrypt the data, using: paddedData, IV, key ***/
+	#ifdef step4 /* Debugging statement */
+	printf(">> Before AES_CBC:"); printArray(output, msgLength); 
 	#endif
 
+	// Perform AES_CBC
+	aesCBCencrypt(output, data, &msgLength, IV, key);
+	
+	#ifdef step4 /* Debugging statement */
+	printf(">> After AES_CBC:"); printArray(output, msgLength); 
+	#endif
+
+
+
+
+
+	/*** (5)+(6) {IV || C || HMAC(IV || C) } = registKey (i.e. output) ***/
+	// IVciphertextConcat = IV || C
+	copyArrayFrom0(IVciphertextConcat, IV, IVlength);
+	copyArray(IVciphertextConcat, ciphertext, IVlength, &msgLength);
+
+	// copy IVciphertextConcat to the regist key
+	copyArrayFrom0(output, IVciphertextConcat, IVlength + &msgLength);
+ 	
+	// convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex)
+	hexToString(IVciphertextConcat_String, IVciphertextConcat, IVlength + &msgLength);
+	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength);
+
+	// HMAC
+	hmac(hmacData, IVciphertextConcat_String, macKeyLength, (IVlength + &msgLength)*2);
+
+	// {IV || C || HMAC(IV || C) } = regist key
+	copyArray(output, IVciphertextConcat, IVlength + &msgLength, SHA256_DIGEST_LENGTH);
+
+
+
+	
+
+ }
+
+
+
+
+void decrypt(uint8_t* output, uint8_t* registKey, uint8_t* key){
+	/* * * Verification step; if failed, abort * * */
+
+	// (1) Compute HMAC: of {IV || C} = macMsg, with macKey
+	// (2) Compare the HMAC with the registKey's HMAC
+
+	/* * * Decryption step; * * */
+	// (3) Decrypt
 }
-
-
 
 
 
