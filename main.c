@@ -35,6 +35,7 @@ int main()
     uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
     uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
     uint8_t registKey[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
+    uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
 
     // Processing keys = make sure its in char
     uint16_t keySize = strlen(key); 	/* Not guaranteed to work if first input is 0*/
@@ -43,8 +44,9 @@ int main()
 
 
     hexToString(keyInString, key, keySize);
-	encrypt(registKey, keyInString, data, keySize*2, msgSize);
-	// find a way to detect key + message length?
+	
+	encrypt(registKey, &msgSize, data, keyInString, keySize*2);
+	decrypt(plaintext, &msgSize, registKey, keyInString, keySize*2);
 
 
 	//gcc main.c -o main; ./main

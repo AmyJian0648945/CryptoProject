@@ -18,7 +18,7 @@
 
 void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
 void aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
-void aesCBCdecrypt();
+void aesCBCdecrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
 void aesCBCencrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
 void padding(uint8_t*, uint8_t*); 
     /* Pads data until a multipe of 16*/
@@ -59,6 +59,11 @@ void aesEncrypt(uint8_t* ciphertext, uint8_t* plaintext, uint8_t* key){
     
 }
 
+void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t* msgLength, 
+             uint8_t* IV, uint8_t* key){
+
+}
+
 void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength, 
              uint8_t* IV, uint8_t* key)
 {
@@ -68,7 +73,7 @@ void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength,
     uint16_t i = 0;
 
     // Figuring out how many AES_CBC rounds is needed
-    CBCrounds = msgLength[0];
+    CBCrounds = *msgLength;
     CBCrounds = CBCrounds / aes_BLOCK_SIZE;
 
     // Copy IV into temp, in order to initialise the first plaintext
@@ -81,48 +86,36 @@ void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength,
 */
     // Go through all rounds AES, each with input 128bits of message
     for(i = 0; i < CBCrounds; i++){
-        printf("\n---Iteration number %d, %d---\n",i, i*(aes_BLOCK_SIZE));
+        //printf("\n---Iteration number %d, %d---\n",i, i*(aes_BLOCK_SIZE));
         
-
         // XOR previous ciphertext with current plaintext (unless its the first iteration)  
         XOR(inputMsg + i*(aes_BLOCK_SIZE), temp, inputMsg + i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);
 
-        //printf("current IV: "); printArrayNoSpaces(inputMsg + i*(aes_BLOCK_SIZE), 16);
-        //printf("message: ");    printArrayNoSpaces(ciphertext + i*(aes_BLOCK_SIZE), IVlength);
-
         // Compute a single AES 
         aesEncrypt(ciphertext + i*(aes_BLOCK_SIZE), inputMsg + i*(aes_BLOCK_SIZE), key);
-        printf("ciphertext = "); printArrayNoSpaces(ciphertext + i*(aes_BLOCK_SIZE) , IVlength);
-
-        //printf("ciphertext_after: "); printArrayNoSpaces(ciphertext + i*(aes_BLOCK_SIZE), IVlength);
+        
         // Copy the ciphertext onto "temp", to calculate XOR for next iteration
-        copyArrayFrom0(temp, ciphertext + i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);
-        
+        copyArrayFrom0(temp, ciphertext + i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);   
     }
-        
 }   
 
 
 void padding(uint8_t* inputToBePadded, uint8_t* inputLength){
     uint8_t pad = 0, i = 0;
-    // See what needs to be padded
+
     pad = *inputLength;
     pad = 16 - (pad % 16);
 
-    #ifdef step3
-    printf(">> To be padded: %d\n", pad);
-    #endif 
-    
     if(pad != 0){
         for(i = *inputLength; i < pad + *inputLength; i++){
             inputToBePadded[i] = pad;
         }
     }
     
+    //printf("2 -- %d %d %d\n", &inputLength, inputLength, *inputLength);
     // update message length    
     *inputLength += pad;
-    
-    //*inputLength = pad;
+    //printf("3 -- %d %d %d\n", &inputLength, inputLength, *inputLength);
 }
 
 

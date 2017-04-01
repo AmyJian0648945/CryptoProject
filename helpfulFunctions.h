@@ -152,11 +152,13 @@ void printCharNoSpaces(uint8_t* output, uint16_t iter){
 
 void seeTheDifference(uint8_t* input1, uint8_t* input2, uint16_t lengthToCompare){
     uint16_t i = 0;
-    printf("Difference?: ");
     for(i = 0; i < lengthToCompare; i++){
-        if(input1[i] - input2[i] != 0) printf("--> Yes: @ i=%d\n",i);
+        if(input1[i] - input2[i] != 0) {
+            printf("--> HMAC is not the same: @ element = %d\n",i);
+            abort();
+        }
     }
-    if(i == lengthToCompare) printf("--> No :)\n");
+    if(i == lengthToCompare) printf(">> HMAC is the same - data integrity verified.\n");
 }
 
 
