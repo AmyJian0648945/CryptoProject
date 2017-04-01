@@ -46,6 +46,9 @@ int main()
 	encrypt(registKey, keyInString, data, keySize*2, msgSize);
 	// find a way to detect key + message length?
 
+
+	//gcc main.c -o main; ./main
+
 	
 
 

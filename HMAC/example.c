@@ -40,7 +40,7 @@ int main(){
 
 
 
-    
+
 
     /* * * Using hex numbers to calculate HMAC * * */
 

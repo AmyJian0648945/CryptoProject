@@ -21,7 +21,7 @@ information (HMAC and IV) to allow for decryption.
 /* * * DEBUGGING STAAAAAATION! * * * * * * * * */ 
 //#define step1 1
 //#define step3 1
-//#define step4 1
+#define step4 1
 
 /* * * Uncomment if you want to activate! * * */
 
@@ -56,57 +56,24 @@ void encrypt(uint8_t* output, uint8_t* inputKey, uint8_t* data, uint16_t keyLeng
 	//printf("test = %d\n\n", *dataLength);
 	//printf("TEST: "); printArray(key + encryptKeyLength, 32);
 
+	// (1) Hash the key; k = {encryptKey, macKey} 
+	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
 
+	// V (2) Generate a random IV of 128 bits.
+	RNG(IV, IVlength); /* output = HEX */
 
-
-	/*** (1) Hash the key; k = {encryptKey, macKey} ***/ 
-	simpleHashWithLength(key, inputKey, keyLength); // key is already in string!
-
-	#ifdef step1 
-	printf(">> Before hash:"); printArray(inputKey, keyLength); 
-	printf(">> After hash: "); printArray(key, SHA256_DIGEST_LENGTH);
-	#endif
-
-
-
-	/*** (2) Generate a random IV of 128 bits. ***/
-	RNG(IV, IVlength);
-
-
-	/*** (3) Pad the data until length is 16x ***/
-	#ifdef step3
-	printf(">> Before padding, size is: %d", msgLength);
-	printChar(data, msgLength);
-	#endif
-
+	// (3) Pad the data until length is 16x 
 	padding(data, &msgLength);
 
-	#ifdef step3
-	printf(">> After padding, size is: %d", msgLength);
-	printChar(data, msgLength);
-	#endif
-
-
-	
-
-
-	/*** (4) Encrypt the data, using: paddedData, IV, key ***/
-	#ifdef step4 /* Debugging statement */
-	printf(">> Before AES_CBC:"); printArray(output, msgLength); 
-	#endif
-
-	// Perform AES_CBC
+	// (4) Encrypt the data, using: paddedData, IV, key 
 	aesCBCencrypt(output, data, &msgLength, IV, key);
-	
-	#ifdef step4 /* Debugging statement */
-	printf(">> After AES_CBC:"); printArray(output, msgLength); 
-	#endif
 
 
 
 
 
 	/*** (5)+(6) {IV || C || HMAC(IV || C) } = registKey (i.e. output) ***/
+	/*
 	// IVciphertextConcat = IV || C
 	copyArrayFrom0(IVciphertextConcat, IV, IVlength);
 	copyArray(IVciphertextConcat, output, IVlength, &msgLength);
@@ -128,8 +95,8 @@ void encrypt(uint8_t* output, uint8_t* inputKey, uint8_t* data, uint16_t keyLeng
 
 	// {IV || C || HMAC(IV || C) } = regist key
 	copyArray(output, IVciphertextConcat, IV_ciphertextLength, SHA256_DIGEST_LENGTH);
-
-
+	
+	*/
 
 	
 
