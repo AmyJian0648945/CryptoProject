@@ -61,6 +61,28 @@ void aesEncrypt(uint8_t* ciphertext, uint8_t* plaintext, uint8_t* key){
 
 void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t* msgLength, 
              uint8_t* IV, uint8_t* key){
+    uint8_t temp[aes_BLOCK_SIZE] = {0};
+    uint8_t CBCrounds = 0;
+    uint16_t i = 0;
+
+
+    // Figuring out how many AES_CBC rounds is needed
+    CBCrounds = msgLength;
+    CBCrounds = CBCrounds / aes_BLOCK_SIZE;
+
+    copyArrayFrom0(temp, IV, IVlength);
+
+    for(i = 0; i < CBCrounds; i++){
+    //printf("\n---Iteration number %d, %d---\n",i, i*(aes_BLOCK_SIZE));
+        // Compute a single AES 
+        aesDecrypt(plaintext + i*(aes_BLOCK_SIZE), ciphertext + i*(aes_BLOCK_SIZE), key);
+
+        // XOR previous ciphertext with current plaintext (unless its the first iteration)  
+        XOR(plaintext + i*(aes_BLOCK_SIZE), temp, plaintext + i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);
+
+        // Copy the ciphertext onto "temp", to calculate XOR for next iteration
+        copyArrayFrom0(temp, ciphertext + i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);   
+    }
 
 }
 

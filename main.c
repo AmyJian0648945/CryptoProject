@@ -41,14 +41,15 @@ int main()
     uint16_t keySize = strlen(key); 	/* Not guaranteed to work if first input is 0*/
     uint8_t* msgSize = strlen(data); 	/* Not guaranteed to work if first input is 0*/
 
-
-
     hexToString(keyInString, key, keySize);
 	
 	encrypt(registKey, &msgSize, data, keyInString, keySize*2);
+
+
+	//printf("-->main.c :: before, msg length %d \n", msgSize);
 	decrypt(plaintext, &msgSize, registKey, keyInString, keySize*2);
-
-
+	//printf("-->main.c :: after, msg length %d \n", msgSize);
+	printChar(plaintext, msgSize);
 	//gcc main.c -o main; ./main
 
 	
