@@ -7,7 +7,8 @@ information (HMAC and IV) to allow for decryption.
 	Message authentication: HMAC-SHA256
 	Encryption and MAC assembly: Encrypt-then-MAC
 	Padding: PKCS#7
-
+--> Note: 
+	{IV || C || HMAC(IV || C) } = regist key 
 
 
 *** For more info about Encrypt-then-Mac, see https://goo.gl/8wAanl
@@ -17,28 +18,11 @@ information (HMAC and IV) to allow for decryption.
 #define ENCRYPT_H
 
 
-
-/* * * DEBUGGING STAAAAAATION! * * * * * * * * */ 
-//#define step1 1
-//#define step3 1
-#define step4 1
-
-/* * * Uncomment if you want to activate! * * */
-
-
-
-
-
 // Function Introduction
 void encrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void decrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 
 
-
-/*	 {		IV || C 	  || HMAC(		IV || C 	  }  *
- * = { IVciphertextConcat || HMAC( IVciphertextConcat }  *
- * =  				registKey (i.e. output)				 *
- */
 // Function Definition
 void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
@@ -85,7 +69,7 @@ void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputK
 	
 	// Update message length
 	*msgLength = IV_ciphertextLength + SHA256_DIGEST_LENGTH;
-	//printf(">> Encryption successful!\n"); 
+	printf(">> Encryption ended\n"); 
  }
 
 
@@ -95,10 +79,10 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
 
-	//printf(">> Entering decryption...\n");
+	printf(">> Entering decryption...\n");
 
 	/* * * Verification step; if failed, abort * * */
-	/* * * {IV || C || HMAC(IV || C) } = regist key * * */
+	
 	// Calculate the key (by hashing)
 	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
 	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength);
@@ -114,11 +98,14 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	
 
 	/* * * Decryption step; verification step ends above * * */
+	
 	aesCBCdecrypt(output, registKey + IVlength, *msgLength - SHA256_DIGEST_LENGTH  - IVlength, 
 				  registKey, key);
 
 	// update message length
 	*msgLength = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
+
+	printf(">> Encryption ended\n"); 
 }
 
 

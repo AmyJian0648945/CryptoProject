@@ -43,14 +43,17 @@ int main()
 
     hexToString(keyInString, key, keySize);
 	
+	
+    printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize);
 	encrypt(registKey, &msgSize, data, keyInString, keySize*2);
 
-
-	//printf("-->main.c :: before, msg length %d \n", msgSize);
 	decrypt(plaintext, &msgSize, registKey, keyInString, keySize*2);
-	//printf("-->main.c :: after, msg length %d \n", msgSize);
-	printChar(plaintext, msgSize);
-	//gcc main.c -o main; ./main
+
+	
+	printf("Ciphertext after encryption: "); printArrayNoSpaces(registKey, msgSize);
+	printf("Plaintext after decryption: "); printCharNoSpaces(plaintext, msgSize);
+	printf("\n\n");
+	
 
 	
 
