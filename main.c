@@ -19,7 +19,7 @@
 #include "CPRNG/pseudoRandNumGenerator.h"
 #include "HMAC/hmac.h"
 #include "aes/useAES.h"
-#include "dataTransmission/encrypt.h"
+#include "dataTransmission/encryptDecrypt.h"
 
 
 
