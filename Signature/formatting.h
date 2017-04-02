@@ -1,4 +1,4 @@
-// Reformatting the array //
+/* Reformatting the array */
 void from8to16(uint8_t *input, uint16_t *output){
 	int k;
 	for (k=0;k<128;k++){

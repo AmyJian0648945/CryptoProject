@@ -21,8 +21,8 @@ To check the validity of results, compare with:
 #define SHA2_USE_INTTYPES_H
 
 #include<time.h>
-#include"sha2.h"
-#include"sha2.c"
+#include"../sha2/sha2.h"
+#include"../sha2/sha2.c"
 
 ////////// Function Declarations //////////
 
