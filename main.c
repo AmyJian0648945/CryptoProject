@@ -11,8 +11,8 @@
 /* * * Needed for hmac.h * * */
 #define DATA_BLOCK_SIZE         64
 
-#define MAX_MESSAGE_LENGTH 			 	500 // CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!!
-#define MAX_TRANSMISSION_BLOCK_LENGTH 	512 // CURRENTLY A PATCH: needs to be 16x
+#define MAX_MESSAGE_LENGTH 			 	500 /* CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!! */
+#define MAX_TRANSMISSION_BLOCK_LENGTH 	512 /* CURRENTLY A PATCH: needs to be 16x */
 
 #include "helpfulFunctions.h"
 #include "sha2/useSHA256.h"
@@ -36,22 +36,24 @@ int main()
     uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
     uint8_t registKey[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
+    uint8_t tempLength = 0;
 
-    // Processing keys = make sure its in char
+    /* Processing keys = make sure its in char */
     uint16_t keySize = strlen(key); 	/* Not guaranteed to work if first input is 0*/
     uint8_t* msgSize = strlen(data); 	/* Not guaranteed to work if first input is 0*/
 
+
     hexToString(keyInString, key, keySize);
 	
-	
-    printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize);
 	encrypt(registKey, &msgSize, data, keyInString, keySize*2);
-
 	decrypt(plaintext, &msgSize, registKey, keyInString, keySize*2);
 
-	
-	printf("Ciphertext after encryption: "); printArrayNoSpaces(registKey, msgSize);
-	printf("Plaintext after decryption: "); printCharNoSpaces(plaintext, msgSize);
+
+	tempLength = msgSize; 
+	printf("\n---\nSummary...\n---\n");
+	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(registKey, tempLength );
+	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
 	printf("\n\n");
 	
 

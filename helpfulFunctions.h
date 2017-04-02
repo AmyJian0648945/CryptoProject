@@ -64,17 +64,17 @@ uint16_t timeData(){
 void hexToString(uint8_t* output, uint8_t* input, size_t lengthOfInput){ /* let the default hashing style of hex be of capital letters*/
     uint16_t i = 0, j = 0;
 
-    // Clear the output first
+    /* Clear the output first */
     for(i=0; i<lengthOfInput*2; i++) output[i] = 0;
     
-    // Separate the first and second digit of each array element
+    /* Separate the first and second digit of each array element */
     for(i = 0; i < lengthOfInput; i++){
         output[j] = input[i] / 16;
         output[j+1] = input[i] % 16;
         j+=2;
     }
 
-    // convert each array element into output
+    /* convert each array element into output */
     for(i = 0; i < lengthOfInput*2; i++){
         output[i] = output[i] + 48;
         if(output[i] > 57) output[i] += 7;

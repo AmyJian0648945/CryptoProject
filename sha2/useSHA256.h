@@ -13,6 +13,9 @@ To check the validity of results, compare with:
 
 
 * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#define SHA2_USE_INTTYPES_H
+
 #ifndef SHA256_DIGEST_LENGTH
 #define SHA256_DIGEST_LENGTH	32 	/* Also defined in sha2.h, here for clarification and just-in-case purposes */
 #endif /* SHA256_DIGEST_LENGTH */
@@ -24,24 +27,17 @@ To check the validity of results, compare with:
 #include"sha2.h"
 #include"sha2.c"
 
-////////// Function Declarations //////////
+/******* Function Declarations *******/
 
-//void simpleHash(uint8_t*, uint8_t*); 	/* Does a single SHA256 hash */
+/* void simpleHash(uint8_t*, uint8_t*); */ 	/* Does a single SHA256 hash */
 void simpleHashWithLength(uint8_t*, uint8_t*, size_t); 
 	/* same as simpleHash, but with specified length 
 	 * OUTPUT = hex, INPUT = hex */
-
 void hashWithTime(uint8_t*); 
 	/* XORs input with time data, then hashed */
 void hashOfLength(uint8_t*, uint8_t*, uint16_t, size_t); 
 	/* Gives a hashed value of specified length based on seed */ 
 
-
-
-
-
-
-////////// Function Implementation //////////
 
 
 /*
@@ -58,12 +54,8 @@ void simpleHash(uint8_t* output, uint8_t* input){
 
 void simpleHashWithLength(uint8_t* output, uint8_t* input, size_t lengthOfInput){
 	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
-	
-	// Convert hex to string
-	//uint8_t inputString[MAX_MESSAGE_LENGTH*2] = {0};
-	//hexToString(inputString, input, lengthOfInput);
 
-	// Hash and output
+	/* Hash and output */
 	SHA256_Init(&ctx); /* Initialise SHA256 */
 	SHA256_Update(&ctx, input, lengthOfInput); /* Input data into hash function */
 	SHA256_Final(output, &ctx); /* writes the hashing output onto output variable */
@@ -88,27 +80,27 @@ void hashWithTime(uint8_t* output){
 
 void hashOfLength(uint8_t* output, uint8_t* seed, uint16_t lengthOfHash, size_t lengthOfSeed){
 	uint8_t tempHashStorage[SHA256_DIGEST_LENGTH] = {0};
-	uint16_t output_count = 0, temp_count = 0, count_ref = 0;
+	uint16_t count_ref = 0;
 
-	// Hash once
+	/* Hash once */
 	simpleHashWithLength(tempHashStorage, seed, lengthOfSeed);
 
-	// While lengthOfHash > SHA256_DIGEST_LENGTH, iteratively add hashed values over to output
+	/* While lengthOfHash > SHA256_DIGEST_LENGTH, iteratively add hashed values over to output */
 	count_ref = 0;
 	while (lengthOfHash > SHA256_DIGEST_LENGTH){ 
-		// Get new hash
+		/* Get new hash */
 		simpleHashWithLength(tempHashStorage, tempHashStorage, SHA256_DIGEST_LENGTH);
 		
-		// Copy hash array over to output array
+		/* Copy hash array over to output array */
 		copyArray(output, tempHashStorage, count_ref, SHA256_DIGEST_LENGTH);
 
-		// Loop statements
+		/* Loop statements */
 		count_ref += SHA256_DIGEST_LENGTH;
 		lengthOfHash -= SHA256_DIGEST_LENGTH;
 	} 
 
 
-	// When lengthOfHash < SHA256_DIGEST_LENGTH, Add hashed values one last time (same operation as in while loop)
+	/* When lengthOfHash < SHA256_DIGEST_LENGTH, Add hashed values one last time (same operation as in while loop) */
 	simpleHashWithLength(tempHashStorage, tempHashStorage, lengthOfHash);
 	copyArray(output, tempHashStorage, count_ref, lengthOfHash);
 

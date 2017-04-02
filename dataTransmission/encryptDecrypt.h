@@ -18,56 +18,56 @@ information (HMAC and IV) to allow for decryption.
 #define ENCRYPT_H
 
 
-// Function Introduction
+/* Function Introduction */
 void encrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void decrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 
 
-// Function Definition
+/* Function Definition */
 void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
-	uint8_t paddedData[MAX_TRANSMISSION_BLOCK_LENGTH] = {0};
+	
 
 	uint8_t IV_ciphertextLength = 0;
-	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; // 16 is a safety number
+	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
 	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 
 	printf(">> Entering encryption...\n");
 
-	// (1) Hash the key; k = {encryptKey, macKey} 
+	/* (1) Hash the key; k = {encryptKey, macKey} */
 	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
 	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength); /*Key for HMAC must be in string*/
 
-	// (2) Generate a random IV of 128 bits.
+	/* (2) Generate a random IV of 128 bits. */
 	RNG(IV, IVlength); /* output = HEX */
 
-	// (3) Pad the data until length is 16x 
+	/* (3) Pad the data until length is 16x */
 	padding(data, msgLength);
 
-	// (4) Encrypt the data, using: paddedData, IV, key 
+	/* (4) Encrypt the data, using: paddedData, IV, key */
 	aesCBCencrypt(output, data, msgLength, IV, key);
 
-	// IVciphertextConcat = IV || C
+	/* IVciphertextConcat = IV || C */
 	copyArrayFrom0(IVciphertextConcat, IV, IVlength);
 	copyArray(IVciphertextConcat, output, IVlength, *msgLength);
 
-	// get the length of the current array
+	/* get the length of the current array */
 	IV_ciphertextLength = IVlength + *msgLength;
 
-	// convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex)
+	/* convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex) */
 	hexToString(IVciphertextConcat_String, IVciphertextConcat, IV_ciphertextLength);
 	
-	// (5) HMAC
+	/* (5) HMAC */
 	hmac(hmacData, macKey_String, IVciphertextConcat_String, macKeyLength*2, IV_ciphertextLength*2);
 
-	// (6) {IV || C || HMAC(IV || C) } = regist key
+	/* (6) {IV || C || HMAC(IV || C) } = regist key */
 	copyArrayFrom0(output, IVciphertextConcat, IV_ciphertextLength);
 	copyArray(output, hmacData, IV_ciphertextLength, SHA256_DIGEST_LENGTH);
 	
-	// Update message length
+	/* Update message length */
 	*msgLength = IV_ciphertextLength + SHA256_DIGEST_LENGTH;
 	printf(">> Encryption ended\n"); 
  }
@@ -83,17 +83,17 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 
 	/* * * Verification step; if failed, abort * * */
 	
-	// Calculate the key (by hashing)
+	/* Calculate the key (by hashing) */
 	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
 	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength);
 
-	// Turn the hashed value into string 
+	/* Turn the hashed value into string */
 	hexToString(registKey_String, registKey, *msgLength);
 	
-	// (1) Compute HMAC: of {IV || C} = macMsg, with macKey
+	/* (1) Compute HMAC: of {IV || C} = macMsg, with macKey */
 	hmac(hmacData, macKey_String, registKey_String, macKeyLength*2, (*msgLength-SHA256_DIGEST_LENGTH)*2);
 
-	// (2) Compare the HMAC with the registKey's HMAC
+	/* (2) Compare the HMAC with the registKey's HMAC */
 	seeTheDifference(hmacData, registKey+(*msgLength-SHA256_DIGEST_LENGTH), SHA256_DIGEST_LENGTH);
 	
 
@@ -102,7 +102,7 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	aesCBCdecrypt(output, registKey + IVlength, *msgLength - SHA256_DIGEST_LENGTH  - IVlength, 
 				  registKey, key);
 
-	// update message length
+	/* update message length */
 	*msgLength = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
 
 	printf(">> Encryption ended\n"); 
@@ -150,18 +150,3 @@ Decryption
 
 
 
-
-
-
-
-
-
-
-/* Details of the implementation:
-Encrypt-then-MAC:
-Provides integrity of Ciphertext. Assuming the MAC shared secret has not been compromised, we ought to be able to deduce whether a given ciphertext is indeed authentic or has been forged; for example, in public key cryptography anyone can send you messages. EtM ensures you only read valid messages.
-Plaintext integrity.
-If the cipher scheme is malleable we need not be so concerned, since the MAC code will filter out this invalid ciphertext.
-The MAC does not provide any information on the plaintext since, assuming the output of the cipher appears random, so does the MAC. In other words, we haven't carried any structure from the plaintext into the MAC code.
-
-*/
