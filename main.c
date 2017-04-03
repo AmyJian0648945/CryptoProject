@@ -37,19 +37,20 @@ int main()
     uint8_t registKey[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     uint8_t tempLength = 0;
+    uint8_t msgSize[1] = {0};
 
     /* Processing keys = make sure its in char */
     uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
-    uint8_t* msgSize = (uint8_t*) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
-
+    msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
 	
-	encrypt(registKey, &msgSize, data, keyInString, keySize*2);
-	decrypt(plaintext, &msgSize, registKey, keyInString, keySize*2);
-
+	encrypt(registKey, msgSize, data, keyInString, keySize*2);
+	
+	decrypt(plaintext, msgSize, registKey, keyInString, keySize*2);
+tempLength = (uint8_t) msgSize[0]; 
 	/* Printout operation summary */
-	tempLength = (uint8_t) msgSize; 
+	
 	printf("\n---\nSummary...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(registKey, tempLength );

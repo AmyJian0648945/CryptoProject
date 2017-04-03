@@ -62,8 +62,8 @@ void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength,
     uint16_t i = 0;
 
     /* Figuring out how many AES_CBC rounds is needed */
-    CBCrounds = *msgLength;
-    CBCrounds = CBCrounds / aes_BLOCK_SIZE;
+    
+    CBCrounds = msgLength[0] / aes_BLOCK_SIZE;
 
     /* Copy IV into temp, in order to initialise the first plaintext */
     copyArrayFrom0(temp, IV, IVlength);
@@ -71,7 +71,7 @@ void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength,
     /* Go through all rounds AES, each with input 128bits of message */
     for(i = 0; i < CBCrounds; i++){
         /* XOR previous ciphertext with current plaintext (unless its the first iteration)  */
-        XOR(tempXOR, temp, inputMsg + i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);
+        XOR(tempXOR, temp, inputMsg+ i*(aes_BLOCK_SIZE), aes_BLOCK_SIZE);
 
         /* Compute a single AES */
         aesEncrypt(ciphertext + i*(aes_BLOCK_SIZE), tempXOR, key);
@@ -86,13 +86,13 @@ void padding(uint8_t* inputToBePadded, uint8_t* inputLength){
     uint8_t pad = 0, i = 0;
 
     /* figure out how much to pad */
-    pad = *inputLength;
+    pad = inputLength[0];
     pad = 16 - (pad % 16);
 
     /* pad as many times as needed */
-    for(i = *inputLength; i < pad + *inputLength; i++) inputToBePadded[i] = pad;
+    for(i = inputLength[0]; i < pad + inputLength[0]; i++) inputToBePadded[i] = pad;
 
     /* update message length */
-    *inputLength += pad;
+    inputLength[0] += pad;
 }
 

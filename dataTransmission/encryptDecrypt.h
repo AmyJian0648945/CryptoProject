@@ -49,13 +49,13 @@ void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputK
 
 	/* (4) Encrypt the data, using: paddedData, IV, key */
 	aesCBCencrypt(output, data, msgLength, IV, key);
-
+	
 	/* IVciphertextConcat = IV || C */
 	copyArrayFrom0(IVciphertextConcat, IV, IVlength);
-	copyArray(IVciphertextConcat, output, IVlength, *msgLength);
+	copyArray(IVciphertextConcat, output, IVlength, msgLength[0]);
 
 	/* get the length of the current array */
-	IV_ciphertextLength = IVlength + *msgLength;
+	IV_ciphertextLength = IVlength + msgLength[0];
 
 	/* convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex) */
 	hexToString(IVciphertextConcat_String, IVciphertextConcat, IV_ciphertextLength);
@@ -68,7 +68,7 @@ void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputK
 	copyArray(output, hmacData, IV_ciphertextLength, SHA256_DIGEST_LENGTH);
 	
 	/* Update message length */
-	*msgLength = IV_ciphertextLength + SHA256_DIGEST_LENGTH;
+	msgLength[0] = IV_ciphertextLength + SHA256_DIGEST_LENGTH;
 	printf(">> Encryption ended\n"); 
  }
 
@@ -90,7 +90,7 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 
 	/* Turn the hashed value into string */
 	hexToString(registKey_String, registKey, *msgLength);
-	
+
 	/* (1) Compute HMAC: of {IV || C} = macMsg, with macKey */
 	hmac(hmacData, macKey_String, registKey_String, macKeyLength*2, (*msgLength-SHA256_DIGEST_LENGTH)*2);
 
@@ -101,13 +101,12 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	/* * * Decryption step; verification step ends above * * */
 	temp = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
 
-	printf("length = %d \n", temp);
 	aesCBCdecrypt(output, registKey + IVlength, temp, registKey, key);
 
 	/* update message length */
 	*msgLength = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
 
-	printf(">> Encryption ended\n"); 
+	printf(">> Decryption ended\n"); 
 }
 
 
