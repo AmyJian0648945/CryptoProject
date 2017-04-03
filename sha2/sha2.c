@@ -630,7 +630,7 @@ void SHA256_Final(sha2_byte digest[], SHA256_CTX* context) {
 	}
 
 	/* Clean up state data: */
-	MEMSET_BZERO(context, sizeof(context));
+	MEMSET_BZERO(context, (int) sizeof(context));
 	usedspace = 0;
 }
 /*

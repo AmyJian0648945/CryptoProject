@@ -9,7 +9,7 @@
 
 void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
 void aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
-void aesCBCdecrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
+void aesCBCdecrypt(uint8_t*, uint8_t*, uint8_t, uint8_t*, uint8_t*);
 void aesCBCencrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
 void padding(uint8_t*, uint8_t*); 
     /* Pads data until a multipe of 16*/
@@ -28,15 +28,15 @@ void aesEncrypt(uint8_t* ciphertext, uint8_t* plaintext, uint8_t* key){
     aes_encrypt(&aeskey, plaintext, ciphertext);    
 }
 
-void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t* msgLength, 
+void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t msgLength, 
              uint8_t* IV, uint8_t* key){
     uint8_t temp[aes_BLOCK_SIZE] = {0};
     uint8_t CBCrounds = 0;
     uint16_t i = 0;
 
     /* Figuring out how many AES_CBC rounds is needed */
-    CBCrounds = msgLength;
-    CBCrounds = CBCrounds / aes_BLOCK_SIZE;
+    
+    CBCrounds = msgLength / aes_BLOCK_SIZE;
 
     copyArrayFrom0(temp, IV, IVlength);
 

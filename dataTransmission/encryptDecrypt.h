@@ -78,6 +78,7 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
+	uint8_t temp = 0;
 
 	printf(">> Entering decryption...\n");
 
@@ -98,9 +99,10 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	
 
 	/* * * Decryption step; verification step ends above * * */
-	
-	aesCBCdecrypt(output, registKey + IVlength, *msgLength - SHA256_DIGEST_LENGTH  - IVlength, 
-				  registKey, key);
+	temp = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
+
+	printf("length = %d \n", temp);
+	aesCBCdecrypt(output, registKey + IVlength, temp, registKey, key);
 
 	/* update message length */
 	*msgLength = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
