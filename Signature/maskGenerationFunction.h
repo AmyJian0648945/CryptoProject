@@ -41,4 +41,5 @@ void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 	for(index=0;index<MASKLEN;index++){
 		dbmask[index]=T[index];
 	}
+	
 }

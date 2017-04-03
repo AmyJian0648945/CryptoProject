@@ -39,8 +39,8 @@ int main()
     uint8_t tempLength = 0;
 
     /* Processing keys = make sure its in char */
-    uint16_t keySize = strlen(key); 	/* Not guaranteed to work if first input is 0*/
-    uint8_t* msgSize = strlen(data); 	/* Not guaranteed to work if first input is 0*/
+    uint16_t keySize = (uint16_t) strlen(key); 	/* Not guaranteed to work if first input is 0*/
+    uint8_t* msgSize = (uint8_t*) strlen(data); 	/* Not guaranteed to work if first input is 0*/
 
 
     hexToString(keyInString, key, keySize);
@@ -49,7 +49,7 @@ int main()
 	decrypt(plaintext, &msgSize, registKey, keyInString, keySize*2);
 
 
-	tempLength = msgSize; 
+	tempLength = (uint8_t) msgSize; 
 	printf("\n---\nSummary...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(registKey, tempLength );

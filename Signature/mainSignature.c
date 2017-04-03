@@ -1,6 +1,8 @@
-#include<stdint.h>
-#include<stdio.h>
-#include<string.h>
+
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "../helpfulFunctions.h"
 #include "../sha2/useSHA256.h"
 #include "../CPRNG/pseudoRandNumGenerator.h"
@@ -9,6 +11,11 @@
 #include "verifySignature.h"
 #include "formatting.h"
 /* File for testing purposes. */
+
+ 
+ #include <time.h>
+ #include <sys/types.h>
+ 
 
 int main(void){
 	
