@@ -1,3 +1,4 @@
+#define MAXLENGTH 128
 
 uint16_t positionMSB(uint16_t *array, uint16_t size);
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size);
@@ -37,17 +38,17 @@ uint16_t positionMSB(uint16_t *array, uint16_t size){
 	int i;
 	int index = 0;
 	int lastOne = 0;
+	uint16_t word = 0;
+	
 	for(i=0;i<size;i++){
 		if (array[i] != 0){
-			uint16_t word = array[i];
+			word = array[i];
 			for(index=0;index<16;index++){
 				word = array[i]>>index;
 				if (word%2 != 0)
 					lastOne = index;
 			}
 			result = i*16+(15-lastOne);
-			uint16_t resultInv = size*16-result;
-			// printf("resultInv = %u and result = %u\n",resultInv,result);
 			return result;
 		}
 		// else: continue//
@@ -57,25 +58,28 @@ uint16_t positionMSB(uint16_t *array, uint16_t size){
 
 /*	Calculates a mod N and stores it in result; a has sizeA elements, N has sizeModulus elements; result has sizeModulus elements. (with sizeA >= sizeModulus).
 */
-void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t sizeModulus)
-{
+void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t sizeModulus){
 	
-	uint16_t Nextended[sizeModulus+(sizeA-sizeModulus)];
-	zerosArray(Nextended,sizeA);
+	uint16_t Nextended[MAXLENGTH] = {0};
+	uint16_t copyOfA[MAXLENGTH] = {0};
+	uint16_t comparison = 0;
 	int i;
+
+	zerosArray(Nextended,sizeA);
 	for(i=0;i<sizeModulus;i++){
 		Nextended[i+(sizeA-sizeModulus)] = N[i];
 	}
-	int comparison;
-	comparison = isBiggerThanOrEqual(a,Nextended,sizeA);
+	copyArray16(a,copyOfA,sizeA);
+	
+	comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
 	if (comparison > 0){
 		while (comparison > 0){
-			subtractionShort(a,Nextended,a,sizeA);
-			comparison = isBiggerThanOrEqual(a,Nextended,sizeA);
+			subtraction(copyOfA,Nextended,copyOfA,sizeA);
+			comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
 		}
 	}
 	for(i=0;i<sizeModulus;i++){
-		result[i] = a[i+(sizeA-sizeModulus)];
+		result[i] = copyOfA[i+(sizeA-sizeModulus)];
 	}
 }
 
@@ -116,7 +120,7 @@ void modSquare(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t size)
 void squareProduct(uint16_t *a, uint16_t *product, uint16_t size){
 	uint16_t posMSB = positionMSB(a,size);
 	uint16_t copyOfA[size];
-	copyArray(a,copyOfA,size);
+	copyArray16(a,copyOfA,size);
 	uint16_t copyj[size];
 	uint16_t t = size*16 - posMSB;
 	int i;
@@ -134,7 +138,7 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t size){
 	
 	for(i=0;i<t;i++){
 
-		copyArray(copyOfA,copyj,size);
+		copyArray16(copyOfA,copyj,size);
 
 		xi = copyOfA[size-1]%2;
 
@@ -169,7 +173,7 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t size){
 	from2to16(w,result,2*t);
 	flipArray(result,sizeResult);
 	char nameResult[8] = "Result";
-	printArray(result,nameResult,sizeResult);
+	printArray16(result,nameResult,sizeResult);
 	for(i=0;i<sizeResult;i++){
 		product[i] = result[i];
 	}
@@ -183,11 +187,11 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	uint16_t AposMSB = positionMSB(a,sizeA);
 	uint16_t BposMSB = positionMSB(b,sizeB);
 	uint16_t copyOfA[sizeA];
-	copyArray(a,copyOfA,sizeA);
+	copyArray16(a,copyOfA,sizeA);
 	uint16_t copyOfB[sizeB];
-	copyArray(b,copyOfB,sizeB);
+	copyArray16(b,copyOfB,sizeB);
 	uint16_t copyjA[sizeA];
-	copyArray(a,copyjA,sizeA);
+	copyArray16(a,copyjA,sizeA);
 	uint16_t n = sizeA*16 - AposMSB - 1;
 	uint16_t t = sizeB*16 - BposMSB - 1;
 	int i;
@@ -202,7 +206,7 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	uint16_t xj = 0;
 	
 	for(i=0;i<t+1;i++){
-		copyArray(copyOfA,copyjA,sizeA);
+		copyArray16(copyOfA,copyjA,sizeA);
 		yi = copyOfB[sizeB-1]%2;
 		c = 0;
 		
@@ -247,7 +251,7 @@ void division(uint16_t *x, uint16_t *y, uint16_t *division, uint16_t *remainder,
 	uint16_t copyOfX[sizeX];
 	uint16_t copy2OfX[sizeX];
 	uint16_t copyOfY[sizeY];
-	copyArray(y,copyOfY,sizeY);
+	copyArray16(y,copyOfY,sizeY);
 	uint16_t n = sizeX*16 - xPosMSB - 1;
 	uint16_t t = sizeY*16 - yPosMSB - 1;
 	// printf("n = %u and t = %u\n",n,t);
@@ -276,14 +280,14 @@ void division(uint16_t *x, uint16_t *y, uint16_t *division, uint16_t *remainder,
 	if (comparison == 1){
 		while (comparison > 0){
 			q[n-t] = q[n-t] + 1;
-			subtractionShort(x,copyExtended,x,sizeX);
+			subtraction(x,copyExtended,x,sizeX);
 			multiplyByTwo(copyExtended,sizeX);
 			comparison = isBiggerThanOrEqual(x,copyExtended,sizeX);
 		}
 	}
 
 	// Step 3 //
-	copyArray(x,copyOfX,sizeX);
+	copyArray16(x,copyOfX,sizeX);
 	uint16_t xi = 0;
 	uint16_t nextXi = 0;
 	uint16_t next2Xi = 0;
@@ -305,7 +309,7 @@ void division(uint16_t *x, uint16_t *y, uint16_t *division, uint16_t *remainder,
 	for(i=n;i>t;i--){
 				
 		// STEP 3.1 //
-		copyArray(copyOfX,copy2OfX,sizeX);
+		copyArray16(copyOfX,copy2OfX,sizeX);
 		xi = (copyOfX[wordXMSB]>>(15-posXInWord))%2;		
 		multiplyByTwo(copy2OfX,sizeX);
 		nextXi = (copy2OfX[wordXMSB]>>(15-posXInWord))%2;
@@ -341,7 +345,7 @@ void division(uint16_t *x, uint16_t *y, uint16_t *division, uint16_t *remainder,
 			for(times=0;times<i-t-1;times++){
 				multiplyByTwo(copyExtended,sizeX);
 			}
-			sign = subtraction(x,copyExtended,x,sizeX);
+			sign = subtractionWithSign(x,copyExtended,x,sizeX);
 		}
 
 		zerosArray(copyExtended,sizeX);
@@ -377,7 +381,7 @@ void division(uint16_t *x, uint16_t *y, uint16_t *division, uint16_t *remainder,
 			sign = 1;
 		else {
 			addition(counterArray,sum,counterArray,sizeX);
-			sign = subtraction(x,copyExtended,x,sizeX);
+			sign = subtractionWithSign(x,copyExtended,x,sizeX);
 		}
 	}
 	
@@ -412,7 +416,7 @@ void modMult(uint16_t *a, uint16_t *b, uint16_t *m, uint16_t *result, uint16_t s
 	uint16_t divisionResult[sizeA+sizeB];
 	uint16_t remainder[sizeM];
 	division(product,m,divisionResult,remainder,sizeA+sizeB,sizeM);
-	copyArray(remainder,result,sizeM);
+	copyArray16(remainder,result,sizeM);
 }
 
 /*
@@ -425,9 +429,9 @@ void modMult(uint16_t *a, uint16_t *b, uint16_t *m, uint16_t *result, uint16_t s
 void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE){
 	
 	// char nameResult[7] = "result";
-	// printArray(result,nameResult,sizeM);
+	// printArray16(result,nameResult,sizeM);
 	// char nameE[2] = "e";
-	// printArray(e,nameE,sizeE);
+	// printArray16(e,nameE,sizeE);
 	uint16_t posMSB = positionMSB(e,sizeE);
 	uint16_t t = sizeE*16 - posMSB;
 	
@@ -437,18 +441,18 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 	division(e,two,resultDiv,resultRem,sizeE,1);
 	// char nameDiv[10] = "resultDiv";
 	// char nameRem[10] = "resultRem";
-	// printArray(resultDiv,nameDiv,sizeE);
-	// printArray(resultRem,nameRem,1);
+	// printArray16(resultDiv,nameDiv,sizeE);
+	// printArray16(resultRem,nameRem,1);
 	
 	uint16_t xMod[sizeM];
 	mod(x,m,xMod,sizeX,sizeM);
 	// char nameXMod[5] = "xMod";
-	// printArray(xMod,nameXMod,sizeM);
+	// printArray16(xMod,nameXMod,sizeM);
 	
 	uint16_t x2Mod[sizeM];
 	modMult(x,x,m,x2Mod,sizeX,sizeX,sizeM);
 	// char nameX2Mod[6] = "x2Mod";
-	// printArray(x2Mod,nameX2Mod,sizeM);
+	// printArray16(x2Mod,nameX2Mod,sizeM);
 
 	uint16_t zeros[sizeE];
 	zerosArray(zeros,sizeE);
@@ -456,7 +460,7 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 	zerosArray(one,sizeE);
 	one[sizeE-1] = 0x01;
 	// char nameOne[4] = "one";
-	// printArray(one,nameOne,sizeE);
+	// printArray16(one,nameOne,sizeE);
 	uint16_t begin = 1;
 
 	while ( numberIsZero(resultDiv,sizeE) != 1){
@@ -466,7 +470,7 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 		}
 		else {
 			begin = 0;
-			copyArray(x2Mod,result,sizeM);
+			copyArray16(x2Mod,result,sizeM);
 			subtraction(resultDiv,one,resultDiv,sizeE);
 		}
 	}

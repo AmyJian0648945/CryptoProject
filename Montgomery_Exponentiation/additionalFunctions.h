@@ -1,6 +1,21 @@
+#define MAXLENGTH 128
+
+void printArray16(uint16_t *array, char *word, uint16_t arrayLength);
+void zerosArray(uint16_t *result, uint16_t arrayLength);
+uint16_t isBiggerThan(uint16_t *number1, uint16_t *number2, uint16_t size);
+uint16_t isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size);
+uint16_t numberIsZero(uint16_t *number, uint16_t numberOfElements);
+void copyArray16(uint16_t *original, uint16_t *copiedVersion, uint16_t arrayLength);
+void flipArray(uint16_t *input, uint16_t size);
+void divideByTwo(uint16_t *input, uint16_t size);
+void multiplyByTwo(uint16_t *input, uint16_t size);
+void addition(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size);
+void subtraction(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size);
+uint16_t subtractionWithSign(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size);
+
 /*	Print input array of size ArrayLength; word is the name for the array.
 */
-void printArray(uint16_t *array, char *word, uint16_t arrayLength){
+void printArray16(uint16_t *array, char *word, uint16_t arrayLength){
 	int index;
 	printf(" %s[%u] = { ",word,arrayLength);
 	for (index=0;index<arrayLength;index++){
@@ -18,7 +33,7 @@ void zerosArray(uint16_t *result, uint16_t arrayLength){
 }
 /* Returns one if number1 is strictly bigger than number2. Both arrays have size elements.
 */
-int isBiggerThan(uint16_t *number1, uint16_t *number2, uint16_t size){
+uint16_t isBiggerThan(uint16_t *number1, uint16_t *number2, uint16_t size){
 	int i;
 	for (i=0;i<size;i++){
 		if (number1[i] > number2[i])
@@ -30,7 +45,7 @@ int isBiggerThan(uint16_t *number1, uint16_t *number2, uint16_t size){
 }
 /*	Returns one if number1 is bigger than or equal to number2. Both arrays have size elements.
 */
-int isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size){
+uint16_t isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size){
 	int i;
 	for (i=0;i<size;i++){
 		if (number1[i] > number2[i])
@@ -42,7 +57,7 @@ int isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size){
 }
 /*	Returns 1 if number is equal to 0.
 */
-int numberIsZero(uint16_t *number, uint16_t numberOfElements){
+uint16_t numberIsZero(uint16_t *number, uint16_t numberOfElements){
 	int k;
 	for (k=0;k<numberOfElements;k++){
 		if (number[k] != 0)
@@ -53,7 +68,7 @@ int numberIsZero(uint16_t *number, uint16_t numberOfElements){
 
 /*	Copies the arrayLength elements of original into copiedVersion.
 */
-void copyArray(uint16_t *original, uint16_t *copiedVersion, uint16_t arrayLength){
+void copyArray16(uint16_t *original, uint16_t *copiedVersion, uint16_t arrayLength){
 	int i;
 	for(i=0;i<arrayLength;i++){
 		copiedVersion[i] = original[i];
@@ -62,14 +77,14 @@ void copyArray(uint16_t *original, uint16_t *copiedVersion, uint16_t arrayLength
 
 /* Switches the order of the (size) elements of array.
 */
-void flipArray(uint16_t *array, uint16_t size){
+void flipArray(uint16_t *input, uint16_t size){
 	int i;
-	uint16_t stock[size];
+	uint16_t stock[MAXLENGTH];
 	for(i=0;i<size;i++){
-		stock[i] = array[size-1-i];
+		stock[i] = input[size-1-i];
 	}
 	for(i=0;i<size;i++){
-		array[i] = stock[i];
+		input[i] = stock[i];
 	}
 }
 
@@ -119,7 +134,7 @@ void addition(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t s
 	}
 }
 
-void subtractionShort(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
+void subtraction(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
 	uint16_t carrier = 0;
 	int i;
 	for(i=size-1;i>=0; i--){
@@ -132,32 +147,16 @@ void subtractionShort(uint16_t *number1, uint16_t *number2, uint16_t *result, ui
 	}
 }
 
-uint16_t subtraction(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
+uint16_t subtractionWithSign(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
 	uint16_t carrier = 0;
 	uint16_t resultComparison;
-	resultComparison = isBiggerThan(number2, number1, size);
+	resultComparison = isBiggerThan(number1, number2, size);
 	if (resultComparison == 1){
-		int i;
-		for(i=size-1;i>=0; i--){
-			uint16_t difference = number2[i]-number1[i]-carrier;
-			if (number2[i] >= number1[i]+carrier)
-				carrier = 0;
-			else
-				carrier = 1;
-			result[i] = difference;
-		}
-		return 1;
+		subtraction(number1,number2,result,size);
+		return 0;
 	}
 	else {
-		int i;
-		for(i=size-1;i>=0; i--){
-			uint16_t difference = number1[i]-number2[i]-carrier;
-			if (number1[i] >= number2[i]+carrier)
-				carrier = 0;
-			else
-				carrier = 1;
-			result[i] = difference;
-		}
-		return 0;
+		subtraction(number2,number1,result,size);
+		return 1;
 	}
 }

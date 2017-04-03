@@ -7,7 +7,7 @@
 
 
 #include "additionalFunctions.h"
-#include "modularInverseShort.h"
+#include "modularInverse.h"
 
 int main(void){
 
@@ -18,12 +18,22 @@ int main(void){
 	uint16_t result[modLen];
 
 	uint16_t switched;
-	switched = modularInverse(test, testModulus, result, modLen );
+	switched = modularInverse(test, testModulus, result, modLen, modLen);
 	
 	char name[8] = "inverse";
-	printArray(result, name, modLen);
+	printArray16(result, name, modLen);
 	printf("switched = %u\n", switched);
 	
+	
+	uint16_t test2[2] = {0x01,0X1BBF};
+	uint16_t testmod2[2] = {0x01,0x860A};
+	uint16_t inv[2] = {0};
+	modularInverse(test2,testmod2,inv,2,2);
+	printArray16(inv,"inv",2);
+	uint16_t sign = 0;
+	sign = signedSubtractionInt(testmod2,test2,2,0,0);
+	printf("sign = %u\n",sign);
+	printArray16(testmod2,"subresult",2);
 	
 	return 0;
 }
