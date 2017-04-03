@@ -1,12 +1,14 @@
 #include<stdint.h>
 #include<stdio.h>
 #include<string.h>
-#include "useSHA256.h"
-#include "pseudoRandNumGenerator.h"
+#include "../helpfulFunctions.h"
+#include "../sha2/useSHA256.h"
+#include "../CPRNG/pseudoRandNumGenerator.h"
 #include "maskGenerationFunction.h"
 #include "signatureMessage.h"
 #include "verifySignature.h"
 #include "formatting.h"
+/* File for testing purposes. */
 
 int main(void){
 	
@@ -26,9 +28,9 @@ int main(void){
 
 	verificationCorrect = verifySignature(message,encodedMessage);
 	if (verificationCorrect == 1)
-		printf("Verification succeeded!\n");
+		printf("\n Verification succeeded!\n");
 	else
-		printf("Verification failed!\n");
+		printf("\n Verification failed!\n");
 	return 0;
 }
 

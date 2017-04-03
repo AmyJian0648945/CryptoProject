@@ -71,6 +71,5 @@ uint16_t signatureMessage(uint8_t *message, uint8_t *encodedMessage){
 			encodedMessage[k] = 0xbc;
 	}
 
-	printf("Signature succeeded!\n");
 	return 1;
 }

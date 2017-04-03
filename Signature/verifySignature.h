@@ -70,7 +70,6 @@ uint16_t verifySignature(uint8_t *message, uint8_t *encodedMessage){
 		if (hash2[index] != H[index])
 			return 0;
 	}
-	printf("Program succeeded!\n");	
 
 	return 1;
 }
