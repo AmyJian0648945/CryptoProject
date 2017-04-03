@@ -14,18 +14,9 @@ To check the validity of results, compare with:
 
 * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#define SHA2_USE_INTTYPES_H
-
-#ifndef SHA256_DIGEST_LENGTH
-#define SHA256_DIGEST_LENGTH	32 	/* Also defined in sha2.h, here for clarification and just-in-case purposes */
-#endif /* SHA256_DIGEST_LENGTH */
-
-#define TIME_DATA_BASE			10
-#define TIME_DATA_LENGTH		16
 
 
-#include"sha2.h"
-#include"sha2.c"
+
 
 /******* Function Declarations *******/
 

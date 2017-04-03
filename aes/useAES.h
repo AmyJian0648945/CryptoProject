@@ -1,18 +1,22 @@
-
-#include "aes.h"
-#include "aes.c"
-
-#define AES_KEY_SIZE 128
-
-
+/*
+    This is a helpful wrapper function to for use of AES (in particular, in 
+    CBC Mode). 
+*/
 
 
 void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
+    /* Performs a single AES decryption */
 void aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
+    /* Performs a single AES Encryption */
 void aesCBCdecrypt(uint8_t*, uint8_t*, uint8_t, uint8_t*, uint8_t*);
+    /* Performs complete AES Decryption, CBC Mode */
 void aesCBCencrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
+    /* Performs complete AES Encryption, CBC Mode */
 void padding(uint8_t*, uint8_t*); 
-    /* Pads data until a multipe of 16*/
+    /* Pads data until a multipe of 16 */
+
+
+
 
 void aesDecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t* key){
     aes_key aeskey;

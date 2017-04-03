@@ -41,8 +41,7 @@ below.
 
 
 void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);
-
-
+	/* Calculates the HMAC based on an input key and message */
 
 /* * * * * Algorithm subparts: * * * * * 
 
