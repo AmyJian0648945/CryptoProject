@@ -4,7 +4,7 @@
 
 #include "additionalFunctions.h"
 #include "modularInverse.h"
-#include "montFunctions.h"
+#include "modFunctions.h"
 #include "montExponentiation.c"
 
 int main(void){
@@ -42,7 +42,10 @@ int main(void){
 	flipArray(q,9);
 	uint16_t r[8] = {0x6789, 0x2345, 0xdef1, 0x1abc, 0x5432, 0x9876, 0x7890, 0x3456};
 	flipArray(r,8);
-	uint16_t sizeR = 8;
+	uint16_t sizeR = 8;	
+	
+	uint16_t div[8] = {0};
+	uint16_t rem[7] = {0};
 	
 	char nameSumAB[6] = "sumAB";
 	char nameSubAB[6] = "subAB";
@@ -60,24 +63,42 @@ int main(void){
 	
 	addition(a,b,result,sizeA);
 	printArray16(result,nameSumAB,sizeResult);
+	
 	subtraction(a,b,result,sizeA);
 	printArray16(result,nameSubAB,sizeResult);
+	
 	mod(a,b,result,sizeA,sizeB);
 	printArray16(result,nameModAB,sizeResult);
 	printArray16(b,"b",sizeB);
 	printArray16(m,"m",sizeM);
+	
 	mod(b,m,result,sizeB,sizeM);
 	printArray16(result,nameModBM,sizeM);
+	
 	multiplication(a,b,result16,sizeA,sizeB);
 	printArray16(result16,nameMultAB,sizeResult16);
+	
 	multiplication(a,s,result9,sizeA,1);
 	printArray16(result9,nameMultSA,sizeResult9);
+	
 	mod(p,q,result9,sizePQ,sizePQ);
 	printArray16(result9,nameModPQ,sizeResult9);
+	
 	modularInverse(p,q,result9,sizePQ,sizePQ);
 	printArray16(result9,nameInvPQ,sizeResult9);	
+	
 	modularInverse(a,b,result,sizeA,sizeB);
 	printArray16(result,nameInvAB,sizeB);
+
+	division(a,m,div,rem,sizeA,sizeM);
+	printArray16(div,nameDivAM,8);
+	printArray16(rem,"remDIVAM",7);
+	
+	modMult(p,q,r,result,sizePQ,sizePQ,sizeR);
+	printArray16(result,nameMultPQ,sizeR);
+	
+	montExp(p,r,q,result,sizePQ,sizeR,sizePQ);
+	printArray16(result,nameExpPQ,sizeR);
 	
 	// uint16_t PmodR[8];
 	// uint16_t QmodR[8];
@@ -91,12 +112,9 @@ int main(void){
 	// montExp(a,m,b,result,8,8,8);
 	// printArray16(result,nameExpAB,sizeResult);
 
-	// uint16_t div[8];
-	// uint16_t rem[8];
-	// division(m,a,div,rem,sizeA,sizeM);
-	// char nameRem[4] = "rem";
-	// printArray16(rem,nameRem,8);
-	// printArray16(div,nameDivAM,8);
+	
+
+	
 	/*
 		Tests succeeded:
 			h = a mod b
@@ -108,6 +126,7 @@ int main(void){
 			p mod q
 			p^(-1) mod q
 			a^(-1) mod b
+			g = a/m
 	*/
 	
 }

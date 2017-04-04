@@ -91,13 +91,14 @@ void flipArray(uint16_t *input, uint16_t size){
 void divideByTwo(uint16_t *input, uint16_t size){
 	uint16_t newCarrier = 0x00;
 	uint16_t oldCarrier = 0x00;
+	uint16_t newValue = 0x00;
 	int k;
 	for(k=0;k<size;k++){
 		if (input[k]%2 == 0)
 			newCarrier = 0;
 		else
 			newCarrier = 0x01;
-		uint16_t newValue = input[k]>>1;
+		newValue = input[k]>>1;
 		oldCarrier = oldCarrier<<15;
 		input[k] =  oldCarrier + newValue;
 		oldCarrier = newCarrier;
@@ -106,10 +107,11 @@ void divideByTwo(uint16_t *input, uint16_t size){
 void multiplyByTwo(uint16_t *input, uint16_t size){
 	uint16_t newCarrier = 0x00;
 	uint16_t oldCarrier = 0x00;
+	uint16_t newValue = 0x00;
 	int k;
 	for(k=size-1;k>=0;k--){
 		newCarrier = input[k]>>15;
-		uint16_t newValue = input[k]<<1;
+		newValue = input[k]<<1;
 		input[k] =  oldCarrier + newValue;
 		oldCarrier = newCarrier;
 	}
@@ -126,9 +128,10 @@ void divideBy16(uint16_t *input, uint16_t size){
 
 void addition(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
 	uint32_t carrier = 0;
+	uint32_t sum = 0;
 	int i;
 	for(i=size-1;i>=0;i--){
-		uint32_t sum = (uint32_t)number1[i] + (uint32_t)number2[i] + carrier;
+		sum = (uint32_t)number1[i] + (uint32_t)number2[i] + carrier;
 		carrier = sum>>16;
 		result[i] = (uint16_t)sum;
 	}
@@ -136,9 +139,10 @@ void addition(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t s
 
 void subtraction(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
 	uint16_t carrier = 0;
+	uint16_t difference = 0;
 	int i;
 	for(i=size-1;i>=0; i--){
-		uint16_t difference = number1[i]-number2[i]-carrier;
+		difference = number1[i]-number2[i]-carrier;
 		if (number1[i] >= number2[i]+carrier)
 			carrier = 0;
 		else
@@ -148,9 +152,8 @@ void subtraction(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_
 }
 
 uint16_t subtractionWithSign(uint16_t *number1, uint16_t *number2, uint16_t *result, uint16_t size){
-	uint16_t carrier = 0;
-	uint16_t resultComparison;
-	resultComparison = isBiggerThan(number1, number2, size);
+	uint16_t resultComparison = 0;
+	resultComparison = isBiggerThanOrEqual(number1, number2, size);
 	if (resultComparison == 1){
 		subtraction(number1,number2,result,size);
 		return 0;
