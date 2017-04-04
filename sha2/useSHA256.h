@@ -1,3 +1,6 @@
+#ifndef	USESHA256_H
+#define	USESHA256_H
+
 /* * * * * * * * * * * * * * * * * * * * * * * *
 This file simply hashes the message (of any size), using sha2.h
 
@@ -97,3 +100,4 @@ void hashOfLength(uint8_t* output, uint8_t* seed, uint16_t lengthOfHash, size_t 
 
 }
 
+#endif

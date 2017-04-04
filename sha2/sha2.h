@@ -1,3 +1,6 @@
+#ifndef SHA2_H
+#define SHA2_H
+
 /*
  * FILE:	sha2.h
  * AUTHOR:	Aaron D. Gifford <me@aarongifford.com>
@@ -197,3 +200,4 @@ void SHA512_Final();
 
 #endif /* __SHA2_H__ */
 
+#endif

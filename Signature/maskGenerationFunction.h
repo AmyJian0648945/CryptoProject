@@ -1,6 +1,14 @@
+#ifndef MASKGENERATIONFUNCTION_H
+#define MASKGENERATIONFUNCTION_H
+
 #define MASKLEN 223
 #define HASHLEN 32
 
+/*
+	Implementation of the mask generation function, used in the signatureMessage function.
+	uint8_t *input = number to be masked (input)
+	uint8_t *dbmask = mask (output)
+*/
 void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 
 	/* 	
@@ -43,3 +51,5 @@ void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 	}
 	
 }
+
+#endif /* MASKGENERATIONFUNCTION_H */

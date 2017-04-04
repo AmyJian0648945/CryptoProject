@@ -1,7 +1,9 @@
+#define MAXLENGTH 128
+
 /* m^(-1) mod 2 */
 int mInvLastBitValue(uint16_t *m, uint16_t *R, uint16_t sizeM){
 	
-	uint16_t mInv[sizeM+1];
+	uint16_t mInv[MAXLENGTH] = {0};
 	R[0] = 0x0001;
 	modularInverseShort(m,R,mInv,sizeM,sizeM+1);
 
@@ -50,14 +52,14 @@ void montMul( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t 
 			addition(A,yExt,A,sizeM+1);
 		}
 		if (ui == 1){
-			subtractionShort(A,mExt,A,sizeM+1);
+			subtraction(A,mExt,A,sizeM+1);
 		}
 		divideByTwo(A,sizeM+1);
 		divideByTwo(x,sizeM);
 	}
 	// step 3 //
 	if (isBiggerThanOrEqual(A,mExt,sizeM+1)){
-		subtractionShort(A,mExt,A,sizeM+1);
+		subtraction(A,mExt,A,sizeM+1);
 	}
 	
 	for(k=0;k<sizeM;k++){
@@ -88,7 +90,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 		if (k<(sizeM-sizeX)){
 			xExt[k] = 0x00;
 		} else {
-			xExt[k] = x[k];
+			xExt[k] = x[k-(sizeM-sizeX)];
 		}
 	}
 	// char nameM[2] = "m";
@@ -96,11 +98,15 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	// printf(" mPosMSB = %u and l = %u \n",mPosMSB,l);
 	// printf(" nbBitsR = %u and msbWordR = %u and msbPosR = %u \n",nbBitsR,msbWordR,msbPosR);
 	
-	uint16_t R[sizeM+1];
+	uint16_t R[MAXLENGTH];
 	zerosArray(R,sizeM+1);
+	R[0] = 0x01;
 		
 	uint16_t mInvLastBit = 0;
-	mInvLastBit = mInvLastBitValue(m,R,sizeM);
+	//mInvLastBit = mInvLastBitValue(m,R,sizeM);
+	uint16_t mInv[sizeM+1];
+	modularInverseShort(m,R,mInv,sizeM,sizeM+1);
+	mInvLastBit = mInv[sizeM]%2;
 	printf(" mInvLastBit = %u\n",mInvLastBit);
 		
 	char nameR[2] = "R";

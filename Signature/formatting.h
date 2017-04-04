@@ -1,4 +1,8 @@
-/* Reformatting the array */
+/* Reformatting the array 
+	From 8 bit words to 16 bit words.
+	uint8_t *input = array of 8 bit words (input).
+	uint16_t *output = array of 16 bit words (output).
+*/
 void from8to16(uint8_t *input, uint16_t *output){
 	int k;
 	uint16_t first8bits = 0;
@@ -13,6 +17,11 @@ void from8to16(uint8_t *input, uint16_t *output){
 	}
 }
 
+/* Reformatting the array.
+	From 16 bit words to 8 bit words.
+	uint16_t *input = array of 16 words (input).
+	uint8_t *output = array of 8 words (output).
+*/
 void from16to8(uint16_t *input, uint8_t *output){
 	int k;
 	uint8_t first8bits = 0;

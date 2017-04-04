@@ -1,4 +1,5 @@
-
+#ifndef HELPFULFUNCTIONS_H
+#define	HELPFULFUNCTIONS_H
 
 
 
@@ -160,15 +161,4 @@ void seeTheDifference(uint8_t* input1, uint8_t* input2, uint16_t lengthToCompare
     if(i == lengthToCompare) printf(">> HMAC is the same - data integrity verified.\n");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+#endif

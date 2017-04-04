@@ -1,3 +1,6 @@
+#ifndef PSEUDORANDNUMGENERATOR_H
+#define PSEUDORANDNUMGENERATOR_H
+
 /* * * * * * * * * * * * * * * * * * * * * * * *
 What it does: generates a (pseudo) random number of length 
 	PRNlength (each element of type uint_8) based on the input 
@@ -180,3 +183,5 @@ int main(){
 	return 0;
 }
 */
+
+#endif

@@ -1,175 +1,271 @@
+#ifndef MODULARINVERSE_H
+#define MODULARINVERSE_H
 
-void ifElseClauseSub(uint16_t *x, uint16_t *y, uint16_t modLength, int *reversed1, int *reversed2){
-	if (*reversed1 != 1)
+#define MAXLENGTH 128
+
+/* x - y
+	x: first number
+	y: second number
+	arrayLength: number of elements of x and y
+	sign1: 1 if x is negative, 0 if x is positive
+	sign2: 1 if y is negative, 0 if y is positive
+*/
+uint16_t signedSubtraction(uint16_t *x, uint16_t *y, uint16_t arrayLength, uint16_t sign1, uint16_t sign2){
+
+	if (sign1 != 1)
 	{
-		printf("If part \n");
-		if (*reversed2 != 1) {
-			printf("If part 2 \n");
-			*reversed1 = subtraction(x,y,x,modLength);
+		if (sign2 != 1) {
+			sign1 = subtractionWithSign(x,y,x,arrayLength);
 		}
 		else {
-			printf("Else part 2 \n");
-			addition(x,y,x,modLength);
+			addition(x,y,x,arrayLength);
 		}
 	}
 	else
 	{
-		printf("Else part \n");
-		if (*reversed2 != 1){
-			printf("If part 3 \n");
-			addition(x,y,x,modLength);
-			*reversed1 = 1;
+		if (sign2 != 1){
+			addition(x,y,x,arrayLength);
+			sign1 = 1;
 		} else {
-			printf("Else part 3 \n");
-			*reversed1 = subtraction(y,x,x,modLength);
+			sign1 = subtractionWithSign(y,x,x,arrayLength);
 		}
 	}
+	return sign1;
 }
 
-uint16_t modularInverse(uint16_t *x, uint16_t *y, uint16_t *a_result, uint16_t *b_result, uint16_t *v_result, uint16_t modLength){
+/* 	x^(-1) mod y
+	x = sizeX elements
+	y = modLength elements
+	inverse = modLength elements
+*/
+void modularInverse(uint16_t *x, uint16_t *y, uint16_t *inverse, uint16_t sizeX, uint16_t modLength){
 		
-		// Step 1 //
-		uint16_t g = 1;
-		printf("Step 1 finished\n");
-
+		/* Extend x */
+		uint16_t size = 0;
+		uint16_t copyOfX[MAXLENGTH] = {0};
+		int i;
+		uint16_t copyOfY[MAXLENGTH] = {0};
+		uint16_t g = 0;
 		
-		uint16_t u[modLength];
-		uint16_t v[modLength];
+		uint16_t u[MAXLENGTH] = {0};
+		uint16_t v[MAXLENGTH] = {0};
 		
-		// Step 2 //
-		if ((x[modLength-1]%2 == 0) && (y[modLength-1]%2 == 0)){
-			divideByTwo(x, modLength);
-			divideByTwo(y, modLength);
+		uint16_t A[MAXLENGTH] = {0};
+		uint16_t B[MAXLENGTH] = {0};
+		uint16_t C[MAXLENGTH] = {0};
+		uint16_t D[MAXLENGTH] = {0};
+		
+		int resultComparison = 0;
+		uint16_t resultIsZero = 0;
+		uint16_t signB = 0;
+		uint16_t signD = 0;
+		uint16_t signC = 0;
+		uint16_t signA = 0;
+		uint16_t signV = 0;
+		uint16_t signU = 0;
+		
+		
+		if(sizeX>modLength){
+			size = sizeX;
+		} else {
+			size = modLength;
+		}
+		
+		/* Copy of x */
+		for(i=0;i<size;i++){
+			if(i<size-sizeX){
+				copyOfX[i] = 0x00;
+			} else {
+				copyOfX[i] = x[i-(size-sizeX)];
+			}
+		}
+		
+		/* Copy of y */
+		for(i=0;i<size;i++){
+			if (i<size-modLength){
+				copyOfY[i] = 0x00;
+			} else {
+				copyOfY[i] = y[i-(size-modLength)];
+			}
+		}
+		
+		
+		/* Step 1 */
+		g = 1;
+		
+		/* Step 2 */
+		if ((copyOfX[size-1]%2 == 0) && (copyOfY[size-1]%2 == 0)){
+			divideByTwo(copyOfX, size);
+			divideByTwo(copyOfY, size);
 			g = g<<1;
 		}
-		printf("Step 2 is finished\n");
 		
-		// Step 3 //
-		copyArray(x,u,modLength);
-		copyArray(y,v,modLength);
+		/* Step 3 */
+		copyArray16(copyOfX,u,size);
+		copyArray16(copyOfY,v,size);
 
-		uint16_t zeros[modLength];
-		zerosArray(zeros,modLength);
-		uint16_t A[modLength];
-		copyArray(zeros,A,modLength);
-		A[modLength-1]= 0x01;
-		uint16_t B[modLength];
-		copyArray(zeros,B,modLength);
-		uint16_t C[modLength];
-		copyArray(zeros,C,modLength);
-		uint16_t D[modLength];
-		copyArray(zeros,D,modLength);
-		D[modLength-1] = 0x01;
-		printf("Step 3 finished\n");
-		
-		int resultIsZero = 0;
-		int reversedBInt;
-		int reversedDInt;
-		int reversedCInt;
-		int reversedAInt;
-		int reversedVInt;
-		int reversedUInt;
-		int *reversedB = &reversedBInt;
-		int *reversedD = &reversedDInt;
-		int *reversedA = &reversedAInt;
-		int *reversedC = &reversedCInt;
-		int *reversedV = &reversedVInt;
-		int *reversedU = &reversedUInt;
+		zerosArray(A,size);
+		A[size-1]= 0x01;
+		zerosArray(B,size);
+		zerosArray(C,size);
+		zerosArray(D,size);
+		D[size-1] = 0x01;
 
-		do {
+
+ /*		// do {
+			// // Step 4 //
+			// while (u[size-1]%2 == 0) {
+				// divideByTwo(u, size);
+				// if ((A[size-1]%2 == 0) && (B[size-1]%2 == 0)){
+						// divideByTwo(A, size);
+						// divideByTwo(B, size);
+				// }
+				// else
+				// {
+					// if (signA != 1)
+						// addition(A,copyOfY,A,size);
+					// else
+						// signA = subtractionWithSign(copyOfY,A,A,size);
+					// divideByTwo(A, size);
+					
+					// if (signB != 1)
+						// signB = subtractionWithSign(B,copyOfX,B,size);
+					// else
+					// {
+						// addition(B,copyOfX,B,size);
+						// signB = 1;
+					// }
+					// divideByTwo(B, size);
+				// }
+			// }
 			
-			// Step 4 //
-			while (u[modLength-1]%2 == 0) {
-				printf("Inside step 4 while loop\n");
-				divideByTwo(u, modLength);
-				if ((A[modLength-1]%2 == 0) && (B[modLength-1]%2 == 0)){
-						divideByTwo(A, modLength);
-						divideByTwo(B, modLength);
+			// // Step 5 //
+			// while (v[size-1]%2 == 0) {
+				// divideByTwo(v, size);
+				// if ((C[size-1]%2 == 0) && (D[size-1]%2 == 0)){
+					// divideByTwo(C, size);
+					// divideByTwo(D, size);
+				// }
+				// else {
+					// if (signC != 1){
+						// addition(C,copyOfY,C ,size);
+						// divideByTwo(C, size);
+					// }
+					// else {
+						// signC = subtractionWithSign(copyOfY,C,C,size);
+						// divideByTwo(C, size);
+					// }
+					
+					// if (signD != 1)
+						// signD = subtractionWithSign(D,copyOfX,D,size);
+					// else {
+						// addition(D,copyOfX,D,size);
+						// signD = 1;
+					// }
+					// divideByTwo(D, size);
+				// }
+			// }
+			
+			// // Step 6 //
+			// resultComparison = isBiggerThanOrEqual(u,v,size);
+			// if (resultComparison == 1){
+				
+				// signU = signedSubtraction(u,v,size,signU,signV);
+				// signA = signedSubtraction(A,C,size,signA,signC);
+				// signB = signedSubtraction(B,D,size,signB,signD);
+			// }
+			// else {
+				
+				// signV = signedSubtraction(v,u,size,signV,signU);
+				// signC = signedSubtraction(C,A,size,signC,signA);
+				// signD = signedSubtraction(D,B,size,signD,signB);
+			// }
+					
+		// //Step 7 //
+		// resultIsZero = numberIsZero(u, size);
+		// } while (resultIsZero != 1); */
+		
+		resultIsZero = numberIsZero(u, size);
+		while (resultIsZero != 1){
+		/* Step 4 */
+			while (u[size-1]%2 == 0) {
+				divideByTwo(u, size);
+				if ((A[size-1]%2 == 0) && (B[size-1]%2 == 0)){
+						divideByTwo(A, size);
+						divideByTwo(B, size);
 				}
 				else
 				{
-					if (reversedAInt != 1)
-						addition(A,y,A,modLength);
+					if (signA != 1)
+						addition(A,copyOfY,A,size);
 					else
-						reversedAInt = subtraction(y,A,A,modLength);
-					divideByTwo(A, modLength);
+						signA = subtractionWithSign(copyOfY,A,A,size);
+					divideByTwo(A, size);
 					
-					if (reversedBInt != 1)
-						reversedBInt = subtraction(B,x,B,modLength);
+					if (signB != 1)
+						signB = subtractionWithSign(B,copyOfX,B,size);
 					else
 					{
-						addition(B,x,B,modLength);
-						reversedBInt = 1;
+						addition(B,copyOfX,B,size);
+						signB = 1;
 					}
-					divideByTwo(B, modLength);
+					divideByTwo(B, size);
 				}
 			}
-			printf("Step 4 is finished\n");
 			
-			// Step 5 //
-			while (v[modLength-1]%2 == 0) {
-				divideByTwo(v, modLength);
-				if ((C[modLength-1]%2 == 0) && (D[modLength-1]%2 == 0)){
-					divideByTwo(C, modLength);
-					divideByTwo(D, modLength);
+			/* Step 5 */
+			while (v[size-1]%2 == 0) {
+				divideByTwo(v, size);
+				if ((C[size-1]%2 == 0) && (D[size-1]%2 == 0)){
+					divideByTwo(C, size);
+					divideByTwo(D, size);
 				}
 				else {
-					if (reversedCInt != 1){
-						addition(C,y,C ,modLength);
-						// What about a possible carrier? //
-						divideByTwo(C, modLength);
+					if (signC != 1){
+						addition(C,copyOfY,C ,size);
+						divideByTwo(C, size);
 					}
 					else {
-						reversedCInt = subtraction(y,C,C,modLength);
-						divideByTwo(C, modLength);
+						signC = subtractionWithSign(copyOfY,C,C,size);
+						divideByTwo(C, size);
 					}
 					
-					if (reversedDInt != 1)
-						reversedDInt = subtraction(D,x,D,modLength);
+					if (signD != 1)
+						signD = subtractionWithSign(D,copyOfX,D,size);
 					else {
-						addition(D,x,D,modLength);
-						reversedDInt = 1;
+						addition(D,copyOfX,D,size);
+						signD = 1;
 					}
-					divideByTwo(D, modLength);
+					divideByTwo(D, size);
 				}
 			}
-			printf("Step 5 is finished\n");
 			
-			// Step 6 //
-			int resultComparison;
-			resultComparison = isBiggerThanOrEqual(u,v,modLength);
-			printf("resultComparison = %u \n",resultComparison);
+			/* Step 6 */
+			resultComparison = isBiggerThanOrEqual(u,v,size);
 			if (resultComparison == 1){
 				
-				ifElseClauseSub(u,v,modLength,reversedU,reversedV);
-			
-				ifElseClauseSub(A,C,modLength,reversedA,reversedC);
-				
-				ifElseClauseSub(B,D,modLength,reversedB,reversedD);
+				signU = signedSubtraction(u,v,size,signU,signV);
+				signA = signedSubtraction(A,C,size,signA,signC);
+				signB = signedSubtraction(B,D,size,signB,signD);
 			}
 			else {
 				
-				ifElseClauseSub(v,u,modLength,reversedV,reversedU);
-				
-				ifElseClauseSub(C,A,modLength,reversedC,reversedA);
+				signV = signedSubtraction(v,u,size,signV,signU);
+				signC = signedSubtraction(C,A,size,signC,signA);
+				signD = signedSubtraction(D,B,size,signD,signB);
+			}
+			resultIsZero = numberIsZero(u, size);
+		}
+		
+		if (signC == 1){
+			subtraction(copyOfY,C,C,size);
+		}
+		
 
-				ifElseClauseSub(D,B,modLength,reversedD,reversedB);
-				}
-			printf("Step 6 finished\n");
 		
-		//Step 7 //
-		resultIsZero = numberIsZero(u, modLength);
-		printf("resultIsZero %x \n", resultIsZero);
-		char name[2] = "u";
-		printArray(u,name,modLength);
-		} while (resultIsZero != 1);
-		
-		copyArray(C,a_result,modLength);
-		copyArray(D,b_result,modLength);
-		copyArray(v,v_result,modLength);
-		
-		printf("reversedC = %u\n",*reversedC);
-		printf("reversedD  %u\n",*reversedD);
-		printf("Step 7 finished\n");
-		return reversedCInt;
+		for(i=0;i<modLength;i++){
+			inverse[i] = C[i+(size-modLength)];
+		}
 }
+
+#endif

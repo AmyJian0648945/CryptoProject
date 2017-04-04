@@ -1,4 +1,3 @@
-
 /* * * * * * * * * * * * * * * * * * * * * * * *
 This file calculates the HMAC of a message. The concepts explanation 
 and variable specifications are selectively copy pasted from the website 
