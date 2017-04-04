@@ -1,7 +1,15 @@
+#ifndef VERIFYSIGNATURE_H
+#define VERIFYSIGNATURE_H
+
 #define EMLEN	256
 #define HASHLEN	32
 #define	SLEN	32
 
+/*
+	Verifying the encoded message, after decryption of the received signature, for entity authentication.
+	uint8_t *message = what encodedMessage should be after decoding (input)
+	uint8_t *encodedMessage = what is received (to be decoded) (input).
+*/
 uint16_t verifySignature(uint8_t *message, uint8_t *encodedMessage){
 
 	uint8_t mHash[HASHLEN] = {0};
@@ -74,3 +82,4 @@ uint16_t verifySignature(uint8_t *message, uint8_t *encodedMessage){
 	return 1;
 }
 
+#endif /* VERIFYSIGNATURE_H */
