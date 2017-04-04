@@ -2,17 +2,17 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "additionalFunctions.h"
-#include "modularInverse.h"
-#include "modFunctions.h"
-#include "montExponentiation.h"
+#include "Montgomery_Exponentiation/additionalFunctions.h"
+#include "Montgomery_Exponentiation/modularInverse.h"
+#include "Montgomery_Exponentiation/modFunctions.h"
+#include "Montgomery_Exponentiation/montExponentiation.h"
 
 int main(void){
 	
 	uint16_t k[3] = { 0x00, 0x02, 0x1234};
 	uint16_t l[3] = { 0x00, 0x00, 0x0056};
 	uint16_t n[3] = { 0x00, 0x01, 0x0342};
-	uint16_t e[2] = { 0x00, 0x02};
+	uint16_t e[2] = { 0x00, 0x0a};
 	
 	uint16_t product[6] = {0};
 	uint16_t sum[3] = {0};

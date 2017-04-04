@@ -1,7 +1,16 @@
+#ifndef SIGNATUREMESSAGE_H
+#define SIGNATUREMESSAGE_H
+
 #define EMLEN	256
 #define	HLEN	32
 #define	SLEN	32
 
+/*
+	Implementation of the signing of a message via means of the EMSA-PSS algorithm, used in the RSAPSS algorithm.
+	The latter is used for phase 1: Key Agreement to check the identity of the other party (signature).
+	uint8_t *message = message to be encoded (input)
+	uint8_t *encodedMessage = message after the encoding (output).
+*/
 uint16_t signatureMessage(uint8_t *message, uint8_t *encodedMessage){
 
 	uint8_t hash1[HLEN] = {0};
@@ -73,3 +82,5 @@ uint16_t signatureMessage(uint8_t *message, uint8_t *encodedMessage){
 
 	return 1;
 }
+
+#endif /* SIGNATUREMESSAGE_H */

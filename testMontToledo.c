@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "additionalFunctions.h"
-#include "modularInverse.h"
-#include "modFunctions.h"
-#include "montExponentiation.h"
+#include "Montgomery_Exponentiation/additionalFunctions.h"
+#include "Montgomery_Exponentiation/modularInverse.h"
+#include "Montgomery_Exponentiation/modFunctions.h"
+#include "Montgomery_Exponentiation/montExponentiation.h"
 
 int main(void){
 	
@@ -26,8 +26,7 @@ int main(void){
 	uint16_t mInv2[8] = {0};
 	uint16_t mInvLastBit2 = 0;
 	uint16_t result2[7] = {0};
-/* 	uint16_t e2[4] = {0x1,0x2423,0x5231,0x2423};
- */	
+/*  	uint16_t e2[4] = {0x1,0x2423,0x5231,0x2423}; */
 	
 	zerosArray(R,65);
 	R[0] = 0x0001;
@@ -58,10 +57,8 @@ int main(void){
 	montMultiplication(x2,y2,m2,result2,mInvLastBit2,7);
 	printArray16(result2,"result2",7);
 	
-/*  	uint16_t result3[7];
-	montExp(x2,m2,e2,result3,7,7,4);
-	char nameRes3[7] = "xemodm";
-	printArray16(result3,nameRes3,14); */
+	/* 	modExp(x2,m2,e2,result2,7,7,4);
+	printArray16(result2,"x^emodm",7); */
 	
 	return 1;
 }

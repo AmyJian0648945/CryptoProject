@@ -1,3 +1,6 @@
+#ifndef MODULARINVERSE_H
+#define MODULARINVERSE_H
+
 #define MAXLENGTH 128
 
 /* x - y
@@ -264,3 +267,5 @@ void modularInverse(uint16_t *x, uint16_t *y, uint16_t *inverse, uint16_t sizeX,
 			inverse[i] = C[i+(size-modLength)];
 		}
 }
+
+#endif

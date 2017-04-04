@@ -1,3 +1,6 @@
+#ifndef MODFUNCTIONS_H
+#define MODFUNCTIONS_H
+
 #define MAXLENGTH 128
 
 uint16_t positionMSB(uint16_t *array, uint16_t size);
@@ -403,14 +406,13 @@ void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint1
 	for(i=0;i<sizeM;i++){
 		mExt[sizeM+i] = m[i];
 	}
-	while (isBiggerThanOrEqual(squareResult,mExt,2*sizeM) == 1){
+	/* while (isBiggerThanOrEqual(squareResult,mExt,2*sizeM) == 1){
 		subtraction(squareResult,mExt,squareResult,2*sizeM);
-	}
-
+	} */
+	mod(squareResult,mExt,squareResult,2*sizeM,2*sizeM);
 	for(i=0;i<sizeM;i++){
 		result[i] = squareResult[sizeM+i];
 	}
-	
 }
 
 /*
@@ -426,11 +428,7 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 	uint16_t msbWord = 0;
 	uint16_t posWord = 0;
 	uint16_t copyOfE[MAXLENGTH] = {0};
-	uint16_t eOdd = 0;
 	uint16_t xMod[MAXLENGTH] = {0};
-	uint16_t x2Mod[MAXLENGTH] = {0};
-	uint16_t zeros[MAXLENGTH] = {0};
-	uint16_t one[MAXLENGTH] = {0};
 	uint16_t begin = 1;
 	uint16_t ei = 0;
 	int i;
@@ -438,47 +436,27 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 	copyArray16(e,copyOfE,sizeE);
 	msbWord = posMSB/16;
 	posWord = posMSB%16;
-	//divideByTwo(copyOfE,sizeE);
-	if (e[sizeE-1]%2 == 1)
-		eOdd = 1;
-	else
-		eOdd = 0;
 	
 	mod(x,m,xMod,sizeX,sizeM);
-	modSquare(x,m,x2Mod,sizeX,sizeM);
-
-	zerosArray(zeros,sizeE);
-	zerosArray(one,sizeE);
-	one[sizeE-1] = 0x01;
 	
 	zerosArray(result,sizeM);
 	result[sizeM-1] = 0x01;
 
-	// while ( numberIsZero(copyOfE,sizeE) != 1){
-		// if (begin == 0){
-			// modMult(x2Mod,result,m,result,sizeM,sizeM,sizeM);
-			// subtraction(copyOfE,one,copyOfE,sizeE);
-		// }
-		// else {
-			// begin = 0;
-			// copyArray16(x2Mod,result,sizeM);
-			// subtraction(copyOfE,one,copyOfE,sizeE);
-		// }
-	// }
-	
-	// if (eOdd == 1)
-		// modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
-	
-
-	copyArray16(xMod,result,sizeM);
+	/* Left-to-right binary exponentiation */
+	begin = 1;
 	for(i=t;i>=0;i--){
 		modSquare(result,m,result,sizeM,sizeM);
 		ei = (copyOfE[msbWord]>>(15-posWord))%2;
-		printf("i=%u and ei=%u\n",i,ei);
 		if (ei == 1){
-			modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
+			if (begin == 0)
+				/* The program has issues with (1*xMod)% modm */
+				modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
+			else
+				copyArray16(xMod,result,sizeM);
 		}
+		begin = 0;
 		multiplyByTwo(copyOfE,sizeE);
-		printArray16(result,"result",sizeM);
 	}
 }
+
+#endif

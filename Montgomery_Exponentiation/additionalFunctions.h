@@ -1,3 +1,6 @@
+#ifndef ADDITIONALFUNCTIONS_H
+#define ADDITIONALFUNCTIONS_H
+
 #define MAXLENGTH 128
 
 void printArray16(uint16_t *array, char *word, uint16_t arrayLength);
@@ -163,3 +166,5 @@ uint16_t subtractionWithSign(uint16_t *number1, uint16_t *number2, uint16_t *res
 		return 1;
 	}
 }
+
+#endif

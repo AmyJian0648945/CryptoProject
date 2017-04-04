@@ -1,3 +1,6 @@
+#ifndef	MONTEXPONENTIATION_H
+#define MONTEXPONENTIATION_H
+
 #define MAXLENGTH 128
 
 /* xyR-1modm
@@ -140,3 +143,5 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 		result[i] = A[i];
 	}
 }
+
+#endif
