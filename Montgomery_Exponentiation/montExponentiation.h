@@ -10,7 +10,7 @@
 	m = sizeM elements
 	result = sizeM elements
 */
-void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM){
+void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR){
 	
 	uint16_t n = 0;
 	uint16_t copyOfX[MAXLENGTH] = {0};
@@ -39,7 +39,8 @@ void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result
 	zerosArray(A,sizeM+1);
 
 	/* step 2 */
-	n = sizeM*16;
+	/* n = sizeM*16; */
+	n = (sizeR-1)*16;
 	for(i=0;i<n;i++){
 		/* Step 2.1 */
 		xi = copyOfX[sizeM-1]%2;
@@ -84,6 +85,9 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	uint16_t t = 0;
 	uint16_t msbWord = 0;
 	uint16_t posWord = 0;
+	uint16_t mPosMSB = 0;
+	uint16_t mMSBWord = 0;
+	uint16_t sizeR = 0;
 	uint16_t R[MAXLENGTH] = {0};	
 	uint16_t Rmod[MAXLENGTH] = {0};
 	uint16_t A[MAXLENGTH] = {0};	
@@ -92,6 +96,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	uint16_t R2mod[MAXLENGTH] = {0};
 	uint16_t one[MAXLENGTH] = {0};
 	uint16_t xtilde[MAXLENGTH] = {0};
+	uint16_t copyOfE[MAXLENGTH] = {0};
 	
 	uint16_t xExt[MAXLENGTH] = {0};
 	int i;
@@ -102,6 +107,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	t = 16*sizeE - ePosMSB - 1;
 	msbWord = ePosMSB/16;
 	posWord = ePosMSB%16;
+	copyArray16(e,copyOfE,sizeE);
 	
 	/* xExt has the same length as m */
 	for(k=0;k<sizeM;k++){
@@ -112,33 +118,35 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 		}
 	}
 	
+	mPosMSB = positionMSB(m,sizeM);
+	mMSBWord = mPosMSB/16;
+	sizeR = sizeM-mMSBWord+1;
+
+	/* zerosArray(R,sizeM+1);
+	R[0] = 0x0001; */
+	
 	zerosArray(R,sizeM+1);
-	R[0] = 0x0001;
+	R[mMSBWord] = 0x0001;
 
 	mod(R,m,Rmod,sizeM+1,sizeM);
-	modSquare(R,m,R2mod,sizeM+1,sizeM);
-	
+	modSquare(Rmod,m,R2mod,sizeM,sizeM);
 	copyArray16(Rmod,A,sizeM);
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	mInvLastBit = mInv[sizeM]%2;
 
 	one[sizeM-1] = 0x0001;
-	
-	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM);
-	
+	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
 	for(i=t;i>=0;i--){
-		
-		montMultiplication(A,A,m,A,mInvLastBit,sizeM);
-		ei = (e[msbWord]>>(15-posWord))%2;
-		if (ei == 1){
-			montMultiplication(A,xtilde,m,A,mInvLastBit,sizeM);
-		}
-		
-		multiplyByTwo(e,sizeE);
-	}
-	montMultiplication(A,one,m,A,mInvLastBit,sizeM);
 	
+		montMultiplication(A,A,m,A,mInvLastBit,sizeM,sizeR);
+		ei = (copyOfE[msbWord]>>(15-posWord))%2;
+		if (ei == 1){
+			montMultiplication(A,xtilde,m,A,mInvLastBit,sizeM,sizeR);
+		}
+		multiplyByTwo(copyOfE,sizeE);
+	}
+	montMultiplication(A,one,m,A,mInvLastBit,sizeM,sizeR);
 	for(i=0;i<sizeM;i++){
 		result[i] = A[i];
 	}

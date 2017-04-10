@@ -7,6 +7,8 @@ uint16_t positionMSB(uint16_t *array, uint16_t size);
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size);
 void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t sizeModulus);
 void squareProduct(uint16_t *a, uint16_t *product, uint16_t size);
+void multiplication(uint16_t *x, uint16_t *y, uint16_t *product, uint16_t sizeX, uint16_t sizeY);
+void division(uint16_t *x, uint16_t *y, uint16_t *resultDiv, uint16_t *resultRem, uint16_t sizeX, uint16_t sizeY);
 
 /* 
 	Turns an array of binaries (binaryString) into an array of 16-bit numbers (output).
@@ -78,11 +80,9 @@ void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t si
 	copyArray16(a,copyOfA,sizeA);
 	
 	comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
-	if (comparison > 0){
-		while (comparison > 0){
-			subtraction(copyOfA,Nextended,copyOfA,sizeA);
-			comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
-		}
+	while (comparison > 0){
+		subtraction(copyOfA,Nextended,copyOfA,sizeA);
+		comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
 	}
 	for(i=0;i<sizeModulus;i++){
 		result[i] = copyOfA[i+(sizeA-sizeModulus)];
