@@ -74,14 +74,14 @@ int main(void){
 	
 	/* result = k2^e2 mod n2 - succeeded */
 	zerosArray(result,3);
-	modExp(k2,n2,e2,result,2,2,2);
+	modExp(n2,k2,e2,result,2,2,2);
 	printArray16(result,"k2^e2 mod n2 with modExp",2);
-	modExp(k3,n3,e2,result,3,3,2);
+	modExp(n3,k3,e2,result,3,3,2);
 	printArray16(result,"k3^e2 mod n3 with modExp",3);
-	zerosArray(result,3);
-	montExp(k2,n2,e2,result,2,2,2);
+ 	zerosArray(result,3);
+	montExp(n2,k2,e2,result,2,2,2);
 	printArray16(result,"k2^e2 mod n2 with montExp",2);
-	montExp(k3,n3,e2,result,3,3,2);
+	montExp(n3,k3,e2,result,3,3,2);
 	printArray16(result,"k3^e2 mod n3 with montExp",3);
 	
 	return 1;

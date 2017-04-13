@@ -3,6 +3,11 @@
 
 #define MAXLENGTH 128
 
+void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR);
+void montReduction( uint16_t *x, uint16_t *m, uint16_t *result, uint16_t sizeM, uint16_t mInvLastBit);
+void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE);
+void modBarrett( uint16_t *x, uint16_t *m, uint16_t *result, uint16_t sizeM);
+
 /* xyR-1modm
 	0 <= x,y < m
 	x = sizeM elements
@@ -87,6 +92,8 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	uint16_t posWord = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t mMSBWord = 0;
+	/* sizeR = words of R that are not equal to zero;
+	actual length of R is equal to sizeM+1 */
 	uint16_t sizeR = 0;
 	uint16_t R[MAXLENGTH] = {0};	
 	uint16_t Rmod[MAXLENGTH] = {0};
@@ -102,7 +109,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	int i;
 	int k;
 	uint16_t ei = 0;
-	
+
 	ePosMSB = positionMSB(e,sizeE);
 	t = 16*sizeE - ePosMSB - 1;
 	msbWord = ePosMSB/16;
@@ -126,15 +133,47 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	R[0] = 0x0001; */
 	
 	zerosArray(R,sizeM+1);
+	printf("mMSBWord=%u and mPosMSB=%u and sizeR=%u\n",mMSBWord,mPosMSB,sizeR);
 	R[mMSBWord] = 0x0001;
+	zerosArray(Rmod,sizeM);
+	/* Rmod[sizeM-1] = 0x0003;
+	Rmod[sizeM-2] = 0x1034; */
 
 	mod(R,m,Rmod,sizeM+1,sizeM);
+	printArray16(R,"R",sizeM+1);
+	printArray16(m,"m",sizeM);
+	printArray16(Rmod,"Rmod",sizeM);
 	modSquare(Rmod,m,R2mod,sizeM,sizeM);
+	printArray16(R2mod,"R2mod",sizeM);
 	copyArray16(Rmod,A,sizeM);
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	mInvLastBit = mInv[sizeM]%2;
-
+/* 
+	sizeMRed = sizeM - mMSBWord;
+	for(k=0;k<sizeMRed;k++){
+		mRed[k] = m[mMSBWord+k];
+	}
+	printArray16(mRed,"mRed",sizeMRed);
+	printArray16(m,"m",sizeM);
+	for(k=0;k<2*sizeMRed;k++){
+		squareProductRmodShort[k] = squareProductRmod[2*sizeM-2*sizeMRed+k];
+	}
+	printArray16(squareProductRmodShort,"squareProductRmodShort",2*sizeMRed);
+	montReduction(squareProductRmodShort,mRed,squareProductRed,sizeMRed,mInvLastBit);
+	printArray16(squareProductRed,"squareProductRed",sizeMRed);
+	zerosArray(squareProductRed2,sizeM);
+	for(k=0;k<sizeMRed;k++){
+		squareProductRed2[sizeM-sizeMRed+k] = squareProductRed[k];
+	}
+	printArray16(squareProductRed2,"squareProductRed2",sizeM);
+	multiplication(squareProductRed2,Rmod,squareProductMod,sizeM,sizeM);
+	printArray16(squareProductMod,"squareProductMod",2*sizeM);
+	for(k=0;k<sizeM;k++){
+		R2mod[k] = squareProductMod[sizeM+k];
+	}
+	printArray16(R2mod,"R2mod Montgomery Reduction",sizeM); */
+		
 	one[sizeM-1] = 0x0001;
 	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
 	for(i=t;i>=0;i--){
