@@ -58,8 +58,8 @@ int main(void){
 	montMultiplication(x2,y2,m2,result2,mInvLastBit2,7,8);
 	printArray16(result2,"result2",7);
 	
-	/* 	modExp(x2,m2,e2,result2,7,7,4);
-	printArray16(result2,"x^emodm",7); */
+	modExp(x2,m2,e2,result2,7,7,4);
+	printArray16(result2,"x^emodm with modExp",7);
 	
 	montExp(x2, m2, e2, result2, 7,7,4);
 	printArray16(result2,"x^e mod m with montExp",7);

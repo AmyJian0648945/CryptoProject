@@ -10,6 +10,7 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t size);
 void multiplication(uint16_t *x, uint16_t *y, uint16_t *product, uint16_t sizeX, uint16_t sizeY);
 void division(uint16_t *x, uint16_t *y, uint16_t *resultDiv, uint16_t *resultRem, uint16_t sizeX, uint16_t sizeY);
 void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint16_t sizeM);
+void modFaster(uint16_t *x, uint16_t *m, uint16_t sizeX, uint16_t sizeM);
 void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE);
 
 /* 
@@ -382,15 +383,20 @@ void division(uint16_t *x, uint16_t *y, uint16_t *divisionResult, uint16_t *rema
 void modMult(uint16_t *a, uint16_t *b, uint16_t *m, uint16_t *result, uint16_t sizeA, uint16_t sizeB, uint16_t sizeM){
 	
 	uint16_t product[MAXLENGTH] = {0};
-	uint16_t divisionResult[MAXLENGTH] = {0};
-	uint16_t remainder[MAXLENGTH] = {0};
+	int i;
+/* 	uint16_t divisionResult[MAXLENGTH] = {0};
+	uint16_t remainder[MAXLENGTH] = {0}; */
 
 	zerosArray(product,sizeA+sizeB);
 	multiplication(a,b,product,sizeA,sizeB);
-	division(product,m,divisionResult,remainder,sizeA+sizeB,sizeM);
-
-	copyArray16(remainder,result,sizeM);
-
+	
+/* 	division(product,m,divisionResult,remainder,sizeA+sizeB,sizeM);
+	copyArray16(remainder,result,sizeM); */
+	
+	modFaster(product, m, sizeA+sizeB, sizeM);
+	for(i=0;i<sizeM;i++){
+		result[i] = product[(sizeA+sizeB-sizeM)+i];
+	}
 }
 
 /*	a^2 mod m
@@ -422,8 +428,8 @@ void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint1
 	mod(a,m,modA,sizeA,sizeM);
 	
 	squareProduct(modA,squareResult,sizeM);
-	printArray16(a,"a",sizeA);
-	printArray16(m,"m",sizeM);
+/* 	printArray16(a,"a",sizeA);
+	printArray16(m,"m",sizeM); */
 	sqPosMSB = positionMSB(squareResult,2*sizeM);
 	sqMSBWord = sqPosMSB/16;
 	sqMSBSize = 2*sizeM - sqMSBWord;
@@ -440,24 +446,6 @@ void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint1
 /* 	printArray16(m,"m",sizeM);
 	printArray16(mExt,"mExt before multiplications",2*sizeM); */
 	
-/* 	for(n=0;n<posBackwards-mPosReverse+1;n++){
-		multiplyByTwo(mExt,2*sizeM);
-	}
-	printArray16(mExt,"mExt after multiplications",2*sizeM);
-	comparison = isBiggerThanOrEqual(mExt,squareResult,2*sizeM);
-	while (comparison == 1){
-		divideByTwo(mExt,2*sizeM);
-		comparison = isBiggerThanOrEqual(mExt,squareResult,2*sizeM);
-	}
-	subtraction(squareResult,mExt,squareResult,2*sizeM);
-	printArray16(squareResult,"sqResult after sub",2*sizeM);
-	for(n=0;n<posBackwards-mPosReverse+1;n++){
-		divideByTwo(mExt,2*sizeM);
-	}
-	for(n=0;n<posBackwards-mPosReverse+1;n++){
-		subtraction(squareResult,mExt,squareResult,2*sizeM);
-	}
-	printf("posBackwards - mPosReverse = %u",posBackwards-mPosReverse); */
 	zerosArray(copyOfM,2*sizeM);
 	for(i=0;i<sizeM;i++){
 		copyOfM[sizeM+i] = m[i];
@@ -468,14 +456,6 @@ void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint1
 /* 	printf("posBackwards - mPosReverse = %u",posBackwards-mPosReverse+1);
 	printArray16(mExt,"mExt after multiplications",2*sizeM); */
 	while(variable != 0){
-		// comparison = isBiggerThanOrEqual(mExt,squareResult,2*sizeM);
-		// while (comparison == 1){
-			// divideByTwo(mExt,2*sizeM);
-			// comparison = isBiggerThanOrEqual(mExt,squareResult,2*sizeM);
-		// }
-		// subtraction(squareResult,mExt,squareResult,2*sizeM);
-/* 		printArray16(mExt,"mExt start while var",2*sizeM);
-		printArray16(squareResult,"squareResult beginning while var",2*sizeM); */
 		
 		comparison = isBiggerThanOrEqual(squareResult, mExt, 2*sizeM);
 		while (comparison == 1){
@@ -492,31 +472,77 @@ void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint1
 	}
 	
 	
-	printArray16(squareResult,"squareResult",2*sizeM);
+/* 	printArray16(squareResult,"squareResult",2*sizeM); */
 	for(i=0;i<sizeM;i++){
 		result[i] = squareResult[sizeM+i];
 	}
-	printArray16(a,"a END",sizeA);
-	printArray16(m,"m END",sizeM);
-	
-	/* uint16_t div[MAXLENGTH] = {0};
-	uint16_t rem[MAXLENGTH] = {0}; */
-	
-	// zerosArray(mExt,2*sizeM);
-	// for(i=0;i<sizeM;i++){
-		// mExt[sizeM+i] = m[i];
-	// }
-	// /* while (isBiggerThanOrEqual(squareResult,mExt,2*sizeM) == 1){
-		// subtraction(squareResult,mExt,squareResult,2*sizeM);
-	// } */
-	// /* division(squareResult,m,div,rem,2*sizeM,sizeM); */
-	// mod(squareResult,mExt,squareResult,2*sizeM,2*sizeM);
-	// for(i=0;i<sizeM;i++){
-		// result[i] = squareResult[sizeM+i];
-	// }
+/* 	printArray16(a,"a END",sizeA);
+	printArray16(m,"m END",sizeM); */
+
 }
 
-/*
+/* x mod m
+	input:
+		x array
+		m array
+		sizeX	number of elements in array x
+		sizeM	number of elements in array m
+	output:
+		x <- x mod m
+*/
+void modFaster( uint16_t *x, uint16_t *m, uint16_t sizeX, uint16_t sizeM){
+	
+	uint16_t mExt[MAXLENGTH] = {0};
+	uint16_t copyOfM[MAXLENGTH] = {0};
+	int i;
+	
+	uint16_t sqPosMSB = 0;
+	uint16_t sqMSBWord = 0;
+	uint16_t sqMSBSize = 0;
+	uint16_t mPosMSB = 0;
+	int n;
+	uint16_t posBackwards = 0;
+	uint16_t comparison = 0;
+	uint16_t mPosReverse = 0;
+	uint16_t variable = 0;
+	
+	zerosArray(mExt,sizeX);
+	for(i=0;i<sizeM;i++){
+		mExt[(sizeX-sizeM)+i] = m[i];
+	}
+	zerosArray(copyOfM,sizeX);
+	for(i=0;i<sizeM;i++){
+		copyOfM[(sizeX-sizeM)+i] = m[i];
+	}
+	
+	sqPosMSB = positionMSB(x,sizeX);
+	sqMSBWord = sqPosMSB/16;
+	sqMSBSize = sizeX - sqMSBWord;
+	mPosMSB = positionMSB(m,sizeM);
+	mPosReverse = 16*sizeM - mPosMSB;
+	posBackwards = 16*sizeX - sqPosMSB - 1;
+	variable = posBackwards - mPosReverse + 2;
+	
+	for(n=0;n<posBackwards-mPosReverse+1;n++){
+		multiplyByTwo(mExt,sizeX);
+	}
+	
+	while(variable != 0){
+		
+		comparison = isBiggerThanOrEqual(x, mExt, sizeX);
+		while (comparison == 1){
+			subtraction(x, mExt,x, sizeX);
+			comparison = isBiggerThanOrEqual(x, mExt, sizeX);
+		}
+		divideByTwo(mExt,sizeX);
+		variable -= 1;
+		if (isBiggerThan(copyOfM,mExt,sizeX)){
+			variable = 0;
+		}
+	}
+}
+
+/* x^e mod m
 	x = sizeX elements
 	m = sizeM elements
 	e = sizeE elements
@@ -534,29 +560,35 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 	uint16_t ei = 0;
 	int i;
 	
-	copyArray16(e,copyOfE,sizeE);
+	/* copyArray16(e,copyOfE,sizeE); */
+	zerosArray(copyOfE,2*sizeE);
+	for(i=0;i<sizeE;i++){
+		copyOfE[sizeE+i] = e[i];
+	}
+/* 	printArray16(e,"e",sizeE);
+	printArray16(copyOfE,"copyOfE",2*sizeE); */
 	msbWord = posMSB/16;
 	posWord = posMSB%16;
 	
 	mod(x,m,xMod,sizeX,sizeM);
+	/* modFaster(x,m,sizeX,sizeM); */
 	
-	zerosArray(result,sizeM);
-	result[sizeM-1] = 0x01;
+	/* for(i=0;i<sizeM;i++){
+		xMod[i] = x[(sizeX-sizeM)+i];
+	} */
+	copyArray16(xMod,result,sizeM);
+	multiplyByTwo(copyOfE,2*sizeE);
 
 	/* Left-to-right binary exponentiation */
 	begin = 1;
-	for(i=t;i>=0;i--){
+	for(i=t-1;i>=0;i--){
 		modSquare(result,m,result,sizeM,sizeM);
-		ei = (copyOfE[msbWord]>>(15-posWord))%2;
+		ei = (copyOfE[sizeE+msbWord]>>(15-posWord))%2;
 		if (ei == 1){
-			if (begin == 0)
-				/* The program has issues with (1*xMod)% modm */
-				modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
-			else
-				copyArray16(xMod,result,sizeM);
+			modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
 		}
 		begin = 0;
-		multiplyByTwo(copyOfE,sizeE);
+		multiplyByTwo(copyOfE,2*sizeE);
 	}
 }
 

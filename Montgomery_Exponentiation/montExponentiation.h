@@ -133,47 +133,23 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	R[0] = 0x0001; */
 	
 	zerosArray(R,sizeM+1);
-	printf("mMSBWord=%u and mPosMSB=%u and sizeR=%u\n",mMSBWord,mPosMSB,sizeR);
+/* 	printf("mMSBWord=%u and mPosMSB=%u and sizeR=%u\n",mMSBWord,mPosMSB,sizeR); */
 	R[mMSBWord] = 0x0001;
 	zerosArray(Rmod,sizeM);
 	/* Rmod[sizeM-1] = 0x0003;
 	Rmod[sizeM-2] = 0x1034; */
 
 	mod(R,m,Rmod,sizeM+1,sizeM);
-	printArray16(R,"R",sizeM+1);
+/* 	printArray16(R,"R",sizeM+1);
 	printArray16(m,"m",sizeM);
-	printArray16(Rmod,"Rmod",sizeM);
+	printArray16(Rmod,"Rmod",sizeM); */
 	modSquare(Rmod,m,R2mod,sizeM,sizeM);
-	printArray16(R2mod,"R2mod",sizeM);
+/* 	printArray16(R2mod,"R2mod",sizeM); */
 	copyArray16(Rmod,A,sizeM);
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	mInvLastBit = mInv[sizeM]%2;
-/* 
-	sizeMRed = sizeM - mMSBWord;
-	for(k=0;k<sizeMRed;k++){
-		mRed[k] = m[mMSBWord+k];
-	}
-	printArray16(mRed,"mRed",sizeMRed);
-	printArray16(m,"m",sizeM);
-	for(k=0;k<2*sizeMRed;k++){
-		squareProductRmodShort[k] = squareProductRmod[2*sizeM-2*sizeMRed+k];
-	}
-	printArray16(squareProductRmodShort,"squareProductRmodShort",2*sizeMRed);
-	montReduction(squareProductRmodShort,mRed,squareProductRed,sizeMRed,mInvLastBit);
-	printArray16(squareProductRed,"squareProductRed",sizeMRed);
-	zerosArray(squareProductRed2,sizeM);
-	for(k=0;k<sizeMRed;k++){
-		squareProductRed2[sizeM-sizeMRed+k] = squareProductRed[k];
-	}
-	printArray16(squareProductRed2,"squareProductRed2",sizeM);
-	multiplication(squareProductRed2,Rmod,squareProductMod,sizeM,sizeM);
-	printArray16(squareProductMod,"squareProductMod",2*sizeM);
-	for(k=0;k<sizeM;k++){
-		R2mod[k] = squareProductMod[sizeM+k];
-	}
-	printArray16(R2mod,"R2mod Montgomery Reduction",sizeM); */
-		
+	
 	one[sizeM-1] = 0x0001;
 	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
 	for(i=t;i>=0;i--){
