@@ -26,7 +26,7 @@ int main(void){
 	uint16_t mInv2[8] = {0};
 	uint16_t mInvLastBit2 = 0;
 	uint16_t result2[7] = {0};
- 	uint16_t e2[4] = {0x1,0x2423,0x5231,0x2423};
+  	uint16_t e2[4] = {0x1,0x2423,0x5231,0x2423};
 	
 	zerosArray(R,65);
 	R[0] = 0x0001;
@@ -60,9 +60,12 @@ int main(void){
 	
 	modExp(x2,m2,e2,result2,7,7,4);
 	printArray16(result2,"x^emodm with modExp",7);
+	modExp2(x2,m2,e2,result2,7,7,4);
+	printArray16(result2,"x^emodm with modExp2",7);
 	
 	montExp(x2, m2, e2, result2, 7,7,4);
 	printArray16(result2,"x^e mod m with montExp",7);
+
 	
 	return 1;
 }

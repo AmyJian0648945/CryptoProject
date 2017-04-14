@@ -3,7 +3,7 @@
 
 #define MAXLENGTH 128
 
-/* x - y
+/* x <- x - y
 	x: first number
 	y: second number
 	arrayLength: number of elements of x and y
@@ -34,9 +34,13 @@ uint16_t signedSubtraction(uint16_t *x, uint16_t *y, uint16_t arrayLength, uint1
 }
 
 /* 	x^(-1) mod y
-	x = sizeX elements
-	y = modLength elements
-	inverse = modLength elements
+	input:
+		x array
+		y array
+		sizeX value: x = sizeX elements
+		sizeY value: y = modLength elements
+	output:
+		inverse array: inverse = modLength elements
 */
 void modularInverse(uint16_t *x, uint16_t *y, uint16_t *inverse, uint16_t sizeX, uint16_t modLength){
 		
@@ -112,82 +116,8 @@ void modularInverse(uint16_t *x, uint16_t *y, uint16_t *inverse, uint16_t sizeX,
 		D[size-1] = 0x01;
 
 
- /*		// do {
-			// // Step 4 //
-			// while (u[size-1]%2 == 0) {
-				// divideByTwo(u, size);
-				// if ((A[size-1]%2 == 0) && (B[size-1]%2 == 0)){
-						// divideByTwo(A, size);
-						// divideByTwo(B, size);
-				// }
-				// else
-				// {
-					// if (signA != 1)
-						// addition(A,copyOfY,A,size);
-					// else
-						// signA = subtractionWithSign(copyOfY,A,A,size);
-					// divideByTwo(A, size);
-					
-					// if (signB != 1)
-						// signB = subtractionWithSign(B,copyOfX,B,size);
-					// else
-					// {
-						// addition(B,copyOfX,B,size);
-						// signB = 1;
-					// }
-					// divideByTwo(B, size);
-				// }
-			// }
-			
-			// // Step 5 //
-			// while (v[size-1]%2 == 0) {
-				// divideByTwo(v, size);
-				// if ((C[size-1]%2 == 0) && (D[size-1]%2 == 0)){
-					// divideByTwo(C, size);
-					// divideByTwo(D, size);
-				// }
-				// else {
-					// if (signC != 1){
-						// addition(C,copyOfY,C ,size);
-						// divideByTwo(C, size);
-					// }
-					// else {
-						// signC = subtractionWithSign(copyOfY,C,C,size);
-						// divideByTwo(C, size);
-					// }
-					
-					// if (signD != 1)
-						// signD = subtractionWithSign(D,copyOfX,D,size);
-					// else {
-						// addition(D,copyOfX,D,size);
-						// signD = 1;
-					// }
-					// divideByTwo(D, size);
-				// }
-			// }
-			
-			// // Step 6 //
-			// resultComparison = isBiggerThanOrEqual(u,v,size);
-			// if (resultComparison == 1){
-				
-				// signU = signedSubtraction(u,v,size,signU,signV);
-				// signA = signedSubtraction(A,C,size,signA,signC);
-				// signB = signedSubtraction(B,D,size,signB,signD);
-			// }
-			// else {
-				
-				// signV = signedSubtraction(v,u,size,signV,signU);
-				// signC = signedSubtraction(C,A,size,signC,signA);
-				// signD = signedSubtraction(D,B,size,signD,signB);
-			// }
-					
-		// //Step 7 //
-		// resultIsZero = numberIsZero(u, size);
-		// } while (resultIsZero != 1); */
-		
-		resultIsZero = numberIsZero(u, size);
-		while (resultIsZero != 1){
-		/* Step 4 */
+		do {
+			/* Step 4 */
 			while (u[size-1]%2 == 0) {
 				divideByTwo(u, size);
 				if ((A[size-1]%2 == 0) && (B[size-1]%2 == 0)){
@@ -254,14 +184,14 @@ void modularInverse(uint16_t *x, uint16_t *y, uint16_t *inverse, uint16_t sizeX,
 				signC = signedSubtraction(C,A,size,signC,signA);
 				signD = signedSubtraction(D,B,size,signD,signB);
 			}
-			resultIsZero = numberIsZero(u, size);
-		}
-		
+					
+		/* Step 7 */
+		resultIsZero = numberIsZero(u, size);
+		} while (resultIsZero != 1);
+
 		if (signC == 1){
 			subtraction(copyOfY,C,C,size);
 		}
-		
-
 		
 		for(i=0;i<modLength;i++){
 			inverse[i] = C[i+(size-modLength)];

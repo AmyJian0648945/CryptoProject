@@ -1,12 +1,11 @@
 #ifndef	MONTEXPONENTIATION_H
 #define MONTEXPONENTIATION_H
 
+#include "additionalFunctions.h"
 #define MAXLENGTH 128
 
 void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR);
-void montReduction( uint16_t *x, uint16_t *m, uint16_t *result, uint16_t sizeM, uint16_t mInvLastBit);
 void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE);
-void modBarrett( uint16_t *x, uint16_t *m, uint16_t *result, uint16_t sizeM);
 
 /* xyR-1modm
 	0 <= x,y < m
@@ -17,16 +16,15 @@ void modBarrett( uint16_t *x, uint16_t *m, uint16_t *result, uint16_t sizeM);
 */
 void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR){
 	
-	uint16_t n = 0;
 	uint16_t copyOfX[MAXLENGTH] = {0};
 	uint16_t yExt[MAXLENGTH] = {0};
-	int i;
-	int k;
 	uint16_t mExt[MAXLENGTH] = {0};
-	
 	uint16_t A[MAXLENGTH] = {0};
+	uint16_t n = 0;
 	uint16_t ui = 0;
 	uint16_t xi = 0;
+	int i;
+	int k;
 	
 	copyArray16(x,copyOfX,sizeM);
 	xi = x[sizeM-1]%2;
@@ -51,7 +49,7 @@ void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result
 		xi = copyOfX[sizeM-1]%2;
 		ui = (A[sizeM]%2 + xi*(yExt[sizeM]%2))*mInvLastBit;
 		ui = ui%2;
-		
+
 		/* Step 2.2 */
 		if (xi == 1){
 			addition(A,yExt,A,sizeM+1);
@@ -65,7 +63,7 @@ void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result
 		 => shift all bits one place to the right.*/
 		divideByTwo(copyOfX,sizeM);
 	}
-	
+
 	/* step 3 */
 	if (isBiggerThanOrEqual(A,mExt,sizeM+1) == 1){
 		subtraction(A,mExt,A,sizeM+1);
@@ -86,6 +84,16 @@ void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result
 */
 void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE){
 	
+	uint16_t R[MAXLENGTH] = {0};	
+	uint16_t Rmod[MAXLENGTH] = {0};
+	uint16_t A[MAXLENGTH] = {0};
+	uint16_t mInv[MAXLENGTH] = {0};
+	uint16_t R2mod[MAXLENGTH] = {0};
+	uint16_t one[MAXLENGTH] = {0};
+	uint16_t xtilde[MAXLENGTH] = {0};
+	uint16_t copyOfE[MAXLENGTH] = {0};
+	uint16_t xExt[MAXLENGTH] = {0};	
+	uint16_t mInvLastBit = 0;
 	uint16_t ePosMSB = 0;
 	uint16_t t = 0;
 	uint16_t msbWord = 0;
@@ -95,27 +103,16 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	/* sizeR = words of R that are not equal to zero;
 	actual length of R is equal to sizeM+1 */
 	uint16_t sizeR = 0;
-	uint16_t R[MAXLENGTH] = {0};	
-	uint16_t Rmod[MAXLENGTH] = {0};
-	uint16_t A[MAXLENGTH] = {0};	
-	uint16_t mInvLastBit = 0;
-	uint16_t mInv[MAXLENGTH] = {0};
-	uint16_t R2mod[MAXLENGTH] = {0};
-	uint16_t one[MAXLENGTH] = {0};
-	uint16_t xtilde[MAXLENGTH] = {0};
-	uint16_t copyOfE[MAXLENGTH] = {0};
-	
-	uint16_t xExt[MAXLENGTH] = {0};
+	uint16_t ei = 0;
 	int i;
 	int k;
-	uint16_t ei = 0;
 
 	ePosMSB = positionMSB(e,sizeE);
 	t = 16*sizeE - ePosMSB - 1;
 	msbWord = ePosMSB/16;
 	posWord = ePosMSB%16;
 	copyArray16(e,copyOfE,sizeE);
-	
+ 
 	/* xExt has the same length as m */
 	for(k=0;k<sizeM;k++){
 		if (k<(sizeM-sizeX)){
@@ -128,24 +125,15 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	mPosMSB = positionMSB(m,sizeM);
 	mMSBWord = mPosMSB/16;
 	sizeR = sizeM-mMSBWord+1;
-
-	/* zerosArray(R,sizeM+1);
-	R[0] = 0x0001; */
 	
 	zerosArray(R,sizeM+1);
-/* 	printf("mMSBWord=%u and mPosMSB=%u and sizeR=%u\n",mMSBWord,mPosMSB,sizeR); */
 	R[mMSBWord] = 0x0001;
 	zerosArray(Rmod,sizeM);
-	/* Rmod[sizeM-1] = 0x0003;
-	Rmod[sizeM-2] = 0x1034; */
-
+	
 	mod(R,m,Rmod,sizeM+1,sizeM);
-/* 	printArray16(R,"R",sizeM+1);
-	printArray16(m,"m",sizeM);
-	printArray16(Rmod,"Rmod",sizeM); */
-	modSquare(Rmod,m,R2mod,sizeM,sizeM);
-/* 	printArray16(R2mod,"R2mod",sizeM); */
 	copyArray16(Rmod,A,sizeM);
+	
+	modSquare(Rmod,m,R2mod,sizeM,sizeM);
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	mInvLastBit = mInv[sizeM]%2;
