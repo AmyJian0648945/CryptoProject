@@ -1,23 +1,31 @@
 #ifndef MODFUNCTIONS_H
 #define MODFUNCTIONS_H
 
+#include "additionalFunctions.h"
 #define MAXLENGTH 128
+#define MAXIMUMLENGTH 300
 
 uint16_t positionMSB(uint16_t *array, uint16_t size);
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size);
 void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t sizeModulus);
-void squareProduct(uint16_t *a, uint16_t *product, uint16_t size);
+void squareProduct(uint16_t *a, uint16_t *product, uint16_t sizeA);
+void multiplication(uint16_t *x, uint16_t *y, uint16_t *product, uint16_t sizeX, uint16_t sizeY);
+void division(uint16_t *x, uint16_t *y, uint16_t *resultDiv, uint16_t *resultRem, uint16_t sizeX, uint16_t sizeY);
+void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint16_t sizeM);
+void modFaster(uint16_t *x, uint16_t *m, uint16_t sizeX, uint16_t sizeM);
+void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE);
 
-/* 
+/*
 	Turns an array of binaries (binaryString) into an array of 16-bit numbers (output).
 	Size is the number of elements in binaryString.
 */
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size){
-	int k;
-	int m;
+	
 	uint16_t nbOfHexadecimals = 0;
 	uint16_t remainder = 0;
 	uint16_t tempSum = 0;
+	int k;
+	int m;
 	
 	nbOfHexadecimals = size/16;
 	remainder = size%16;
@@ -35,8 +43,12 @@ void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size){
 	output[nbOfHexadecimals] = tempSum;
 }
 
-/*	Calculates the position of the most significant bit in the input array.
+/*	
+	Calculates the position of the most significant bit in the input array.
 	Size is the number of elements in the input array.
+	The position is calculated from the left. Function returns 0 if the first digit of the word at index 0
+	is the most significant bit. Function returns size*16-1 if the last digit of the word at index size-1
+	is the most significant bit.
 */
 uint16_t positionMSB(uint16_t *array, uint16_t size){
 	
@@ -62,7 +74,12 @@ uint16_t positionMSB(uint16_t *array, uint16_t size){
 	return size*16;
 }
 
-/*	Calculates a mod N and stores it in result; a has sizeA elements, N has sizeModulus elements; result has sizeModulus elements. (with sizeA >= sizeModulus).
+/*	a mod N
+	Calculates a mod N and stores it in result;
+			a has sizeA elements,
+			N has sizeModulus elements;
+			result has sizeModulus elements.
+			(with sizeA >= sizeModulus).
 */
 void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t sizeModulus){
 	
@@ -78,41 +95,43 @@ void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t si
 	copyArray16(a,copyOfA,sizeA);
 	
 	comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
-	if (comparison > 0){
-		while (comparison > 0){
-			subtraction(copyOfA,Nextended,copyOfA,sizeA);
-			comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
-		}
+	while (comparison > 0){
+		subtraction(copyOfA,Nextended,copyOfA,sizeA);
+		comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
 	}
 	for(i=0;i<sizeModulus;i++){
 		result[i] = copyOfA[i+(sizeA-sizeModulus)];
 	}
 }
 
-/* Multiple-precision squaring
+/* Multiple-precision squaring: product = a^2
 	Calculates the square product of input a 
 	uint16_t *a = input array
 	uint16_t *product = array in which to save the result
 	uint16_t sizeX = length of input array
 */
 void squareProduct(uint16_t *a, uint16_t *product, uint16_t sizeX){
-	uint16_t posMSB = positionMSB(a,sizeX);
+	
 	uint16_t copyOfA[MAXLENGTH] = {0};
 	uint16_t copy2[MAXLENGTH] = {0};
-	uint16_t t = sizeX*16 - posMSB;
-	uint16_t sizeProduct = 2*sizeX;
-	int i;
-	int j;
-	uint16_t w[MAXLENGTH] = {0};
+	uint16_t w[MAXIMUMLENGTH] = {0};
+	uint16_t result[MAXLENGTH] = {0};
+	uint16_t posMSB = 0;
+	uint16_t t = 0;
+	uint16_t sizeProduct = 0;
 	uint16_t u = 0;
 	uint16_t v = 0;
 	uint16_t c = 0;
 	uint16_t tempsum = 0;
 	uint16_t xi = 0;
 	uint16_t xj = 0;
-	uint16_t sizeResult;
-	uint16_t result[MAXLENGTH] = {0};
+	uint16_t sizeResult = 0;
+	int i;
+	int j;
 
+	posMSB = positionMSB(a,sizeX);
+	t = sizeX*16 - posMSB;
+	sizeProduct = 2*sizeX;
 	copyArray16(a,copyOfA,sizeX);
 	zerosArray(w,2*t);
 
@@ -124,7 +143,7 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t sizeX){
 
 		tempsum = w[2*i] + xi*xi;
 		v = tempsum%2;
-		u = (tempsum>>1);
+		u = tempsum>>1;
 		w[2*i] = v;
 		c = u;
 
@@ -147,28 +166,25 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t sizeX){
 		sizeResult = 2*t/16;
 	else
 		sizeResult = 2*t/16+1;
-
 	from2to16(w,result,2*t);
 	for(i=0;i<sizeResult;i++){
 		product[sizeProduct-1-i] = result[i];
 	}
 }
 
-/*	Multiple-precision multiplication
+/*	Multiple-precision multiplication: product = a*b
 	*/
 void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA, uint16_t sizeB){
 	
-	uint16_t sizeProduct = sizeA + sizeB;
-	uint16_t AposMSB = positionMSB(a,sizeA);
-	uint16_t BposMSB = positionMSB(b,sizeB);
 	uint16_t copyOfA[MAXLENGTH] = {0};
 	uint16_t copyOfB[MAXLENGTH] = {0};
-	uint16_t copy2A[MAXLENGTH] = {0};
-	uint16_t n = sizeA*16 - AposMSB - 1;
-	uint16_t t = sizeB*16 - BposMSB - 1;
-	int i;
-	int j;
-	uint16_t w[MAXLENGTH] = {0};
+	uint16_t result[MAXLENGTH] = {0};
+	uint16_t w[MAXIMUMLENGTH] = {0};
+	uint16_t sizeProduct = 0;
+	uint16_t AposMSB = 0;
+	uint16_t BposMSB = 0;
+	uint16_t n = 0;
+	uint16_t t = 0;
 	uint16_t u = 0;
 	uint16_t v = 0;
 	uint16_t c = 0;
@@ -176,28 +192,34 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	uint16_t yi = 0;
 	uint16_t xj = 0;	
 	uint16_t sizeResult = 0;
-	uint16_t result[MAXLENGTH] = {0};
+	int i;
+	int j;
+	
+	sizeProduct = sizeA + sizeB;
+	AposMSB = positionMSB(a,sizeA);
+	BposMSB = positionMSB(b,sizeB);
+	n = sizeA*16 - AposMSB - 1;
+	t = sizeB*16 - BposMSB - 1;
 	
 	copyArray16(a,copyOfA,sizeA);
 	copyArray16(b,copyOfB,sizeB);
-	copyArray16(a,copy2A,sizeA);
 	
 	/* Step 1 */
 	zerosArray(w,n+t+2);
 	
 	for(i=0;i<t+1;i++){
-		copyArray16(copyOfA,copy2A,sizeA);
+		copyArray16(a,copyOfA,sizeA);
 		yi = copyOfB[sizeB-1]%2;
 		c = 0;
 		
 		for(j=0;j<n+1;j++){
-			xj = copy2A[sizeA-1]%2;
+			xj = copyOfA[sizeA-1]%2;
 			tempSum = w[i+j] + xj*yi + c;
 			v = tempSum%2;
 			u = (tempSum>>1);
 			w[i+j] = v;
 			c = u;
-			divideByTwo(copy2A,sizeA);
+			divideByTwo(copyOfA,sizeA);
 		}
 		
 		w[i+n+1] = u;
@@ -215,7 +237,7 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	}
 }
 
-/* Division of two numbers: x/y.
+/* Division of two numbers: divisionResult = x/y and remainder = x - y*divisionResult.
 	division <- x/y
 	remainder <- x%y
 	posMSB_x >= posMSB_y
@@ -229,16 +251,18 @@ void division(uint16_t *x, uint16_t *y, uint16_t *divisionResult, uint16_t *rema
 	uint16_t copyOfX[MAXLENGTH] = {0};
 	uint16_t copy2OfX[MAXLENGTH] = {0};
 	uint16_t copyOfY[MAXLENGTH] = {0};
-	uint16_t n = sizeX*16 - xPosMSB - 1;
-	uint16_t t = sizeY*16 - yPosMSB - 1;
 	uint16_t q[MAXLENGTH] = {0};
 	uint16_t copyOfX3[MAXLENGTH] = {0};
+	uint16_t result[MAXLENGTH] = {0};
+	uint16_t yExt[MAXLENGTH] ={0};
+	uint16_t counterArray[MAXLENGTH] = {0};
+	uint16_t sum[MAXLENGTH] = {0};
+	uint16_t n = sizeX*16 - xPosMSB - 1;
+	uint16_t t = sizeY*16 - yPosMSB - 1;
 	int k;
 	int i;
 	int j;		
 	uint16_t sizeResult = 0;
-	uint16_t result[MAXLENGTH] = {0};
-	uint16_t yExt[MAXLENGTH] ={0};
 	uint16_t nbOfMults = n-t; 
 	uint16_t comparison = 0;
 	uint16_t xi = 0;
@@ -254,8 +278,6 @@ void division(uint16_t *x, uint16_t *y, uint16_t *divisionResult, uint16_t *rema
 	uint16_t sign = 0;
 	uint16_t leftSide = 0;
 	uint16_t rightSide = 0;
-	uint16_t counterArray[MAXLENGTH] = {0};
-	uint16_t sum[MAXLENGTH] = {0};
 	
 	copyArray16(y,copyOfY,sizeY);
 	copyArray16(x,copyOfX3,sizeX);
@@ -380,42 +402,108 @@ void division(uint16_t *x, uint16_t *y, uint16_t *divisionResult, uint16_t *rema
 void modMult(uint16_t *a, uint16_t *b, uint16_t *m, uint16_t *result, uint16_t sizeA, uint16_t sizeB, uint16_t sizeM){
 	
 	uint16_t product[MAXLENGTH] = {0};
-	uint16_t divisionResult[MAXLENGTH] = {0};
-	uint16_t remainder[MAXLENGTH] = {0};
+	int i;
 
 	zerosArray(product,sizeA+sizeB);
 	multiplication(a,b,product,sizeA,sizeB);
-	division(product,m,divisionResult,remainder,sizeA+sizeB,sizeM);
 
-	copyArray16(remainder,result,sizeM);
-
+	modFaster(product, m, sizeA+sizeB, sizeM);
+	for(i=0;i<sizeM;i++){
+		result[i] = product[(sizeA+sizeB-sizeM)+i];
+	}
 }
 
+/*	a^2 mod m
+	input:
+		array a
+		array m
+		array result (to store computed result)
+		sizeA = length of array a
+		sizeM = length of array m
+	output: void; a^2 mod m is stored in result.
+		size result = sizeM
+*/
 void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint16_t sizeM){
 	
 	uint16_t modA[MAXLENGTH] = {0};
+	uint16_t copyOfA[MAXLENGTH] = {0};
 	uint16_t squareResult[MAXLENGTH] = {0};
-	uint16_t mExt[MAXLENGTH] = {0};
 	int i;
+
+	copyArray16(a,copyOfA,sizeA);
+	modFaster(copyOfA,m,sizeA,sizeM);
+	for(i=0;i<sizeM;i++){
+		modA[i] = copyOfA[(sizeA-sizeM)+i];
+	}
 	
-	mod(a,m,modA,sizeA,sizeM);
-	
+	zerosArray(squareResult,2*sizeM);
 	squareProduct(modA,squareResult,sizeM);
 	
-	zerosArray(mExt,2*sizeM);
-	for(i=0;i<sizeM;i++){
-		mExt[sizeM+i] = m[i];
-	}
-	/* while (isBiggerThanOrEqual(squareResult,mExt,2*sizeM) == 1){
-		subtraction(squareResult,mExt,squareResult,2*sizeM);
-	} */
-	mod(squareResult,mExt,squareResult,2*sizeM,2*sizeM);
+	modFaster(squareResult,m,2*sizeM,sizeM);
 	for(i=0;i<sizeM;i++){
 		result[i] = squareResult[sizeM+i];
 	}
+
 }
 
-/*
+/* x mod m
+	input:
+		x array
+		m array
+		sizeX	number of elements in array x
+		sizeM	number of elements in array m
+	output:
+		x <- x mod m
+*/
+void modFaster( uint16_t *x, uint16_t *m, uint16_t sizeX, uint16_t sizeM){
+	
+	uint16_t mExt[MAXLENGTH] = {0};
+	uint16_t copyOfM[MAXLENGTH] = {0};
+	int i;
+	int n;
+	
+	uint16_t xPosMSB = 0;
+	uint16_t mPosMSB = 0;
+	uint16_t posBackwards = 0;
+	uint16_t comparison = 0;
+	uint16_t mPosReverse = 0;
+	uint16_t variable = 0;
+	
+	zerosArray(mExt,sizeX);
+	for(i=0;i<sizeM;i++){
+		mExt[(sizeX-sizeM)+i] = m[i];
+	}
+	zerosArray(copyOfM,sizeX);
+	for(i=0;i<sizeM;i++){
+		copyOfM[(sizeX-sizeM)+i] = m[i];
+	}
+	
+	xPosMSB = positionMSB(x,sizeX);
+	mPosMSB = positionMSB(m,sizeM);
+	mPosReverse = 16*sizeM - mPosMSB;
+	posBackwards = 16*sizeX - xPosMSB - 1;
+	variable = posBackwards - mPosReverse + 2;
+	
+	for(n=0;n<posBackwards-mPosReverse+1;n++){
+		multiplyByTwo(mExt,sizeX);
+	}
+	
+	while(variable != 0){
+		
+		comparison = isBiggerThanOrEqual(x, mExt, sizeX);
+		while (comparison == 1){
+			subtraction(x, mExt,x, sizeX);
+			comparison = isBiggerThanOrEqual(x, mExt, sizeX);
+		}
+		divideByTwo(mExt,sizeX);
+		variable -= 1;
+		if (isBiggerThan(copyOfM,mExt,sizeX)){
+			variable = 0;
+		}
+	}
+}
+
+/* x^e mod m with left-to-right binary exponentiation
 	x = sizeX elements
 	m = sizeM elements
 	e = sizeE elements
@@ -423,40 +511,82 @@ void modSquare(uint16_t *a, uint16_t *m, uint16_t *result, uint16_t sizeA, uint1
 */
 void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE){
 	
-	uint16_t posMSB = positionMSB(e,sizeE);
-	uint16_t t = sizeE*16 - posMSB - 1;
-	uint16_t msbWord = 0;
-	uint16_t posWord = 0;
 	uint16_t copyOfE[MAXLENGTH] = {0};
 	uint16_t xMod[MAXLENGTH] = {0};
-	uint16_t begin = 1;
+	uint16_t copyOfX[MAXLENGTH] = {0};
 	uint16_t ei = 0;
+ 	uint16_t posMSB = 0;
+ 	uint16_t t = 0;
+ 	uint16_t msbWord = 0;
+	uint16_t posWord = 0;
 	int i;
 	
 	copyArray16(e,copyOfE,sizeE);
-	msbWord = posMSB/16;
+ 	posMSB = positionMSB(e,sizeE);
+ 	t = sizeE*16 - posMSB - 1;
+ 	msbWord = posMSB/16;
 	posWord = posMSB%16;
-	
-	mod(x,m,xMod,sizeX,sizeM);
+
+	copyArray16(x,copyOfX,sizeX);
+	modFaster(copyOfX,m,sizeX,sizeM);
+	for(i=0;i<sizeM;i++){
+		xMod[i] = copyOfX[(sizeX-sizeM)+i];
+	}
 	
 	zerosArray(result,sizeM);
 	result[sizeM-1] = 0x01;
 
 	/* Left-to-right binary exponentiation */
-	begin = 1;
-	for(i=t;i>=0;i--){
-		modSquare(result,m,result,sizeM,sizeM);
+  	for(i=t;i>=0;i--){
+ 		modSquare(result,m,result,sizeM,sizeM);
 		ei = (copyOfE[msbWord]>>(15-posWord))%2;
 		if (ei == 1){
-			if (begin == 0)
-				/* The program has issues with (1*xMod)% modm */
-				modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
-			else
-				copyArray16(xMod,result,sizeM);
+			modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
 		}
-		begin = 0;
 		multiplyByTwo(copyOfE,sizeE);
 	}
+
 }
+
+/* x^e mod m with right-to-left binary exponentiation
+	x = sizeX elements
+	m = sizeM elements
+	e = sizeE elements
+	result = sizeM elements
+*/
+void modExp2(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE){
+	
+	uint16_t copyOfE[MAXLENGTH] = {0};
+	uint16_t xMod[MAXLENGTH] = {0};
+	uint16_t base[MAXLENGTH] = {0};
+	uint16_t copyOfX[MAXLENGTH] = {0};
+	uint16_t ei = 0;
+	int i;
+	
+	copyArray16(e,copyOfE,sizeE);
+
+	copyArray16(x,copyOfX,sizeX);
+	modFaster(copyOfX,m,sizeX,sizeM);
+	for(i=0;i<sizeM;i++){
+		xMod[i] = copyOfX[(sizeX-sizeM)+i];
+	}
+	
+	zerosArray(result,sizeM);
+	result[sizeM-1] = 0x01;
+	
+	/* Right-to-left binary exponentiation */
+  	copyArray16(xMod,base,sizeM);
+	while ( numberIsZero(copyOfE,sizeE) != 1){
+		ei = copyOfE[sizeE-1]%2;
+		if (ei == 1){
+			modMult(result,base,m,result,sizeM,sizeM,sizeM);
+		}
+		divideByTwo(copyOfE,sizeE);
+ 		modSquare(base,m,base,sizeM,sizeM);
+	}
+
+}
+
+	
 
 #endif

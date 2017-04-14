@@ -26,7 +26,7 @@ int main(void){
 	uint16_t mInv2[8] = {0};
 	uint16_t mInvLastBit2 = 0;
 	uint16_t result2[7] = {0};
-/*  	uint16_t e2[4] = {0x1,0x2423,0x5231,0x2423}; */
+  	uint16_t e2[4] = {0x1,0x2423,0x5231,0x2423};
 	
 	zerosArray(R,65);
 	R[0] = 0x0001;
@@ -35,9 +35,10 @@ int main(void){
 	modularInverse(R,m,Rinv,65,10);
 	printArray16(Rinv,"Rinv",10);
 	
+	/* xyRinv is correct */
 	modularInverse(m,R,mInv,10,65);
 	mInvLastBit = mInv[65-1]%2;
-	montMultiplication(y,x,m,result,mInvLastBit,10);
+	montMultiplication(y,x,m,result,mInvLastBit,10,65);
 	printArray16(result,"result",10);
 	
 	/* /////////////////////////////////////////////// */
@@ -54,11 +55,17 @@ int main(void){
 	/* xyRinv is correct */
 	modularInverse(m2,R2,mInv2,7,8);
 	mInvLastBit2 = mInv2[7]%2;
-	montMultiplication(x2,y2,m2,result2,mInvLastBit2,7);
+	montMultiplication(x2,y2,m2,result2,mInvLastBit2,7,8);
 	printArray16(result2,"result2",7);
 	
-	/* 	modExp(x2,m2,e2,result2,7,7,4);
-	printArray16(result2,"x^emodm",7); */
+	modExp(x2,m2,e2,result2,7,7,4);
+	printArray16(result2,"x^emodm with modExp",7);
+	modExp2(x2,m2,e2,result2,7,7,4);
+	printArray16(result2,"x^emodm with modExp2",7);
+	
+	montExp(x2, m2, e2, result2, 7,7,4);
+	printArray16(result2,"x^e mod m with montExp",7);
+
 	
 	return 1;
 }

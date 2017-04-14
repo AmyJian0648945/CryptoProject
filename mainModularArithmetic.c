@@ -12,6 +12,13 @@ int main(void){
 	uint16_t k[3] = { 0x00, 0x02, 0x1234};
 	uint16_t l[3] = { 0x00, 0x00, 0x0056};
 	uint16_t n[3] = { 0x00, 0x01, 0x0342};
+	uint16_t d[1] = { 0x06};
+	uint16_t m[3] = { 0x00, 0x01, 0x0341};
+	uint16_t k2[2] = { 0x02, 0x1233};
+	uint16_t n2[2] = { 0x01, 0x0341};
+	uint16_t n3[3] = { 0x00, 0x01, 0x0341};
+	uint16_t k3[3] = { 0x00, 0x02, 0x1233};
+	uint16_t e2[2] = { 0x00, 0x0a};
 	uint16_t e[2] = { 0x00, 0x0a};
 	
 	uint16_t product[6] = {0};
@@ -66,6 +73,25 @@ int main(void){
 	zerosArray(result,3);
 	modExp(k,n,e,result,3,3,2);
 	printArray16(result,"k^e mod n",3);
+	
+	/* result = k3^e2 mod n3 - succeeded */
+	zerosArray(result,3);
+	modExp(n2,k2,e2,result,2,2,2);
+	printArray16(result,"k2^e2 mod n2 with modExp",2);
+	modExp(n3,k3,e2,result,3,3,2);
+	printArray16(result,"k3^e2 mod n3 with modExp",3);
+ 	zerosArray(result,3);
+	montExp(n2,k2,e2,result,2,2,2);
+	printArray16(result,"k2^e2 mod n2 with montExp",2);
+	montExp(n3,k3,e2,result,3,3,2);
+	printArray16(result,"k3^e2 mod n3 with montExp",3);
+	
+	/* result = l^d mod m - succeeded */
+	zerosArray(result,3);
+	modExp(l,m,d,result,3,3,1);
+	printArray16(result,"l^d mod m with modExp",3);
+	montExp(l,m,d,result,3,3,1);
+	printArray16(result,"l^d mod m with montExp",3);
 	
 	return 1;
 }
