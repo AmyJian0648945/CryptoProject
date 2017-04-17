@@ -109,7 +109,7 @@ int main(void){
  	modExp(p,r,q,result,sizePQ,sizeR,sizePQ);
 	flipArray(result,sizeR);
 	printArray16(result,"p^q mod r with modExp",sizeR);
-	
+
 	montExp(p,r,q,result,sizePQ,sizeR,sizePQ);
 	flipArray(result,sizeR);
 	printArray16(result,"p^q mod r with montExp",sizeR);
@@ -119,7 +119,7 @@ int main(void){
 	printArray16(result,"a^b mod m with modExp",7);
 	
 	montExp(a,m,b,result,8,7,8);
-	flipArray(result,sizeResult);
+	flipArray(result,7);
 	printArray16(result,"a^b mod m with montExp",sizeM);
 
 	return 1;

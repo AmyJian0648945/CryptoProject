@@ -3,7 +3,7 @@
 
 #include "additionalFunctions.h"
 #define MAXLENGTH 128
-#define MAXIMUMLENGTH 300
+#define MAXIMUMLENGTH 600
 
 uint16_t positionMSB(uint16_t *array, uint16_t size);
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size);
