@@ -2,6 +2,9 @@
 #define MONTEXPONENTIATION_H
 
 #include "additionalFunctions.h"
+#include "modularInverse.h"
+#include "modFunctions.h"
+
 #define MAXLENGTH 128
 
 void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR);
@@ -72,7 +75,7 @@ void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result
 	for(k=0;k<sizeM;k++){
 		result[k] = A[k+1];
 	}
-	
+
 }
 
 /* x^(e)modm
@@ -92,7 +95,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	uint16_t one[MAXLENGTH] = {0};
 	uint16_t xtilde[MAXLENGTH] = {0};
 	uint16_t copyOfE[MAXLENGTH] = {0};
-	uint16_t xExt[MAXLENGTH] = {0};	
+	uint16_t xExt[MAXLENGTH] = {0};
 	uint16_t mInvLastBit = 0;
 	uint16_t ePosMSB = 0;
 	uint16_t t = 0;
@@ -100,12 +103,12 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	uint16_t posWord = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t mMSBWord = 0;
-	/* sizeR = words of R that are not equal to zero;
-	actual length of R is equal to sizeM+1 */
 	uint16_t sizeR = 0;
 	uint16_t ei = 0;
 	int i;
 	int k;
+	/* sizeR = words of R that are not equal to zero;
+	actual length of R is equal to sizeM+1 */
 
 	ePosMSB = positionMSB(e,sizeE);
 	t = 16*sizeE - ePosMSB - 1;
@@ -118,7 +121,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 		if (k<(sizeM-sizeX)){
 			xExt[k] = 0x00;
 		} else {
-			xExt[k] = x[k];
+			xExt[k] = x[k-(sizeM-sizeX)];
 		}
 	}
 	
@@ -128,8 +131,8 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	
 	zerosArray(R,sizeM+1);
 	R[mMSBWord] = 0x0001;
+
 	zerosArray(Rmod,sizeM);
-	
 	mod(R,m,Rmod,sizeM+1,sizeM);
 	copyArray16(Rmod,A,sizeM);
 	
@@ -137,11 +140,10 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	mInvLastBit = mInv[sizeM]%2;
-	
+
 	one[sizeM-1] = 0x0001;
 	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
 	for(i=t;i>=0;i--){
-	
 		montMultiplication(A,A,m,A,mInvLastBit,sizeM,sizeR);
 		ei = (copyOfE[msbWord]>>(15-posWord))%2;
 		if (ei == 1){
@@ -150,9 +152,7 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 		multiplyByTwo(copyOfE,sizeE);
 	}
 	montMultiplication(A,one,m,A,mInvLastBit,sizeM,sizeR);
-	for(i=0;i<sizeM;i++){
-		result[i] = A[i];
-	}
+	copyArray16(A,result,sizeM);
 }
 
 #endif

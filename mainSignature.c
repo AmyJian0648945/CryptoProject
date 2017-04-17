@@ -25,13 +25,13 @@ int main(void){
 	
 	signatureMessage(message,encodedMessage);
 	/* Because the modular exponentiation is done with 16 bit numbers. */
-	from8to16(encodedMessage,encodedMessageReformed);
+	from8to16(encodedMessage,encodedMessageReformed, 256);
 	/* ... modular exponentiation x^e mod n (x=message||encodedMessage;  e = private key; n = modulus)*/
 	
 	/* PARTY B */
 	
 	/* decryption: modular exponentiation x^d mod n (x = receivedMessage; d = public key of the other party; n = modulus */
-	from16to8(encodedMessageReformed,encodedMessage);
+	from16to8(encodedMessageReformed,encodedMessage, 128);
 
 	verificationCorrect = verifySignature(message,encodedMessage);
 	if (verificationCorrect == 1)

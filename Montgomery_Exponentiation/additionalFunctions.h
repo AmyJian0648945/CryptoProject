@@ -4,6 +4,7 @@
 #define MAXLENGTH 128
 
 void printArray16(uint16_t *array, char *word, uint16_t arrayLength);
+void printArray8(uint8_t *array, char *word, uint16_t arrayLength);
 void zerosArray(uint16_t *result, uint16_t arrayLength);
 uint16_t isBiggerThan(uint16_t *number1, uint16_t *number2, uint16_t size);
 uint16_t isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size);
@@ -19,6 +20,15 @@ uint16_t subtractionWithSign(uint16_t *number1, uint16_t *number2, uint16_t *res
 /*	Print input array of size ArrayLength; word is the name for the array.
 */
 void printArray16(uint16_t *array, char *word, uint16_t arrayLength){
+	int index;
+	printf(" %s[%u] = { ",word,arrayLength);
+	for (index=0;index<arrayLength;index++){
+		printf("%x, ", array[index]);
+	}
+	printf("} \n");
+}/*	Print input array of size ArrayLength; word is the name for the array.
+*/
+void printArray8(uint8_t *array, char *word, uint16_t arrayLength){
 	int index;
 	printf(" %s[%u] = { ",word,arrayLength);
 	for (index=0;index<arrayLength;index++){
