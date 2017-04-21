@@ -20,7 +20,7 @@
 #define MAX_TRANSMISSION_BLOCK_LENGTH   512 /* CURRENTLY A PATCH: needs to be 16x */
 
 /* Needed for useAES.h */
-#define AES_KEY_SIZE 128
+
 
 /* Needed for pseudoRandNumGenerator.h */ 
 #define RNG_Block_Length    30      /* must be <256/8 = 32!!! */
@@ -50,11 +50,13 @@
 #include "helpfulFunctions.h"
 #include "sha2/sha2.h"
 #include "sha2/sha2.c"
+
 #include "sha2/useSHA256.h"
 
 #include "aes/aes.h"
 #include "aes/aes.c"
 #include "aes/useAES.h"
+//#include "aes/useAES.c" 
 
 #include "HMAC/hmac.h"
 

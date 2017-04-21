@@ -1,8 +1,9 @@
 #include "includesDefinesMacros.h"
+#include "aes/useAES.h"
+/* #include "aes/useAES.c" */
 
 
-
-int main()
+int main(void)
 {
     uint8_t keyInString[encryptKeyLength] = {0};
     uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
@@ -21,7 +22,7 @@ int main()
 	encrypt(registKey, msgSize, data, keyInString, keySize*2);
 	
 	decrypt(plaintext, msgSize, registKey, keyInString, keySize*2);
-tempLength = (uint8_t) msgSize[0]; 
+	tempLength = (uint8_t) msgSize[0]; 
 	/* Printout operation summary */
 	
 	printf("\n---\nSummary...\n---\n");
