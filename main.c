@@ -12,6 +12,8 @@ int main()
     uint8_t tempLength = 0;
     uint8_t msgSize[1] = {0};
 
+
+
     /* Processing keys = make sure its in char */
     uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
     msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
@@ -21,7 +23,8 @@ int main()
 	encrypt(registKey, msgSize, data, keyInString, keySize*2);
 	
 	decrypt(plaintext, msgSize, registKey, keyInString, keySize*2);
-tempLength = (uint8_t) msgSize[0]; 
+
+	tempLength = (uint8_t) msgSize[0]; 
 	/* Printout operation summary */
 	
 	printf("\n---\nSummary...\n---\n");

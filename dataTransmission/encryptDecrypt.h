@@ -19,12 +19,13 @@ information (HMAC and IV) to allow for decryption.
 
 
 /* Function Introduction */
+void encryptHMAC(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
+void decryptHMAC(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void encrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void decrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 
-
 /* Function Definition */
-void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
+void encryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
@@ -73,7 +74,7 @@ void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputK
  }
 
 
-void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
+void decryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};	
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
@@ -109,6 +110,90 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 	printf(">> Decryption ended\n"); 
 }
 
+
+void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
+	uint8_t key[encryptKeyLength + macKeyLength] = {0};
+	uint8_t macKey_String[macKeyLength*2] = {0};
+	uint8_t IV[IVlength] = {0};
+
+	uint8_t IV_ciphertextLength = 0;
+	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
+	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
+	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
+
+	printf(">> Entering encryption...\n");
+
+	/* (1) Hash the key; k = {encryptKey, macKey} */
+	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
+	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength); /*Key for HMAC must be in string*/
+
+	/* (2) Generate a random IV of 128 bits. */
+	RNG(IV, IVlength); /* output = HEX */
+
+	/* (3) Pad the data until length is 16x */
+	padding(data, msgLength);
+
+	/* (4) Encrypt the data, using: paddedData, IV, key */
+	aesCBCencrypt(output, data, msgLength, IV, key);
+	
+	/* IVciphertextConcat = IV || C */
+	copyArrayFrom0(IVciphertextConcat, IV, IVlength);
+	copyArray(IVciphertextConcat, output, IVlength, msgLength[0]);
+
+	/* get the length of the current array */
+	IV_ciphertextLength = IVlength + msgLength[0];
+
+	/* convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex) */
+	hexToString(IVciphertextConcat_String, IVciphertextConcat, IV_ciphertextLength);
+	
+	/* (5) HMAC */
+	//hmac(hmacData, macKey_String, IVciphertextConcat_String, macKeyLength*2, IV_ciphertextLength*2);
+
+	/* (6) {IV || C || HMAC(IV || C) } = regist key */
+	copyArrayFrom0(output, IVciphertextConcat, IV_ciphertextLength);
+	//copyArray(output, hmacData, IV_ciphertextLength, SHA256_DIGEST_LENGTH);
+	
+	/* Update message length */
+	msgLength[0] = IV_ciphertextLength;
+	printf(">> Encryption ended\n"); 
+ }
+
+
+void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
+	uint8_t key[encryptKeyLength + macKeyLength] = {0};	
+	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
+	uint8_t macKey_String[macKeyLength*2] = {0};
+	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
+	uint8_t temp = 0;
+
+	printf(">> Entering decryption...\n");
+
+	/* * * Verification step; if failed, abort * * */
+	
+	/* Calculate the key (by hashing) */
+	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
+	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength);
+
+	/* Turn the hashed value into string */
+	hexToString(registKey_String, registKey, *msgLength);
+
+	/* (1) Compute HMAC: of {IV || C} = macMsg, with macKey */
+	//hmac(hmacData, macKey_String, registKey_String, macKeyLength*2, (*msgLength-SHA256_DIGEST_LENGTH)*2);
+
+	/* (2) Compare the HMAC with the registKey's HMAC */
+	//seeTheDifference(hmacData, registKey+(*msgLength-SHA256_DIGEST_LENGTH), SHA256_DIGEST_LENGTH);
+	
+
+	/* * * Decryption step; verification step ends above * * */
+	temp = *msgLength - IVlength;
+
+	aesCBCdecrypt(output, registKey + IVlength, temp, registKey, key);
+
+	/* update message length */
+	*msgLength = *msgLength - IVlength;
+
+	printf(">> Decryption ended\n"); 
+}
 
 
 
