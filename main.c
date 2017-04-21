@@ -1,6 +1,4 @@
-#include "includesDefinesMacros.h"
-#include "aes/useAES.h"
-/* #include "aes/useAES.c" */
+#include "library/includesDefinesMacros.h"b
 
 
 int main(void)
@@ -14,7 +12,7 @@ int main(void)
     uint8_t msgSize[1] = {0};
 
     /* Processing keys = make sure its in char */
-    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
+    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first binput is 0*/
     msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);

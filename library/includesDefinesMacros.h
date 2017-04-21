@@ -48,20 +48,28 @@
 
 
 #include "helpfulFunctions.h"
-#include "sha2/sha2.h"
-#include "sha2/sha2.c"
+#include "helpfulFunctions.c"
 
-#include "sha2/useSHA256.h"
+#include "sha2.h"
+#include "sha2.c"
 
-#include "aes/aes.h"
-#include "aes/aes.c"
-#include "aes/useAES.h"
-//#include "aes/useAES.c" 
+#include "useSHA256.h"
+#include "useSHA256.c"
 
-#include "HMAC/hmac.h"
+#include "aes.h"
 
-#include "CPRNG/pseudoRandNumGenerator.h"
-#include "dataTransmission/encryptDecrypt.h"
+
+#include "useAES.h"
+#include "useAES.c" 
+
+#include "hmac.h"
+#include "hmac.c"
+
+#include "PRNG.h"
+#include "PRNG.c"
+
+#include "encryptDecrypt.h"
+#include "encryptDecrypt.c"
 
 
 

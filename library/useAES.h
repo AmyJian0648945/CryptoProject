@@ -16,9 +16,8 @@
 #include <string.h>
 #include <sys/time.h>
 
-
 #include "aes.h"
-#include "../helpfulFunctions.h"
+#include "helpfulFunctions.h"
 
 #define AES_KEY_SIZE    128
 #define AES_IVlength    16

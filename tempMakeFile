@@ -1,0 +1,28 @@
+useAES: useAES.c useAES.h aes.h
+	gcc -Wall -pedantic -ansi useAES.c -c -o useAES.o
+
+sha2: sha2.c sha2.h sha2prog.c sha2speed.c 
+	gcc -Wall -pedantic -ansi sha.c -c -o sha2.o	
+
+useSHA256:  usesha256.c usesha256.h sha2.h
+	gcc -Wall -pedantic -ansi usesha256.c -c -o usesha256.o
+
+
+
+
+aes: library/aes.c library/aes.h
+	gcc -Wall -pedantic -ansi library/aes.c -c -o objectFiles/aes.o
+
+main: main.c
+	gcc -Wall -pedantic -ansi main.c -c -o objectFiles/main.o
+
+#main: main.c mainmacros.h
+#	gcc -Wall -pedantic -ansi main.c -c -o main.o
+
+program: objectFiles/main.o objectFiles/aes.o
+	gcc -Wall -pedantic -ansi objectFiles/main.o objectFiles/aes.o -o program
+
+all: aes main program
+
+clean:
+	rm main.o aes.o
