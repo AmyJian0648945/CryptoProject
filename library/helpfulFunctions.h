@@ -1,7 +1,11 @@
 #ifndef HELPFULFUNCTIONS_H
 #define	HELPFULFUNCTIONS_H
 
+#ifndef STDLIB_H
+#include <stdint.h>
+#endif 
 
+#include <sys/time.h>
 
 void concat(uint8_t*, uint8_t*, uint16_t, uint16_t);
 void XOR(uint8_t*, uint8_t*, uint8_t*, uint16_t);

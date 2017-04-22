@@ -1,4 +1,4 @@
-
+#include "hmac.h"
 
 /* * * * * Algorithm subparts: * * * * * 
 

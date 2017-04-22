@@ -38,6 +38,16 @@ below.
 #ifndef HMAC_H
 #define HMAC_H
 
+#define DATA_BLOCK_SIZE         64
+#define MAX_MESSAGE_LENGTH              500 /* CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!! */
+#define MAX_TRANSMISSION_BLOCK_LENGTH   512 /* CURRENTLY A PATCH: needs to be 16x */
+
+#ifndef STDLIB_H
+#include <stdint.h>
+#endif 
+
+#include "useSHA256.h"
+
 void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);
 	/* Calculates the HMAC based on an input key and message */
 

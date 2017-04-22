@@ -2,8 +2,8 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -ansi
 
-output.out: aes.o useAES.o main.o
-	$(CC) aes.o useAES.o main.o
+output.out: aes.o useAES.o main.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o
+	$(CC) aes.o useAES.o main.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o
 
 main.o: ../main.c 
 	$(CC) $(CFLAGS) -c ../main.c
@@ -14,7 +14,23 @@ aes.o: ../library/aes.c ../library/aes.h
 useAES.o: ../library/useAES.c ../library/useAES.h
 	$(CC) $(CFLAGS) -c ../library/useAES.c  
 
+helpfulFunctions.o: ../library/helpfulFunctions.c ../library/helpfulFunctions.h
+	$(CC) $(CFLAGS) -c ../library/helpfulFunctions.c  
 
+sha2.o: ../library/sha2.c ../library/sha2.h
+	$(CC) $(CFLAGS) -c ../library/sha2.c  
+
+useSHA256.o: ../library/useSHA256.c ../library/useSHA256.h
+	$(CC) $(CFLAGS) -c ../library/useSHA256.c  
+
+hmac.o: ../library/hmac.c ../library/hmac.h
+	$(CC) $(CFLAGS) -c ../library/hmac.c  
+
+PRNG.o: ../library/PRNG.c ../library/PRNG.h
+	$(CC) $(CFLAGS) -c ../library/PRNG.c  
+
+encryptDecrypt.o: ../library/encryptDecrypt.c ../library/encryptDecrypt.h
+	$(CC) $(CFLAGS) -c ../library/encryptDecrypt.c  
 
 
 
