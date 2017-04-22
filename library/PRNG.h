@@ -19,8 +19,8 @@ void RNG(Random number output, length of random number in uint8_t);
 	-> Doesn't require input seed
 * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#ifndef PSEUDORANDNUMGENERATOR_H
-#define PSEUDORANDNUMGENERATOR_H
+#ifndef PRNG_H
+#define PRNG_H
 
 #define RNG_Block_Length    30      /* must be <256/8 = 32!!! */
 #define RandNumLength       60      /* for testing purposes */
@@ -38,7 +38,7 @@ void RNG(Random number output, length of random number in uint8_t);
 #define PRNG_XOR_LOCATION3  15
 #define PRNG_XOR_LOCATION4  23
 
-#ifndef useSHA256
+#ifndef USESHA256
 #include "useSHA256.h"
 #endif
 

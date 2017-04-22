@@ -45,9 +45,12 @@ below.
 #ifndef STDLIB_H
 #include <stdint.h>
 #endif 
-
+#ifndef HELPFULFUNCTIONS_H
 #include "helpfulFunctions.h"
+#endif
+#ifndef USESHA256_H
 #include "useSHA256.h"
+#endif
 
 void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);
 	/* Calculates the HMAC based on an input key and message */

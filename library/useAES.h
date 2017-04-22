@@ -3,15 +3,17 @@
     CBC Mode). 
 */
 
-#ifndef _useAES_H_
-#define _useAES_H_
+#ifndef USEAES_H
+#define USEAES_H
 
 #ifndef STDINT_H
 #include <stdint.h>
 #endif 
+#ifndef HELPFULFUNCTIONS_H
+#include "helpfulFunctions.h"
+#endif
 
 #include "aes.h"
-#include "helpfulFunctions.h"
 
 #define AES_KEY_SIZE    128
 #define AES_IVlength    16

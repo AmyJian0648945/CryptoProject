@@ -21,13 +21,24 @@ information (HMAC and IV) to allow for decryption.
 #define macKeyLength        16
 #define IVlength            16
 
+#ifndef STDINT
 #include <stdint.h>
+#endif
+#ifndef USESHA256_H
 #include "useSHA256.h"
+#endif
+#ifndef USEAES_H
 #include "useAES.h"
+#endif
+#ifndef PRNG_H
 #include "PRNG.h"
+#endif
+#ifndef HMAC_H
 #include "hmac.h"
+#endif
+#ifndef HELPFULFUNCTIONS_H
 #include "helpfulFunctions.h"
-
+#endif
 
 
 
