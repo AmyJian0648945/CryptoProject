@@ -2,10 +2,10 @@
 #include "encryptDecrypt.h"
 
 
-void encryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
+void encryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
-	uint8_t IV[IVlength] = {0};
+	uint16_t IV[IVlength] = {0};
 	
 
 	uint8_t IV_ciphertextLength = 0;
@@ -51,7 +51,7 @@ void encryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* in
  }
 
 
-void decryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
+void decryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};	
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
@@ -88,7 +88,7 @@ void decryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_
 }
 
 
-void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
+void encrypt(uint8_t* output, uint16_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
@@ -131,7 +131,7 @@ void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputK
  }
 
 
-void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
+void decrypt(uint8_t* output, uint16_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};	
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
