@@ -1,4 +1,13 @@
-#include "library/includesDefinesMacros.h"
+#include <string.h>
+
+#include "library/helpfulFunctions.h"
+#include "library/sha2.h"
+#include "library/useSHA256.h"
+#include "library/aes.h"
+#include "library/useAES.h"
+#include "library/hmac.h"
+#include "library/PRNG.h"
+#include "library/encryptDecrypt.h"
 
 
 int main(void)

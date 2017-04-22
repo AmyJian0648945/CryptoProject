@@ -1,3 +1,76 @@
+
+
+
+#include "helpfulFunctions.h"
+#include "helpfulFunctions.c"
+
+#include "sha2.h"
+#include "sha2.c"
+
+#include "useSHA256.h"
+#include "useSHA256.c"
+
+#include "aes.h"
+
+#include "useAES.h"
+
+#include "hmac.h"
+#include "hmac.c"
+
+#include "PRNG.h"
+#include "PRNG.c"
+
+#include "encryptDecrypt.h"
+#include "encryptDecrypt.c"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+outputTest: aes.o main.o 
+	gcc -o output aes.o main.o
+    
+outputTest.o: library/aes.c main.c 
+	gcc -c library/aes.c main.c 
+
+aes.o: aes.c aes.h
+	gcc -c aes.c
+
+clean:
+	rm -f *.o output
+
+removeO:
+	rm -f *.o
+
+
+
+
+
+
 useAES: useAES.c useAES.h aes.h
 	gcc -Wall -pedantic -ansi useAES.c -c -o useAES.o
 

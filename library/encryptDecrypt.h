@@ -17,6 +17,20 @@ information (HMAC and IV) to allow for decryption.
 #ifndef ENCRYPT_H
 #define ENCRYPT_H
 
+#define encryptKeyLength    16
+#define macKeyLength        16
+#define IVlength            16
+
+#include <stdint.h>
+#include "useSHA256.h"
+#include "useAES.h"
+#include "PRNG.h"
+#include "hmac.h"
+#include "helpfulFunctions.h"
+
+
+
+
 /* Function Introduction */
 void encrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void decrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);

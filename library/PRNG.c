@@ -1,4 +1,4 @@
-
+#include "PRNG.h"
 
 void RNG(uint8_t* output, uint16_t desiredOutputLength){
 

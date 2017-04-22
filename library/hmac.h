@@ -46,6 +46,7 @@ below.
 #include <stdint.h>
 #endif 
 
+#include "helpfulFunctions.h"
 #include "useSHA256.h"
 
 void hmac(uint8_t*, uint8_t*, uint8_t*, uint16_t, uint16_t);

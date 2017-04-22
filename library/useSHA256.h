@@ -17,12 +17,18 @@ http://www.freeformatter.com/sha256-generator.html
 #ifndef	USESHA256_H
 #define	USESHA256_H
 
-#ifndef STDLIB_H
+#ifndef STDINT_H
 #include <stdint.h>
 #endif 
 
 #ifndef STDIO_H
 #include <stdio.h>
+#endif
+
+#include <sys/time.h>
+
+#ifndef HELPFULFUNCTIONS_H
+#include "helpfulFunctions.h"
 #endif
 
 #define SHA2_USE_INTTYPES_H

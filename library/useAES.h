@@ -6,15 +6,9 @@
 #ifndef _useAES_H_
 #define _useAES_H_
 
-#ifndef STDLIB_H
+#ifndef STDINT_H
 #include <stdint.h>
 #endif 
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/time.h>
 
 #include "aes.h"
 #include "helpfulFunctions.h"
