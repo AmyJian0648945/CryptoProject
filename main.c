@@ -1,8 +1,16 @@
-#include "includesDefinesMacros.h"
+#include <string.h>
+
+#include "library/helpfulFunctions.h"
+#include "library/sha2.h"
+#include "library/useSHA256.h"
+#include "library/aes.h"
+#include "library/useAES.h"
+#include "library/hmac.h"
+#include "library/PRNG.h"
+#include "library/encryptDecrypt.h"
 
 
-
-int main()
+int main(void)
 {
     uint8_t keyInString[encryptKeyLength] = {0};
     uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
@@ -12,10 +20,8 @@ int main()
     uint8_t tempLength = 0;
     uint8_t msgSize[1] = {0};
 
-
-
     /* Processing keys = make sure its in char */
-    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
+    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first binput is 0*/
     msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
@@ -23,7 +29,6 @@ int main()
 	encrypt(registKey, msgSize, data, keyInString, keySize*2);
 	
 	decrypt(plaintext, msgSize, registKey, keyInString, keySize*2);
-
 	tempLength = (uint8_t) msgSize[0]; 
 	/* Printout operation summary */
 	
