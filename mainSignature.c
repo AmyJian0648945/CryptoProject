@@ -4,6 +4,7 @@
 #include <string.h>
 #include "includesDefinesMacros.h"
 #include "helpfulFunctions.h"
+#include "Montgomery_Exponentiation/additionalFunctions.h"
 #include "sha2/useSHA256.h"
 #include "CPRNG/pseudoRandNumGenerator.h"
 #include "Signature/maskGenerationFunction.h"

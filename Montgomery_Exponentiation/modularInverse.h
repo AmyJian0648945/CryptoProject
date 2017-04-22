@@ -1,7 +1,7 @@
 #ifndef MODULARINVERSE_H
 #define MODULARINVERSE_H
 
-#define MAXLENGTH 128
+#define MAXLENGTH 2048
 
 /* x <- x - y
 	x: first number

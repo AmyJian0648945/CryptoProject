@@ -26,7 +26,7 @@ int main(void){
 	printArray16(result,"a^2",4);
 	printArray16(expectedResult3,"expectedResult",4);
 	
-	mod(a,m,result,2,2);
+/* 	mod(a,m,result,2,2);
 	printArray16(result,"amod",2);
 	printArray16(expectedResult2,"expectedResult",2);
 	
@@ -46,7 +46,7 @@ int main(void){
 	modMult(b,b,m,result,4,4,2);
 	printArray16(result,"b*b mod m",2);
 	modSquare(b,m,result,4,2);
-	printArray16(result,"b^2 mod m",2);
+	printArray16(result,"b^2 mod m",2); */
 	
 	return 1;
 }

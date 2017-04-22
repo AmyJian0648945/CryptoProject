@@ -4,6 +4,8 @@
 #define EMLEN	256
 #define HASHLEN	32
 #define	SLEN	32
+#define MASKLEN EMLEN-HASHLEN-1
+
 
 /*
 	Verifying the encoded message, after decryption of the received signature, for entity authentication.
@@ -14,11 +16,11 @@ uint16_t verifySignature(uint8_t *message, uint8_t *encodedMessage){
 
 	uint8_t mHash[HASHLEN] = {0};
 	uint8_t hash2[HASHLEN] = {0};
-	uint8_t maskeddb[EMLEN-HASHLEN-1] = {0};
+	uint8_t maskeddb[MASKLEN] = {0};
 	uint8_t H[HASHLEN] = {0};
 	int index;
-	uint8_t dbmask[EMLEN-HASHLEN-1] = {0};
-	uint8_t db[EMLEN-HASHLEN-1] = {0};
+	uint8_t dbmask[MASKLEN] = {0};
+	uint8_t db[MASKLEN] = {0};
 	uint16_t stopLimit = EMLEN - HASHLEN - SLEN - 2;
 	uint8_t salt[SLEN] = {0};
 	uint8_t M[HASHLEN+SLEN+8] = {0};
@@ -31,21 +33,21 @@ uint16_t verifySignature(uint8_t *message, uint8_t *encodedMessage){
 		return 0;
 
 	/* STEP 5 */
-	for (index=0;index<(EMLEN-HASHLEN-1);index++){
+	for (index=0;index<(MASKLEN);index++){
 		maskeddb[index] = encodedMessage[index];
 	}
-	for(index=(EMLEN-HASHLEN-1);index<(EMLEN-1);index++){
-		H[index-(EMLEN-HASHLEN-1)] = encodedMessage[index];
+	for(index=(MASKLEN);index<(EMLEN-1);index++){
+		H[index-(MASKLEN)] = encodedMessage[index];
 	}
 	
 	/* STEP 7 */
 	maskGenerationFunction(H, dbmask);
 	
 	/* STEP 8 */
-	for(index=0;index<(EMLEN-HASHLEN-1);index++){
+	for(index=0;index<(MASKLEN);index++){
 		db[index] = maskeddb[index] ^ dbmask[index];
 	}
-	
+
 	/* STEP 10 */
 	for(index=0;index<stopLimit;index++){
 		if (db[index] != 0)

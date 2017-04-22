@@ -1,3 +1,6 @@
+#ifndef INCLUDESDEFINESMACROS_H
+#define	INCLUDESDEFINESMACROS_H
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,6 +63,8 @@
 
 #include "CPRNG/pseudoRandNumGenerator.h"
 #include "dataTransmission/encryptDecrypt.h"
+
+#endif
 
 
 

@@ -2,8 +2,8 @@
 #define MODFUNCTIONS_H
 
 #include "additionalFunctions.h"
-#define MAXLENGTH 2048
-#define MAXIMUMLENGTH 4096
+#define MAXLENGTH 128
+#define MAXIMUMLENGTH 300
 
 uint16_t positionMSB(uint16_t *array, uint16_t size);
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size);
@@ -41,6 +41,19 @@ void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size){
 		tempSum += binaryString[nbOfHexadecimals*16+m]<<m;
 	}
 	output[nbOfHexadecimals] = tempSum;
+}
+
+/*
+
+*/
+void deleteElementsFromPositionZero(uint16_t *array, uint16_t size, uint16_t nbOfElements){
+	int i;
+	for(i=0;i<size;i++){
+		if (i<size-nbOfElements)
+			array[i] = array[i+nbOfElements];
+		else
+			array[i] = 0x0000;
+	}
 }
 
 
@@ -207,6 +220,12 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	uint16_t sizeResult = 0;
 	int i;
 	int j;
+	uint16_t s[16] = {0};
+	uint16_t sValue[1] = {0};
+	uint16_t sIndex = 0;
+	uint16_t r[MAXLENGTH] = {0};
+	int k;
+	uint16_t maxIndex = 0;
 	
 	sizeProduct = sizeA + sizeB;
 	AposMSB = positionMSB(a,sizeA);
@@ -219,6 +238,7 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	
 	/* Step 1 */
 	zerosArray(w,n+t+2);
+	zerosArray(s,16);
 	
 	for(i=0;i<t+1;i++){
 		copyArray16(a,copyOfA,sizeA);
@@ -231,14 +251,19 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 			v = tempSum%2;
 			u = (tempSum>>1);
 			w[i+j] = v;
+			if (i+j > maxIndex)
+				maxIndex = i+j;
 			c = u;
 			divideByTwo(copyOfA,sizeA);
 		}
 		
 		w[i+n+1] = u;
+		if (i+j > maxIndex)
+			maxIndex = i+j;
 		divideByTwo(copyOfB,sizeB);
 	}
 
+	printf("maxIndex=%u\n",maxIndex);
 	if ((n+t+2)%16 == 0)
 		sizeResult = (n+t+2)/16;
 	else

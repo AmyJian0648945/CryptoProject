@@ -1,6 +1,8 @@
 #ifndef SIGNATUREMESSAGE_H
 #define SIGNATUREMESSAGE_H
 
+#include "maskGenerationFunction.h"
+
 #define EMLEN	256
 #define	HLEN	32
 #define	SLEN	32

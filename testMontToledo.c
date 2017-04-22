@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "Montgomery_Exponentiation/additionalFunctions.h"
 #include "Montgomery_Exponentiation/modularInverse.h"
@@ -58,11 +59,11 @@ int main(void){
 	montMultiplication(x2,y2,m2,result2,mInvLastBit2,7,8);
 	printArray16(result2,"result2",7);
 	
-	modExp(x2,m2,e2,result2,7,7,4);
+ 	modExp(x2,m2,e2,result2,7,7,4);
 	printArray16(result2,"x^emodm with modExp",7);
 	modExp2(x2,m2,e2,result2,7,7,4);
 	printArray16(result2,"x^emodm with modExp2",7);
-	
+
 	montExp(x2, m2, e2, result2, 7,7,4);
 	printArray16(result2,"x^e mod m with montExp",7);
 

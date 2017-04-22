@@ -5,7 +5,7 @@
 #include "modularInverse.h"
 #include "modFunctions.h"
 
-#define MAXLENGTH 128
+#define MAXLENGTH 2048
 
 void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR);
 void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE);
@@ -142,8 +142,8 @@ void montExp( uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t 
 	mInvLastBit = mInv[sizeM]%2;
 
 	one[sizeM-1] = 0x0001;
-	/* montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR); */
-	modMult(x,R,m,xtilde,sizeX,sizeM+1,sizeM);
+	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
+	/* modMult(x,R,m,xtilde,sizeX,sizeM+1,sizeM); */
 	for(i=t;i>=0;i--){
 		montMultiplication(A,A,m,A,mInvLastBit,sizeM,sizeR);
 		ei = (copyOfE[msbWord]>>(15-posWord))%2;

@@ -1,8 +1,9 @@
 #ifndef MASKGENERATIONFUNCTION_H
 #define MASKGENERATIONFUNCTION_H
 
-#define MASKLEN 223
+#define EMLEN 256
 #define HASHLEN 32
+#define MASKLEN EMLEN-HASHLEN-1
 
 /*
 	Implementation of the mask generation function, used in the signatureMessage function.
@@ -23,7 +24,6 @@ void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 	uint8_t output[HASHLEN] = {0};
 	int index;
 
-	
 	for (counter=0; counter<7; counter++){
 		/* STEP A */
 		string[1] = 0;
