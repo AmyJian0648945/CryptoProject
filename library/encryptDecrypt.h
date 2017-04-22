@@ -43,9 +43,17 @@ information (HMAC and IV) to allow for decryption.
 
 
 /* Function Introduction */
+
 void encryptHMAC(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void decryptHMAC(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void encrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 void decrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint16_t);
 
 #endif	
+
+
+
+
+
+
+

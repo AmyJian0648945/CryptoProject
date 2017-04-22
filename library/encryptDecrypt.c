@@ -7,7 +7,6 @@ void encryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* in
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
 	
-
 	uint8_t IV_ciphertextLength = 0;
 	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
 	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
@@ -196,6 +195,5 @@ Decryption
 =	 	  		output	 				...(3)
 
 * * * * * * * * * * * * * * * * * * * * */
-
 
 

@@ -17,29 +17,28 @@ http://www.freeformatter.com/sha256-generator.html
 #ifndef	USESHA256_H
 #define	USESHA256_H
 
-#ifndef STDINT_H
-#include <stdint.h>
-#endif 
-
-#ifndef STDIO_H
-#include <stdio.h>
-#endif
-
-#include <sys/time.h>
-
-#ifndef HELPFULFUNCTIONS_H
-#include "helpfulFunctions.h"
-#endif
-
+#ifndef SHA256_DIGEST_LENGTH     
+#define SHA256_DIGEST_LENGTH    32  
+#endif /* SHA256_DIGEST_LENGTH */
 #define SHA2_USE_INTTYPES_H
 #define TIME_DATA_BASE          10
 #define TIME_DATA_LENGTH        16
 
-#ifndef SHA256_DIGEST_LENGTH     
-#define SHA256_DIGEST_LENGTH    32  
-#endif /* SHA256_DIGEST_LENGTH */
-
+#ifndef STDINT_H
+#include <stdint.h>
+#endif /* STDINT_H */
+#ifndef STDIO_H
+#include <stdio.h>
+#endif /* STDIO_H */
+#ifndef HELPFULFUNCTIONS_H
+#include "helpfulFunctions.h"
+#endif /* HELPFULFUNCTIONS_H */
+#include <sys/time.h>
 #include "sha2.h"
+
+
+
+
 
 /* void simpleHash(uint8_t*, uint8_t*); */ 	/* Does a single SHA256 hash */
 void simpleHashWithLength(uint8_t*, uint8_t*, size_t); 
@@ -52,5 +51,4 @@ void hashOfLength(uint8_t*, uint8_t*, uint16_t, size_t);
 
 
 #endif
-
 
