@@ -58,9 +58,7 @@
 
 #include "aes.h"
 
-
 #include "useAES.h"
-#include "useAES.c" 
 
 #include "hmac.h"
 #include "hmac.c"

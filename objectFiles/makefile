@@ -1,19 +1,18 @@
-
 # CFlags will be passed onto the compiler
-#CFLAGS= -c -Wall
+CC = gcc
+CFLAGS = -Wall -pedantic -ansi
 
-all: aes 
+output.out: aes.o useAES.o main.o
+	$(CC) aes.o useAES.o main.o
 
-aes: aes.o
-	gcc -o aes aes.o
+main.o: ../main.c 
+	$(CC) $(CFLAGS) -c ../main.c
 
-aes.o: library/aes.c
-	gcc -c library/aes.c
+aes.o: ../library/aes.c ../library/aes.h
+	$(CC) $(CFLAGS) -c ../library/aes.c 
 
-clean:
-	rm aes *.o
-
-
+useAES.o: ../library/useAES.c ../library/useAES.h
+	$(CC) $(CFLAGS) -c ../library/useAES.c  
 
 
 

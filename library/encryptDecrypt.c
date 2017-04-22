@@ -1,60 +1,13 @@
 
 #include "encryptDecrypt.h"
 
-void simpleEncrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
-	uint8_t key[encryptKeyLength + macKeyLength] = {0};
-	uint8_t macKey_String[macKeyLength*2] = {0};
-	uint8_t IV[IVlength] = {0};
-	
 
-	uint8_t IV_ciphertextLength = 0;
-	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
-	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
-	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
-
-	printf(">> Entering encryption...\n");
-
-	/* (1) Hash the key; k = {encryptKey, macKey} */
-	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
-	hexToString(macKey_String, key+encryptKeyLength, encryptKeyLength); /*Key for HMAC must be in string*/
-
-	/* (2) Generate a random IV of 128 bits. */
-	RNG(IV, IVlength); /* output = HEX */
-
-	/* (3) Pad the data until length is 16x */
-	padding(data, msgLength);
-
-	/* (4) Encrypt the data, using: paddedData, IV, key */
-	aesCBCencrypt(output, data, msgLength, IV, key);
-	
-	/* IVciphertextConcat = IV || C */
-	//copyArrayFrom0(IVciphertextConcat, IV, IVlength);
-	//copyArray(IVciphertextConcat, output, IVlength, msgLength[0]);
-
-	/* get the length of the current array */
-	//IV_ciphertextLength = IVlength + msgLength[0];
-
-	/* convert key to string (it was in hex, after the has), and the data as well (after AES, it was hex) */
-	//hexToString(IVciphertextConcat_String, IVciphertextConcat, IV_ciphertextLength);
-	
-	/* (5) HMAC */
-	//hmac(hmacData, macKey_String, IVciphertextConcat_String, macKeyLength*2, IV_ciphertextLength*2);
-
-	/* (6) {IV || C || HMAC(IV || C) } = regist key */
-	//copyArrayFrom0(output, IVciphertextConcat, IV_ciphertextLength);
-	//copyArray(output, hmacData, IV_ciphertextLength, SHA256_DIGEST_LENGTH);
-	
-	/* Update message length */
-	msgLength[0] = IV_ciphertextLength + SHA256_DIGEST_LENGTH;
-	printf(">> Encryption ended\n"); 
- }
 
 
 void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
-	
 
 	uint8_t IV_ciphertextLength = 0;
 	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
