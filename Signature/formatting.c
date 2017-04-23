@@ -1,5 +1,3 @@
-#ifndef FORMATTING_C
-#define FORMATTING_C
 
 #include "formatting.h"
 
@@ -29,7 +27,5 @@ void from16to8(uint16_t *input, uint8_t *output, uint16_t size){
 		output[2*k+1] = last8bits;
 	}
 }
-
-#endif
 
 

@@ -27,8 +27,8 @@ int main(void)
 
     hexToString(keyInString, key, keySize);
 	
-	//encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
-	//decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
+	encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
+	decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
 	tempLength = (uint8_t) msgSize[0]; 
 
 	/* Printout operation summary */

@@ -31,7 +31,7 @@ void repositionZeros(uint16_t *array, uint16_t size){
 void createExponent( uint16_t *x, uint16_t sizeX){
 		
 	uint8_t sizeExponent[1] = {0};
-	uint8_t x8[expLength*2] = {0};
+	uint8_t x8[expLengthMAX*2] = {0};
 	uint16_t sizeCast = 0;
 	
 	RNG(sizeExponent,1);
@@ -40,12 +40,12 @@ void createExponent( uint16_t *x, uint16_t sizeX){
 	}
 	sizeCast = (uint16_t) sizeExponent[0];
 	RNG(x8,sizeCast);
-	from8to16(x8,x,expLength);
-	while (numberIsZero(x, expLength)){
+	from8to16(x8,x,expLengthMAX);
+	while (numberIsZero(x, expLengthMAX)){
 		RNG(x8,sizeCast);
-		from8to16(x8,x,expLength);
+		from8to16(x8,x,expLengthMAX);
 	}
-	repositionZeros(x,expLength);
+	repositionZeros(x,expLengthMAX);
 	
 }
 
@@ -58,7 +58,7 @@ void calculateKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint8_t *Key, ui
 	
 	uint16_t tempKey[modLength] = {0};
 	uint8_t tempKey8[modLength] = {0};
-	uint8_t hashKey[HASHSIZE] = {0};
+	uint8_t hashKey[HASHLEN] = {0};
 	int i;
 	
 	montExp(g,m,exponent,tempKey,sizeG,sizeM,sizeExp);
@@ -67,21 +67,21 @@ void calculateKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint8_t *Key, ui
 /* 	printArray8(tempKey8,"tempKey8",2*sizeM); */
 
 	simpleHashWithLength(hashKey,tempKey8,2*sizeM);
-	for(i=0;i<HASHSIZE/2;i++){
+	for(i=0;i<(HASHLEN/2);i++){
 		Key[i] = hashKey[i];
 	}
 	
 }
 
-void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t baseLength){
+void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t sizegxgy){
 	
 	uint8_t part1[MAXSIZE] = {0};
 	uint8_t part2[MAXSIZE] = {0};
-	from16to8(gx, part1, baseLength);
-	from16to8(gy, part2, baseLength);
+	from16to8(gx, part1, sizegxgy);
+	from16to8(gy, part2, sizegxgy);
 	
-	concat(message, part1, 0, baseLength*2);
-	concat(message, part2, baseLength*2, baseLength*2);
+	concat(message, part1, 0, sizegxgy*2);
+	concat(message, part2, sizegxgy*2, sizegxgy*2);
 }
 
 void signMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp){

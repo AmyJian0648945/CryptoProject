@@ -4,9 +4,13 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#define MAXLENGTH 128
+
+#ifndef MAXLENGTH
+#define MAXLENGTH 2048
+#endif
 
 void printArray16(uint16_t *array, char *word, uint16_t arrayLength);
+void printArray8(uint8_t *array, char *word, uint16_t arrayLength);
 void zerosArray(uint16_t *result, uint16_t arrayLength);
 uint16_t isBiggerThan(uint16_t *number1, uint16_t *number2, uint16_t size);
 uint16_t isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size);

@@ -28,12 +28,15 @@ void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size){
 	output[nbOfHexadecimals] = tempSum;
 }
 
+
 /*	
 	Calculates the position of the most significant bit in the input array.
 	Size is the number of elements in the input array.
 	The position is calculated from the left. Function returns 0 if the first digit of the word at index 0
 	is the most significant bit. Function returns size*16-1 if the last digit of the word at index size-1
 	is the most significant bit.
+	If array is zero (number is 0), the value size*16-1 is returned, same as if the number had been equal to 1
+	(msb is the last bit). 
 */
 uint16_t positionMSB(uint16_t *array, uint16_t size){
 	
@@ -56,7 +59,7 @@ uint16_t positionMSB(uint16_t *array, uint16_t size){
 		}
 		/* else: continue*/
 	}
-	return size*16;
+	return size*16-1;
 }
 
 /*	a mod N
@@ -64,28 +67,37 @@ uint16_t positionMSB(uint16_t *array, uint16_t size){
 			a has sizeA elements,
 			N has sizeModulus elements;
 			result has sizeModulus elements.
-			(with sizeA >= sizeModulus).
 */
 void mod(uint16_t *a, uint16_t *N, uint16_t *result, uint16_t sizeA, uint16_t sizeModulus){
 	
 	uint16_t Nextended[MAXLENGTH] = {0};
 	uint16_t copyOfA[MAXLENGTH] = {0};
 	uint16_t comparison = 0;
+	uint16_t size = 0;
 	int i;
-
-	zerosArray(Nextended,sizeA);
-	for(i=0;i<sizeModulus;i++){
-		Nextended[i+(sizeA-sizeModulus)] = N[i];
-	}
-	copyArray16(a,copyOfA,sizeA);
 	
-	comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
+	if (sizeA > sizeModulus)
+		size = sizeA;
+	else
+		size = sizeModulus;
+	
+	zerosArray(Nextended,size);
+	for(i=0;i<sizeModulus;i++){
+		Nextended[i+(size-sizeModulus)] = N[i];
+	}
+	/* copyArray16(a,copyOfA,sizeA); */
+	zerosArray(copyOfA,size);
+	for(i=0;i<sizeA;i++){
+		copyOfA[i+(size-sizeA)] = a[i];
+	}
+	
+	comparison = isBiggerThanOrEqual(copyOfA,Nextended,size);
 	while (comparison > 0){
-		subtraction(copyOfA,Nextended,copyOfA,sizeA);
-		comparison = isBiggerThanOrEqual(copyOfA,Nextended,sizeA);
+		subtraction(copyOfA,Nextended,copyOfA,size);
+		comparison = isBiggerThanOrEqual(copyOfA,Nextended,size);
 	}
 	for(i=0;i<sizeModulus;i++){
-		result[i] = copyOfA[i+(sizeA-sizeModulus)];
+		result[i] = copyOfA[i+(size-sizeModulus)];
 	}
 }
 
@@ -119,7 +131,7 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t sizeX){
 	sizeProduct = 2*sizeX;
 	copyArray16(a,copyOfA,sizeX);
 	zerosArray(w,2*t);
-
+	
 	for(i=0;i<t;i++){
 
 		copyArray16(copyOfA,copy2,sizeX);
@@ -142,11 +154,12 @@ void squareProduct(uint16_t *a, uint16_t *product, uint16_t sizeX){
 			w[i+j] = v;
 			c = u;
 		}
-		
+
 		w[i+t] = u;
 		divideByTwo(copyOfA,sizeX);
 	}
-
+	
+	
 	if (2*t%16 == 0)
 		sizeResult = 2*t/16;
 	else
@@ -219,162 +232,6 @@ void multiplication(uint16_t *a, uint16_t *b, uint16_t *product, uint16_t sizeA,
 	zerosArray(product,sizeProduct);
 	for(i=0;i<sizeResult;i++){
 		product[sizeProduct-1-i] = result[i];
-	}
-}
-
-/* Division of two numbers: divisionResult = x/y and remainder = x - y*divisionResult.
-	division <- x/y
-	remainder <- x%y
-	posMSB_x >= posMSB_y
-	size division = size x = sizeX;
-	size remainder = size y = sizeY;
-*/
-void division(uint16_t *x, uint16_t *y, uint16_t *divisionResult, uint16_t *remainder, uint16_t sizeX, uint16_t sizeY){
-
-	uint16_t xPosMSB = positionMSB(x,sizeX);
-	uint16_t yPosMSB = positionMSB(y,sizeY);
-	uint16_t copyOfX[MAXLENGTH] = {0};
-	uint16_t copy2OfX[MAXLENGTH] = {0};
-	uint16_t copyOfY[MAXLENGTH] = {0};
-	uint16_t q[MAXLENGTH] = {0};
-	uint16_t copyOfX3[MAXLENGTH] = {0};
-	uint16_t result[MAXLENGTH] = {0};
-	uint16_t yExt[MAXLENGTH] ={0};
-	uint16_t counterArray[MAXLENGTH] = {0};
-	uint16_t sum[MAXLENGTH] = {0};
-	uint16_t n = sizeX*16 - xPosMSB - 1;
-	uint16_t t = sizeY*16 - yPosMSB - 1;
-	int k;
-	int i;
-	int j;		
-	uint16_t sizeResult = 0;
-	uint16_t nbOfMults = n-t; 
-	uint16_t comparison = 0;
-	uint16_t xi = 0;
-	uint16_t nextXi = 0;
-	uint16_t next2Xi = 0;
-	uint16_t yt = 0;
-	uint16_t yt1 = 0;
-	uint16_t wordMSB = yPosMSB/16;
-	uint16_t posInWord = (yPosMSB%16);
-	uint16_t wordXMSB = xPosMSB/16;
-	uint16_t posXInWord = (xPosMSB%16);
-	uint16_t times = 0;
-	uint16_t sign = 0;
-	uint16_t leftSide = 0;
-	uint16_t rightSide = 0;
-	
-	copyArray16(y,copyOfY,sizeY);
-	copyArray16(x,copyOfX3,sizeX);
-	copyArray16(x,copyOfX,sizeX);
-
-	/* Step 1 */
-	for(j=0;j<n-t+1;j++){
-		q[j] = 0;
-	}
-	
-	/* Step 2 */
-	zerosArray(yExt,sizeX);
-	for(k=0;k<sizeY;k++){
-		yExt[k+(sizeX-sizeY)] = y[k];
-	}
-
-	for(k=0;k<nbOfMults;k++){
-		multiplyByTwo(yExt,sizeX);
-	}
-
-	comparison = isBiggerThanOrEqual(copyOfX3,yExt,sizeX);
-	while (comparison > 0){
-		q[n-t] = q[n-t] + 1;
-		subtraction(copyOfX3,yExt,copyOfX3,sizeX);
-		comparison = isBiggerThanOrEqual(copyOfX3,yExt,sizeX);
-	}
-
-	/* Step 3 */
-	yt = (copyOfY[wordMSB]>>(15-posInWord))%2;
-	multiplyByTwo(copyOfY,sizeY);
-	yt1 = (copyOfY[wordMSB]>>(15-posInWord))%2;
-
-	for(i=n;i>t;i--){
-		/* STEP 3.1 */
-		copyArray16(copyOfX,copy2OfX,sizeX);
-		xi = (copyOfX[wordXMSB]>>(15-posXInWord))%2;		
-		multiplyByTwo(copy2OfX,sizeX);
-		nextXi = (copy2OfX[wordXMSB]>>(15-posXInWord))%2;
-		multiplyByTwo(copy2OfX,sizeX);
-		next2Xi = (copy2OfX[wordXMSB]>>(15-posXInWord))%2;
-		
-		if ( xi == yt ){
-			q[i-t-1] = 1;
-		}
-		else {
-			q[i-t-1] = (2*xi + nextXi)/yt;
-		}
-		
-		/* STEP 3.2 */
-		leftSide = q[i-t-1]*(yt*2+yt1);
-		rightSide = xi*4 + nextXi*2 + next2Xi;
-		if (leftSide > rightSide){
-			while(leftSide>rightSide){
-				q[i-t-1] = q[i-t-1]-1;
-				leftSide = q[i-t-1]*(yt*2+yt1);
-				rightSide = xi*4 + nextXi*2 + next2Xi;
-			}
-		}
-
-		/* STEP 3.3 */
-				
-		zerosArray(yExt,sizeX);
-		for(k=0;k<sizeY;k++){
-			yExt[k+(sizeX-sizeY)] = y[k];
-		}
-
-		if (q[i-t-1] == 1){
-			for(times=0;times<i-t-1;times++){
-				multiplyByTwo(yExt,sizeX);
-			}
-			sign = subtractionWithSign(copyOfX3,yExt,copyOfX3,sizeX);
-		}
-
-		/* STEP 3.4 */
-		if (sign == 1){
-			subtraction(yExt,copyOfX3,copyOfX3,sizeX);
-			q[i-t-1] = q[i-t-1] - 1;
-		}
-		multiplyByTwo(copyOfX,sizeX);
-		sign = 0;
-	}
-
-	zerosArray(yExt,sizeX);
-	for(k=0;k<sizeY;k++){
-		yExt[k+(sizeX-sizeY)] = y[k];
-	}
-	
-	zerosArray(counterArray,sizeX);
-	zerosArray(sum,sizeX);
-	sign = 0;
-	sign = isBiggerThanOrEqual(copyOfX3,yExt,sizeX);
-	while(sign == 1){
-		sum[sizeX-1] = 1;
-		addition(counterArray,sum,counterArray,sizeX);
-		subtraction(copyOfX3,yExt,copyOfX3,sizeX);
-		sign = isBiggerThanOrEqual(copyOfX3,yExt,sizeX);
-	}
-
-	if ((n-t+1)%16 == 0)
-		sizeResult = (n-t+1)/16;
-	else
-		sizeResult = (n-t+1)/16+1;
-	from2to16(q,result,n-t+1);
-
-	zerosArray(divisionResult,sizeX);
-	for(i=0;i<sizeResult;i++){
-		divisionResult[sizeX-1-i] = result[i];
-	}
-	addition(divisionResult,counterArray,divisionResult,sizeX);
-	zerosArray(remainder,sizeX);
-	for(k=0;k<sizeY;k++){
-		remainder[k] = copyOfX3[k+(sizeX-sizeY)];
 	}
 }
 
@@ -498,7 +355,6 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
 	
 	uint16_t copyOfE[MAXLENGTH] = {0};
 	uint16_t xMod[MAXLENGTH] = {0};
-	uint16_t copyOfX[MAXLENGTH] = {0};
 	uint16_t ei = 0;
  	uint16_t posMSB = 0;
  	uint16_t t = 0;
@@ -512,11 +368,7 @@ void modExp(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t si
  	msbWord = posMSB/16;
 	posWord = posMSB%16;
 
-	copyArray16(x,copyOfX,sizeX);
-	modFaster(copyOfX,m,sizeX,sizeM);
-	for(i=0;i<sizeM;i++){
-		xMod[i] = copyOfX[(sizeX-sizeM)+i];
-	}
+	mod(x,m,xMod,sizeX,sizeM);
 	
 	zerosArray(result,sizeM);
 	result[sizeM-1] = 0x01;
@@ -544,17 +396,11 @@ void modExp2(uint16_t *x, uint16_t *m, uint16_t *e, uint16_t *result, uint16_t s
 	uint16_t copyOfE[MAXLENGTH] = {0};
 	uint16_t xMod[MAXLENGTH] = {0};
 	uint16_t base[MAXLENGTH] = {0};
-	uint16_t copyOfX[MAXLENGTH] = {0};
 	uint16_t ei = 0;
-	int i;
 	
 	copyArray16(e,copyOfE,sizeE);
 
-	copyArray16(x,copyOfX,sizeX);
-	modFaster(copyOfX,m,sizeX,sizeM);
-	for(i=0;i<sizeM;i++){
-		xMod[i] = copyOfX[(sizeX-sizeM)+i];
-	}
+	mod(x,m,xMod,sizeX,sizeM);
 	
 	zerosArray(result,sizeM);
 	result[sizeM-1] = 0x01;

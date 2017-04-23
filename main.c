@@ -2,18 +2,18 @@
 #include<string.h>
 #include<stdio.h>
 
-#include "library/PRNG.h"
-#include "library/encryptDecrypt.h"
-#include "Montgomery_Exponentiation/montExponentiation.h"
-#include "Montgomery_Exponentiation/modFunctions.h"
-#include "Signature/formatting.h"
-#include "Signature/keyEstablishmentFunctions.h"
-#include "Signature/signatureMessage.h"
-#include "Signature/verifySignature.h"
-
+#ifndef baseLength
 #define baseLength 60
+#endif
+
+#ifndef modLength
 #define modLength 64
+#endif
+
+#ifndef expLengthMAX
 #define expLengthMAX 128
+#endif
+
 #define keySizeAES 16
 #define sizeModulusB 128
 #define sizePrExpB 128
@@ -21,7 +21,23 @@
 #define sizeModulusA 128
 #define sizePrExpA 128
 #define sizePuExpA 2
-#define sizeMessage modLength*4
+#define sizeMessageAB 256
+
+#include "library/helpfulFunctions.h"
+#include "library/sha2.h"
+#include "library/useSHA256.h"
+#include "library/aes.h"
+#include "library/useAES.h"
+#include "library/hmac.h"
+#include "library/PRNG.h"
+#include "library/encryptDecrypt.h"
+#include "Montgomery_Exponentiation/additionalFunctions.h"
+#include "Montgomery_Exponentiation/montExponentiation.h"
+#include "Signature/formatting.h"
+#include "Signature/signatureMessage.h"
+#include "Signature/verifySignature.h"
+#include "Signature/keyEstablishmentFunctions.h"
+
 
 int main(void){
 
@@ -44,14 +60,14 @@ int main(void){
 	uint8_t K1[keySizeAES] = {0};
 	uint8_t K2[keySizeAES] = {0};
 	
-	uint8_t messageB[sizeMessage] = {0};
+	uint8_t messageB[sizeMessageAB] = {0};
 	uint16_t tempEMB[sizeModulusB] = {0};
 	uint8_t EMB[sizeModulusB*2] = {0};
 	uint8_t encodedMessageB[sizeModulusB*2] = {0};
 	uint16_t identityBVerified = 0;
 	
-	uint8_t messageA[sizeMessage] = {0};
-	uint8_t encodedMessageA[sizeMessage] = {0};
+	uint8_t messageA[sizeMessageAB] = {0};
+	uint8_t encodedMessageA[sizeMessageAB] = {0};
 	uint16_t tempEMA[sizeModulusA] = {0};
 	uint8_t EMA[sizeModulusA*2] = {0};
 	uint16_t receivedMessageA[sizeModulusA] = {0};
@@ -87,23 +103,27 @@ int main(void){
 	printf("B receives (g^x) mod p from A and A receives (g^y) mod p from B\n");
 	
 	
-	
-	
-	/** B - KEY + ENTITY AUTHENTICATION **/
+	/** B - KEY CREATION + ENTITY AUTHENTICATION **/
 	/** B sends message to A to prove identity **/
 	printf("Start of authentication of B\n");
 	/* B calculates the key = (g^x)^y mod p and encodes,signs and encrypts the message (g^y mod p)||(g^x mod p) */
 	calculateKey(gx,p,y,K1,modLength,modLength,expLengthMAX);
+	printf("Key created by B = (g^x)^y mod p\n");
+	printArray8(K1, "key", keySizeAES);
 	
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
 	
-	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, modLength*4, sizeModulusB, sizePrExpB);
+	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusB, sizePrExpB);
 	encryptMessage(tempEMB, EMB, sizeModulusB, K1);
+	printArray8(messageB,"Original message B -> A",sizeMessageAB);
+	printArray8(EMB, "Transmitted message", sizeModulusB*2);
 	printf("B sends g^y mod p and Sb(g^y mod p || g^x mod p) to A\n");
 	
 	/* A calculates the key = (g^y)^x mod p */
 	calculateKey(gy,p,x,K2,modLength,modLength,expLengthMAX);
+	printf("Key created by A = (g^y)^x mod p\n");
+	printArray8(K2, "key", keySizeAES);
 	/* K1 = K2 = the secret key */
 		
 	/* A verifies the signature of B after receiving EMB */
@@ -119,14 +139,16 @@ int main(void){
 	
 	
 	
-	/** A - ENTITY AUTHENTICATION **/
+	/** A - KEY CREATION + ENTITY AUTHENTICATION **/
 	/** A sends message to B to prove identity **/
 	printf("Start of authentication of A\n");
 	createMessage(gx, gy, messageA, modLength);
 	signatureMessage(messageA, encodedMessageA);
 
-	signMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessage,sizeModulusA, sizePrExpA);
+	signMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusA, sizePrExpA);
 	encryptMessage(tempEMA, EMA, sizeModulusA, K2);
+	printArray8(messageA,"Original message A -> B",sizeMessageAB);
+	printArray8(EMA, "Transmitted message", sizeModulusA*2);
 	printf("A sends Sa(g^x mod p || g^y mod p) to B\n");
 	
 	/** B receives message of A and checks A's identity **/

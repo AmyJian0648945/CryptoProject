@@ -7,6 +7,11 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -ansi
 
+default: program
+
+program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
+	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
+
 main.o: ../main.c 
 	$(CC) $(CFLAGS) -c ../main.c
 
@@ -61,5 +66,8 @@ verifySignature.o: ../Signature/verifySignature.c ../Signature/verifySignature.h
 keyEstablishmentFunctions.o: ../Signature/keyEstablishmentFunctions.c ../Signature/keyEstablishmentFunctions.h
 	$(CC) $(CFLAGS)	-c ../Signature/keyEstablishmentFunctions.c
 
-main.exe:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o
-	$(CC) main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o
+	
+	
+clean:
+	$(RM) program *.o
+

@@ -1,42 +1,28 @@
 #ifndef KEYESTABLISHMENTFUNCTIONS_H
 #define KEYESTABLISHMENTFUNCTIONS_H
 
-#include <stdint.h>
-
-#ifndef HELPFULFUNCTIONS_H
 #include "../library/helpfulFunctions.h"
-#define HELPFULFUNCTIONS_H
-#endif
-
-#ifndef USESHA256_H
 #include "../library/usesha256.h"
-#define USESHA256_H
-#endif
-
-#ifndef USEAES_H
 #include "../library/useAES.h"
-#define USEAES_H
-#endif
-
-#ifndef MONTEXPONENTIATION_H
 #include "../Montgomery_Exponentiation/montExponentiation.h"
-#define MONTEXPONENTIATION_H
-#endif
-
-#ifndef PRNG_H
 #include "../library/PRNG.h"
-#define PRNG_H
-#endif
-
-#ifndef FORMATTING_H
 #include "formatting.h"
-#define FORMATTING_H
+
+#ifndef expLengthMAX
+#define expLengthMAX 128
 #endif
 
-#define expLength 128
+#ifndef modLength
 #define modLength 64
+#endif
+
+#ifndef MAXSIZE
 #define MAXSIZE 256
-#define HASHSIZE 32
+#endif
+
+#ifndef HASHLEN
+#define HASHLEN 32
+#endif
 
 /* Put zeros at the end of the array at the top of the array.
 	Given an array of length size. If the elements at the end of the array
@@ -44,7 +30,7 @@
 */
 void repositionZeros(uint16_t *array, uint16_t size);
 /* Create a number x with a random number generator.
-	The length of x is random, with a value between 1 and expLength (included).
+	The length of x is random, with a value between 1 and expLengthMAX (included).
 	The number x will not be equal to 0.
 */
 void createExponent( uint16_t *x, uint16_t sizeX);
@@ -56,7 +42,7 @@ void computePartOfKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint16_t *pa
 void calculateKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint8_t *Key, uint16_t sizeG, uint16_t sizeM, uint16_t sizeExp);
 /* message = gx || gy
 */
-void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t baseLength);
+void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t sizegxgy);
 /* signedMessage = message ^ privateExponent mod modulus
 */
 void signMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp);

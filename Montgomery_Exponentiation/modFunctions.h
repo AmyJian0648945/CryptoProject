@@ -2,8 +2,16 @@
 #define MODFUNCTIONS_H
 
 #include "additionalFunctions.h"
-#define MAXLENGTH 128
-#define MAXIMUMLENGTH 300
+
+#ifndef MAXLENGTH
+#define MAXLENGTH 2048
+#endif
+/* Maximum size for an array */
+
+#ifndef MAXIMUMLENGTH
+#define MAXIMUMLENGTH 4096
+#endif
+/* Macro for the binary array w for squareProduct and multiplication */
 
 uint16_t positionMSB(uint16_t *array, uint16_t size);
 void from2to16(uint16_t *binaryString, uint16_t *output, uint16_t size);

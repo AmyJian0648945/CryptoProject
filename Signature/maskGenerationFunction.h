@@ -1,16 +1,21 @@
 #ifndef MASKGENERATIONFUNCTION_H
 #define MASKGENERATIONFUNCTION_H
 
+#ifndef EMLEN
 #define EMLEN 256
-#define HASHLEN 32
-#define MASKLEN EMLEN-HASHLEN-1
-
-#ifndef USESHA256_H
-#include "../library/useSHA256.h"
-#define USESHA256_H
 #endif
 
-uint16_t verifySignature(uint8_t*, uint8_t*);
+#ifndef HASHLEN
+#define HASHLEN 32
+#endif
+
+#ifndef MASKLEN
+#define MASKLEN EMLEN-HASHLEN-1
+#endif
+
+#include "../library/useSHA256.h"
+
+void maskGenerationFunction(uint8_t *input, uint8_t *dbmask);
 
 #endif /* MASKGENERATIONFUNCTION_H */
 
