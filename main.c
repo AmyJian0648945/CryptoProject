@@ -14,7 +14,6 @@
 #define expLengthMAX 128
 #endif
 
-#define keySizeAES 16
 #define sizeModulusB 128
 #define sizePrExpB 128
 #define sizePuExpB 2
@@ -57,8 +56,8 @@ int main(void){
 	uint16_t gx[modLength] = {0};
 	uint16_t gy[modLength] = {0};
 
-	uint8_t K1[keySizeAES] = {0};
-	uint8_t K2[keySizeAES] = {0};
+	uint8_t K1[encryptKeyLength] = {0};
+	uint8_t K2[encryptKeyLength] = {0};
 	
 	uint8_t messageB[sizeMessageAB] = {0};
 	uint16_t tempEMB[sizeModulusB] = {0};
@@ -75,13 +74,12 @@ int main(void){
 	uint16_t identityAVerified = 0;
 	
 	uint8_t keyInString[encryptKeyLength] = {0};
-    uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
+	uint8_t key[encryptKeyLength] = {0};
     uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     uint8_t tempLength = 0;
     uint8_t msgSize[1] = {0};
-    uint16_t msgSize1[1] = {0}; 
 
     /* Processing keys = make sure its in char */
     uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
@@ -110,7 +108,7 @@ int main(void){
 	/* B calculates the key = (g^x)^y mod p and encodes,signs and encrypts the message (g^y mod p)||(g^x mod p) */
 	calculateKey(gx,p,y,K1,modLength,modLength,expLengthMAX);
 	printf("Key created by B = (g^x)^y mod p\n");
-	printArray8(K1, "key", keySizeAES);
+	printArray8(K1, "key", encryptKeyLength);
 	
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
@@ -124,7 +122,7 @@ int main(void){
 	/* A calculates the key = (g^y)^x mod p */
 	calculateKey(gy,p,x,K2,modLength,modLength,expLengthMAX);
 	printf("Key created by A = (g^y)^x mod p\n");
-	printArray8(K2, "key", keySizeAES);
+	printArray8(K2, "key", encryptKeyLength);
 	/* K1 = K2 = the secret key */
 		
 	/* A verifies the signature of B after receiving EMB */
@@ -154,7 +152,7 @@ int main(void){
 	
 	/** B receives message of A and checks A's identity **/
 	createMessage(gx, gy, messageA, modLength);
-	decryptMessage(EMA, receivedMessageA, sizeModulusA*2, K2);
+	decryptMessage(EMA, receivedMessageA, sizeModulusA*2, K1);
 	unsignMessage(receivedMessageA, encodedMessageA, modulusA, publicExponentA, sizeModulusA, sizeModulusA, sizePuExpA);
 	
 	identityAVerified = verifySignature(messageA, encodedMessageA);
@@ -167,6 +165,7 @@ int main(void){
 	
 	/*** DATA TRANSMISSION ***/
 	printf("\n Start of the Data Transmission...\n\n");
+	copyArray8(K1, key, encryptKeyLength);
     msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
@@ -184,6 +183,4 @@ int main(void){
 	
 	return 0;
 }
-
-
 
