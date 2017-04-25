@@ -15,10 +15,15 @@ int main(void)
     uint8_t keyInString[encryptKeyLength] = {0};
     uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
     uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
-    uint8_t registKey[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
+    uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     uint8_t tempLength = 0;
+<<<<<<< HEAD
     uint16_t msgSize[1] = {0};
+=======
+    uint8_t msgSize[1] = {0};
+    uint16_t msgSize1[1] = {0}; 
+>>>>>>> master
 
     /* Processing keys = make sure its in char */
     uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first binput is 0*/
@@ -26,21 +31,37 @@ int main(void)
 
     hexToString(keyInString, key, keySize);
 	
+<<<<<<< HEAD
 	encrypt(registKey, msgSize, data, keyInString, keySize*2);
 	
 	decrypt(plaintext, msgSize, registKey, keyInString, keySize*2);
 	tempLength = (uint16_t) msgSize[0]; 
+=======
+	//encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
+	//decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
+	tempLength = (uint8_t) msgSize[0]; 
+
+>>>>>>> master
 	/* Printout operation summary */
-	
-	printf("\n---\nSummary...\n---\n");
+	printf("\n---\nSummary I ...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
-	printf("\nCiphertext after encryption: "); printArrayNoSpaces(registKey, tempLength );
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, tempLength );
 	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
 	printf("\n\n");
 	
 
 	
+	msgSize1[0] = (uint8_t) strlen((char*)data);
+	simpleEncrypt(ciphertext, data, msgSize1,  key);
+	simpleDecrypt(plaintext, ciphertext, msgSize1,  key);
 
+
+
+	printf("\n---\nSummary II ...\n---\n");
+	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, tempLength );
+	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
+	printf("\n\n");
 
 
 

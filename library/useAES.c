@@ -2,16 +2,6 @@
 #include "useAES.h"
 
 
-void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
-    /* Performs a single AES decryption */
-void aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
-    /* Performs a single AES Encryption */
-void aesCBCdecrypt(uint8_t*, uint8_t*, uint8_t, uint8_t*, uint8_t*);
-    /* Performs complete AES Decryption, CBC Mode */
-void aesCBCencrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
-    /* Performs complete AES Encryption, CBC Mode */
-void padding(uint8_t*, uint8_t*); 
-    /* Pads data until a multipe of 16 */
 
 
 
@@ -30,7 +20,43 @@ void aesEncrypt(uint8_t* ciphertext, uint8_t* plaintext, uint8_t* key){
     aes_encrypt(&aeskey, plaintext, ciphertext);    
 }
 
+<<<<<<< HEAD
 void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint16_t msgLength, 
+=======
+
+void simpleDecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint16_t* msgLength, 
+             uint8_t* key){
+    uint8_t CBCrounds = 0;
+    uint16_t i = 0;
+
+    /* Figuring out how many AES_CBC rounds is needed */
+    
+    CBCrounds = msgLength[0] / aes_BLOCK_SIZE;
+
+    for(i = 0; i <= CBCrounds; i++){
+        /* Compute a single AES */
+        aesDecrypt(plaintext + i*(aes_BLOCK_SIZE), ciphertext + i*(aes_BLOCK_SIZE), key); 
+    }
+}
+
+void simpleEncrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint16_t* msgLength, 
+            uint8_t* key){
+    
+    uint16_t CBCrounds = 0;
+    uint16_t i = 0;
+
+    /* Figuring out how many AES_CBC rounds is needed */
+    CBCrounds = msgLength[0] / aes_BLOCK_SIZE;
+
+    /* Go through all rounds AES, each with input 128bits of message */
+    for(i = 0; i <= CBCrounds; i++){
+        /* Compute a single AES */
+        aesEncrypt(ciphertext + i*(aes_BLOCK_SIZE), inputMsg + i*(aes_BLOCK_SIZE), key);
+    }
+}
+
+void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t msgLength, 
+>>>>>>> master
              uint8_t* IV, uint8_t* key){
     uint8_t temp[aes_BLOCK_SIZE] = {0};
     uint16_t CBCrounds = 0;
@@ -55,7 +81,14 @@ void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint16_t msgLength,
 
 }
 
+<<<<<<< HEAD
 void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint16_t* msgLength, 
+=======
+
+
+
+void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength, 
+>>>>>>> master
              uint8_t* IV, uint8_t* key)
 {
     uint8_t temp[aes_BLOCK_SIZE] = {0};
