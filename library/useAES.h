@@ -23,13 +23,10 @@ void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
     /* Performs a single AES decryption */
 void aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
     /* Performs a single AES Encryption */
-void aesCBCdecrypt(uint8_t*, uint8_t*, uint16_t, uint8_t*, uint8_t*);
+void aesCBCdecrypt(uint8_t*, uint8_t*, uint8_t, uint8_t*, uint8_t*);
     /* Performs complete AES Decryption, CBC Mode */
-void aesCBCencrypt(uint8_t*, uint8_t*, uint16_t*, uint8_t*, uint8_t*);
+void aesCBCencrypt(uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
     /* Performs complete AES Encryption, CBC Mode */
-<<<<<<< HEAD
-void padding(uint8_t*, uint16_t*); 
-=======
 void simpleDecrypt(uint8_t*, uint8_t*, uint16_t*, uint8_t*);
     /* Performs complete AES Decryption, CBC Mode */
 void simpleEncrypt(uint8_t*, uint8_t*, uint16_t*, uint8_t*);
@@ -38,11 +35,9 @@ void simpleEncrypt(uint8_t*, uint8_t*, uint16_t*, uint8_t*);
 
 
 void padding(uint8_t*, uint8_t*); 
->>>>>>> master
     /* Pads data until a multipe of 16 */
 
 #endif /* __USEAES_H__ */
-
 
 
 

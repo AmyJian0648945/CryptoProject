@@ -1,6 +1,8 @@
 #ifndef SHA2_H
 #define SHA2_H
 
+#include "useSHA256.h"
+
 /*
  * FILE:	sha2.h
  * AUTHOR:	Aaron D. Gifford <me@aarongifford.com>

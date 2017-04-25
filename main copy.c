@@ -75,7 +75,7 @@ int main(void){
 	
 	uint8_t keyInString[encryptKeyLength] = {0};
 	uint8_t key[encryptKeyLength] = {0};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789 90647844cd12d4f81ba31f0c5c7669241b198c8ee9a71c07311edcb11888003f3828c6c4cda36372941cc18e924f0b58 90647844cd12d4f81ba31f0c5c7669241b198c8ee9a71c07311edcb11888003f3828c6c4cda36372941cc18e924f0b58";
+    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     uint8_t tempLength = 0;
@@ -83,6 +83,84 @@ int main(void){
 
     /* Processing keys = make sure its in char */
     uint16_t keySize = (uint16_t) strlen((char*)key); 	/* IS A PATCH: Not guaranteed to work if first input is 0*/
+	
+	/**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
+	/*** STS - Protocol ***/
+	printf("\n\nStart of the STS protocol...\n");
+	printf("Secret key creation by poth parties...\n");
+
+	/* A computes g^x mod p and sends it to B */
+	printf("A computes g^x mod p\n");
+	createExponent(x,expLengthMAX);
+	computePartOfKey(g,p,x,gx,baseLength,modLength,expLengthMAX);
+	
+	/* B computes g^y mod p and sends it to A */
+	printf("B computes g^y mod p\n");
+	createExponent(y,expLengthMAX);
+	computePartOfKey(g,p,y,gy,baseLength,modLength,expLengthMAX);
+	
+	printf("B receives (g^x) mod p from A and A receives (g^y) mod p from B\n");
+	
+	
+	/** B - KEY CREATION + ENTITY AUTHENTICATION **/
+	/** B sends message to A to prove identity **/
+	printf("Start of authentication of B\n");
+	/* B calculates the key = (g^x)^y mod p and encodes,signs and encrypts the message (g^y mod p)||(g^x mod p) */
+	calculateKey(gx,p,y,K1,modLength,modLength,expLengthMAX);
+	printf("Key created by B = (g^x)^y mod p\n");
+	printArray8(K1, "key", encryptKeyLength);
+	
+ 	createMessage(gy, gx, messageB,modLength);
+	signatureMessage(messageB, encodedMessageB);
+	
+	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusB, sizePrExpB);
+	encryptMessage(tempEMB, EMB, sizeModulusB, K1);
+	printArray8(messageB,"Original message B -> A",sizeMessageAB);
+	printArray8(EMB, "Transmitted message", sizeModulusB*2);
+	printf("B sends g^y mod p and Sb(g^y mod p || g^x mod p) to A\n");
+	
+	/* A calculates the key = (g^y)^x mod p */
+	calculateKey(gy,p,x,K2,modLength,modLength,expLengthMAX);
+	printf("Key created by A = (g^y)^x mod p\n");
+	printArray8(K2, "key", encryptKeyLength);
+	/* K1 = K2 = the secret key */
+		
+	/* A verifies the signature of B after receiving EMB */
+	createMessage(gy, gx, messageB, modLength);
+	decryptMessage(EMB, receivedMessageB, sizeModulusB*2, K2);
+	unsignMessage(receivedMessageB, encodedMessageB, modulusB, publicExponentB, sizeModulusB, sizeModulusB, sizePuExpB);
+	
+	identityBVerified = verifySignature(messageB, encodedMessageB);
+	if (identityBVerified == 1)
+		printf("Authentication B succeeded\n\n");
+	else
+		printf("Authentication B failed\n\n");
+	
+	
+	
+	/** A - KEY CREATION + ENTITY AUTHENTICATION **/
+	/** A sends message to B to prove identity **/
+	printf("Start of authentication of A\n");
+	createMessage(gx, gy, messageA, modLength);
+	signatureMessage(messageA, encodedMessageA);
+
+	signMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusA, sizePrExpA);
+	encryptMessage(tempEMA, EMA, sizeModulusA, K2);
+	printArray8(messageA,"Original message A -> B",sizeMessageAB);
+	printArray8(EMA, "Transmitted message", sizeModulusA*2);
+	printf("A sends Sa(g^x mod p || g^y mod p) to B\n");
+	
+	/** B receives message of A and checks A's identity **/
+	createMessage(gx, gy, messageA, modLength);
+	decryptMessage(EMA, receivedMessageA, sizeModulusA*2, K1);
+	unsignMessage(receivedMessageA, encodedMessageA, modulusA, publicExponentA, sizeModulusA, sizeModulusA, sizePuExpA);
+	
+	identityAVerified = verifySignature(messageA, encodedMessageA);
+	if (identityAVerified == 1)
+		printf("Authentication A succeeded\n\n");
+	else
+		printf("Authentication A failed\n\n");
+	
 	
 	
 	/*** DATA TRANSMISSION ***/
