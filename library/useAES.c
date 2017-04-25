@@ -52,10 +52,10 @@ void simpleEncrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint16_t* msgLength,
     }
 }
 
-void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t msgLength, 
+void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint16_t msgLength, 
              uint8_t* IV, uint8_t* key){
     uint8_t temp[aes_BLOCK_SIZE] = {0};
-    uint8_t CBCrounds = 0;
+    uint16_t CBCrounds = 0;
     uint16_t i = 0;
 
     /* Figuring out how many AES_CBC rounds is needed */
@@ -80,12 +80,12 @@ void aesCBCdecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t msgLength,
 
 
 
-void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength, 
+void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint16_t* msgLength, 
              uint8_t* IV, uint8_t* key)
 {
     uint8_t temp[aes_BLOCK_SIZE] = {0};
     uint8_t tempXOR[aes_BLOCK_SIZE] = {0};
-    uint8_t CBCrounds = 0;
+    uint16_t CBCrounds = 0;
     uint16_t i = 0;
 
     /* Figuring out how many AES_CBC rounds is needed */
@@ -109,8 +109,8 @@ void aesCBCencrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint8_t* msgLength,
 }   
 
 
-void padding(uint8_t* inputToBePadded, uint8_t* inputLength){
-    uint8_t pad = 0, i = 0;
+void padding(uint8_t* inputToBePadded, uint16_t* inputLength){
+    uint16_t pad = 0, i = 0;
 
     /* figure out how much to pad */
     pad = inputLength[0];

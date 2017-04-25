@@ -7,7 +7,7 @@ void encryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* data, uint8_t* i
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
 	
-	uint8_t IV_ciphertextLength = 0;
+	uint16_t IV_ciphertextLength = 0;
 	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
 	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
@@ -55,7 +55,7 @@ void decryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* registKey, uint8
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
-	uint8_t temp = 0;
+	uint16_t temp = 0;
 
 	printf(">> Entering decryption...\n");
 
