@@ -75,10 +75,10 @@ int main(void){
 	
 	uint8_t keyInString[encryptKeyLength] = {0};
 	uint8_t key[encryptKeyLength] = {0};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789 90647844cd12d4f81ba31f0c5c7669241b198c8ee9a71c07311edcb11888003f3828c6c4cda36372941cc18e924f0b58 90647844cd12d4f81ba31f0c5c7669241b198c8ee9a71c07311edcb11888003f3828c6c4cda36372941cc18e924f0b58";
+    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789 ";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
-    uint8_t tempLength = 0;
+    
     uint16_t msgSize[1] = {0};
 
     /* Processing keys = make sure its in char */
@@ -94,13 +94,13 @@ int main(void){
 	
 	encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
 	decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
-	tempLength = (uint8_t) msgSize[0]; 
+	
 
 	/* Printout operation summary */
-	printf("\n---\nSummary I ...\n---\n");
-	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
-	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, tempLength );
-	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
+	printf("\n---\nSummary I ... msglength = %d\n---\n", msgSize[0]);
+	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0]);
+	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, msgSize[0]);
 
 	
 	return 0;

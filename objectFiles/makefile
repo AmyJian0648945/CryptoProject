@@ -1,7 +1,7 @@
 # How to use:
 # --> To create all object files, write "make" into the compiler
 # --> To remove all .o (object files) and .exe files, write "make remove"
-# --> To execute the .exe file, write "./a.out" 
+# --> To execute the .exe file, write "./program" 
  
 
 CC = gcc
