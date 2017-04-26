@@ -1,0 +1,254 @@
+
+**** Build of configuration Debug for project crypto_dspSimulation ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"..\library/helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../main.c".
+Compilation terminated.
+
+gmake: *** [main.obj] Error 1
+>> Compilation failure
+'Building file: ../library/PRNG.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/PRNG.pp" --obj_directory="library"  "../library/PRNG.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/PRNG.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/PRNG.obj] Error 1
+'Building file: ../library/aes.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/aes.pp" --obj_directory="library"  "../library/aes.c"
+'Finished building: ../library/aes.c'
+' '
+'Building file: ../library/encryptDecrypt.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/encryptDecrypt.pp" --obj_directory="library"  "../library/encryptDecrypt.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/encryptDecrypt.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/encryptDecrypt.obj] Error 1
+'Building file: ../library/helpfulFunctions.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/helpfulFunctions.pp" --obj_directory="library"  "../library/helpfulFunctions.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/helpfulFunctions.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/helpfulFunctions.obj] Error 1
+'Building file: ../library/hmac.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/hmac.pp" --obj_directory="library"  "../library/hmac.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/hmac.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/hmac.obj] Error 1
+'Building file: ../library/sha2.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/sha2.pp" --obj_directory="library"  "../library/sha2.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/sha2.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/sha2.obj] Error 1
+'Building file: ../library/sha2prog.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/sha2prog.pp" --obj_directory="library"  "../library/sha2prog.c"
+"../library/sha2prog.c", line 36: fatal error #5: could not open source file "libio.h"
+1 fatal error detected in the compilation of "../library/sha2prog.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/sha2prog.obj] Error 1
+'Building file: ../library/sha2speed.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/sha2speed.pp" --obj_directory="library"  "../library/sha2speed.c"
+"../library/sha2speed.c", line 38: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/sha2speed.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/sha2speed.obj] Error 1
+'Building file: ../library/useAES.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/useAES.pp" --obj_directory="library"  "../library/useAES.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/useAES.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/useAES.obj] Error 1
+'Building file: ../library/useSHA256.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/useSHA256.pp" --obj_directory="library"  "../library/useSHA256.c"
+"..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/useSHA256.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/useSHA256.obj] Error 1
+'Building file: ../library/ciphers/sha3/sha3-test.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha3/sha3-test.pp" --obj_directory="library/ciphers/sha3"  "../library/ciphers/sha3/sha3-test.c"
+"../library/ciphers/sha3/sha3-test.c", line 42: warning #225-D: function declared implicitly
+"../library/ciphers/sha3/sha3-test.c", line 64: warning #225-D: function declared implicitly
+"../library/ciphers/sha3/sha3-test.c", line 122: warning #225-D: function declared implicitly
+'Finished building: ../library/ciphers/sha3/sha3-test.c'
+' '
+'Building file: ../library/ciphers/sha3/sha3.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha3/sha3.pp" --obj_directory="library/ciphers/sha3"  "../library/ciphers/sha3/sha3.c"
+'Finished building: ../library/ciphers/sha3/sha3.c'
+' '
+'Building file: ../library/ciphers/sha2/sha2.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha2/sha2.pp" --obj_directory="library/ciphers/sha2"  "../library/ciphers/sha2/sha2.c"
+"..\library\ciphers\sha2\sha2.h", line 33: fatal error #5: could not open source file "sys/types.h"
+1 fatal error detected in the compilation of "../library/ciphers/sha2/sha2.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/ciphers/sha2/sha2.obj] Error 1
+'Building file: ../library/ciphers/sha2/sha2prog.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha2/sha2prog.pp" --obj_directory="library/ciphers/sha2"  "../library/ciphers/sha2/sha2prog.c"
+"../library/ciphers/sha2/sha2prog.c", line 36: fatal error #5: could not open source file "libio.h"
+1 fatal error detected in the compilation of "../library/ciphers/sha2/sha2prog.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/ciphers/sha2/sha2prog.obj] Error 1
+'Building file: ../library/ciphers/sha2/sha2speed.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha2/sha2speed.pp" --obj_directory="library/ciphers/sha2"  "../library/ciphers/sha2/sha2speed.c"
+"../library/ciphers/sha2/sha2speed.c", line 38: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../library/ciphers/sha2/sha2speed.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [library/ciphers/sha2/sha2speed.obj] Error 1
+'Building file: ../library/ciphers/sha1/sha.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha1/sha.pp" --obj_directory="library/ciphers/sha1"  "../library/ciphers/sha1/sha.c"
+'Finished building: ../library/ciphers/sha1/sha.c'
+' '
+'Building file: ../library/ciphers/sha1/shaTest.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/sha1/shaTest.pp" --obj_directory="library/ciphers/sha1"  "../library/ciphers/sha1/shaTest.c"
+'Finished building: ../library/ciphers/sha1/shaTest.c'
+' '
+'Building file: ../library/ciphers/ripemd-160/hashtest.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/ripemd-160/hashtest.pp" --obj_directory="library/ciphers/ripemd-160"  "../library/ciphers/ripemd-160/hashtest.c"
+'Finished building: ../library/ciphers/ripemd-160/hashtest.c'
+' '
+'Building file: ../library/ciphers/ripemd-160/rmd160.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/ripemd-160/rmd160.pp" --obj_directory="library/ciphers/ripemd-160"  "../library/ciphers/ripemd-160/rmd160.c"
+'Finished building: ../library/ciphers/ripemd-160/rmd160.c'
+' '
+'Building file: ../library/ciphers/aes/aes.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/aes/aes.pp" --obj_directory="library/ciphers/aes"  "../library/ciphers/aes/aes.c"
+'Finished building: ../library/ciphers/aes/aes.c'
+' '
+'Building file: ../library/ciphers/aes/test.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/ciphers/aes/test.pp" --obj_directory="library/ciphers/aes"  "../library/ciphers/aes/test.c"
+"../library/ciphers/aes/test.c", line 10: warning #169-D: argument of type "char *" is incompatible with parameter of type "const unsigned char *"
+"../library/ciphers/aes/test.c", line 12: warning #169-D: argument of type "char *" is incompatible with parameter of type "const unsigned char *"
+"../library/ciphers/aes/test.c", line 14: warning #225-D: function declared implicitly
+"../library/ciphers/aes/test.c", line 19: warning #169-D: argument of type "char *" is incompatible with parameter of type "const unsigned char *"
+"../library/ciphers/aes/test.c", line 21: warning #169-D: argument of type "char *" is incompatible with parameter of type "const unsigned char *"
+'Finished building: ../library/ciphers/aes/test.c'
+' '
+'Building file: ../Key_Establishment/Source/additionalFunctions.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/additionalFunctions.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/additionalFunctions.c"
+"../Key_Establishment/Source/additionalFunctions.c", line 1: fatal error #5: could not open source file "additionalFunctions.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/additionalFunctions.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/additionalFunctions.obj] Error 1
+'Building file: ../Key_Establishment/Source/formatting.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/formatting.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/formatting.c"
+'Finished building: ../Key_Establishment/Source/formatting.c'
+' '
+'Building file: ../Key_Establishment/Source/keyEstablishmentFunctions.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/keyEstablishmentFunctions.c"
+"..\Key_Establishment\Source\..\Header\../../library/helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/keyEstablishmentFunctions.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/keyEstablishmentFunctions.obj] Error 1
+'Building file: ../Key_Establishment/Source/maskGenerationFunction.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/maskGenerationFunction.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/maskGenerationFunction.c"
+"..\Key_Establishment\Source\..\Header\..\..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/maskGenerationFunction.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/maskGenerationFunction.obj] Error 1
+'Building file: ../Key_Establishment/Source/modFunctions.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modFunctions.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/modFunctions.c"
+"../Key_Establishment/Source/modFunctions.c", line 1: fatal error #5: could not open source file "modFunctions.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/modFunctions.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/modFunctions.obj] Error 1
+'Building file: ../Key_Establishment/Source/modularInverse.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modularInverse.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/modularInverse.c"
+"../Key_Establishment/Source/modularInverse.c", line 2: fatal error #5: could not open source file "modularInverse.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/modularInverse.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/modularInverse.obj] Error 1
+'Building file: ../Key_Establishment/Source/montExponentiation.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/montExponentiation.c"
+"../Key_Establishment/Source/montExponentiation.c", line 1: fatal error #5: could not open source file "montExponentiation.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/montExponentiation.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/montExponentiation.obj] Error 1
+'Building file: ../Key_Establishment/Source/signatureMessage.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/signatureMessage.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/signatureMessage.c"
+"..\Key_Establishment\Source\..\Header\..\..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/signatureMessage.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/signatureMessage.obj] Error 1
+'Building file: ../Key_Establishment/Source/verifySignature.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/verifySignature.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/verifySignature.c"
+"..\Key_Establishment\Source\..\Header\..\..\library\helpfulFunctions.h", line 14: fatal error #5: could not open source file "sys/time.h"
+1 fatal error detected in the compilation of "../Key_Establishment/Source/verifySignature.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [Key_Establishment/Source/verifySignature.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
