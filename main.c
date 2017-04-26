@@ -177,6 +177,11 @@ int main(void){
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, tempLength );
 	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
 
+
+
+
+
+
 	
 	return 0;
 }
