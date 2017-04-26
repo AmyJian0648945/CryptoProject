@@ -5,7 +5,7 @@
  
 
 CC = gcc
-CFLAGS = -Wall -pedantic -ansi
+CFLAGS = -Wall -pedantic -Ansi
 
 default: program
 

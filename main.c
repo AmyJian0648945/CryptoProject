@@ -78,7 +78,7 @@ int main(void){
 
 	uint8_t keyInString[encryptKeyLength] = {0};
 	uint8_t key[encryptKeyLength] = {0};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789 JJhello there 0123456789 KKhello there 0123456789 LLhello there 0123456789 MMhello there 0123456789 NNhello there 0123456789 OOhello there 0123456789 PPhello there 0123456789 QQhello there 0123456789";
+    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789 JJhello there 0123456789 KKhello there 0123456789 LLhello there 0123456789 MMhello there 0123456789 NNhello there 0123456789 ";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     
@@ -89,9 +89,11 @@ int main(void){
 	
 	
 	/*** DATA TRANSMISSION ***/
-	printf("\n Start of the Data Transmission...msglength = %d\n\n", msgSize[0]);
+	printf("\n Start of the Data Transmission...");
 	copyArray8(K1, key, encryptKeyLength);
     msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
+	printf("msg size: %d\n", msgSize[0]);
+
 
     hexToString(keyInString, key, keySize);
 	
