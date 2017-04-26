@@ -7,8 +7,6 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -ansi
 
-default: program
-
 program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
 	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
 
@@ -39,35 +37,32 @@ PRNG.o: ../library/PRNG.c ../library/PRNG.h
 encryptDecrypt.o: ../library/encryptDecrypt.c ../library/encryptDecrypt.h
 	$(CC) $(CFLAGS) -c ../library/encryptDecrypt.c
 
-additionalFunctions.o: ../Montgomery_Exponentiation/additionalFunctions.c ../Montgomery_Exponentiation/additionalFunctions.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/additionalFunctions.c
+additionalFunctions.o: ../Key_Establishment/Source/additionalFunctions.c ../Key_Establishment/Header/additionalFunctions.h
+	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/additionalFunctions.c
 
-modFunctions.o: ../Montgomery_Exponentiation/modFunctions.c ../Montgomery_Exponentiation/modFunctions.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/modFunctions.c
+modFunctions.o: ../Key_Establishment/Source/modFunctions.c ../Key_Establishment/Header/modFunctions.h
+	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/modFunctions.c
 	
-modularInverse.o: ../Montgomery_Exponentiation/modularInverse.c ../Montgomery_Exponentiation/modularInverse.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/modularInverse.c
+modularInverse.o: ../Key_Establishment/Source/modularInverse.c ../Key_Establishment/Header/modularInverse.h
+	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/Source/modularInverse.c
 	
-montExponentiation.o: ../Montgomery_Exponentiation/montExponentiation.c ../Montgomery_Exponentiation/montExponentiation.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/montExponentiation.c
+montExponentiation.o: ../Key_Establishment/Source/montExponentiation.c ../Key_Establishment/Header/montExponentiation.h
+	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/montExponentiation.c
 	
-formatting.o: ../Signature/formatting.c ../Signature/formatting.h
-	$(CC) $(CFLAGS) -c ../Signature/formatting.c
+formatting.o: ../Key_Establishment/Source/formatting.c ../Key_Establishment/Header/formatting.h
+	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/formatting.c
 
-maskGenerationFunction.o: ../Signature/maskGenerationFunction.c ../Signature/maskGenerationFunction.h
-	$(CC) $(CFLAGS) -c ../Signature/maskGenerationFunction.c
+maskGenerationFunction.o: ../Key_Establishment/Source/maskGenerationFunction.c ../Key_Establishment/Header/maskGenerationFunction.h
+	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/maskGenerationFunction.c
 	
-signatureMessage.o: ../Signature/signatureMessage.c ../Signature/signatureMessage.h
-	$(CC) $(CFLAGS) -c ../Signature/signatureMessage.c
+signatureMessage.o: ../Key_Establishment/Source/signatureMessage.c ../Key_Establishment/Header/signatureMessage.h
+	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/signatureMessage.c
 	
-verifySignature.o: ../Signature/verifySignature.c ../Signature/verifySignature.h
-	$(CC) $(CFLAGS) -c ../Signature/verifySignature.c
+verifySignature.o: ../Key_Establishment/Source/verifySignature.c ../Key_Establishment/Header/verifySignature.h
+	$(CC) $(CFLAGS) -c ../Signature/Source/verifySignature.c
 	
-keyEstablishmentFunctions.o: ../Signature/keyEstablishmentFunctions.c ../Signature/keyEstablishmentFunctions.h
-	$(CC) $(CFLAGS)	-c ../Signature/keyEstablishmentFunctions.c
+keyEstablishmentFunctions.o: ../Key_Establishment/Source/keyEstablishmentFunctions.c ../Key_Establishment/Header/keyEstablishmentFunctions.h
+	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/keyEstablishmentFunctions.c
 
-	
-	
-clean:
-	$(RM) program *.o
+
 
