@@ -39,7 +39,7 @@
 
 
 int main(void){
-
+/*
 	uint16_t g[baseLength] = {0x285a, 0xd063, 0xcb4e, 0x158b, 0x19ac, 0xc462, 0x9dc7, 0x8b92, 0x5b55, 0x7200, 0xaf8a, 0x2b99, 0xf89b, 0xac17, 0xf31c, 0x93a9, 0x40ef, 0x5755, 0xb08b, 0x406e, 0xeb08, 0xec9a, 0x1d0a, 0x9ca9, 0xa2a0, 0x6e3e, 0xd680, 0x534c, 0x874, 0xf626, 0x7f4b, 0x8735, 0x3ec1, 0x909a, 0x8016, 0x915d, 0x4949, 0xf7ed, 0x8fef, 0xeb1, 0x55e, 0x245c, 0x49d3, 0x2f9e, 0xfbc3, 0x9d0, 0xb7b7, 0x3b3f, 0x859c, 0x82da, 0x8f40, 0x6254, 0x1b12, 0x4a54, 0xcde1, 0x2c18, 0x12c5, 0x35ba, 0x79df, 0x625c};
 	
 	uint16_t  p[modLength] = {0xC560, 0x6230, 0x4537, 0xA900, 0x9534, 0xD2ED, 0xE51C, 0xED5A, 0x1299, 0x4928, 0xEACF, 0x4FA5, 0x11D3, 0x082E, 0xD8EA, 0xFEB9, 0xAD67, 0x7B2E, 0x6948, 0xB8BF, 0x513A, 0xA1AD, 0x6CF8, 0x18AD, 0x4B22, 0xDEEC, 0xC060, 0xD442, 0x7015, 0xC93D, 0x8860, 0x236A, 0x0514, 0xBD7C, 0xAB1B, 0xE756, 0xB6A0, 0x16AF, 0xF376, 0x2C6F, 0xA56F, 0x15DD, 0x387B, 0x7CE4, 0x6C16, 0xA09E, 0xB321, 0x5194, 0x2469, 0x0DB8, 0x2E31, 0x22D7, 0x1065, 0x6FE3, 0xBC1B, 0x74CB, 0xBA4F, 0x84FE, 0xD68B, 0xEC13, 0x527C, 0x5095, 0xAEA0, 0x9029};
@@ -56,8 +56,7 @@ int main(void){
 	uint16_t gx[modLength] = {0};
 	uint16_t gy[modLength] = {0};
 
-	uint8_t K1[encryptKeyLength] = {0};
-	uint8_t K2[encryptKeyLength] = {0};
+
 	
 	uint8_t messageB[sizeMessageAB] = {0};
 	uint16_t tempEMB[sizeModulusB] = {0};
@@ -72,10 +71,14 @@ int main(void){
 	uint16_t receivedMessageA[sizeModulusA] = {0};
 	uint16_t receivedMessageB[sizeModulusB] = {0};
 	uint16_t identityAVerified = 0;
-	
+	*/
+
+	uint8_t K1[encryptKeyLength] = {0};
+	uint8_t K2[encryptKeyLength] = {0};
+
 	uint8_t keyInString[encryptKeyLength] = {0};
 	uint8_t key[encryptKeyLength] = {0};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789 ";
+    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789 JJhello there 0123456789 KKhello there 0123456789 LLhello there 0123456789 MMhello there 0123456789 NNhello there 0123456789 OOhello there 0123456789 PPhello there 0123456789 QQhello there 0123456789";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     
@@ -86,18 +89,18 @@ int main(void){
 	
 	
 	/*** DATA TRANSMISSION ***/
-	printf("\n Start of the Data Transmission...\n\n");
+	printf("\n Start of the Data Transmission...msglength = %d\n\n", msgSize[0]);
 	copyArray8(K1, key, encryptKeyLength);
     msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
 	
-	encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
-	decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
+	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
+	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
 	
 
 	/* Printout operation summary */
-	printf("\n---\nSummary I ... msglength = %d\n---\n", msgSize[0]);
+	printf("\n---\nSummary I ... \n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0]);
 	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, msgSize[0]);
