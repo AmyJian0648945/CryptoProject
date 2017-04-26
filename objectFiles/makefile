@@ -44,7 +44,7 @@ modFunctions.o: ../Key_Establishment/Source/modFunctions.c ../Key_Establishment/
 	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/modFunctions.c
 	
 modularInverse.o: ../Key_Establishment/Source/modularInverse.c ../Key_Establishment/Header/modularInverse.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/Source/modularInverse.c
+	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/modularInverse.c
 	
 montExponentiation.o: ../Key_Establishment/Source/montExponentiation.c ../Key_Establishment/Header/montExponentiation.h
 	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/montExponentiation.c

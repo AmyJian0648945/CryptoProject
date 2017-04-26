@@ -1,4 +1,4 @@
-#include "modFunctions.h"
+#include "../Header/modFunctions.h"
 
 /*
 	Turns an array of binaries (binaryString) into an array of 16-bit numbers (output).

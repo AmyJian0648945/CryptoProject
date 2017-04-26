@@ -1,4 +1,4 @@
-#include "additionalFunctions.h"
+#include "../Header/additionalFunctions.h"
 
 /*	Print input array of size ArrayLength; word is the name for the array.
 */

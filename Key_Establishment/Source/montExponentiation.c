@@ -1,4 +1,4 @@
-#include "montExponentiation.h"
+#include "../Header/montExponentiation.h"
 
 /* xyR-1modm
 	0 <= x,y < m
