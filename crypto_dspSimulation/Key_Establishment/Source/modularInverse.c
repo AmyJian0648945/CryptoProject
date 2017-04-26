@@ -1,5 +1,5 @@
 
-#include "Key_Establishment/Header/modularInverse.h"
+#include "../Header/modularInverse.h"
 
 /* x <- x - y
 	x: first number
