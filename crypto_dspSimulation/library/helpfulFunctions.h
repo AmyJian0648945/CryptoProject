@@ -11,7 +11,7 @@
 #include <stdio.h>
 #endif
 
-#include <sys/time.h>
+#include <time.h>
 
 
 

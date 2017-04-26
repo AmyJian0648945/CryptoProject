@@ -9,7 +9,7 @@
 /* Maximum size for an array */
 
 #ifndef MAXIMUMLENGTH
-#define MAXIMUMLENGTH 4096
+#define MAXIMUMLENGTH 2048
 #endif
 /* Macro for the binary array w for squareProduct and multiplication */
 
