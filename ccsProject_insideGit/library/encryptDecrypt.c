@@ -2,6 +2,8 @@
 #include "encryptDecrypt.h"
 
 
+
+
 void encryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};

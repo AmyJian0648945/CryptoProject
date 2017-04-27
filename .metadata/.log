@@ -45,3 +45,6 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.
 
 !ENTRY org.eclipse.cdt.core 1 0 2017-04-27 11:25:59.602
 !MESSAGE Indexed 'ccsProject_insideGit' (1 sources, 19 headers) in 0.39 sec: 383 declarations; 446 references; 4 unresolved inclusions; 0 syntax errors; 7 unresolved names (0.84%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-04-27 11:36:06.768
+!MESSAGE Indexed 'ccsProject_insideGit' (18 sources, 44 headers) in 0.32 sec: 1,869 declarations; 5,467 references; 7 unresolved inclusions; 1 syntax errors; 14 unresolved names (0.19%)

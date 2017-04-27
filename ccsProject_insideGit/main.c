@@ -75,8 +75,7 @@ int main(void){
     uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
-    uint8_t tempLength = 0;
-    uint8_t msgSize[1] = {0};
+    uint16_t msgSize[1] = {0};
 
     /* Processing keys = make sure its in char */
     uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
@@ -158,24 +157,24 @@ int main(void){
 	else
 		printf("Authentication A failed\n\n");
 	
-	
+
 	
 	/*** DATA TRANSMISSION ***/
 	printf("\n Start of the Data Transmission...\n\n");
 	copyArray8(K1, key, encryptKeyLength);
-    msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
+    msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
 	
 	encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
 	decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
-	tempLength = (uint8_t) msgSize[0]; 
+
 
 	/* Printout operation summary */
 	printf("\n---\nSummary I ...\n---\n");
-	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
-	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, tempLength );
-	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
+	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0] );
+	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, msgSize[0]);
 
 
 

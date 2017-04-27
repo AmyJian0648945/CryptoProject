@@ -6,7 +6,7 @@
 #include "../../library/useAES.h"
 #include "../../library/PRNG.h"
 #include "montExponentiation.h"
-#include "formatting.h"
+#include <stdint.h>
 
 #ifndef expLengthMAX
 #define expLengthMAX 128
@@ -51,6 +51,27 @@ void signMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, u
 void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus, uint16_t *publicExponent, uint16_t sizeSignedMessage, uint16_t sizeMod, uint16_t sizePublicExp);
 void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeMessage, uint8_t *key);
 void decryptMessage(uint8_t *message, uint16_t *decryptedMessage, uint16_t sizeMessage, uint8_t *key);
+
+
+/*** Originally from formatting.h ***/
+/* Reformatting the array
+	From 8 bit words to 16 bit words.
+	uint8_t *input = array of 8 bit words (input).
+	uint16_t *output = array of 16 bit words (output).
+	size = 2 * number of elements in input
+		 = number of elements in output
+*/
+void from8to16(uint8_t *input, uint16_t *output, uint16_t size);
+/* Reformatting the array.
+	From 16 bit words to 8 bit words.
+	Inputs:
+		uint16_t *input = array of 16 words (input).
+		uint8_t *output = array of 8 words (output).
+		size = number of elements in input
+			 = 2 * number of elements in output
+*/
+void from16to8(uint16_t *input, uint8_t *output, uint16_t size);
+
 
 #endif
 
