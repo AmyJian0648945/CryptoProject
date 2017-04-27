@@ -2,6 +2,20 @@
 **** Build of configuration Release for project ccsProject_insideGit ****
 
 C:\ti\ccsv5\utils\bin\gmake -k all 
-gmake: Nothing to be done for `all'.
+'Building file: ../main.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+"C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h", line 124: warning #233-D: declaration is not visible outside of function
+"C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/pthreadtypes.h", line 71: warning #41-D: expected an identifier
+"../main.c", line 63: warning #552-D: variable "identityBVerified" was set but never used
+"../main.c", line 71: warning #552-D: variable "identityAVerified" was set but never used
+'Finished building: ../main.c'
+' '
+'Building target: ccsProject_insideGit.out'
+'Invoking: C6000 Linker'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject_insideGit.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --rom_model -o "ccsProject_insideGit.out"  "./Key_Establishment/Source/verifySignature.obj" "./Key_Establishment/Source/signatureMessage.obj" "./Key_Establishment/Source/montExponentiation.obj" "./Key_Establishment/Source/modularInverse.obj" "./Key_Establishment/Source/modFunctions.obj" "./Key_Establishment/Source/maskGenerationFunction.obj" "./Key_Establishment/Source/keyEstablishmentFunctions.obj" "./Key_Establishment/Source/additionalFunctions.obj" "./library/useSHA256.obj" "./library/useAES.obj" "./library/sha2.obj" "./library/hmac.obj" "./library/helpfulFunctions.obj" "./library/encryptDecrypt.obj" "./library/aes.obj" "./library/PRNG.obj" "./main.obj" -l"libc.a" "../C6748.cmd" 
+<Linking>
+'Finished building target: ccsProject_insideGit.out'
+' '
 
 **** Build Finished ****

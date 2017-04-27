@@ -31,7 +31,7 @@ void repositionZeros(uint16_t *array, uint16_t size){
 void createExponent( uint16_t *x, uint16_t sizeX){
 
 	uint8_t x8[expLengthMAX*2] = {0};
-/*	uint8_t sizeExponent[1] = {0};
+	uint8_t sizeExponent[1] = {0};
 	uint16_t sizeCast = 0;
 
 	RNG(sizeExponent,1);
@@ -39,14 +39,11 @@ void createExponent( uint16_t *x, uint16_t sizeX){
 		RNG(sizeExponent,1);
 	}
 	sizeCast = (uint16_t) sizeExponent[0]/8;
-	RNG(x8,sizeCast);*/
-	x8[0] = 5;
-	from8to16(x8,x,expLengthMAX);
-/*	while (numberIsZero(x, expLengthMAX)){
+/*	while (numberIsZero8(x8, expLengthMAX*2)){
 		RNG(x8,sizeCast);
-		RNG(x8,2);
-		from8to16(x8,x,expLengthMAX);
 	}*/
+	RNG(x8,sizeCast);
+	from8to16(x8,x,expLengthMAX);
 	repositionZeros(x,expLengthMAX);
 	
 }

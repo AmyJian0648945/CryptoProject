@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="37" version="2.0">
+<workbench progressCount="46" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="129" y="-12">
 <fastViewData fastViewLocation="1024">
@@ -34,13 +34,19 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/r0648945/Documents/CryptoProject/ccsProject_insideGit/main.c" title="main.c" tooltip="ccsProject_insideGit/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/r0648945/Documents/CryptoProject/ccsProject_insideGit/main.c" title="main.c" tooltip="ccsProject_insideGit/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ccsProject_insideGit/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10209" selectionTopPixel="2355"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6136" selectionTopPixel="1321"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="helpfulFunctions.h" partName="helpfulFunctions.h" path="C:/Users/r0648945/Documents/CryptoProject/ccsProject_insideGit/library/helpfulFunctions.h" title="helpfulFunctions.h" tooltip="ccsProject_insideGit/library/helpfulFunctions.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ccsProject_insideGit/library/helpfulFunctions.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="180"/>
 </editor>
 </editors>
 <views>
@@ -65,7 +71,6 @@
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
 <category IMemento.internal.id="Warnings (7 items)"/>
-<category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="657" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="162" org.eclipse.ui.ide.severityAndDescriptionField="401"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -81,18 +86,13 @@
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
-<view id="com.ti.dvt.ui.views.table:Profile - 2" partName="Profile - 2">
-<viewState>
-<pane IMemento.internal.id="com.ti.dvt.ui.views.table:Profile - 2"/>
-</viewState>
-</view>
 <view id="com.ti.dvt.ui.views.table:Profile" partName="Profile">
 <viewState>
 <pane IMemento.internal.id="com.ti.dvt.ui.views.table:Profile"/>
 </viewState>
 </view>
 </views>
-<perspectives activePart="org.eclipse.debug.ui.DebugView" activePerspective="com.ti.ccstudio.TIDebugPerspective">
+<perspectives activePart="com.ti.dvt.ui.views.table:Profile" activePerspective="com.ti.ccstudio.TIDebugPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="com.ti.ccstudio.internal.ui.perspectives.TICPerspectiveFactory" id="com.ti.ccstudio.TICPerspective" label="CCS Edit"/>
 <alwaysOnActionSet id="org.eclipse.egit.ui.navigation"/>
@@ -388,7 +388,7 @@
 <view id="org.eclipse.ui.navigator.ProjectExplorer"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars>
-<fastViewBar fastViewLocation="1024" id="bottomRight" orientation="256" selectedTabId="org.eclipse.cdt.ui.callHierarchy" style="0">
+<fastViewBar fastViewLocation="1024" id="bottomRight" orientation="256" selectedTabId="org.eclipse.ui.views.ProblemView" style="0">
 <fastViews>
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.29946524"/>
 <view id="org.eclipse.ui.views.ProgressView" ratio="0.29946524"/>
@@ -660,7 +660,6 @@
 <view id="org.eclipse.debug.ui.RegisterView"/>
 <view id="com.ti.dvt.ui.views.table:Profile"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
-<view id="com.ti.dvt.ui.views.table:Profile - 2"/>
 <fastViews>
 <view id="com.ti.ccstudio.system.setup.ui.views.TargetConfigurationView" ratio="0.3"/>
 </fastViews>
@@ -687,39 +686,38 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.13090129" ratioLeft="122" ratioRight="810" relationship="4" relative="topLeft"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@ddfa31" ratio="0.6994302" ratioLeft="491" ratioRight="211" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.24919786" ratioLeft="233" ratioRight="702" relationship="4" relative="topLeft"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@8aa7f4" ratio="0.6994302" ratioLeft="491" ratioRight="211" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
-<page content="com.ti.dvt.ui.views.table:Profile - 2" label="Profile - 2"/>
-<page content="com.ti.dvt.ui.views.table:Profile - 2@1" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="bottomRight" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.internal.ViewStack@ddfa31">
+<info folder="true" part="bottomRight" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.internal.ViewStack@8aa7f4">
 <folder appearance="2" expanded="2">
 <page content="com.ti.ccstudio.scripting.console.ConsoleView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="right" ratio="0.6997908" ratioLeft="1338" ratioRight="574" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@17a50e2" ratio="0.6997908" ratioLeft="1338" ratioRight="574" relationship="2" relative="org.eclipse.ui.editorss">
 <folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.egit.ui.RepositoriesView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.editorss"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@5af55f" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@151c368" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
 <page content="com.ti.dvt.profile.views.ConfigurationsView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@19427c9" ratio="0.30539548" ratioLeft="583" ratioRight="1326" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@16471df" ratio="0.3389209" ratioLeft="647" ratioRight="1262" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="com.ti.dvt.ui.views.table:Profile" appearance="2" expanded="2">
 <page content="com.ti.dvt.ui.views.table:Profile" label="Profile"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -728,7 +726,7 @@
 </folder>
 </info>
 <info folder="true" part="topRight" ratio="0.4497908" ratioLeft="860" ratioRight="1052" relationship="2" relative="topLeft">
-<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
@@ -745,182 +743,12 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory>
-<editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/additionalFunctions.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/keyEstablishmentFunctions.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Header/montExponentiation.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Header/modFunctions.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/modFunctions.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/montExponentiation.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Header/formatting.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Header/keyEstablishmentFunctions.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/formatting.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/verifySignature.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Header/verifySignature.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Source/signatureMessage.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ccsProject_insideGit/Key_Establishment/Header/signatureMessage.h"/>
-</editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="918" y="0"/>
-</item>
-<item historyLabel="additionalFunctions.c" index="1">
-<position info="not_deleted" x="654" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="183" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="7961" y="16"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="7927" y="14"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="717" y="18"/>
-</item>
-<item historyLabel="montExponentiation.h" index="3">
-<position info="not_deleted" x="135" y="12"/>
-</item>
-<item historyLabel="modFunctions.h" index="4">
-<position info="not_deleted" x="440" y="3"/>
-</item>
-<item historyLabel="modFunctions.c" index="5">
-<position info="not_deleted" x="1820" y="3"/>
-</item>
-<item historyLabel="montExponentiation.c" index="6">
-<position info="not_deleted" x="3424" y="0"/>
-</item>
-<item historyLabel="modFunctions.c" index="5">
-<position info="not_deleted" x="1604" y="0"/>
-</item>
-<item historyLabel="montExponentiation.c" index="6">
-<position info="not_deleted" x="3424" y="0"/>
-</item>
-<item historyLabel="modFunctions.h" index="4">
-<position info="not_deleted" x="440" y="3"/>
-</item>
-<item historyLabel="modFunctions.c" index="5">
-<position info="not_deleted" x="2012" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="8025" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position/>
-</item>
-<item historyLabel="montExponentiation.h" index="3">
-<position info="not_deleted" x="478" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position/>
-</item>
-<item historyLabel="modFunctions.c" index="5">
-<position info="not_deleted" x="2012" y="0"/>
-</item>
-<item historyLabel="montExponentiation.c" index="6">
-<position info="not_deleted" x="3424" y="0"/>
-</item>
-<item historyLabel="modFunctions.c" index="5">
-<position info="not_deleted" x="2012" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position/>
-</item>
-<item historyLabel="modFunctions.h" index="4">
-<position info="not_deleted" x="440" y="3"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="8025" y="0"/>
-</item>
-<item historyLabel="formatting.h" index="7">
-<position info="not_deleted" x="709" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.h" index="8">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="formatting.h" index="7">
-<position info="not_deleted" x="713" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.h" index="8">
-<position info="not_deleted" x="2845" y="0"/>
-</item>
-<item historyLabel="formatting.h" index="7">
-<position info="not_deleted" x="713" y="0"/>
-</item>
-<item historyLabel="formatting.c" index="9">
-<position info="not_deleted" x="673" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="keyEstablishmentFunctions.c" index="2">
-<position info="not_deleted" x="1013" y="0"/>
-</item>
-<item historyLabel="verifySignature.c" index="10">
-<position/>
-</item>
-<item historyLabel="verifySignature.c" index="10">
-<position/>
-</item>
-<item historyLabel="verifySignature.h" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="verifySignature.c" index="10">
-<position/>
-</item>
-<item historyLabel="signatureMessage.c" index="12">
-<position info="not_deleted" x="22" y="16"/>
-</item>
-<item historyLabel="signatureMessage.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="signatureMessage.c" index="12">
-<position info="not_deleted" x="43" y="0"/>
-</item>
-<item historyLabel="verifySignature.c" index="10">
-<position/>
-</item>
-<item historyLabel="verifySignature.c" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="475" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="475" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="9386" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="9388" y="0"/>
-</item>
-<item active="true" historyLabel="main.c" index="0">
-<position info="not_deleted" x="10204" y="0"/>
-</item>
-</navigationHistory>
+<navigationHistory/>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@5af55f"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 <trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
@@ -933,43 +761,48 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
 <trimItem IMemento.internal.id="bottomRight"/>
-<trimItem IMemento.internal.id="bottomLeft"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ccsProject_insideGit/main.c">
-<persistable path="/ccsProject_insideGit/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="encryptDecrypt.h" tooltip="ccsProject_insideGit/library/encryptDecrypt.h">
+<persistable path="/ccsProject_insideGit/library/encryptDecrypt.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="verifySignature.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/verifySignature.c">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Source/verifySignature.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="encryptDecrypt.c" tooltip="ccsProject_insideGit/library/encryptDecrypt.c">
+<persistable path="/ccsProject_insideGit/library/encryptDecrypt.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="signatureMessage.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/signatureMessage.h">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Header/signatureMessage.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helpfulFunctions.h" tooltip="ccsProject_insideGit/library/helpfulFunctions.h">
+<persistable path="/ccsProject_insideGit/library/helpfulFunctions.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="signatureMessage.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/signatureMessage.c">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Source/signatureMessage.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="additionalFunctions.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/additionalFunctions.c">
+<persistable path="/ccsProject_insideGit/Key_Establishment/Source/additionalFunctions.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="verifySignature.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/verifySignature.h">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Header/verifySignature.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="helpfulFunctions.c" tooltip="ccsProject_insideGit/library/helpfulFunctions.c">
+<persistable path="/ccsProject_insideGit/library/helpfulFunctions.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="keyEstablishmentFunctions.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/keyEstablishmentFunctions.c">
 <persistable path="/ccsProject_insideGit/Key_Establishment/Source/keyEstablishmentFunctions.c"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="additionalFunctions.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/additionalFunctions.h">
+<persistable path="/ccsProject_insideGit/Key_Establishment/Header/additionalFunctions.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="keyEstablishmentFunctions.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/keyEstablishmentFunctions.h">
 <persistable path="/ccsProject_insideGit/Key_Establishment/Header/keyEstablishmentFunctions.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="montExponentiation.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/montExponentiation.c">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Source/montExponentiation.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="modFunctions.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/modFunctions.c">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Source/modFunctions.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ccsProject_insideGit/main.c">
+<persistable path="/ccsProject_insideGit/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="modFunctions.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/modFunctions.h">
 <persistable path="/ccsProject_insideGit/Key_Establishment/Header/modFunctions.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="montExponentiation.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/montExponentiation.h">
-<persistable path="/ccsProject_insideGit/Key_Establishment/Header/montExponentiation.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="verifySignature.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/verifySignature.h">
+<persistable path="/ccsProject_insideGit/Key_Establishment/Header/verifySignature.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="signatureMessage.h" tooltip="ccsProject_insideGit/Key_Establishment/Header/signatureMessage.h">
+<persistable path="/ccsProject_insideGit/Key_Establishment/Header/signatureMessage.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="verifySignature.c" tooltip="ccsProject_insideGit/Key_Establishment/Source/verifySignature.c">
+<persistable path="/ccsProject_insideGit/Key_Establishment/Source/verifySignature.c"/>
 </file>
 </mruList>
 </workbench>

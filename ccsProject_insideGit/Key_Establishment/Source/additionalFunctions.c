@@ -63,6 +63,17 @@ uint16_t numberIsZero(uint16_t *number, uint16_t numberOfElements){
 	return 1;
 }
 
+/*	Returns 1 if number is equal to 0.
+*/
+uint16_t numberIsZero8(uint8_t *number, uint16_t numberOfElements){
+	int k;
+	for (k=0;k<numberOfElements;k++){
+		if (number[k] != 0)
+			return 0;
+	}
+	return 1;
+}
+
 /*	Copies the arrayLength elements of original into copiedVersion.
 */
 void copyArray16(uint16_t *original, uint16_t *copiedVersion, uint16_t arrayLength){
