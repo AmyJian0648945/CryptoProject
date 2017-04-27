@@ -1,19 +1,19 @@
 #ifndef KEYESTABLISHMENTFUNCTIONS_H
 #define KEYESTABLISHMENTFUNCTIONS_H
 
+#include <stdint.h>
 #include "../../library/helpfulFunctions.h"
 #include "../../library/useSHA256.h"
 #include "../../library/useAES.h"
 #include "../../library/PRNG.h"
 #include "montExponentiation.h"
-#include <stdint.h>
 
 #ifndef expLengthMAX
-#define expLengthMAX 128
+#define expLengthMAX 32
 #endif
 
 #ifndef modLength
-#define modLength 64
+#define modLength 32
 #endif
 
 #ifndef MAXSIZE
@@ -52,8 +52,6 @@ void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus,
 void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeMessage, uint8_t *key);
 void decryptMessage(uint8_t *message, uint16_t *decryptedMessage, uint16_t sizeMessage, uint8_t *key);
 
-
-/*** Originally from formatting.h ***/
 /* Reformatting the array
 	From 8 bit words to 16 bit words.
 	uint8_t *input = array of 8 bit words (input).
@@ -71,7 +69,6 @@ void from8to16(uint8_t *input, uint16_t *output, uint16_t size);
 			 = 2 * number of elements in output
 */
 void from16to8(uint16_t *input, uint8_t *output, uint16_t size);
-
 
 #endif
 
