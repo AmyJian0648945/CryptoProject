@@ -23,3 +23,25 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.
 
 !ENTRY com.ti.gde.diagram 1 0 2017-04-26 23:44:34.371
 !MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+!SESSION 2017-04-27 11:24:55.340 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product -data C:\Users\r0648945\Documents\CryptoProject -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-04-27 11:25:10.638
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-04-27 11:25:10.641
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-04-27 11:25:10.644
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-04-27 11:25:10.645
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-04-27 11:25:59.602
+!MESSAGE Indexed 'ccsProject_insideGit' (1 sources, 19 headers) in 0.39 sec: 383 declarations; 446 references; 4 unresolved inclusions; 0 syntax errors; 7 unresolved names (0.84%)
