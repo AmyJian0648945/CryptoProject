@@ -33,12 +33,12 @@ void createExponent( uint16_t *x, uint16_t sizeX){
 	uint8_t sizeExponent[1] = {0};
 	uint8_t x8[expLengthMAX*2] = {0};
 	uint16_t sizeCast = 0;
-	
+
 	RNG(sizeExponent,1);
 	while (sizeExponent[0] == 0){
 		RNG(sizeExponent,1);
 	}
-	sizeCast = (uint16_t) sizeExponent[0];
+	sizeCast = (uint16_t) sizeExponent[0]/8;
 	RNG(x8,sizeCast);
 	from8to16(x8,x,expLengthMAX);
 	while (numberIsZero(x, expLengthMAX)){
@@ -57,10 +57,10 @@ void computePartOfKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint16_t *pa
 void calculateKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint8_t *Key, uint16_t sizeG, uint16_t sizeM, uint16_t sizeExp){
 	
 	uint16_t tempKey[modLength] = {0};
-	uint8_t tempKey8[modLength] = {0};
+	uint8_t tempKey8[modLength*2] = {0};
 	uint8_t hashKey[HASHLEN] = {0};
 	int i;
-	
+
 	montExp(g,m,exponent,tempKey,sizeG,sizeM,sizeExp);
 	from16to8(tempKey,tempKey8,sizeM);
 
@@ -68,12 +68,11 @@ void calculateKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint8_t *Key, ui
 	for(i=0;i<(HASHLEN/2);i++){
 		Key[i] = hashKey[i];
 	}
-	
 }
 
 void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t sizegxgy){
 	
-	uint8_t part[MAXSIZE] = {0};
+	uint8_t part[modLength*2] = {0};
 	from16to8(gx, part, sizegxgy);
 	concat(message, part, 0, sizegxgy*2);
 	from16to8(gy, part, sizegxgy);

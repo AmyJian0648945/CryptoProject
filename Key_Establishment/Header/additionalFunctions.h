@@ -6,7 +6,7 @@
 #include <string.h>
 
 #ifndef MAXLENGTH
-#define MAXLENGTH 2048
+#define MAXLENGTH 256
 #endif
 
 void printArray16(uint16_t *array, char *word, uint16_t arrayLength);

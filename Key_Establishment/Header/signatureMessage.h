@@ -6,7 +6,7 @@
 #include "../../library/useSHA256.h"
 
 #ifndef EMLEN
-#define EMLEN	256
+#define EMLEN	128
 #endif
 
 #ifndef HASHLEN

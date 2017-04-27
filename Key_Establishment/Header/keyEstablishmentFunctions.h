@@ -9,11 +9,11 @@
 #include "formatting.h"
 
 #ifndef expLengthMAX
-#define expLengthMAX 128
+#define expLengthMAX 32
 #endif
 
 #ifndef modLength
-#define modLength 64
+#define modLength 32
 #endif
 
 #ifndef MAXSIZE

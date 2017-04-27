@@ -7,11 +7,11 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -ansi
 
-program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
-	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
+program:  main2.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
+	$(CC) $(CFLAGS) -o program main2.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
 
-main.o: ../main.c 
-	$(CC) $(CFLAGS) -c ../main.c
+main2.o: ../main2.c 
+	$(CC) $(CFLAGS) -c ../main2.c
 
 aes.o: ../library/aes.c ../library/aes.h
 	$(CC) $(CFLAGS) -c ../library/aes.c 
@@ -59,7 +59,7 @@ signatureMessage.o: ../Key_Establishment/Source/signatureMessage.c ../Key_Establ
 	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/signatureMessage.c
 	
 verifySignature.o: ../Key_Establishment/Source/verifySignature.c ../Key_Establishment/Header/verifySignature.h
-	$(CC) $(CFLAGS) -c ../Signature/Source/verifySignature.c
+	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/verifySignature.c
 	
 keyEstablishmentFunctions.o: ../Key_Establishment/Source/keyEstablishmentFunctions.c ../Key_Establishment/Header/keyEstablishmentFunctions.h
 	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/keyEstablishmentFunctions.c
