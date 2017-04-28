@@ -78,7 +78,7 @@ int main(void){
     uint16_t msgSize[1] = {0};
 
     /* Processing keys = make sure its in char */
-    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0*/
+    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0 */
 	
 	/**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
 	/*** STS - Protocol ***/
@@ -120,8 +120,12 @@ int main(void){
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
 	
+	/*
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
+	 */
+	signAndEncryptMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB, EMB, K1);
+
 #ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
 	printArray8(EMB, "Transmitted message", sizeModulusAB*2);
@@ -159,8 +163,11 @@ int main(void){
 	createMessage(gx, gy, messageA, modLength);
 	signatureMessage(messageA, encodedMessageA);
 
+	/*
 	signMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusAB, sizePrExpAB);
-	encryptMessage(tempEMA, EMA, sizeModulusAB, K2);
+	encryptMessage(tempEMA, EMA, sizeModulusAB, K2); */
+	signAndEncryptMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusAB, sizePrExpAB, EMA, K2);
+
 #ifdef PRINT
 	printArray8(messageA,"Original message A -> B",sizeMessageAB);
 	printArray8(EMA, "Transmitted message", sizeModulusAB*2);

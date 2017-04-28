@@ -52,6 +52,11 @@ void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus,
 void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeMessage, uint8_t *key);
 void decryptMessage(uint8_t *message, uint16_t *decryptedMessage, uint16_t sizeMessage, uint8_t *key);
 
+
+void signAndEncryptMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp, uint8_t *encryptedMessage, uint8_t *key);
+
+
+
 /* Reformatting the array
 	From 8 bit words to 16 bit words.
 	uint8_t *input = array of 8 bit words (input).
