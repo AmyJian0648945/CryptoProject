@@ -84,7 +84,7 @@ void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t sizeg
 
 
 
-/*
+
 void signMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp){
 		
 	from8to16(message, signedMessage, sizeMessage/2);
@@ -99,7 +99,7 @@ void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeM
 	from16to8(message, encryptedMessage, sizeMessage);
 	simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key);
 }
-*/
+
 void signAndEncryptMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp, uint8_t *encryptedMessage, uint8_t *key){
 	uint16_t msgLength[1] = {0};
 
@@ -130,7 +130,7 @@ void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus,
 
 }
 
-//
+
 void from8to16(uint8_t *input, uint16_t *output, uint16_t size){
 	int k;
 	uint16_t first8bits = 0;

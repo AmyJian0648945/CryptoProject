@@ -7,11 +7,11 @@
 CC = gcc
 CFLAGS = -Wall -pedantic -ansi
 
-program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
-	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
+program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
+	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
 
-main.o: ../ccsProject_inside/main.c 
-	$(CC) $(CFLAGS) -c ../ccsProject_inside/main.c
+main.o: ../ccsProject_insideGit/main.c 
+	$(CC) $(CFLAGS) -c ../ccsProject_insideGit/main.c
 
 aes.o: ../ccsProject_insideGit/library/aes.c ../ccsProject_insideGit/library/aes.h
 	$(CC) $(CFLAGS) -c ../ccsProject_insideGit/library/aes.c 
@@ -44,13 +44,10 @@ modFunctions.o: ../ccsProject_insideGit/Key_Establishment/Source/modFunctions.c 
 	$(CC) $(CFLAGS)	-c ../ccsProject_insideGit/Key_Establishment/Source/modFunctions.c
 	
 modularInverse.o: ../ccsProject_insideGit/Key_Establishment/Source/modularInverse.c ../ccsProject_insideGit/Key_Establishment/Header/modularInverse.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/Source/modularInverse.c
+	$(CC) $(CFLAGS)	-c ../ccsProject_insideGit/Key_Establishment/Source/modularInverse.c
 	
 montExponentiation.o: ../ccsProject_insideGit/Key_Establishment/Source/montExponentiation.c ../ccsProject_insideGit/Key_Establishment/Header/montExponentiation.h
 	$(CC) $(CFLAGS)	-c ../ccsProject_insideGit/Key_Establishment/Source/montExponentiation.c
-	
-formatting.o: ../ccsProject_insideGit/Key_Establishment/Source/formatting.c ../ccsProject_insideGit/Key_Establishment/Header/formatting.h
-	$(CC) $(CFLAGS) -c ../ccsProject_insideGit/Key_Establishment/Source/formatting.c
 
 maskGenerationFunction.o: ../ccsProject_insideGit/Key_Establishment/Source/maskGenerationFunction.c ../ccsProject_insideGit/Key_Establishment/Header/maskGenerationFunction.h
 	$(CC) $(CFLAGS) -c ../ccsProject_insideGit/Key_Establishment/Source/maskGenerationFunction.c
@@ -59,10 +56,12 @@ signatureMessage.o: ../ccsProject_insideGit/Key_Establishment/Source/signatureMe
 	$(CC) $(CFLAGS) -c ../ccsProject_insideGit/Key_Establishment/Source/signatureMessage.c
 	
 verifySignature.o: ../ccsProject_insideGit/Key_Establishment/Source/verifySignature.c ../ccsProject_insideGit/Key_Establishment/Header/verifySignature.h
-	$(CC) $(CFLAGS) -c ../Signature/Source/verifySignature.c
+	$(CC) $(CFLAGS) -c ../ccsProject_insideGit/Key_Establishment/Source/verifySignature.c
 	
 keyEstablishmentFunctions.o: ../ccsProject_insideGit/Key_Establishment/Source/keyEstablishmentFunctions.c ../ccsProject_insideGit/Key_Establishment/Header/keyEstablishmentFunctions.h
 	$(CC) $(CFLAGS)	-c ../ccsProject_insideGit/Key_Establishment/Source/keyEstablishmentFunctions.c
 
+clean:
+	$(RM) program *.o
 
 

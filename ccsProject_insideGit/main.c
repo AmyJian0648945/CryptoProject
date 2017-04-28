@@ -124,8 +124,8 @@ int main(void){
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
 	printf("pause\n\n\n\n");
-	abort();
-	//signAndEncryptMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB, EMB, K1);
+	
+	/*signAndEncryptMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB, EMB, K1);*/
 
 #ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
