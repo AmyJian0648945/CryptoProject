@@ -8,7 +8,7 @@ void printArray16(uint16_t *array, char *word, uint16_t arrayLength){
 	for (index=0;index<arrayLength;index++){
 		printf("0x%x, ", array[index]);
 	}
-	printf("}; \n");
+	printf("}; \n\n");
 }
 /*	Print input array of size ArrayLength; word is the name for the array.
 */
@@ -18,7 +18,7 @@ void printArray8(uint8_t *array, char *word, uint16_t arrayLength){
 	for (index=0;index<arrayLength;index++){
 		printf("0x%x, ", array[index]);
 	}
-	printf("}; \n");
+	printf("}; \n\n");
 }
 /*	Make all arrayLength elements of array result equal to zero.
 */
