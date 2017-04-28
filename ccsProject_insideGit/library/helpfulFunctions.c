@@ -127,7 +127,10 @@ void seeTheDifference(uint8_t* input1, uint8_t* input2, uint16_t lengthToCompare
             abort();
         }
     }
+    
+    #ifdef PRINT
     if(i == lengthToCompare) printf(">> HMAC is the same - data integrity verified.\n");
+    #endif
 }
 
 
