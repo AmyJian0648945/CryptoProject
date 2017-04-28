@@ -56,6 +56,7 @@ int main(void){
 	uint8_t K1[encryptKeyLength] = {0};
 	uint8_t K2[encryptKeyLength] = {0};
 	
+
 	uint8_t messageA[sizeMessageAB] = {0};
 	uint8_t messageB[sizeMessageAB] = {0};
 	uint8_t encodedMessageB[sizeMessageAB] = {0};
@@ -114,22 +115,13 @@ int main(void){
 
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
-	/*
-	printf("\n-- values needed for signAndEncrypt --\n");
-	printArray8(encodedMessageB, "encodedMessageB", sizeModulusAB);
-	printArray8(transmittedMessageB, "transmittedMessageB", sizeModulusAB);
-	printArray16(modulusB, "modulusB", 64);
-	printArray16(privateExponentB, "privateExponentB", 64);
-	printArray8(K1, "K1", encryptKeyLength);
-*/
-
+	
 	/*
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
 	 */
-
 	signAndEncryptMessage(encodedMessageB, transmittedMessageB, modulusB, privateExponentB, K1);
-	
+
 #ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
 	printArray8(transmittedMessageB, "Transmitted message", sizeModulusAB*2);
@@ -210,26 +202,13 @@ int main(void){
     msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
-    
-#ifdef PRINT
-	printf(">> Entering encryption...\n");
-#endif
-
-	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
-
-#ifdef PRINT
-	printf(">> Encryption ended\n"); 
-	printf(">> Entering decryption...\n");
-#endif
-
-	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
 	
+	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
+	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
 
 
 	/* Printout operation summary */
 #ifdef PRINT
-	printf(">> Decryption ended\n"); 
-
 	printf("\n---\nSummary I ...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0] );
