@@ -124,9 +124,9 @@ int main(void){
 	
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
-	printf("pause\n\n\n\n");
 	
-	/*signAndEncryptMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB, EMB, K1);*/
+	
+	
 
 #ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
@@ -165,10 +165,10 @@ int main(void){
 	createMessage(gx, gy, messageA, modLength);
 	signatureMessage(messageA, encodedMessageA);
 
-	/*
+	
 	signMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusAB, sizePrExpAB);
-	encryptMessage(tempEMA, EMA, sizeModulusAB, K2); */
-	signAndEncryptMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusAB, sizePrExpAB, EMA, K2);
+	encryptMessage(tempEMA, EMA, sizeModulusAB, K2); 
+	
 
 #ifdef PRINT
 	printArray8(messageA,"Original message A -> B",sizeMessageAB);

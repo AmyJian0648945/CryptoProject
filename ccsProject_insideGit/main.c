@@ -56,14 +56,19 @@ int main(void){
 	uint8_t K1[encryptKeyLength] = {0};
 	uint8_t K2[encryptKeyLength] = {0};
 	
-	uint8_t messageA[sizeMessageAB] = {0};
 	uint8_t messageB[sizeMessageAB] = {0};
-	uint8_t encodedMessageB[sizeMessageAB] = {0};
-	uint8_t encodedMessageA[sizeMessageAB] = {0};
-	uint8_t transmittedMessageA[sizeModulusAB] = {0};
-	uint8_t transmittedMessageB[sizeModulusAB] = {0};
-	uint16_t identityAVerified = 0;
+	uint16_t tempEMB[sizeModulusAB] = {0};
+	uint8_t EMB[sizeModulusAB*2] = {0};
+	uint8_t encodedMessageB[sizeModulusAB*2] = {0};
 	uint16_t identityBVerified = 0;
+	
+	uint8_t messageA[sizeMessageAB] = {0};
+	uint8_t encodedMessageA[sizeMessageAB] = {0};
+	uint16_t tempEMA[sizeModulusAB] = {0};
+	uint8_t EMA[sizeModulusAB*2] = {0};
+	uint16_t receivedMessageA[sizeModulusAB] = {0};
+	uint16_t receivedMessageB[sizeModulusAB] = {0};
+	uint16_t identityAVerified = 0;
 	
 	uint8_t keyInString[encryptKeyLength] = {0};
 	uint8_t key[encryptKeyLength] = {0};
@@ -100,7 +105,8 @@ int main(void){
 #endif
 
 	
-	/** B - KEY CREATION + ENTITY AUTHENTICATION **/
+
+		/** B - KEY CREATION + ENTITY AUTHENTICATION **/
 	/** B sends message to A to prove identity **/
 #ifdef PRINT
 	printf("Start of authentication of B\n");
@@ -114,25 +120,17 @@ int main(void){
 
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
-	/*
-	printf("\n-- values needed for signAndEncrypt --\n");
-	printArray8(encodedMessageB, "encodedMessageB", sizeModulusAB);
-	printArray8(transmittedMessageB, "transmittedMessageB", sizeModulusAB);
-	printArray16(modulusB, "modulusB", 64);
-	printArray16(privateExponentB, "privateExponentB", 64);
-	printArray8(K1, "K1", encryptKeyLength);
-*/
-
-	/*
+	
+	
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
-	 */
-
-	signAndEncryptMessage(encodedMessageB, transmittedMessageB, modulusB, privateExponentB, K1);
 	
+	
+	
+
 #ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
-	printArray8(transmittedMessageB, "Transmitted message", sizeModulusAB*2);
+	printArray8(EMB, "Transmitted message", sizeModulusAB*2);
 	printf("B sends g^y mod p and Ek(Sb(g^y mod p || g^x mod p)) to A\n");
 #endif
 
@@ -146,15 +144,9 @@ int main(void){
 		
 	/* A verifies the signature of B after receiving EMB */
 	createMessage(gy, gx, messageB, modLength);
-
-
-/*
-	decryptMessage(EMB, transmittedMessageB, sizeModulusAB*2, K2);
-	unsignMessage(transmittedMessageB, encodedMessageB, modulusB, publicExponentB, sizeModulusAB, sizeModulusAB, sizePuExpAB);
-	*/
-
-	decryptAndUnsignMessage(transmittedMessageB, encodedMessageB, K2, modulusB, publicExponentB);
-
+	decryptMessage(EMB, receivedMessageB, sizeModulusAB*2, K2);
+	unsignMessage(receivedMessageB, encodedMessageB, modulusB, publicExponentB, sizeModulusAB, sizeModulusAB, sizePuExpAB);
+	
 	identityBVerified = verifySignature(messageB, encodedMessageB);
 #ifdef PRINT
 	if (identityBVerified == 1)
@@ -173,25 +165,22 @@ int main(void){
 	createMessage(gx, gy, messageA, modLength);
 	signatureMessage(messageA, encodedMessageA);
 
-	/*
+	
 	signMessage(encodedMessageA, tempEMA, modulusA, privateExponentA, sizeMessageAB,sizeModulusAB, sizePrExpAB);
-	encryptMessage(tempEMA, EMA, sizeModulusAB, K2); */
-	signAndEncryptMessage(encodedMessageA, transmittedMessageA, modulusA, privateExponentA, K1);
+	encryptMessage(tempEMA, EMA, sizeModulusAB, K2); 
+	
 
 #ifdef PRINT
 	printArray8(messageA,"Original message A -> B",sizeMessageAB);
-	printArray8(transmittedMessage, "Transmitted message", sizeMessageAB);
+	printArray8(EMA, "Transmitted message", sizeModulusAB*2);
 	printf("A sends Ek(Sa(g^x mod p || g^y mod p)) to B\n");
 #endif
 
 	/** B receives message of A and checks A's identity **/
 	createMessage(gx, gy, messageA, modLength);
-	/*
-	decryptMessage(EMA, transmittedMessageA, sizeModulusAB*2, K1);
-	unsignMessage(transmittedMessageA, encodedMessageA, modulusA, publicExponentA, sizeModulusAB, sizeModulusAB, sizePuExpAB);
-	*/
-	decryptAndUnsignMessage(transmittedMessageA, encodedMessageA, K1, modulusA, publicExponentA);
-
+	decryptMessage(EMA, receivedMessageA, sizeModulusAB*2, K1);
+	unsignMessage(receivedMessageA, encodedMessageA, modulusA, publicExponentA, sizeModulusAB, sizeModulusAB, sizePuExpAB);
+	
 	identityAVerified = verifySignature(messageA, encodedMessageA);
 #ifdef PRINT
 	if (identityAVerified == 1)
@@ -210,26 +199,13 @@ int main(void){
     msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
-    
-#ifdef PRINT
-	printf(">> Entering encryption...\n");
-#endif
-
-	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
-
-#ifdef PRINT
-	printf(">> Encryption ended\n"); 
-	printf(">> Entering decryption...\n");
-#endif
-
-	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
 	
+	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
+	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
 
 
 	/* Printout operation summary */
 #ifdef PRINT
-	printf(">> Decryption ended\n"); 
-
 	printf("\n---\nSummary I ...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0] );
@@ -244,4 +220,3 @@ int main(void){
 	
 	return 0;
 }
-
