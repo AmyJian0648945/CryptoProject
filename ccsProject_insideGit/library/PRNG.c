@@ -120,6 +120,7 @@ uint32_t findRandNum(){
 		if(randNum > MinRandNumLength) return randNum;
 	}
 
+	return 0; /* if return 0, it has failed */
 }
 
 

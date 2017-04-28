@@ -4,12 +4,12 @@
 #include "additionalFunctions.h"
 
 #ifndef MAXLENGTH
-#define MAXLENGTH 256
+#define MAXLENGTH 2048
 #endif
 /* Maximum size for an array */
 
 #ifndef MAXIMUMLENGTH
-#define MAXIMUMLENGTH 2048
+#define MAXIMUMLENGTH 4096
 #endif
 /* Macro for the binary array w for squareProduct and multiplication */
 

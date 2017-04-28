@@ -19,7 +19,7 @@ uint16_t verifySignature(uint8_t *message, uint8_t *encodedMessage){
 	int index;
 	
 	/* STEP 2 OF THE ALGORITHM */
-	simpleHashWithLength(hashResult, message, EMLEN);
+	simpleHashWithLength(hashResult, message, 256);
 	
 	/* STEP 4 */
 	if (encodedMessage[EMLEN-1] != 0xbc)

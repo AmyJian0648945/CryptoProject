@@ -19,7 +19,7 @@ void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 	uint8_t output[HASHLEN] = {0};
 	int i;
 	int index;
-	for (counter=0; counter<3; counter++){
+	for (counter=0; counter<7; counter++){
 		/* STEP A */
 		string[1] = 0;
 		string[2] = 0;

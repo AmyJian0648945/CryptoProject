@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<section name="MemoryDumperFillAction">
 		<item value="TISIM" key="com.ti.ccstudio.system.setup.ui.editors.connectionType"/>
 		<item value="Texas Instruments Simulator" key="com.ti.ccstudio.system.setup.ui.editors.connectionName"/>
@@ -15,4 +16,6 @@
 			<item value="org.eclipse.ui"/>
 		</list>
 	</section>
+=======
+>>>>>>> parent of 187af53... updated files
 </section>

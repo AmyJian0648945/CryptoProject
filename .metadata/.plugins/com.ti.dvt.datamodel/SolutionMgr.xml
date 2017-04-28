@@ -8,12 +8,15 @@
    <void method="add"> 
     <string>C:\ti\ccsv5\ccs_base\DebugServer\..\dvt_3.1.0.201110191212\RTA6\solutions\cce_rta6</string> 
    </void> 
+<<<<<<< HEAD
    <void method="add"> 
     <string>C:\ti\ccsv5\ccs_base\DebugServer\..\dvt_3.1.0.201110191212\CodeGen\solutions\CodeGenCoverage</string> 
    </void> 
    <void method="add"> 
     <string>C:\Users\r0648945\Documents\CryptoProject\.metadata\.plugins\com.ti.dvt.graph.visualization\savedSolutions\\1\singletime</string> 
    </void> 
+=======
+>>>>>>> parent of 187af53... updated files
   </void> 
  </object> 
 </java> 

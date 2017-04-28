@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Key_Establishment/Source/additionalFunctions.c \
+../Key_Establishment/Source/formatting.c \
 ../Key_Establishment/Source/keyEstablishmentFunctions.c \
 ../Key_Establishment/Source/maskGenerationFunction.c \
 ../Key_Establishment/Source/modFunctions.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 
 OBJS += \
 ./Key_Establishment/Source/additionalFunctions.obj \
+./Key_Establishment/Source/formatting.obj \
 ./Key_Establishment/Source/keyEstablishmentFunctions.obj \
 ./Key_Establishment/Source/maskGenerationFunction.obj \
 ./Key_Establishment/Source/modFunctions.obj \
@@ -25,6 +27,7 @@ OBJS += \
 
 C_DEPS += \
 ./Key_Establishment/Source/additionalFunctions.pp \
+./Key_Establishment/Source/formatting.pp \
 ./Key_Establishment/Source/keyEstablishmentFunctions.pp \
 ./Key_Establishment/Source/maskGenerationFunction.pp \
 ./Key_Establishment/Source/modFunctions.pp \
@@ -35,6 +38,7 @@ C_DEPS += \
 
 C_DEPS__QUOTED += \
 "Key_Establishment\Source\additionalFunctions.pp" \
+"Key_Establishment\Source\formatting.pp" \
 "Key_Establishment\Source\keyEstablishmentFunctions.pp" \
 "Key_Establishment\Source\maskGenerationFunction.pp" \
 "Key_Establishment\Source\modFunctions.pp" \
@@ -45,6 +49,7 @@ C_DEPS__QUOTED += \
 
 OBJS__QUOTED += \
 "Key_Establishment\Source\additionalFunctions.obj" \
+"Key_Establishment\Source\formatting.obj" \
 "Key_Establishment\Source\keyEstablishmentFunctions.obj" \
 "Key_Establishment\Source\maskGenerationFunction.obj" \
 "Key_Establishment\Source\modFunctions.obj" \
@@ -55,6 +60,7 @@ OBJS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../Key_Establishment/Source/additionalFunctions.c" \
+"../Key_Establishment/Source/formatting.c" \
 "../Key_Establishment/Source/keyEstablishmentFunctions.c" \
 "../Key_Establishment/Source/maskGenerationFunction.c" \
 "../Key_Establishment/Source/modFunctions.c" \

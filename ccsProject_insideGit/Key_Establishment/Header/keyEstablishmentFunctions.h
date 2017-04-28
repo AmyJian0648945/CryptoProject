@@ -81,4 +81,3 @@ void from16to8(uint16_t *input, uint8_t *output, uint16_t size);
 
 #endif
 
-

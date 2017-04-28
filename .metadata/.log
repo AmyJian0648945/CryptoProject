@@ -48,6 +48,7 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.
 
 !ENTRY org.eclipse.cdt.core 1 0 2017-04-27 11:36:06.768
 !MESSAGE Indexed 'ccsProject_insideGit' (18 sources, 44 headers) in 0.32 sec: 1,869 declarations; 5,467 references; 7 unresolved inclusions; 1 syntax errors; 14 unresolved names (0.19%)
+<<<<<<< HEAD
 
 !ENTRY org.eclipse.cdt.core 1 0 2017-04-27 11:41:16.367
 !MESSAGE Indexed 'ccsProject_insideGit' (17 sources, 78 headers) in 0.46 sec: 2,511 declarations; 6,340 references; 1 unresolved inclusions; 1 syntax errors; 14 unresolved names (0.16%)
@@ -5497,3 +5498,5 @@ java.nio.channels.ClosedByInterruptException
 	at org.eclipse.cdt.internal.ui.text.c.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:149)
 	at org.eclipse.cdt.internal.ui.text.c.hover.CEditorTextHoverProxy.getHoverInfo2(CEditorTextHoverProxy.java:86)
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+=======
+>>>>>>> parent of 187af53... updated files
