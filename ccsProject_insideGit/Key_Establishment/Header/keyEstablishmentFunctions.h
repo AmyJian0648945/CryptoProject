@@ -57,8 +57,40 @@ void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus,
 void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeMessage, uint8_t *key);
 void decryptMessage(uint8_t *message, uint16_t *decryptedMessage, uint16_t sizeMessage, uint8_t *key);
 
+void signMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp){
+		
+	from8to16(message, signedMessage, sizeMessage/2);
+	montExp(signedMessage, modulus, privateExponent, signedMessage,sizeMessage/2, sizeMod, sizePrivateExp);
+	
+}
+
+void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeMessage, uint8_t *key){
+	uint16_t msgLength[1] = {0};
+
+	msgLength[0] = sizeMessage*2;
+	from16to8(message, encryptedMessage, sizeMessage);
+	simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key);
+}
 
 void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint16_t *modulus, uint16_t *privateExponent, uint8_t *key);
+
+void decryptMessage(uint8_t *message, uint16_t *decryptedMessage, uint16_t sizeMessage, uint8_t *key){
+	
+	uint16_t msgLength[1] = {0};
+	
+	msgLength[0] = sizeMessage;
+	simpleDecrypt(message, message, msgLength, key);
+	from8to16(message, decryptedMessage, sizeMessage/2);
+
+}
+void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus, uint16_t *publicExponent, uint16_t sizeSignedMessage, uint16_t sizeMod, uint16_t sizePublicExp){
+
+	montExp(signedMessage, modulus, publicExponent, signedMessage, sizeSignedMessage, sizeMod, sizePublicExp);
+	from16to8(signedMessage, message, sizeMod);
+
+}
+
+
 void decryptAndUnsignMessage(uint8_t *message, uint8_t *unsignedMessage, uint8_t *key, uint16_t *modulus, uint16_t *publicExponent);
 
 /* Reformatting the array
