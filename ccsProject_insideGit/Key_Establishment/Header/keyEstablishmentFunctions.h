@@ -24,6 +24,11 @@
 #define HASHLEN 32
 #endif
 
+#define sizeMessageAB 128
+#define sizeModulusAB 64
+#define sizePrExpAB 64
+#define sizePuExpAB 2
+
 /* Put zeros at the end of the array at the top of the array.
 	Given an array of length size. If the elements at the end of the array
 	are zero, the elements of the array will be shifted by one and a zero will be inserted at the first position (index zero) of the array.
@@ -53,9 +58,8 @@ void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeM
 void decryptMessage(uint8_t *message, uint16_t *decryptedMessage, uint16_t sizeMessage, uint8_t *key);
 
 
-void signAndEncryptMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp, uint8_t *encryptedMessage, uint8_t *key);
-
-
+void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint16_t *modulus, uint16_t *privateExponent, uint8_t *key);
+void decryptAndUnsignMessage(uint8_t *message, uint8_t *unsignedMessage, uint8_t *key, uint16_t *modulus, uint16_t *publicExponent);
 
 /* Reformatting the array
 	From 8 bit words to 16 bit words.

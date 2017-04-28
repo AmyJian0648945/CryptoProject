@@ -83,8 +83,7 @@ void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t sizeg
 }
 
 
-
-
+/* 	COMBINED FUNCTIONS INTO signAndEncryptMessage
 void signMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp){
 		
 	from8to16(message, signedMessage, sizeMessage/2);
@@ -99,17 +98,19 @@ void encryptMessage(uint16_t *message, uint8_t *encryptedMessage, uint16_t sizeM
 	from16to8(message, encryptedMessage, sizeMessage);
 	simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key);
 }
+*/
+void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint16_t *modulus, uint16_t *privateExponent, uint8_t *key){
 
-void signAndEncryptMessage(uint8_t *message, uint16_t *signedMessage, uint16_t *modulus, uint16_t *privateExponent, uint16_t sizeMessage, uint16_t sizeMod, uint16_t sizePrivateExp, uint8_t *encryptedMessage, uint8_t *key){
 	uint16_t msgLength[1] = {0};
+	uint16_t signedMessage[sizeModulusAB] = {0};
 
 	/* Sign Message */
-	from8to16(message, signedMessage, sizeMessage/2);
-	montExp(signedMessage, modulus, privateExponent, signedMessage,sizeMessage/2, sizeMod, sizePrivateExp);
+	from8to16(message, signedMessage, sizeMessageAB/2);
+	montExp(signedMessage, modulus, privateExponent, signedMessage, sizeMessageAB/2, sizeModulusAB, sizePrExpAB);
 
 	/* Encrypt Message*/
-	msgLength[0] = sizeMessage*2;
-	from16to8(signedMessage, encryptedMessage, sizeMessage);
+	msgLength[0] = sizeMessageAB*2;
+	from16to8(signedMessage, encryptedMessage, sizeMessageAB);
 	simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key);
 
 }
@@ -129,6 +130,25 @@ void unsignMessage(uint16_t *signedMessage, uint8_t *message, uint16_t *modulus,
 	from16to8(signedMessage, message, sizeMod);
 
 }
+
+
+
+void decryptAndUnsignMessage(uint8_t *message, uint8_t *unsignedMessage, uint8_t *key, uint16_t *modulus, uint16_t *publicExponent){
+
+	uint16_t msgLength[1] = {0};
+	uint16_t decryptedMessage[sizeModulusAB] = {0};
+
+	/* Decrypt Message */
+	msgLength[0] = sizeMessageAB;
+	simpleDecrypt(message, message, msgLength, key);
+	from8to16(message, decryptedMessage, sizeMessageAB/2);
+
+	/* Unsign Message */
+	montExp(decryptedMessage, modulus, publicExponent, decryptedMessage, sizeMessageAB/2, sizeModulusAB, sizePuExpAB);
+	from16to8(decryptedMessage, unsignedMessage, sizeModulusAB);
+
+}
+
 
 
 void from8to16(uint8_t *input, uint16_t *output, uint16_t size){
