@@ -202,13 +202,26 @@ int main(void){
     msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
     hexToString(keyInString, key, keySize);
-	
+    
+#ifdef PRINT
+	printf(">> Entering encryption...\n");
+#endif
+
 	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
+
+#ifdef PRINT
+	printf(">> Encryption ended\n"); 
+	printf(">> Entering decryption...\n");
+#endif
+
 	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
+	
 
 
 	/* Printout operation summary */
 #ifdef PRINT
+	printf(">> Decryption ended\n"); 
+
 	printf("\n---\nSummary I ...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0] );
