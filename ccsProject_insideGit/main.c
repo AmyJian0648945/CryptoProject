@@ -56,7 +56,6 @@ int main(void){
 	uint8_t K1[encryptKeyLength] = {0};
 	uint8_t K2[encryptKeyLength] = {0};
 	
-
 	uint8_t messageA[sizeMessageAB] = {0};
 	uint8_t messageB[sizeMessageAB] = {0};
 	uint8_t encodedMessageB[sizeMessageAB] = {0};
@@ -116,12 +115,22 @@ int main(void){
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
 	
+	printf("\n-- values needed for signAndEncrypt --\n");
+	printArray8(encodedMessageB, "encodedMessageB", sizeModulusAB);
+	printArray8(transmittedMessageB, "transmittedMessageB", sizeModulusAB);
+	printArray16(modulusB, "modulus", 64);
+	printArray16(privateExponentB, "privateExponentB", 64);
+	printArray8(K1, "K1", encryptKeyLength);
+
+
 	/*
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
 	 */
-	signAndEncryptMessage(encodedMessageB, transmittedMessageB, modulusB, privateExponentB, K1);
 
+	/*
+	signAndEncryptMessage(encodedMessageB, transmittedMessageB, modulusB, privateExponentB, K1);
+	*/
 #ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
 	printArray8(transmittedMessageB, "Transmitted message", sizeModulusAB*2);
