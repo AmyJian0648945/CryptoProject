@@ -22,7 +22,7 @@ void printArray8(uint8_t *array, char *word, uint16_t arrayLength){
 }
 /*	Make all arrayLength elements of array result equal to zero.
 */
-void zerosArray(uint16_t *result, uint16_t arrayLength){
+void inline zerosArray(uint16_t *result, uint16_t arrayLength){
 	int i;
 	for(i=0;i<arrayLength;i++){
 		result[i] = 0;

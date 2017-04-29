@@ -32,16 +32,16 @@ void montMultiplication( uint16_t *x, uint16_t *y, uint16_t *m, uint16_t *result
 	}
 
 	/* step 1 */
-	zerosArray(A,sizeM+1);
+	zerosArray(A, sizeM+1);
 
 	/* step 2 */
 	/* n = sizeM*16; */
 	n = (sizeR-1)*16;
-	for(i=0;i<n;i++){
+	for(i=0; i<n; i++){
 		/* Step 2.1 */
 		xi = copyOfX[sizeM-1]%2;
-		ui = (A[sizeM]%2 + xi*(yExt[sizeM]%2))*mInvLastBit;
-		ui = ui%2;
+		ui = (A[sizeM]%2 + xi * (yExt[sizeM]%2) ) * mInvLastBit;
+		ui = ui % 2;
 
 		/* Step 2.2 */
 		if (xi == 1){

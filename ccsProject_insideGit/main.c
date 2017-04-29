@@ -20,7 +20,7 @@
 #define sizePrExpAB 64
 #define sizePuExpAB 2
 
-/*#define PRINT */
+#define PRINT 
 
 #include "library/helpfulFunctions.h"
 #include "library/sha2.h"
@@ -173,7 +173,7 @@ int main(void){
 
 #ifdef PRINT
 	printArray8(messageA,"Original message A -> B",sizeMessageAB);
-	printArray8(transmittedMessage, "Transmitted message", sizeMessageAB);
+	/*printArray8(transmittedMessage, "Transmitted message", sizeMessageAB);*/
 	printf("A sends Ek(Sa(g^x mod p || g^y mod p)) to B\n");
 #endif
 

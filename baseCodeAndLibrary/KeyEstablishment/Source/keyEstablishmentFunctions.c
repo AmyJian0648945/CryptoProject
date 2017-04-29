@@ -74,6 +74,7 @@ void calculateKey(uint16_t *g, uint16_t *m, uint16_t *exponent, uint8_t *Key, ui
 void createMessage( uint16_t *gx, uint16_t *gy, uint8_t *message, uint16_t sizegxgy){
 	
 	uint8_t part[MAXSIZE] = {0};
+	
 	from16to8(gx, part, sizegxgy);
 	concat(message, part, 0, sizegxgy*2);
 	from16to8(gy, part, sizegxgy);

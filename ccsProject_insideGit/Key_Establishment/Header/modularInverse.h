@@ -4,7 +4,7 @@
 #include "additionalFunctions.h"
 
 #ifndef MAXLENGTH
-#define MAXLENGTH 2048
+#define MAXLENGTH 256
 #endif
 
 uint16_t signedSubtraction(uint16_t *x, uint16_t *y, uint16_t arrayLength, uint16_t sign1, uint16_t sign2);

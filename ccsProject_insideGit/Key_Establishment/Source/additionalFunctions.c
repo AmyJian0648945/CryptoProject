@@ -4,21 +4,21 @@
 */
 void printArray16(uint16_t *array, char *word, uint16_t arrayLength){
 	int index;
-	printf("uint16_t %s[%u] = { ",word,arrayLength);
+	printf("%s[%u] = { ",word,arrayLength);
 	for (index=0;index<arrayLength;index++){
-		printf("0x%x, ", array[index]);
+		printf("%x, ", array[index]);
 	}
-	printf("}; \n\n");
+	printf("} \n");
 }
 /*	Print input array of size ArrayLength; word is the name for the array.
 */
 void printArray8(uint8_t *array, char *word, uint16_t arrayLength){
 	int index;
-	printf("uint8_t %s[%u] = { ",word,arrayLength);
+	printf("%s[%u] = { ",word,arrayLength);
 	for (index=0;index<arrayLength;index++){
-		printf("0x%x, ", array[index]);
+		printf("%x, ", array[index]);
 	}
-	printf("}; \n\n");
+	printf("} \n");
 }
 /*	Make all arrayLength elements of array result equal to zero.
 */
@@ -55,17 +55,6 @@ uint16_t isBiggerThanOrEqual(uint16_t *number1, uint16_t *number2, uint16_t size
 /*	Returns 1 if number is equal to 0.
 */
 uint16_t numberIsZero(uint16_t *number, uint16_t numberOfElements){
-	int k;
-	for (k=0;k<numberOfElements;k++){
-		if (number[k] != 0)
-			return 0;
-	}
-	return 1;
-}
-
-/*	Returns 1 if number is equal to 0.
-*/
-uint16_t numberIsZero8(uint8_t *number, uint16_t numberOfElements){
 	int k;
 	for (k=0;k<numberOfElements;k++){
 		if (number[k] != 0)
