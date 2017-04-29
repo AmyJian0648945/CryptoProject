@@ -312,3 +312,589 @@ java.lang.Exception: No component definitions were found
 	at com.ti.gde.adapter.c6flo.C6floAdapter.doInit(C6floAdapter.java:216)
 	at com.ti.gde.adapter.interfaces.GdeAdapter.init(GdeAdapter.java:49)
 	at com.ti.gde.diagram.plugin.GdeDiagramEditorPlugin$1.run(GdeDiagramEditorPlugin.java:467)
+!SESSION 2017-04-29 11:02:47.567 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-04-29 11:02:49.156
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-04-29 11:02:59.547
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-04-29 11:02:59.549
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-04-29 11:02:59.553
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-04-29 11:02:59.553
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-04-29 11:03:12.688
+!MESSAGE Indexed 'crypto_dspSimulation' (18 sources, 44 headers) in 0.40 sec: 1,870 declarations; 5,472 references; 7 unresolved inclusions; 1 syntax errors; 14 unresolved names (0.19%)
+
+!ENTRY org.eclipse.ui 4 4 2017-04-29 11:10:50.068
+!MESSAGE Referenced part does not exist yet: org.eclipse.jdt.ui.PackageExplorer.
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.515
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.515
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.groupNew':
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupNew,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$1@44385e),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupNew,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$1@d0c75c),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.515
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.515
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.groupDelete':
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupDelete,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$2@e2c511),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupDelete,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$2@1f7f308),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.516
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.516
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.group':
+HandlerActivation(commandId=com.ti.dvt.ui.view.group,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1e41f7b),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.group,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1d37f20),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.516
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.516
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.freeze':
+HandlerActivation(commandId=com.ti.dvt.ui.view.freeze,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1ea1644),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.freeze,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@15c08e3),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.517
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.517
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.measureMarkDeleteAll':
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMarkDeleteAll,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@210959),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMarkDeleteAll,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@ecc59d),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.518
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.518
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.measureMark':
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@345c4b),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@197755f),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.518
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.519
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.bookMark':
+HandlerActivation(commandId=com.ti.dvt.ui.view.bookMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@130158),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.bookMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1bd73f1),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.519
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.519
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.vertAxis':
+HandlerActivation(commandId=com.ti.dvt.ui.view.vertAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1785c55),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.vertAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@f5e097),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.520
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.520
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.horzAxis':
+HandlerActivation(commandId=com.ti.dvt.ui.view.horzAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@18a8809),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.horzAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1e90fde),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.520
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.520
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.legend':
+HandlerActivation(commandId=com.ti.dvt.ui.view.legend,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1f2f43),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.legend,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@15806f5),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.521
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.521
+!MESSAGE Conflict for 'org.eclipse.ui.edit.findReplace':
+HandlerActivation(commandId=org.eclipse.ui.edit.findReplace,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FindAction@59bb9a),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.ui.edit.findReplace,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FindAction@12b80c5),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.521
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.521
+!MESSAGE Conflict for 'org.eclipse.ui.file.refresh':
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(com.ti.dvt.ui.internal.TreeGrid$6@14cc225),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(com.ti.dvt.ui.internal.TreeGrid$6@1bbe33f),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.522
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.522
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.filter':
+HandlerActivation(commandId=com.ti.dvt.ui.view.filter,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FilterAction@1df0104),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.filter,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FilterAction@1bbb2ac),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.522
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.522
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.copy':
+HandlerActivation(commandId=com.ti.dvt.ui.view.copy,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$1@15782ac),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.copy,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$1@43f526),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.523
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-04-29 11:16:45.523
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.end':
+HandlerActivation(commandId=com.ti.dvt.ui.view.end,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$2@58d78a),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.end,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$2@aeb07c),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@7f9b8d),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@917cb0)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui 4 0 2017-04-29 11:23:54.983
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.SWT.error(SWT.java:4168)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:468)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:340)
+	at org.eclipse.swt.widgets.Text.setText(Text.java:1966)
+	at com.ti.dvt.ui.multipageview.DefaultPage.setText(DefaultPage.java:87)
+	at com.ti.dvt.ui.multipageview.MultiPageView.activateDefaultPageContext(MultiPageView.java:479)
+	at com.ti.util.ui.multipane.MultiSessionHelper$3.run(MultiSessionHelper.java:694)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 22 more
+
+!ENTRY org.eclipse.ui 4 4 2017-04-29 11:23:55.874
+!MESSAGE Referenced part does not exist yet: org.eclipse.jdt.ui.PackageExplorer.
+
+!ENTRY org.eclipse.ui 4 0 2017-04-29 11:23:56.258
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.SWT.error(SWT.java:4168)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:468)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:340)
+	at org.eclipse.swt.widgets.Text.setText(Text.java:1966)
+	at com.ti.dvt.ui.multipageview.DefaultPage.setText(DefaultPage.java:87)
+	at com.ti.dvt.ui.multipageview.MultiPageView.activateDefaultPageContext(MultiPageView.java:479)
+	at com.ti.util.ui.multipane.MultiSessionHelper$3.run(MultiSessionHelper.java:694)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 22 more
+
+!ENTRY org.eclipse.ui 4 0 2017-04-29 11:23:56.314
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.SWT.error(SWT.java:4168)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:468)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:340)
+	at org.eclipse.swt.widgets.Text.setText(Text.java:1966)
+	at com.ti.dvt.ui.multipageview.DefaultPage.setText(DefaultPage.java:87)
+	at com.ti.dvt.ui.multipageview.MultiPageView.activateDefaultPageContext(MultiPageView.java:479)
+	at com.ti.dvt.profileanalysismanager.ProfileServerPlugin$2.run(ProfileServerPlugin.java:533)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 22 more
+
+!ENTRY org.eclipse.ui 4 0 2017-04-29 11:23:56.315
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.SWT.error(SWT.java:4168)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:468)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:340)
+	at org.eclipse.swt.widgets.Text.setText(Text.java:1966)
+	at com.ti.dvt.ui.multipageview.DefaultPage.setText(DefaultPage.java:87)
+	at com.ti.dvt.ui.multipageview.MultiPageView.activateDefaultPageContext(MultiPageView.java:479)
+	at com.ti.dvt.profileanalysismanager.ProfileServerPlugin$2.run(ProfileServerPlugin.java:533)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 22 more
+
+!ENTRY org.eclipse.ui 4 0 2017-04-29 11:24:05.621
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+Caused by: java.lang.NullPointerException
+	at org.eclipse.ui.part.PageSite.<init>(PageSite.java:87)
+	at com.ti.dvt.ui.multipageview.DVTPageSite.<init>(DVTPageSite.java:23)
+	at com.ti.dvt.ui.multipageview.MultiPageView.initPage(MultiPageView.java:169)
+	at com.ti.dvt.ui.views.core.PaneView.doCreatePage(PaneView.java:659)
+	at com.ti.dvt.ui.multipageview.MultiPageView.createPage(MultiPageView.java:135)
+	at com.ti.dvt.ui.multipageview.MultiPageView.activatePageContext(MultiPageView.java:448)
+	at com.ti.dvt.profileanalysismanager.ProfileServerPlugin$2.run(ProfileServerPlugin.java:495)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 22 more
+
+!ENTRY org.eclipse.ui 4 0 2017-04-29 11:24:05.667
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+	at org.eclipse.swt.SWT.error(SWT.java:4282)
+	at org.eclipse.swt.SWT.error(SWT.java:4197)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+Caused by: java.lang.NullPointerException
+	at org.eclipse.ui.part.PageSite.<init>(PageSite.java:87)
+	at com.ti.dvt.ui.multipageview.DVTPageSite.<init>(DVTPageSite.java:23)
+	at com.ti.dvt.ui.multipageview.MultiPageView.initPage(MultiPageView.java:169)
+	at com.ti.dvt.ui.views.core.PaneView.doCreatePage(PaneView.java:659)
+	at com.ti.dvt.ui.multipageview.MultiPageView.createPage(MultiPageView.java:135)
+	at com.ti.dvt.ui.multipageview.MultiPageView.activatePageContext(MultiPageView.java:448)
+	at com.ti.dvt.profileanalysismanager.ProfileServerPlugin$2.run(ProfileServerPlugin.java:495)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 22 more
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-04-29 11:47:56.564
+!MESSAGE DS_ERROR: TMS320C64X+_0: Error: Decode ERROR! Number of parallel instructions exceeding the available number of functional units - opcode (00010001) at PC = 0x800053c4  
+
+
+!ENTRY org.eclipse.jface 4 2 2017-04-29 12:25:59.950
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+!STACK 0
+java.lang.NullPointerException
+	at com.ti.dvt.ui.views.core.TablePane.setColumnOrder(TablePane.java:285)
+	at com.ti.dvt.ui.views.core.TablePane.propertyChange(TablePane.java:1361)
+	at java.beans.PropertyChangeSupport.firePropertyChange(Unknown Source)
+	at com.ti.dvt.ui.views.core.AbstractProp.firePropertyChange(AbstractProp.java:200)
+	at com.ti.dvt.ui.views.core.PaneProp.setScrollLock(PaneProp.java:1807)
+	at com.ti.dvt.ui.views.core.TablePane.setShowLatest(TablePane.java:1637)
+	at com.ti.dvt.ui.views.core.TablePane$3.selectionChanged(TablePane.java:1064)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:888)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:49)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:886)
+	at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1226)
+	at org.eclipse.jface.viewers.StructuredViewer$5.widgetSelected(StructuredViewer.java:1251)
+	at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:262)
+	at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:256)
+	at org.eclipse.jface.util.OpenStrategy$3.run(OpenStrategy.java:433)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY com.ti.dvt.datamodel.ui.actions.DataAction 2 2 2017-04-29 12:27:09.735
+!MESSAGE Type 'class com.ti.dvt.datamodel.core.Average' Not Found, Using string type
+!STACK 0
+java.lang.Throwable
+	at com.ti.dvt.datamodel.ui.actions.DataAction.writeSelectedColumnsFormat(DataAction.java:893)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.selectedSnapshot(DataAction.java:692)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.SelectedSnapShot(DataAction.java:604)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.selectedsnapShot(DataAction.java:570)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.saveAs(DataAction.java:413)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.run(DataAction.java:92)
+	at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:251)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY com.ti.dvt.datamodel.ui.actions.DataAction 2 2 2017-04-29 12:27:09.736
+!MESSAGE Type 'class com.ti.dvt.datamodel.core.Average' Not Found, Using string type
+!STACK 0
+java.lang.Throwable
+	at com.ti.dvt.datamodel.ui.actions.DataAction.writeSelectedColumnsFormat(DataAction.java:893)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.selectedSnapshot(DataAction.java:692)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.SelectedSnapShot(DataAction.java:604)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.selectedsnapShot(DataAction.java:570)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.saveAs(DataAction.java:413)
+	at com.ti.dvt.datamodel.ui.actions.DataAction.run(DataAction.java:92)
+	at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:251)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+	at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-04-29 12:28:11.675
+!MESSAGE DS_ERROR: TMS320C64X+_0: Error: Illegal opcode (1637f9bb) at pc = 0x80005ffc Illegal opcode at pc = 0x80005ffc  
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-04-29 12:28:17.520
+!MESSAGE DS_ERROR: TMS320C64X+_0: Error: Illegal opcode (916b1718) at pc = 0x80006014 Illegal opcode at pc = 0x80006014  
+

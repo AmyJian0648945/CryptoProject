@@ -17,12 +17,12 @@ library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnue
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/types.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/wordsize.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/typesizes.h
-library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/useAES.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/select.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/sigset.h
-library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/useAES.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/useAES.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h
 library/useAES.obj: ../library/aes.h
 
@@ -43,11 +43,11 @@ C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/types.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/wordsize.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/typesizes.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/select.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/sigset.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h: 
 ../library/aes.h: 

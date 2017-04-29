@@ -83,43 +83,53 @@ int main(void){
 	
 	/**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
 	/*** STS - Protocol ***/
+#ifdef PRINT
 	printf("\n\nStart of the STS protocol...\n");
 	printf("Secret key creation by poth parties...\n");
 
 	/* A computes g^x mod p and sends it to B */
 	printf("A computes g^x mod p\n");
+#endif
 	createExponent(x,expLengthMAX);
 	computePartOfKey(g,p,x,gx,baseLength,modLength,expLengthMAX);
 	
 	/* B computes g^y mod p and sends it to A */
+#ifdef PRINT
 	printf("B computes g^y mod p\n");
+#endif
 	createExponent(y,expLengthMAX);
 	computePartOfKey(g,p,y,gy,baseLength,modLength,expLengthMAX);
-	
+#ifdef PRINT
 	printf("B receives (g^x) mod p from A and A receives (g^y) mod p from B\n");
-	
+#endif
 	
 	/** B - KEY CREATION + ENTITY AUTHENTICATION **/
 	/** B sends message to A to prove identity **/
+#ifdef PRINT
 	printf("Start of authentication of B\n");
+#endif
 	/* B calculates the key = (g^x)^y mod p and encodes,signs and encrypts the message (g^y mod p)||(g^x mod p) */
 	calculateKey(gx,p,y,K1,modLength,modLength,expLengthMAX);
+#ifdef PRINT
 	printf("Key created by B = (g^x)^y mod p\n");
 	printArray8(K1, "key", encryptKeyLength);
-	
+#endif
  	createMessage(gy, gx, messageB,modLength);
 	signatureMessage(messageB, encodedMessageB);
 	
 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB, sizeMessageAB, sizeModulusAB, sizePrExpAB);
 	encryptMessage(tempEMB, EMB, sizeModulusAB, K1);
+#ifdef PRINT
 	printArray8(messageB,"Original message B -> A",sizeMessageAB);
 	printArray8(EMB, "Transmitted message", sizeModulusAB*2);
 	printf("B sends g^y mod p and Ek(Sb(g^y mod p || g^x mod p)) to A\n");
-	
+#endif
 	/* A calculates the key = (g^y)^x mod p */
 	calculateKey(gy,p,x,K2,modLength,modLength,expLengthMAX);
+#ifdef PRINT
 	printf("Key created by A = (g^y)^x mod p\n");
 	printArray8(K2, "key", encryptKeyLength);
+#endif
 	/* K1 = K2 = the secret key */
 		
 	/* A verifies the signature of B after receiving EMB */
@@ -128,16 +138,19 @@ int main(void){
 	unsignMessage(receivedMessageB, encodedMessageB, modulusB, publicExponentB, sizeModulusAB, sizeModulusAB, sizePuExpAB);
 	
 	identityBVerified = verifySignature(messageB, encodedMessageB);
+#ifdef PRINT
 	if (identityBVerified == 1)
 		printf("Authentication B succeeded\n\n");
 	else
 		printf("Authentication B failed\n\n");
-	
+#endif
 	
 	
 	/** A - KEY CREATION + ENTITY AUTHENTICATION **/
 	/** A sends message to B to prove identity **/
+#ifdef PRINT
 	printf("Start of authentication of A\n");
+#endif
 	createMessage(gx, gy, messageA, modLength);
 	signatureMessage(messageA, encodedMessageA);
 
@@ -145,23 +158,27 @@ int main(void){
 	encryptMessage(tempEMA, EMA, sizeModulusAB, K2);
 	printArray8(messageA,"Original message A -> B",sizeMessageAB);
 	printArray8(EMA, "Transmitted message", sizeModulusAB*2);
+#ifdef PRINT
 	printf("A sends Ek(Sa(g^x mod p || g^y mod p)) to B\n");
-	
+#endif
 	/** B receives message of A and checks A's identity **/
 	createMessage(gx, gy, messageA, modLength);
 	decryptMessage(EMA, receivedMessageA, sizeModulusAB*2, K1);
 	unsignMessage(receivedMessageA, encodedMessageA, modulusA, publicExponentA, sizeModulusAB, sizeModulusAB, sizePuExpAB);
 	
 	identityAVerified = verifySignature(messageA, encodedMessageA);
+#ifdef PRINT
 	if (identityAVerified == 1)
 		printf("Authentication A succeeded\n\n");
 	else
 		printf("Authentication A failed\n\n");
-	
+#endif
 	
 	
 	/*** DATA TRANSMISSION ***/
+#ifdef PRINT
 	printf("\n Start of the Data Transmission...\n\n");
+#endif
 	copyArray8(K1, key, encryptKeyLength);
     msgSize[0] = (uint8_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
 
@@ -172,11 +189,12 @@ int main(void){
 	tempLength = (uint8_t) msgSize[0]; 
 
 	/* Printout operation summary */
+#ifdef PRINT
 	printf("\n---\nSummary I ...\n---\n");
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, tempLength);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, tempLength );
 	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, tempLength);
-
+#endif
 
 
 

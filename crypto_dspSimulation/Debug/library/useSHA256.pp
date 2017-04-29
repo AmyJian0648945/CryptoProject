@@ -18,17 +18,17 @@ library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-g
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/types.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/wordsize.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/typesizes.h
-library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/useSHA256.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/select.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/sigset.h
-library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/useSHA256.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h
 library/useSHA256.obj: ../library/sha2.h
 library/useSHA256.obj: ../library/useSHA256.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/types.h
-library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/useSHA256.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/useSHA256.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stddef.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/endian.h
 library/useSHA256.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/endian.h
@@ -56,17 +56,17 @@ C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/types.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/wordsize.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/typesizes.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/select.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/sigset.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h: 
 ../library/sha2.h: 
 ../library/useSHA256.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/types.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stddef.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/endian.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/endian.h: 

@@ -1,4 +1,4 @@
-#Wed Apr 26 17:25:43 CEST 2017
+#Sat Apr 29 11:03:13 CEST 2017
 eclipse.preferences.version=1
 encoding//Debug/Key_Establishment/Source/subdir_rules.mk=UTF-8
 encoding//Debug/Key_Establishment/Source/subdir_vars.mk=UTF-8
@@ -19,3 +19,12 @@ encoding//Debug/objects.mk=UTF-8
 encoding//Debug/sources.mk=UTF-8
 encoding//Debug/subdir_rules.mk=UTF-8
 encoding//Debug/subdir_vars.mk=UTF-8
+encoding//Release/Key_Establishment/Source/subdir_rules.mk=UTF-8
+encoding//Release/Key_Establishment/Source/subdir_vars.mk=UTF-8
+encoding//Release/library/subdir_rules.mk=UTF-8
+encoding//Release/library/subdir_vars.mk=UTF-8
+encoding//Release/makefile=UTF-8
+encoding//Release/objects.mk=UTF-8
+encoding//Release/sources.mk=UTF-8
+encoding//Release/subdir_rules.mk=UTF-8
+encoding//Release/subdir_vars.mk=UTF-8

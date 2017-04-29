@@ -21,16 +21,16 @@ library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueab
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/types.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/wordsize.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/typesizes.h
-library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/select.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/sigset.h
-library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h
 library/sha2.obj: ../library/sha2.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/types.h
-library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h
+library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stddef.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/endian.h
 library/sha2.obj: C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/endian.h
@@ -61,16 +61,16 @@ C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/types.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/wordsize.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/typesizes.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/select.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/select.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/sigset.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/time.h: 
 ../library/sha2.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/sys/types.h: 
-C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/time.h: 
+C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stddef.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/endian.h: 
 C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include/bits/endian.h: 

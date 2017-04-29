@@ -33,7 +33,7 @@ http://www.freeformatter.com/sha256-generator.html
 #ifndef HELPFULFUNCTIONS_H
 #include "helpfulFunctions.h"
 #endif /* HELPFULFUNCTIONS_H */
-#include <sys/time.h>
+#include <time.h>
 #include "sha2.h"
 
 
