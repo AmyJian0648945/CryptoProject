@@ -20,7 +20,7 @@
 #define sizePrExpAB 64
 #define sizePuExpAB 2
 
-/*#define PRINT*/
+/*#define PRINT */
 
 #include "library/helpfulFunctions.h"
 #include "library/sha2.h"
