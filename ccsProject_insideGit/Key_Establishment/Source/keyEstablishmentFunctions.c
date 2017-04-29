@@ -9,6 +9,7 @@ void repositionZeros(uint16_t *array, uint16_t size){
 	
 	actualSize = size;
 	i = size-1;
+	/*
 	while (stop == 0){
 		if (array[i] != 0){
 			actualSize = i+1;
@@ -17,7 +18,10 @@ void repositionZeros(uint16_t *array, uint16_t size){
 			i = i-1;
 			stop = 0;
 		}
-	}
+	}*/
+
+	while(array[i] ==0) i--;
+	actualSize = i+1;
 	
 	copyArray16(array,stack,size);
 	zerosArray(array,size);
