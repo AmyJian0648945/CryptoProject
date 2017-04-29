@@ -4,7 +4,7 @@ void repositionZeros(uint16_t *array, uint16_t size){
 	
 	uint16_t stack[MAXSIZE] = {0};
 	uint16_t actualSize = 0;
-	uint16_t stop = 0;
+	/* uint16_t stop = 0; */ 
 	int i;
 	
 	actualSize = size;
