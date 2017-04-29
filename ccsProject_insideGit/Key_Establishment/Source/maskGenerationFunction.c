@@ -25,17 +25,6 @@ void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 		string[2] = 0;
 		string[3] = 0;
 		string[0] = counter;
-		/* CONCATENATION - STEP B */
-		/*
-		for(i=0;i<36;i++){
-			tobehashed[i] = 0;
-		}
-		for (i=0;i<36;i++){
-			if (i<32)
-				tobehashed[i] = input[i];
-			else
-				tobehashed[i] = string[i-32];
-		}*/
 			
 		for(i=0;  i<33; i++) tobehashed[i] = input[i];
 		for(i=32; i<36; i++)  tobehashed[i] = string[i-32];
