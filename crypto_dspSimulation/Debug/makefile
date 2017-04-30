@@ -10,12 +10,16 @@ ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 "./Key_Establishment/Source/verifySignature.obj" \
 "./Key_Establishment/Source/signatureMessage.obj" \
+"./Key_Establishment/Source/montExponentiation32.obj" \
 "./Key_Establishment/Source/montExponentiation.obj" \
+"./Key_Establishment/Source/modularInverse32.obj" \
 "./Key_Establishment/Source/modularInverse.obj" \
+"./Key_Establishment/Source/modFunctions32.obj" \
 "./Key_Establishment/Source/modFunctions.obj" \
 "./Key_Establishment/Source/maskGenerationFunction.obj" \
+"./Key_Establishment/Source/keyEstablishmentFunctions32.obj" \
 "./Key_Establishment/Source/keyEstablishmentFunctions.obj" \
-"./Key_Establishment/Source/formatting.obj" \
+"./Key_Establishment/Source/additionalFunctions32.obj" \
 "./Key_Establishment/Source/additionalFunctions.obj" \
 "./library/useSHA256.obj" \
 "./library/useAES.obj" \
@@ -130,21 +134,21 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: crypto_dspSimulation.out
+all: ccsProject_insideGit.out
 
 # Tool invocations
-crypto_dspSimulation.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+ccsProject_insideGit.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --display_error_number --diag_warning=225 --abi=coffabi -z -m"crypto_dspSimulation.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --rom_model -o "crypto_dspSimulation.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject_insideGit.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --rom_model -o "ccsProject_insideGit.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QUOTED) "crypto_dspSimulation.out"
-	-$(RM) "main.pp" "library\PRNG.pp" "library\aes.pp" "library\encryptDecrypt.pp" "library\helpfulFunctions.pp" "library\hmac.pp" "library\sha2.pp" "library\useAES.pp" "library\useSHA256.pp" "Key_Establishment\Source\additionalFunctions.pp" "Key_Establishment\Source\formatting.pp" "Key_Establishment\Source\keyEstablishmentFunctions.pp" "Key_Establishment\Source\maskGenerationFunction.pp" "Key_Establishment\Source\modFunctions.pp" "Key_Establishment\Source\modularInverse.pp" "Key_Establishment\Source\montExponentiation.pp" "Key_Establishment\Source\signatureMessage.pp" "Key_Establishment\Source\verifySignature.pp" 
-	-$(RM) "main.obj" "library\PRNG.obj" "library\aes.obj" "library\encryptDecrypt.obj" "library\helpfulFunctions.obj" "library\hmac.obj" "library\sha2.obj" "library\useAES.obj" "library\useSHA256.obj" "Key_Establishment\Source\additionalFunctions.obj" "Key_Establishment\Source\formatting.obj" "Key_Establishment\Source\keyEstablishmentFunctions.obj" "Key_Establishment\Source\maskGenerationFunction.obj" "Key_Establishment\Source\modFunctions.obj" "Key_Establishment\Source\modularInverse.obj" "Key_Establishment\Source\montExponentiation.obj" "Key_Establishment\Source\signatureMessage.obj" "Key_Establishment\Source\verifySignature.obj" 
+	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QUOTED) "ccsProject_insideGit.out"
+	-$(RM) "main.pp" "library\PRNG.pp" "library\aes.pp" "library\encryptDecrypt.pp" "library\helpfulFunctions.pp" "library\hmac.pp" "library\sha2.pp" "library\useAES.pp" "library\useSHA256.pp" "Key_Establishment\Source\additionalFunctions.pp" "Key_Establishment\Source\additionalFunctions32.pp" "Key_Establishment\Source\keyEstablishmentFunctions.pp" "Key_Establishment\Source\keyEstablishmentFunctions32.pp" "Key_Establishment\Source\maskGenerationFunction.pp" "Key_Establishment\Source\modFunctions.pp" "Key_Establishment\Source\modFunctions32.pp" "Key_Establishment\Source\modularInverse.pp" "Key_Establishment\Source\modularInverse32.pp" "Key_Establishment\Source\montExponentiation.pp" "Key_Establishment\Source\montExponentiation32.pp" "Key_Establishment\Source\signatureMessage.pp" "Key_Establishment\Source\verifySignature.pp" 
+	-$(RM) "main.obj" "library\PRNG.obj" "library\aes.obj" "library\encryptDecrypt.obj" "library\helpfulFunctions.obj" "library\hmac.obj" "library\sha2.obj" "library\useAES.obj" "library\useSHA256.obj" "Key_Establishment\Source\additionalFunctions.obj" "Key_Establishment\Source\additionalFunctions32.obj" "Key_Establishment\Source\keyEstablishmentFunctions.obj" "Key_Establishment\Source\keyEstablishmentFunctions32.obj" "Key_Establishment\Source\maskGenerationFunction.obj" "Key_Establishment\Source\modFunctions.obj" "Key_Establishment\Source\modFunctions32.obj" "Key_Establishment\Source\modularInverse.obj" "Key_Establishment\Source\modularInverse32.obj" "Key_Establishment\Source\montExponentiation.obj" "Key_Establishment\Source\montExponentiation32.obj" "Key_Establishment\Source\signatureMessage.obj" "Key_Establishment\Source\verifySignature.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -5,64 +5,79 @@
  
 
 CC = gcc
-CFLAGS = -Wall -pedantic -ansi
+CFLAGS = -Wall -pedantic -ansi 
 
-program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o
-	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions.o modFunctions.o modularInverse.o montExponentiation.o formatting.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions.o 
+program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions32.o modFunctions32.o modularInverse32.o montExponentiation32.o maskGenerationFunction.o signatureMessage.o verifySignature.o  keyEstablishmentFunctions32.o
+	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions32.o modFunctions32.o modularInverse32.o montExponentiation32.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions32.o
 
-main.o: ../main.c 
-	$(CC) $(CFLAGS) -c ../main.c
+main.o: ../crypto_dspSimulation/main.c 
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/main.c
 
-aes.o: ../library/aes.c ../library/aes.h
-	$(CC) $(CFLAGS) -c ../library/aes.c 
+aes.o: ../crypto_dspSimulation/library/aes.c ../crypto_dspSimulation/library/aes.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/aes.c 
 
-useAES.o: ../library/useAES.c ../library/useAES.h
-	$(CC) $(CFLAGS) -c ../library/useAES.c  
+useAES.o: ../crypto_dspSimulation/library/useAES.c ../crypto_dspSimulation/library/useAES.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/useAES.c  
 
-helpfulFunctions.o: ../library/helpfulFunctions.c ../library/helpfulFunctions.h
-	$(CC) $(CFLAGS) -c ../library/helpfulFunctions.c  
+helpfulFunctions.o: ../crypto_dspSimulation/library/helpfulFunctions.c ../crypto_dspSimulation/library/helpfulFunctions.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/helpfulFunctions.c  
 
-sha2.o: ../library/sha2.c ../library/sha2.h
-	$(CC) $(CFLAGS) -c ../library/sha2.c  
+sha2.o: ../crypto_dspSimulation/library/sha2.c ../crypto_dspSimulation/library/sha2.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/sha2.c  
 
-useSHA256.o: ../library/useSHA256.c ../library/useSHA256.h
-	$(CC) $(CFLAGS) -c ../library/useSHA256.c  
+useSHA256.o: ../crypto_dspSimulation/library/useSHA256.c ../crypto_dspSimulation/library/useSHA256.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/useSHA256.c  
 
-hmac.o: ../library/hmac.c ../library/hmac.h
-	$(CC) $(CFLAGS) -c ../library/hmac.c  
+hmac.o: ../crypto_dspSimulation/library/hmac.c ../crypto_dspSimulation/library/hmac.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/hmac.c  
 
-PRNG.o: ../library/PRNG.c ../library/PRNG.h
-	$(CC) $(CFLAGS) -c ../library/PRNG.c  
+PRNG.o: ../crypto_dspSimulation/library/PRNG.c ../crypto_dspSimulation/library/PRNG.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/PRNG.c  
 
-encryptDecrypt.o: ../library/encryptDecrypt.c ../library/encryptDecrypt.h
-	$(CC) $(CFLAGS) -c ../library/encryptDecrypt.c
+encryptDecrypt.o: ../crypto_dspSimulation/library/encryptDecrypt.c ../crypto_dspSimulation/library/encryptDecrypt.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/library/encryptDecrypt.c
 
-additionalFunctions.o: ../Key_Establishment/Source/additionalFunctions.c ../Key_Establishment/Header/additionalFunctions.h
-	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/additionalFunctions.c
+#additionalFunctions.o: ../crypto_dspSimulation/Key_Establishment/Source/additionalFunctions.c ../crypto_dspSimulation/Key_Establishment/Header/additionalFunctions.h
+#	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/additionalFunctions.c
 
-modFunctions.o: ../Key_Establishment/Source/modFunctions.c ../Key_Establishment/Header/modFunctions.h
-	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/modFunctions.c
+additionalFunctions32.o: ../crypto_dspSimulation/Key_Establishment/Source/additionalFunctions32.c ../crypto_dspSimulation/Key_Establishment/Header/additionalFunctions32.h
+	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/additionalFunctions32.c
+
+#modFunctions.o: ../crypto_dspSimulation/Key_Establishment/Source/modFunctions.c ../crypto_dspSimulation/Key_Establishment/Header/modFunctions.h
+#	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/modFunctions.c
 	
-modularInverse.o: ../Key_Establishment/Source/modularInverse.c ../Key_Establishment/Header/modularInverse.h
-	$(CC) $(CFLAGS)	-c ../Montgomery_Exponentiation/Source/modularInverse.c
-	
-montExponentiation.o: ../Key_Establishment/Source/montExponentiation.c ../Key_Establishment/Header/montExponentiation.h
-	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/montExponentiation.c
-	
-formatting.o: ../Key_Establishment/Source/formatting.c ../Key_Establishment/Header/formatting.h
-	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/formatting.c
+modFunctions32.o: ../crypto_dspSimulation/Key_Establishment/Source/modFunctions32.c ../crypto_dspSimulation/Key_Establishment/Header/modFunctions32.h
+	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/modFunctions32.c
 
-maskGenerationFunction.o: ../Key_Establishment/Source/maskGenerationFunction.c ../Key_Establishment/Header/maskGenerationFunction.h
-	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/maskGenerationFunction.c
+#modularInverse.o: ../crypto_dspSimulation/Key_Establishment/Source/modularInverse.c ../crypto_dspSimulation/Key_Establishment/Header/modularInverse.h
+#	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/modularInverse.c
 	
-signatureMessage.o: ../Key_Establishment/Source/signatureMessage.c ../Key_Establishment/Header/signatureMessage.h
-	$(CC) $(CFLAGS) -c ../Key_Establishment/Source/signatureMessage.c
-	
-verifySignature.o: ../Key_Establishment/Source/verifySignature.c ../Key_Establishment/Header/verifySignature.h
-	$(CC) $(CFLAGS) -c ../Signature/Source/verifySignature.c
-	
-keyEstablishmentFunctions.o: ../Key_Establishment/Source/keyEstablishmentFunctions.c ../Key_Establishment/Header/keyEstablishmentFunctions.h
-	$(CC) $(CFLAGS)	-c ../Key_Establishment/Source/keyEstablishmentFunctions.c
+modularInverse32.o: ../crypto_dspSimulation/Key_Establishment/Source/modularInverse32.c ../crypto_dspSimulation/Key_Establishment/Header/modularInverse32.h
+	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/modularInverse32.c
 
+#montExponentiation.o: ../crypto_dspSimulation/Key_Establishment/Source/montExponentiation.c ../crypto_dspSimulation/Key_Establishment/Header/montExponentiation.h
+#	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/montExponentiation.c
+
+montExponentiation32.o: ../crypto_dspSimulation/Key_Establishment/Source/montExponentiation32.c ../crypto_dspSimulation/Key_Establishment/Header/montExponentiation32.h
+	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/montExponentiation32.c
+	
+#keyEstablishmentFunctions.o: ../crypto_dspSimulation/Key_Establishment/Source/keyEstablishmentFunctions.c ../crypto_dspSimulation/Key_Establishment/Header/keyEstablishmentFunctions.h
+#	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/keyEstablishmentFunctions.c
+
+keyEstablishmentFunctions32.o: ../crypto_dspSimulation/Key_Establishment/Source/keyEstablishmentFunctions32.c ../crypto_dspSimulation/Key_Establishment/Header/keyEstablishmentFunctions32.h
+	$(CC) $(CFLAGS)	-c ../crypto_dspSimulation/Key_Establishment/Source/keyEstablishmentFunctions32.c
+
+signatureMessage.o: ../crypto_dspSimulation/Key_Establishment/Source/signatureMessage.c ../crypto_dspSimulation/Key_Establishment/Header/signatureMessage.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/Key_Establishment/Source/signatureMessage.c
+	
+verifySignature.o: ../crypto_dspSimulation/Key_Establishment/Source/verifySignature.c ../crypto_dspSimulation/Key_Establishment/Header/verifySignature.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/Key_Establishment/Source/verifySignature.c
+	
+maskGenerationFunction.o: ../crypto_dspSimulation/Key_Establishment/Source/maskGenerationFunction.c ../crypto_dspSimulation/Key_Establishment/Header/maskGenerationFunction.h
+	$(CC) $(CFLAGS) -c ../crypto_dspSimulation/Key_Establishment/Source/maskGenerationFunction.c
+
+
+clean:
+	$(RM) program *.o
 
 

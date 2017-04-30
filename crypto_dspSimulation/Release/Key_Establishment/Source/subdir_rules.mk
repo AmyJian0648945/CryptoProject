@@ -10,10 +10,10 @@ Key_Establishment/Source/additionalFunctions.obj: ../Key_Establishment/Source/ad
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Key_Establishment/Source/formatting.obj: ../Key_Establishment/Source/formatting.c $(GEN_OPTS) $(GEN_SRCS)
+Key_Establishment/Source/additionalFunctions32.obj: ../Key_Establishment/Source/additionalFunctions32.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/formatting.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/additionalFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -21,6 +21,13 @@ Key_Establishment/Source/keyEstablishmentFunctions.obj: ../Key_Establishment/Sou
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
 	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/keyEstablishmentFunctions32.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -38,6 +45,13 @@ Key_Establishment/Source/modFunctions.obj: ../Key_Establishment/Source/modFuncti
 	@echo 'Finished building: $<'
 	@echo ' '
 
+Key_Establishment/Source/modFunctions32.obj: ../Key_Establishment/Source/modFunctions32.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 Key_Establishment/Source/modularInverse.obj: ../Key_Establishment/Source/modularInverse.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
@@ -45,10 +59,24 @@ Key_Establishment/Source/modularInverse.obj: ../Key_Establishment/Source/modular
 	@echo 'Finished building: $<'
 	@echo ' '
 
+Key_Establishment/Source/modularInverse32.obj: ../Key_Establishment/Source/modularInverse32.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modularInverse32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 Key_Establishment/Source/montExponentiation.obj: ../Key_Establishment/Source/montExponentiation.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
 	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Key_Establishment/Source/montExponentiation32.obj: ../Key_Establishment/Source/montExponentiation32.c $(GEN_OPTS) $(GEN_SRCS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C6000 Compiler'
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Xilinx/14.2/ISE_DS/EDK/gnu/arm/nt64/arm-xilinx-linux-gnueabi/libc/usr/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

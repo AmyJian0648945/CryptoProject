@@ -2,7 +2,7 @@
 #define VERIFYSIGNATURE_H
 
 #ifndef EMLEN
-#define EMLEN	256
+#define EMLEN	128
 #endif
 
 #ifndef HASHLEN
