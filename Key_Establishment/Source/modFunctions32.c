@@ -344,4 +344,42 @@ void modFaster( uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM){
 	}
 }
 
+/* x^e mod m with left-to-right binary exponentiation
+	x = sizeX elements
+	m = sizeM elements
+	e = sizeE elements
+	result = sizeM elements
+*/
+void modExp(uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE){
+	
+	uint32_t copyOfE[MAXLENGTH] = {0};
+	uint32_t xMod[MAXLENGTH] = {0};
+	uint16_t ei = 0;
+ 	uint16_t posMSB = 0;
+ 	uint16_t t = 0;
+ 	uint16_t msbWord = 0;
+	uint16_t posWord = 0;
+	int i;
+	
+	copyArray32(e,copyOfE,sizeE);
+ 	posMSB = positionMSB(e,sizeE);
+ 	t = sizeE*32 - posMSB - 1;
+ 	msbWord = posMSB/32;
+	posWord = posMSB%32;
 
+	mod(x,m,xMod,sizeX,sizeM);
+	
+	zerosArray(result,sizeM);
+	result[sizeM-1] = 0x01;
+
+	/* Left-to-right binary exponentiation */
+  	for(i=t;i>=0;i--){
+ 		modSquare(result,m,result,sizeM,sizeM);
+		ei = (copyOfE[msbWord]>>(32-posWord))%2;
+		if (ei == 1){
+			modMult(result,xMod,m,result,sizeM,sizeM,sizeM);
+		}
+		multiplyByTwo(copyOfE,sizeE);
+	}
+
+}
