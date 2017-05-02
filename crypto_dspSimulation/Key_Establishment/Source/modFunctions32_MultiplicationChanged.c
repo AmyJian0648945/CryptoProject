@@ -197,6 +197,8 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	*/
 void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA, uint16_t sizeB){
 	
+	/* uint32_t copyOfA[MAXLENGTH] = {0};
+	uint32_t copyOfB[MAXLENGTH] = {0}; */
 	uint32_t result[MAXLENGTH] = {0};
 	uint16_t w[MAXIMUMLENGTH] = {0};
 	uint16_t sizeProduct = 0;
@@ -226,6 +228,9 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 	n = sizeA*32 - AposMSB - 1;
 	t = sizeB*32 - BposMSB - 1;
 	
+	/* copyArray32(a,copyOfA,sizeA);
+	copyArray32(b,copyOfB,sizeB); */
+	
 	/* Step 1 */
 	zerosArray16(w,n+t+2);
 	
@@ -234,6 +239,7 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 	posIndex = 0;
 	
 	for(i=0;i<t+1;i++){
+		/* copyArray32(a,copyOfA,sizeA); */
 		if (countIndex%32 == 0){
 			wordIndex -= 1;
 			posIndex = 31;
@@ -242,6 +248,7 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 		}
 		countIndex -= 1;
 		yi = (b[wordIndex]>>(31-posIndex))%2;
+		/* yi = copyOfB[sizeB-1]%2; */
 		c = 0;
 		
 		countIndex2 = sizeA*32;
@@ -258,14 +265,17 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 			}
 			countIndex2 -= 1;
 			xj = (a[wordIndex2]>>(31-posIndex2))%2;
+			/* xj = copyOfA[sizeA-1]%2; */
 			tempSum = w[i+j] + xj*yi + c;
 			v = tempSum%2;
 			u = (tempSum>>1);
 			w[i+j] = v;
 			c = u;
+			/* divideByTwo(copyOfA,sizeA); */
 		}
 		
 		w[i+n+1] = u;
+		/* divideByTwo(copyOfB,sizeB); */
 	}
 
 	if ((n+t+2)%32 == 0)

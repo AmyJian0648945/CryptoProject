@@ -33,13 +33,13 @@ void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result
 	/* step 1 */
 	zerosArray(A,sizeM+1);
 
-	countIndex = sizeM<<5;
+	countIndex = sizeM*32;
 	wordIndex = sizeM;
 	posIndex = 0;
 	
 	/* step 2 */
 	/* n = sizeM*32; */
-	n = (sizeR-1)<<5;
+	n = (sizeR-1)*32;
 	for(i=0;i<n;i++){
 		/* Step 2.1 */
 		if (countIndex%32 == 0){
@@ -90,25 +90,27 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	uint32_t R2mod[MAXLENGTH] = {0};
 	uint32_t one[MAXLENGTH] = {0};
 	uint32_t xtilde[MAXLENGTH] = {0};
+	uint32_t copyOfE[MAXLENGTH] = {0};
 	uint32_t xExt[MAXLENGTH] = {0};
 	uint16_t mInvLastBit = 0;
 	uint16_t ePosMSB = 0;
 	uint16_t t = 0;
+	uint16_t msbWord = 0;
+	uint16_t posWord = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t mMSBWord = 0;
 	uint16_t sizeR = 0;
 	uint16_t ei = 0;
-	uint16_t wordIndex = 0;
-	uint16_t posIndex = 0;
 	int i;
 	int k;
 	/* sizeR = words of R that are not equal to zero;
 	actual length of R is equal to sizeM+1 */
 
 	ePosMSB = positionMSB(e,sizeE);
-	t = (sizeE<<5) - ePosMSB - 1;
-	wordIndex = ePosMSB>>5;
-	posIndex = ePosMSB%32;
+	t = 32*sizeE - ePosMSB - 1;
+	msbWord = ePosMSB/32;
+	posWord = ePosMSB%32;
+	copyArray32(e,copyOfE,sizeE);
  
 	/* xExt has the same length as m */
 	for(k=0;k<sizeM;k++){
@@ -120,7 +122,7 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	}
 	
 	mPosMSB = positionMSB(m,sizeM);
-	mMSBWord = mPosMSB>>5;
+	mMSBWord = mPosMSB/32;
 	sizeR = sizeM-mMSBWord+1;
 	
 	zerosArray(R,sizeM+1);
@@ -139,16 +141,11 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
 	for(i=t;i>=0;i--){
 		montMultiplication(A,A,m,A,mInvLastBit,sizeM,sizeR);
-		ei = (e[wordIndex]>>(31-posIndex))%2;
-		if ((posIndex+1)%32 == 0){
-			wordIndex += 1;
-			posIndex = 0;
-		} else {
-			posIndex += 1;
-		}
+		ei = (copyOfE[msbWord]>>(31-posWord))%2;
 		if (ei == 1){
 			montMultiplication(A,xtilde,m,A,mInvLastBit,sizeM,sizeR);
 		}
+		multiplyByTwo(copyOfE,sizeE);
 	}
 	montMultiplication(A,one,m,A,mInvLastBit,sizeM,sizeR);
 	copyArray32(A,result,sizeM);

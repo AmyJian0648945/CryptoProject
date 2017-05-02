@@ -109,6 +109,7 @@ void mod(uint32_t *a, uint32_t *N, uint32_t *result, uint16_t sizeA, uint16_t si
 void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	
 	uint32_t copyOfA[MAXLENGTH] = {0};
+	uint32_t copy2[MAXLENGTH] = {0};
 	uint16_t w[MAXIMUMLENGTH] = {0};
 	uint32_t result[MAXLENGTH] = {0};
 	uint16_t posMSB = 0;
@@ -121,57 +122,31 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	uint16_t xi = 0;
 	uint16_t xj = 0;
 	uint16_t sizeResult = 0;
- 	uint16_t countIndex = 0;
-	uint16_t wordIndex = 0;
-	uint16_t posIndex = 0;
- 	uint16_t countIndex2 = 0;
-	uint16_t wordIndex2 = 0;
-	uint16_t posIndex2 = 0;
 	int i;
 	int j;
+
 	posMSB = positionMSB(a,sizeX);
 	t = sizeX*32 - posMSB;
 	sizeProduct = 2*sizeX;
 	copyArray32(a,copyOfA,sizeX);
 	zerosArray16(w,2*t);
 	
- 	countIndex = sizeX*32;
-	wordIndex = sizeX;
-	posIndex = 0;
-	
 	for(i=0;i<t;i++){
-		
-		if (countIndex%32 == 0){
-			wordIndex -= 1;
-			posIndex = 31;
-			countIndex -= 1;
-		} else {
-			posIndex -= 1;
-			countIndex -= 1;
-		}
-		xi = (copyOfA[wordIndex]>>(31-posIndex))%2;
+
+		copyArray32(copyOfA,copy2,sizeX);
+
+		xi = copyOfA[sizeX-1]%2;
+
 		tempsum = w[2*i] + xi*xi;
 		v = tempsum%2;
 		u = tempsum>>1;
 		w[2*i] = v;
 		c = u;
+
 		
- 		countIndex2 = countIndex;
-		wordIndex2 = wordIndex;
-		posIndex2 = posIndex;
-
 		for(j=i+1;j<t;j++){
-
-			if (countIndex2%32 == 0){
-				wordIndex2 -= 1;
-				posIndex2 = 31;
-				countIndex2 -= 1;
-			} else {
-				posIndex2 -= 1;
-				countIndex2 -= 1;
-			}
-			xj = (copyOfA[wordIndex2]>>(31-posIndex2))%2;
-			
+			divideByTwo(copy2,sizeX);
+			xj = copy2[sizeX-1]%2;
 			tempsum = w[i+j] + 2*xj*xi + c;
 			v = tempsum%2;
 			u = (tempsum>>1);
@@ -180,8 +155,10 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 		}
 
 		w[i+t] = u;
+		divideByTwo(copyOfA,sizeX);
 	}
-
+	
+	
 	if (2*t%32 == 0)
 		sizeResult = 2*t/32;
 	else
@@ -197,6 +174,8 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	*/
 void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA, uint16_t sizeB){
 	
+	uint32_t copyOfA[MAXLENGTH] = {0};
+	uint32_t copyOfB[MAXLENGTH] = {0};
 	uint32_t result[MAXLENGTH] = {0};
 	uint16_t w[MAXIMUMLENGTH] = {0};
 	uint16_t sizeProduct = 0;
@@ -209,14 +188,8 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 	uint16_t c = 0;
 	uint16_t tempSum = 0;
 	uint16_t yi = 0;
-	uint16_t xj = 0;
+	uint16_t xj = 0;	
 	uint16_t sizeResult = 0;
-	uint16_t countIndex = 0;
-	uint16_t wordIndex = 0;
-	uint16_t posIndex = 0;
-	uint16_t countIndex2 = 0;
-	uint16_t wordIndex2 = 0;
-	uint16_t posIndex2 = 0;
 	int i;
 	int j;
 	
@@ -226,46 +199,29 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 	n = sizeA*32 - AposMSB - 1;
 	t = sizeB*32 - BposMSB - 1;
 	
+	copyArray32(a,copyOfA,sizeA);
+	copyArray32(b,copyOfB,sizeB);
+	
 	/* Step 1 */
 	zerosArray16(w,n+t+2);
 	
-	countIndex = sizeB*32;
-	wordIndex = sizeB;
-	posIndex = 0;
-	
 	for(i=0;i<t+1;i++){
-		if (countIndex%32 == 0){
-			wordIndex -= 1;
-			posIndex = 31;
-		} else {
-			posIndex -= 1;
-		}
-		countIndex -= 1;
-		yi = (b[wordIndex]>>(31-posIndex))%2;
+		copyArray32(a,copyOfA,sizeA);
+		yi = copyOfB[sizeB-1]%2;
 		c = 0;
 		
-		countIndex2 = sizeA*32;
-		wordIndex2 = sizeA;
-		posIndex2 = 0;
-		
 		for(j=0;j<n+1;j++){
-			
-			if (countIndex2%32 == 0){
-				wordIndex2 -= 1;
-				posIndex2 = 31;
-			} else {
-				posIndex2 -= 1;
-			}
-			countIndex2 -= 1;
-			xj = (a[wordIndex2]>>(31-posIndex2))%2;
+			xj = copyOfA[sizeA-1]%2;
 			tempSum = w[i+j] + xj*yi + c;
 			v = tempSum%2;
 			u = (tempSum>>1);
 			w[i+j] = v;
 			c = u;
+			divideByTwo(copyOfA,sizeA);
 		}
 		
 		w[i+n+1] = u;
+		divideByTwo(copyOfB,sizeB);
 	}
 
 	if ((n+t+2)%32 == 0)

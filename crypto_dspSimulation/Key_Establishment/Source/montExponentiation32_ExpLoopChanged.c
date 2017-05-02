@@ -33,13 +33,13 @@ void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result
 	/* step 1 */
 	zerosArray(A,sizeM+1);
 
-	countIndex = sizeM<<5;
+	countIndex = sizeM*32;
 	wordIndex = sizeM;
 	posIndex = 0;
 	
 	/* step 2 */
 	/* n = sizeM*32; */
-	n = (sizeR-1)<<5;
+	n = (sizeR-1)*32;
 	for(i=0;i<n;i++){
 		/* Step 2.1 */
 		if (countIndex%32 == 0){
@@ -106,8 +106,8 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	actual length of R is equal to sizeM+1 */
 
 	ePosMSB = positionMSB(e,sizeE);
-	t = (sizeE<<5) - ePosMSB - 1;
-	wordIndex = ePosMSB>>5;
+	t = 32*sizeE - ePosMSB - 1;
+	wordIndex = ePosMSB/32;
 	posIndex = ePosMSB%32;
  
 	/* xExt has the same length as m */
@@ -120,7 +120,7 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	}
 	
 	mPosMSB = positionMSB(m,sizeM);
-	mMSBWord = mPosMSB>>5;
+	mMSBWord = mPosMSB/32;
 	sizeR = sizeM-mMSBWord+1;
 	
 	zerosArray(R,sizeM+1);

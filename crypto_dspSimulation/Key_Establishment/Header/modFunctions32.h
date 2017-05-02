@@ -11,6 +11,10 @@
 #ifndef MAXIMUMLENGTH
 #define MAXIMUMLENGTH 2048
 #endif
+
+#define MAXIMUMLENGTH2 1024
+
+#include <time.h>
 /* Macro for the binary array w for squareProduct and multiplication */
 
 uint16_t positionMSB(uint32_t *array, uint16_t size);

@@ -9,18 +9,19 @@
 */
 void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR){
 	
+	uint32_t copyOfX[MAXLENGTH] = {0};
 	uint32_t yExt[MAXLENGTH] = {0};
 	uint32_t mExt[MAXLENGTH] = {0};
 	uint32_t A[MAXLENGTH] = {0};
 	uint16_t n = 0;
 	uint16_t ui = 0;
 	uint16_t xi = 0;
-	uint16_t countIndex = 0;
-	uint16_t wordIndex = 0;
-	uint16_t posIndex = 0;
 	int i;
 	int k;
-
+	
+	copyArray32(x,copyOfX,sizeM);
+	xi = x[sizeM-1]%2;
+	
 	yExt[0] = 0x00;
 	for(k=0;k<sizeM;k++){
 		yExt[k+1] = y[k];
@@ -33,23 +34,12 @@ void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result
 	/* step 1 */
 	zerosArray(A,sizeM+1);
 
-	countIndex = sizeM<<5;
-	wordIndex = sizeM;
-	posIndex = 0;
-	
 	/* step 2 */
 	/* n = sizeM*32; */
-	n = (sizeR-1)<<5;
+	n = (sizeR-1)*32;
 	for(i=0;i<n;i++){
 		/* Step 2.1 */
-		if (countIndex%32 == 0){
-			wordIndex -= 1;
-			posIndex = 31;
-		} else {
-			posIndex -= 1;
-		}
-		countIndex -= 1;
-		xi = (x[wordIndex]>>(31-posIndex))%2;
+		xi = copyOfX[sizeM-1]%2;
 		ui = (A[sizeM]%2 + xi*(yExt[sizeM]%2))*mInvLastBit;
 		ui = ui%2;
 
@@ -61,6 +51,10 @@ void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result
 			addition(A,mExt,A,sizeM+1);
 		}
 		divideByTwo(A,sizeM+1);
+		
+		/* Because xi is the last bit of the last word 
+		 => shift all bits one place to the right.*/
+		divideByTwo(copyOfX,sizeM);
 	}
 
 	/* step 3 */
@@ -90,25 +84,27 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	uint32_t R2mod[MAXLENGTH] = {0};
 	uint32_t one[MAXLENGTH] = {0};
 	uint32_t xtilde[MAXLENGTH] = {0};
+	uint32_t copyOfE[MAXLENGTH] = {0};
 	uint32_t xExt[MAXLENGTH] = {0};
 	uint16_t mInvLastBit = 0;
 	uint16_t ePosMSB = 0;
 	uint16_t t = 0;
+	uint16_t msbWord = 0;
+	uint16_t posWord = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t mMSBWord = 0;
 	uint16_t sizeR = 0;
 	uint16_t ei = 0;
-	uint16_t wordIndex = 0;
-	uint16_t posIndex = 0;
 	int i;
 	int k;
 	/* sizeR = words of R that are not equal to zero;
 	actual length of R is equal to sizeM+1 */
 
 	ePosMSB = positionMSB(e,sizeE);
-	t = (sizeE<<5) - ePosMSB - 1;
-	wordIndex = ePosMSB>>5;
-	posIndex = ePosMSB%32;
+	t = 32*sizeE - ePosMSB - 1;
+	msbWord = ePosMSB/32;
+	posWord = ePosMSB%32;
+	copyArray32(e,copyOfE,sizeE);
  
 	/* xExt has the same length as m */
 	for(k=0;k<sizeM;k++){
@@ -120,7 +116,7 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	}
 	
 	mPosMSB = positionMSB(m,sizeM);
-	mMSBWord = mPosMSB>>5;
+	mMSBWord = mPosMSB/32;
 	sizeR = sizeM-mMSBWord+1;
 	
 	zerosArray(R,sizeM+1);
@@ -139,16 +135,11 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	montMultiplication(xExt,R2mod,m,xtilde,mInvLastBit,sizeM,sizeR);
 	for(i=t;i>=0;i--){
 		montMultiplication(A,A,m,A,mInvLastBit,sizeM,sizeR);
-		ei = (e[wordIndex]>>(31-posIndex))%2;
-		if ((posIndex+1)%32 == 0){
-			wordIndex += 1;
-			posIndex = 0;
-		} else {
-			posIndex += 1;
-		}
+		ei = (copyOfE[msbWord]>>(31-posWord))%2;
 		if (ei == 1){
 			montMultiplication(A,xtilde,m,A,mInvLastBit,sizeM,sizeR);
 		}
+		multiplyByTwo(copyOfE,sizeE);
 	}
 	montMultiplication(A,one,m,A,mInvLastBit,sizeM,sizeR);
 	copyArray32(A,result,sizeM);
