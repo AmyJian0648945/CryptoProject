@@ -9,9 +9,9 @@
 void maskGenerationFunction(uint8_t *input, uint8_t *dbmask){
 
 	/* 	
-	masklen / hashlen (rounded up) = 7
-	rounded up - 1 = 6
-	=> from 0 to 6 (6 included) */
+	masklen / hashlen (rounded up) = 3
+	rounded up - 1 = 2
+	=> from 0 to 2 (2 included) */
 	int counter;
 	uint8_t T[MASKLEN+1] = {0};
 	uint8_t string[4];
