@@ -9,16 +9,9 @@ void repositionZeros(uint32_t *array, uint16_t size){
 	
 	actualSize = size;
 	i = size-1;
-	while (stop == 0){
-		if (array[i] != 0){
-			actualSize = i+1;
-			stop = 1;
-		} else {
-			i = i-1;
-			stop = 0;
-		}
-	}
-	
+	while(array[i] ==0) i--;
+	actualSize = i+1;
+
 	copyArray32(array,stack,size);
 	zerosArray(array,size);
 	for(i=0;i<actualSize;i++){
