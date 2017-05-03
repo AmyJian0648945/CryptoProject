@@ -1,2 +1,0 @@
-makefile: additionalFunctions32.c montExponentiation32.c modularInverse32.c modFunctions32.c
-	gcc testMontToledo32.c additionalFunctions32.c montExponentiation32.c modularInverse32.c modFunctions32.c -o test.exe
