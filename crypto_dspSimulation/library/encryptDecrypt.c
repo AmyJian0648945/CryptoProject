@@ -73,7 +73,6 @@ void decryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_
 
 	/* (2) Compare the HMAC with the registKey's HMAC */
 	seeTheDifference(hmacData, registKey+(*msgLength-SHA256_DIGEST_LENGTH), SHA256_DIGEST_LENGTH);
-	
 
 	/* * * Decryption step; verification step ends above * * */
 	temp = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
