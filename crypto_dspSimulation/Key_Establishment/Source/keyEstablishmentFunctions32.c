@@ -9,9 +9,16 @@ void repositionZeros(uint32_t *array, uint16_t size){
 	
 	actualSize = size;
 	i = size-1;
-	while(array[i] ==0) i--;
-	actualSize = i+1;
-
+	while (stop == 0){
+		if (array[i] != 0){
+			actualSize = i+1;
+			stop = 1;
+		} else {
+			i = i-1;
+			stop = 0;
+		}
+	}
+	
 	copyArray32(array,stack,size);
 	zerosArray(array,size);
 	for(i=0;i<actualSize;i++){
@@ -47,7 +54,6 @@ void createExponent( uint32_t *x, uint16_t sizeX){
 }
 
 void computePartOfKey(uint32_t *g, uint32_t *m, uint32_t *exponent, uint32_t *partOfKey){
-
 	montExp(g,m,exponent,partOfKey, baseLength, modLength, expLengthMAX);
 }
 

@@ -106,6 +106,7 @@ int main(void){
 
 	/**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
 	/*** STS - Protocol ***/
+	
 #ifdef PRINT
     printf("\n\nStart of the STS protocol...\n");
 	printf("Secret key creation by poth parties...\n");
