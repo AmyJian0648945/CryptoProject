@@ -24,8 +24,6 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeA);
 void multiplication(uint32_t *x, uint32_t *y, uint32_t *product, uint16_t sizeX, uint16_t sizeY);
 void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeM);
 void modFaster(uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM);
-void modMult(uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result, uint16_t sizeX, uint16_t sizeY, uint16_t sizeM);
-void modExp(uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t sizeX, uint16_t sizeM, uint16_t sizeE);
 
 #endif
 

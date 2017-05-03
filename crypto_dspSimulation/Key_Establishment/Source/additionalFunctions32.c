@@ -87,18 +87,6 @@ void copyArray8(uint8_t *original, uint8_t *copiedVersion, uint16_t arrayLength)
 		copiedVersion[i] = original[i];
 	}
 }
-/* Switches the order of the (size) elements of array.
-*/
-void flipArray(uint32_t *input, uint16_t size){
-	int i;
-	uint32_t stock[MAXLENGTH] = {0};
-	for(i=0;i<size;i++){
-		stock[i] = input[size-1-i];
-	}
-	for(i=0;i<size;i++){
-		input[i] = stock[i];
-	}
-}
 
 void divideByTwo(uint32_t *input, uint16_t size){
 	uint32_t newValue = 0x00;
@@ -127,15 +115,6 @@ void multiplyByTwo(uint32_t *input, uint16_t size){
 	}
 }
 
-/*	Divide the input by 16. The number of elements in the array is equal to size.
-*/
-void divideBy16(uint32_t *input, uint16_t size){
-	divideByTwo(input,size);
-	divideByTwo(input,size);
-	divideByTwo(input,size);
-	divideByTwo(input,size);
- }
-
 void addition(uint32_t *number1, uint32_t *number2, uint32_t *result, uint16_t size){
 	uint64_t carrier = 0;
 	uint64_t sum = 0;
@@ -162,12 +141,30 @@ void subtraction(uint32_t *number1, uint32_t *number2, uint32_t *result, uint16_
 }
 
 uint16_t subtractionWithSign(uint32_t *number1, uint32_t *number2, uint32_t *result, uint16_t size){
+	uint32_t carrier = 0;
+	uint32_t difference = 0;
+	int i;
 	if (isBiggerThanOrEqual(number1, number2, size) == 1){
-		subtraction(number1,number2,result,size);
+		/* subtraction(number1,number2,result,size); */
+		for(i=size-1;i>=0; i--){
+			difference = number1[i]-number2[i]-carrier;
+			if (number1[i] >= number2[i]+carrier)
+				carrier = 0;
+			else
+				carrier = 1;
+			result[i] = difference;
+		}
 		return 0;
 	}
 	else {
-		subtraction(number2,number1,result,size);
+		for(i=size-1;i>=0; i--){
+			difference = number2[i]-number1[i]-carrier;
+			if (number2[i] >= number1[i]+carrier)
+				carrier = 0;
+			else
+				carrier = 1;
+			result[i] = difference;
+		}
 		return 1;
 	}
 }

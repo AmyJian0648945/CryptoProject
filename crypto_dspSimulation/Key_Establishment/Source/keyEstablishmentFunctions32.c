@@ -137,7 +137,6 @@ void decryptAndUnsignMessage(uint8_t *message, uint8_t *unsignedMessage, uint8_t
 	/* Decrypt Message */
 	msgLength[0] = sizeMessageAB;
 	simpleDecrypt(message, message, msgLength, key);
-	copyArray8(message, unsignedMessage, sizeMessageAB);
 	from8to32(message, decryptedMessage, sizeMessageAB/4);
 
 	/* Unsign Message */
