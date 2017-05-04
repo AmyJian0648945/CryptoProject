@@ -31,9 +31,8 @@
  *
  * $Id: sha2.c,v 1.1 2001/11/08 00:01:51 adg Exp adg $
  */
-#ifndef BYTE_ORDER
+
 #define BYTE_ORDER LITTLE_ENDIAN 
-#endif
 
 #include <string.h>	/* memcpy()/memset() or bcopy()/bzero() */
 #include <assert.h>	/* assert() */

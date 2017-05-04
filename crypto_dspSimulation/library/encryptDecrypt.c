@@ -2,17 +2,17 @@
 #include "encryptDecrypt.h"
 
 
-void encryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
+
+
+void encryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
 	
-	uint8_t IV_ciphertextLength = 0;
+	uint16_t IV_ciphertextLength = 0;
 	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
 	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
-
-	printf(">> Entering encryption...\n");
 
 	/* (1) Hash the key; k = {encryptKey, macKey} */
 	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
@@ -46,18 +46,18 @@ void encryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* in
 	
 	/* Update message length */
 	msgLength[0] = IV_ciphertextLength + SHA256_DIGEST_LENGTH;
-	printf(">> Encryption ended\n"); 
+	
  }
 
 
-void decryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
+void decryptHMAC(uint8_t* output, uint16_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};	
 	uint8_t hmacData[SHA256_DIGEST_LENGTH] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
-	uint8_t temp = 0;
+	uint16_t temp = 0;
 
-	printf(">> Entering decryption...\n");
+	
 
 	/* * * Verification step; if failed, abort * * */
 	
@@ -83,20 +83,18 @@ void decryptHMAC(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_
 	/* update message length */
 	*msgLength = *msgLength - SHA256_DIGEST_LENGTH - IVlength;
 
-	printf(">> Decryption ended\n"); 
+	
 }
 
 
-void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
+void encrypt(uint8_t* output, uint16_t* msgLength, uint8_t* data, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t IV[IVlength] = {0};
 
-	uint8_t IV_ciphertextLength = 0;
+	uint16_t IV_ciphertextLength = 0;
 	uint8_t IVciphertextConcat[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16] = {0}; /* 16 is a safety number */
 	uint8_t IVciphertextConcat_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + 16)*2] = {0};
-
-	printf(">> Entering encryption...\n");
 
 	/* (1) Hash the key; k = {encryptKey, macKey} */
 	simpleHashWithLength(key, inputKey, keyLength); /*input = STRING; output = HEX */
@@ -126,17 +124,14 @@ void encrypt(uint8_t* output, uint8_t* msgLength, uint8_t* data, uint8_t* inputK
 	
 	/* Update message length */
 	msgLength[0] = IV_ciphertextLength;
-	printf(">> Encryption ended\n"); 
  }
 
 
-void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
+void decrypt(uint8_t* output, uint16_t* msgLength, uint8_t* registKey, uint8_t* inputKey, uint16_t keyLength){
 	uint8_t key[encryptKeyLength + macKeyLength] = {0};	
 	uint8_t macKey_String[macKeyLength*2] = {0};
 	uint8_t registKey_String[(IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH)*2] = {0};
 	uint8_t temp = 0;
-
-	printf(">> Entering decryption...\n");
 
 	/* * * Verification step; if failed, abort * * */
 	
@@ -154,8 +149,6 @@ void decrypt(uint8_t* output, uint8_t* msgLength, uint8_t* registKey, uint8_t* i
 
 	/* update message length */
 	*msgLength = *msgLength - IVlength;
-
-	printf(">> Decryption ended\n"); 
 }
 
 
