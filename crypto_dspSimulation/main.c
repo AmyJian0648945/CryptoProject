@@ -249,10 +249,8 @@ int main(void){
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, *msgSize );
 	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, *msgSize);
 #endif
-
-
-
 	
+	/*printf("\ntest: "); printCharNoSpaces(plaintext, *msgSize);*/
 	return 0;
 }
 

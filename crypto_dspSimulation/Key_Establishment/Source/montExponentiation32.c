@@ -236,20 +236,26 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	}
 	
 	/* xExt has the same length as m */
+	/*
 	for(k=0;k<size;k++){
 		if (k<(size-sizeX)){
 			xExt[k] = 0x00;
 		} else {
 			xExt[k] = x[k-(size-sizeX)];
 		}
-	}
+	}*/
+	for(k=0; k<(size-sizeX); k++) 	 xExt[k] = 0x00;
+	for(k=(size-sizeX); k<size; k++) xExt[k] = x[k-(size-sizeX)];
+	/*
 	for(k=0;k<size;k++){
 		if (k<(size-sizeM)){
 			mExt[k] = 0x00;
 		} else {
 			mExt[k] = m[k-(size-sizeM)];
 		}
-	}
+	}*/
+	for(k=0; k<(size-sizeM); k++) 	 mExt[k] = 0x00;
+	for(k=(size-sizeM); k<size; k++) mExt[k] = m[k-(size-sizeM)];
 	
 	mPosMSB = positionMSB(m,sizeM);
 	mMSBWord = mPosMSB/32;
@@ -261,22 +267,28 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	zerosArray(Rmod,sizeM);
 	mod(R,m,Rmod,sizeM+1,sizeM);
 	/* copyArray32(Rmod,A,sizeM); */
+	/*
 	for(k=0;k<size;k++){
 		if (k<(size-sizeM)){
 			A[k] = 0x00;
 		} else {
 			A[k] = Rmod[k-(size-sizeM)];
 		}
-	}
+	}*/
+	for(k=0; k<(size-sizeM); k++) 	 A[k] = 0x00;
+	for(k=(size-sizeM); k<size; k++) A[k] = Rmod[k-(size-sizeM)];
 	
 	modSquare(Rmod,m,tempResult,sizeM,sizeM);
+	/*
 	for(k=0;k<size;k++){
 		if (k<(size-sizeM)){
 			R2mod[k] = 0x00;
 		} else {
 			R2mod[k] = tempResult[k-(size-sizeM)];
 		}
-	}
+	}*/
+	for(k=0; k<(size-sizeM); k++) 	 R2mod[k] = 0x00;
+	for(k=(size-sizeM); k<size; k++) R2mod[k] = tempResult[k-(size-sizeM)];
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	/* mInvLastBit = mInv[sizeM]%2; */
@@ -286,7 +298,7 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	mont(xExt,R2mod,mExt,mInv,xtilde,size,sizeM+1);
 	for(i=t;i>=0;i--){
 		/* montMultiplication(A,A,mExt,A,mInvLastBit,size,sizeR); */
-		for(k=0;k<size;k++){
+		for(k=0; k<size; k++){
 			copyOfA[k] = A[k];
 		}
 		mont(A,copyOfA,mExt,mInv,tempResult,size,sizeM+1);
