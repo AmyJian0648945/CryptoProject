@@ -6,14 +6,14 @@
 
 
 
-void aesDecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t* key){
+void inline aesDecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint8_t* key){
     aes_key aeskey;
  
     aes_set_decrypt_key(&aeskey, key, 128);
     aes_decrypt(&aeskey, ciphertext, plaintext);
 }
 
-void aesEncrypt(uint8_t* ciphertext, uint8_t* plaintext, uint8_t* key){
+void inline aesEncrypt(uint8_t* ciphertext, uint8_t* plaintext, uint8_t* key){
     aes_key aeskey;
 
     aes_set_encrypt_key(&aeskey, key, 128);

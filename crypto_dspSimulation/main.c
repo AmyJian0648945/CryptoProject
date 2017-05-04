@@ -28,7 +28,7 @@
 #define sizePrExpAB 64
 #define sizePuExpAB 2 */
 
-/*#define PRINT*/
+#define PRINT
 
 #include "library/helpfulFunctions.h"
 #include "library/sha2.h"
@@ -48,15 +48,17 @@ int main(void){
 /*
 
 	uint16_t g[baseLength] = {0x285a, 0xd063, 0xcb4e, 0x158b, 0x19ac, 0xc462, 0x9dc7, 0x8b92, 0x5b55, 0x7200, 0xaf8a, 0x2b99, 0xf89b, 0xac17, 0xf31c, 0x93a9, 0x40ef, 0x5755, 0xb08b, 0x406e, 0xeb08, 0xec9a, 0x1d0a, 0x9ca9, 0xa2a0, 0x6e3e, 0xd680, 0x534c, 0x874, 0xf626};
+
 	uint16_t p[modLength] = {0xCF5A,0x4C9E,0xBE8A,0xFBD3,0xB4C6,0x475A,0x2B03,0x361C,0x0108,0xAA51,0x44E6,0x4827,0xAA17,0xA5AD,0xCD09,0x3BCE,0xF88B,0x9A0E,0xAC06,0xE7C3,0xE18A,0x5548,0xD2ED,0xE19D,0x3AD4,0xEB54,0x1AE4,0x73FF,0x3018,0xB4BA,0xC353,0xBFCB};
 
 */
 	uint32_t g[baseLength] = {0x285ad063, 0xcb4e158b, 0x19acc462, 0x9dc78b92, 0x5b557200, 0xaf8a2b99, 0xf89bac17, 0xf31c93a9, 0x40ef5755, 0xb08b406e, 0xeb08ec9a, 0x1d0a9ca9, 0xa2a06e3e, 0xd680534c, 0x874f626};
+	
 	uint32_t p[modLength] = {0xCF5A4C9E,0xBE8AFBD3,0xB4C6475A,0x2B03361C,0x0108AA51,0x44E64827,0xAA17A5AD,0xCD093BCE,0xF88B9A0E,0xAC06E7C3,0xE18A5548,0xD2EDE19D,0x3AD4EB54,0x1AE473FF,0x3018B4BA,0xC353BFCB};
 
 /*
 
-	uint16_t publicExponentB[sizePuExpAB] = {0x1, 0x0001};
+	 uint16_t publicExponentB[sizePuExpAB] = {0x1, 0x0001};
 	uint16_t privateExponentB[64] = { 0x4a18, 0xc038, 0x32ae, 0xfc22, 0x6139, 0xf6c7, 0x15f7, 0x53a7, 0xfd0e, 0x7916, 0x939, 0xb9ff, 0xa25, 0x2060, 0x6313, 0x41c7, 0x8094, 0x3f17, 0xf24c, 0xf3f4, 0x63f3, 0xdc59, 0x80c3, 0xcebb, 0x94d0, 0xdd6f, 0xce1e, 0x2dcd, 0x633f, 0x5d82, 0xb47, 0x45a5, 0x5b6d, 0xa35c, 0x72bb, 0x3775, 0x8c2, 0xcc4d, 0x36d3, 0x574c, 0xd9f6, 0x14d8, 0x57fc, 0x3ae5, 0x403e, 0x7746, 0x2c2c, 0x55bd, 0xb5ff, 0xec2d, 0xd047, 0x94d6, 0x42cb, 0x721d, 0xc2db, 0x1258, 0xcbeb, 0xb445, 0x956f, 0xc862, 0xb1ae, 0x6760, 0x476f, 0x3b8d};
 	uint16_t modulusB[64] = { 0xe8d3, 0xbb3a, 0x533b, 0x8d2e, 0x40c9, 0x648c, 0xb80a, 0xd232, 0x7482, 0xd192, 0xd056, 0x40a5, 0x39f, 0x756b, 0x8071, 0x91ef, 0x8210, 0xaa05, 0xc931, 0xf23e, 0xb823, 0x7380, 0xdabd, 0x61ed, 0x5cc8, 0xfa7f, 0x46c8, 0xc72d, 0x9622, 0x1b4a, 0x4df4, 0xd78c, 0x302b, 0xd427, 0xd2a2, 0x873b, 0x7417, 0xbfb6, 0xb20a, 0x3d1d, 0x9d78, 0x7d06, 0xfd98, 0xd0bc, 0x1841, 0x6587, 0xbf65, 0x863c, 0x2c70, 0x4f9e, 0x348e, 0x3d17, 0xc0b4, 0xc2d1, 0x74b8, 0xfb2, 0x24a, 0x43ea, 0xa2ce, 0xff1d, 0x2695, 0xcb72, 0x71a5, 0x63e5};
 	uint16_t modulusA[64] = {0xcc70, 0xb25c, 0xd644, 0xe756, 0x8336, 0xc7fe, 0xe148, 0xd14c, 0x2839, 0xd46b, 0x9bf6, 0x90b4, 0x6b20, 0x73d2, 0xa181, 0xa113, 0x6ebb, 0xc420, 0x34d5, 0x2f5c, 0xe0c5, 0x5f6c, 0xf6ae, 0xd990, 0xf1a6, 0x8b1a, 0xa1b5, 0xdb9f, 0x1f2a, 0x235, 0xa11c, 0xba0, 0x2296, 0x64b8, 0x9f02, 0x72df, 0x8299, 0x8679, 0x9f7c, 0x64a2, 0x90de, 0x6e7d, 0xb47d, 0x6fff, 0xe995, 0x86da, 0xe960, 0x9f47, 0xd749, 0xa8dc, 0x6426, 0x92b6, 0x47f0, 0x938, 0x8d22, 0x1c03, 0xfb48, 0x2658, 0x2c22, 0x945d, 0x5070, 0x919f, 0x3065, 0xb46f};
@@ -78,6 +80,7 @@ int main(void){
 	uint8_t K1[encryptKeyLength] = {0};
 	uint8_t K2[encryptKeyLength] = {0};
 	
+
 	uint8_t messageA[sizeMessageAB] = {0};
 	uint8_t messageB[sizeMessageAB] = {0};
 	uint8_t encodedMessageB[sizeMessageAB] = {0};
@@ -86,14 +89,13 @@ int main(void){
 	uint8_t transmittedMessageB[sizeMessageAB] = {0};
 /* 	uint32_t tempEMB[sizeModulusAB] = {0};
 	uint32_t tempEMA[sizeModulusAB] = {0};
-
+*/
 	uint16_t identityAVerified = 0;
 	uint16_t identityBVerified = 0;
-*/
 	
 	uint8_t keyInString[encryptKeyLength] = {0};
 	uint8_t key[encryptKeyLength] = {0};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "hello there 0123456789 hello there 0123456789";
+    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     uint16_t msgSize[1] = {0};
@@ -114,6 +116,7 @@ int main(void){
 #endif
 	createExponent(x,expLengthMAX);
 	computePartOfKey(g,p,x,gx);
+	printArray32(gx,"gx",modLength);
 	
 	/* B computes g^y mod p and sends it to A */
 #ifdef PRINT
@@ -121,13 +124,13 @@ int main(void){
 #endif
 	createExponent(y,expLengthMAX);
 	computePartOfKey(g,p,y,gy);
+	printArray32(gy,"gy",modLength);
 
 #ifdef PRINT
 	printf("B receives (g^x) mod p from A and A receives (g^y) mod p from B\n");
 #endif
 
-	printf("gx and gy created\n");
-
+	
 	/** B - KEY CREATION + ENTITY AUTHENTICATION **/
 	/** B sends message to A to prove identity **/
 #ifdef PRINT
@@ -143,7 +146,7 @@ int main(void){
  	createMessage(gy, gx, messageB, modulusB);
 	signatureMessage(messageB, encodedMessageB);
 	signAndEncryptMessage(encodedMessageB, transmittedMessageB, modulusB, privateExponentB, K1);
-	
+
 /* 	signMessage(encodedMessageB, tempEMB, modulusB, privateExponentB);
 	encryptMessage(tempEMB, transmittedMessageB, K1);
 */
@@ -174,14 +177,14 @@ int main(void){
 	unsignMessage(tempEMB, encodedMessageB, modulusB, publicExponentB);
 */
 
-/*	identityBVerified = verifySignature(messageB, encodedMessageB);*/
+	identityBVerified = verifySignature(messageB, encodedMessageB);
 #ifdef PRINT
 /* 	printf("Encoded message A receives from B (after decryption):");
 	printArrayNoSpaces(encodedMessageB, sizeMessageAB); */
 	if (identityBVerified == 1)
-		printf("Authentication B succeeded\n\n");
+		printf("--> Authentication B succeeded\n\n");
 	else
-		printf("Authentication B failed\n\n");
+		printf("--> Authentication B failed\n\n");
 #endif
 
 
@@ -199,7 +202,7 @@ int main(void){
 */
 
 #ifdef PRINT
-/*	printf("Encoded message A sends to B:");
+/* 	printf("Encoded message A sends to B:");
 	printArrayNoSpaces(encodedMessageA, sizeMessageAB);
  	printf("Original message A->B (g^x mod p||g^y mod p):");
 	printArrayNoSpaces(messageA,sizeMessageAB);
@@ -216,16 +219,16 @@ int main(void){
 	unsignMessage(tempEMA, encodedMessageA, modulusA, publicExponentA);
 */
 
-/*	identityAVerified = verifySignature(messageA, encodedMessageA);*/
+	identityAVerified = verifySignature(messageA, encodedMessageA);
 #ifdef PRINT
 /* 	printf("Encoded message B receives from A (after decryption):");
 	printArrayNoSpaces(encodedMessageA, sizeMessageAB); */
 	if (identityAVerified == 1)
-		printf("Authentication A succeeded\n\n");
+		printf("--> Authentication A succeeded\n\n");
 	else
-		printf("Authentication A failed\n\n");
+		printf("--> Authentication A failed\n\n");
 #endif
-	printf("Authentication finished\n");
+
 
 	/*** DATA TRANSMISSION ***/
 #ifdef PRINT
@@ -238,20 +241,18 @@ int main(void){
 	
 	encrypt(ciphertext, msgSize, data, keyInString, keySize*2);
 	decrypt(plaintext, msgSize, ciphertext, keyInString, keySize*2);
+	
 
 	/* Printout operation summary */
 #ifdef PRINT
-	printf("Plaintext before encryption: "); printCharNoSpaces(data, msgSize[0]);
-	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, msgSize[0] );
-	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, msgSize[0]);
+	printf("Plaintext before encryption: "); printCharNoSpaces(data, *msgSize);
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, *msgSize );
+	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, *msgSize);
 #endif
-/*
 
-	printArrayNoSpaces(K1, encryptKeyLength);
-	printArrayNoSpaces(K2, encryptKeyLength);
 
-*/
 
+	
 	return 0;
 }
 

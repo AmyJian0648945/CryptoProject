@@ -13,7 +13,7 @@ void simpleHash(uint8_t* output, uint8_t* input){
 */
 
 
-void simpleHashWithLength(uint8_t* output, uint8_t* input, size_t lengthOfInput){
+void inline simpleHashWithLength(uint8_t* output, uint8_t* input, size_t lengthOfInput){
 	SHA256_CTX ctx;  /* initialise structure used in SHA256 */
 
 	/* Hash and output */

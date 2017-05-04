@@ -5,7 +5,7 @@
  
 
 CC = gcc
-CFLAGS = -Wall -pedantic -ansi 
+CFLAGS = -Wall -pedantic -ansi -O2 -std=c99
 
 program:  main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions32.o modFunctions32.o modularInverse32.o montExponentiation32.o maskGenerationFunction.o signatureMessage.o verifySignature.o  keyEstablishmentFunctions32.o
 	$(CC) $(CFLAGS) -o program main.o aes.o useAES.o helpfulFunctions.o sha2.o useSHA256.o hmac.o PRNG.o encryptDecrypt.o additionalFunctions32.o modFunctions32.o modularInverse32.o montExponentiation32.o maskGenerationFunction.o signatureMessage.o verifySignature.o keyEstablishmentFunctions32.o

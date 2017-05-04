@@ -10,7 +10,6 @@ Key_Establishment/Source/montExponentiation32.obj: C:/ti/ccsv5/tools/compiler/c6
 Key_Establishment/Source/montExponentiation32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/string.h
 Key_Establishment/Source/montExponentiation32.obj: ../Key_Establishment/Source/../Header/modularInverse32.h
 Key_Establishment/Source/montExponentiation32.obj: ../Key_Establishment/Source/../Header/modFunctions32.h
-Key_Establishment/Source/montExponentiation32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 
 ../Key_Establishment/Source/montExponentiation32.c: 
 ../Key_Establishment/Source/../Header/montExponentiation32.h: 
@@ -22,4 +21,3 @@ C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h:
 C:/ti/ccsv5/tools/compiler/c6000/include/string.h: 
 ../Key_Establishment/Source/../Header/modularInverse32.h: 
 ../Key_Establishment/Source/../Header/modFunctions32.h: 
-C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 

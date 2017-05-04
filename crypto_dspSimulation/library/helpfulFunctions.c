@@ -19,12 +19,7 @@ void XOR(uint8_t* output, uint8_t* input1, uint8_t* input2, uint16_t lengthToXOR
     }
 }
 
-uint16_t timeData(){
-	/* tv is the time variable */
-    /*struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return tv.tv_usec; */
-
+uint16_t inline timeData(){
 	time_t timer;
 	return time(&timer);
 }

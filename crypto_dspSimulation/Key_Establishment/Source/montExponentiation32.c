@@ -126,7 +126,7 @@ void SUB_COND(uint32_t *res, uint32_t *n, uint32_t SIZE){
 	m = sizeM elements
 	result = sizeM elements
 */
-/*void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR){
+/* void montMultiplication( uint32_t *x, uint32_t *y, uint32_t *m, uint32_t *result, uint16_t mInvLastBit, uint16_t sizeM, uint16_t sizeR){
 	
 	uint32_t copyOfX[MAXLENGTH] = {0};
 	uint32_t yExt[MAXLENGTH] = {0};
@@ -150,19 +150,19 @@ void SUB_COND(uint32_t *res, uint32_t *n, uint32_t SIZE){
 		mExt[k+1] = m[k];
 	}
 
-	 step 1
+	// step 1
 	zerosArray(A,sizeM+1);
 
-	 step 2
-	 n = sizeM*32;
+	// step 2
+	// n = sizeM*32;
 	n = (sizeR-1)*32;
 	for(i=0;i<n;i++){
-		 Step 2.1
+		// Step 2.1
 		xi = copyOfX[sizeM-1]%2;
 		ui = (A[sizeM]%2 + xi*(yExt[sizeM]%2))*mInvLastBit;
 		ui = ui%2;
 
-		 Step 2.2
+		// Step 2.2
 		if (xi == 1){
 			addition(A,yExt,A,sizeM+1);
 		}
@@ -171,12 +171,12 @@ void SUB_COND(uint32_t *res, uint32_t *n, uint32_t SIZE){
 		}
 		divideByTwo(A,sizeM+1);
 		
-		 Because xi is the last bit of the last word
-		 => shift all bits one place to the right.
+		// Because xi is the last bit of the last word 
+		 // => shift all bits one place to the right.
 		divideByTwo(copyOfX,sizeM);
 	}
 
-	 step 3
+	// step 3
 	if (isBiggerThanOrEqual(A,mExt,sizeM+1) == 1){
 		subtraction(A,mExt,A,sizeM+1);
 	}
@@ -185,7 +185,7 @@ void SUB_COND(uint32_t *res, uint32_t *n, uint32_t SIZE){
 		result[k] = A[k+1];
 	}
 
-}*/
+} */
 
 /* x^(e)modm
 	x <= m (sizeX <= sizeM)
@@ -209,14 +209,14 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	uint32_t tempResult[LENGTH] = {0};
 	uint32_t copyOfA[LENGTH] = {0};
 	uint16_t size = 0;
-/*	uint16_t mInvLastBit = 0;*/
+	/* uint16_t mInvLastBit = 0; */
 	uint16_t ePosMSB = 0;
 	uint16_t t = 0;
 	uint16_t msbWord = 0;
 	uint16_t posWord = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t mMSBWord = 0;
-/*	uint16_t sizeR = 0;*/
+	/* uint16_t sizeR = 0; */
 	uint16_t ei = 0;
 	int i;
 	int k;
@@ -253,7 +253,7 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	
 	mPosMSB = positionMSB(m,sizeM);
 	mMSBWord = mPosMSB/32;
-/*	sizeR = sizeM-mMSBWord+1;*/
+	/* sizeR = sizeM-mMSBWord+1; */
 	
 	zerosArray(R,sizeM+1);
 	R[mMSBWord] = 0x0001;
@@ -279,7 +279,7 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	}
 	
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
-/*	mInvLastBit = mInv[sizeM]%2;*/
+	/* mInvLastBit = mInv[sizeM]%2; */
 
 	one[size-1] = 0x0001;
 	/* montMultiplication(xExt,R2mod,mExt,xtilde,mInvLastBit,size,sizeR); */
