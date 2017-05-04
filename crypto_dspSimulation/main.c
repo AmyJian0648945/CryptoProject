@@ -1,3 +1,7 @@
+#define PRINT
+/*#define PRINT_DataTransmission*/
+
+
 #include<stdint.h>
 #include<string.h>
 #include<stdio.h>
@@ -28,7 +32,6 @@
 #define sizePrExpAB 64
 #define sizePuExpAB 2 */
 
-#define PRINT
 
 #include "library/helpfulFunctions.h"
 #include "library/sha2.h"
@@ -182,9 +185,9 @@ int main(void){
 /* 	printf("Encoded message A receives from B (after decryption):");
 	printArrayNoSpaces(encodedMessageB, sizeMessageAB); */
 	if (identityBVerified == 1)
-		printf("--> Authentication B succeeded\n\n");
+		printf("\n--> Authentication B succeeded\n\n");
 	else
-		printf("--> Authentication B failed\n\n");
+		printf("\n--> Authentication B failed\n\n");
 #endif
 
 
@@ -224,14 +227,14 @@ int main(void){
 /* 	printf("Encoded message B receives from A (after decryption):");
 	printArrayNoSpaces(encodedMessageA, sizeMessageAB); */
 	if (identityAVerified == 1)
-		printf("--> Authentication A succeeded\n\n");
+		printf("\n--> Authentication A succeeded\n\n");
 	else
-		printf("--> Authentication A failed\n\n");
+		printf("\n--> Authentication A failed\n\n");
 #endif
 
 
 	/*** DATA TRANSMISSION ***/
-#ifdef PRINT
+#ifdef PRINT_DataTransmission
 	printf("Start of the Data Transmission...\n");
 #endif
 	copyArray8(K1, key, encryptKeyLength);
@@ -244,7 +247,7 @@ int main(void){
 	
 
 	/* Printout operation summary */
-#ifdef PRINT
+#ifdef PRINT_DataTransmission
 	printf("Plaintext before encryption: "); printCharNoSpaces(data, *msgSize);
 	printf("\nCiphertext after encryption: "); printArrayNoSpaces(ciphertext, *msgSize );
 	printf("\nPlaintext after decryption: "); printCharNoSpaces(plaintext, *msgSize);

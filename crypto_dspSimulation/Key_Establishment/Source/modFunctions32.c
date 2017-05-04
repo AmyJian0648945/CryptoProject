@@ -111,8 +111,8 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	uint16_t posMSB = 0;
 	uint16_t t = 0;
 	uint16_t sizeProduct = 0;
-	uint16_t u = 0;
-	uint16_t v = 0;
+	/*uint16_t u = 0;
+	uint16_t v = 0;*/
 	uint16_t c = 0;
 	uint16_t tempsum = 0;
 	uint16_t xi = 0;
@@ -136,20 +136,15 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	wordIndex = sizeX;
 	posIndex = 0;
 	
-	for(i=0;i<t;i++){
-		
-		if (countIndex%32 == 0){
-			wordIndex -= 1;
-			posIndex = 31;
-			countIndex -= 1;
-		} else {
-			posIndex -= 1;
-			countIndex -= 1;
-		}
+	for(i=0; i<t; i++){
+		/* Loop statements for array */
+		posIndex -= 1;
+		if (countIndex%32 == 0){ wordIndex -= 1; posIndex = 31; } 
+		countIndex -= 1;
+
 		xi = (copyOfA[wordIndex] >> ( 31-posIndex))%2;
 		tempsum = w[2*i] + xi*xi;
-		/*v = tempsum%2; */
-		/*u = tempsum>>1;*/
+
 		w[2*i] = tempsum%2;
 		c = tempsum>>1;
 		
@@ -157,18 +152,13 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 		wordIndex2 = wordIndex;
 		posIndex2 = posIndex;
 
-		for(j=i+1;j<t;j++){
+		for(j=i+1; j<t; j++){
+			/* Loop statements */
+			posIndex2 -= 1;
+			if (countIndex2%32 == 0){ wordIndex2 -= 1; posIndex2 = 31; } 
+			countIndex2 -= 1;
 
-			if (countIndex2%32 == 0){
-				wordIndex2 -= 1;
-				posIndex2 = 31;
-				countIndex2 -= 1;
-			} else {
-				posIndex2 -= 1;
-				countIndex2 -= 1;
-			}
 			xj = (copyOfA[wordIndex2]>>(31-posIndex2))%2;
-			
 			tempsum = w[i+j] + 2*xj*xi + c;
 			
 			w[i+j] = tempsum%2;
@@ -178,10 +168,9 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 		w[i+t] = c;
 	}
 
-	if (2*t%32 == 0)
-		sizeResult = t>>4;
-	else
-		sizeResult = (t>>4)+1;
+	if (2*t % 32 == 0) sizeResult = t>>4;
+	else sizeResult = (t>>4)+1;
+
 	from2to32(w,result,t<<1);
 	zerosArray(product,sizeProduct);
 	for(i=0;i<sizeResult;i++){
@@ -312,7 +301,7 @@ void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint1
 	int i;
 
 	copyArray32(a,copyOfA,sizeA);
-	mod(a,m,modA,sizeA,sizeM);
+	mod(a, m, modA, sizeA, sizeM);
 /* 	modFaster(copyOfA,m,sizeA,sizeM);
 	for(i=0;i<sizeM;i++){
 		modA[i] = copyOfA[(sizeA-sizeM)+i];
@@ -351,12 +340,10 @@ void modFaster( uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM){
 	int n;
 	
 	zerosArray(mExt,sizeX);
-	for(i=0;i<sizeM;i++){
-		mExt[(sizeX-sizeM)+i] = m[i];
-	}
 	zerosArray(copyOfM,sizeX);
-	for(i=0;i<sizeM;i++){
-		copyOfM[(sizeX-sizeM)+i] = m[i];
+	n = sizeX-sizeM;
+	for(i=0; i<sizeM; i++){
+		mExt[n+i] = copyOfM[n+i] = m[i];
 	}
 	
 	xPosMSB = positionMSB(x,sizeX);
