@@ -57,7 +57,7 @@ void computePartOfKey(uint32_t *g, uint32_t *m, uint32_t *exponent, uint32_t *pa
 void calculateKey(uint32_t *g, uint32_t *m, uint32_t *exponent, uint8_t *Key);
 /* message = gx || gy
 */
-void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message);
+void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message, uint32_t *modulus);
 /* signedMessage = message ^ privateExponent mod modulus */
 
 void signMessage(uint8_t *message, uint32_t *signedMessage, uint32_t *modulus, uint32_t *privateExponent);

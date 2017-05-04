@@ -69,14 +69,20 @@ void calculateKey(uint32_t *base, uint32_t *m, uint32_t *exponent, uint8_t *Key)
 	copyArray8(hashKey, Key, KEYLEN);
 }
 
-void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message){
+void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message, uint32_t *modulus){
 	
 	uint8_t part[modLength*4] = {0};
+	uint32_t message32Bits[modLength*2];
 	from32to8(gx, part, modLength);
 	concat(message, part, 0, modLength*4);
 	from32to8(gy, part, modLength);
 	concat(message, part, modLength*4, modLength*4);
-	
+
+	from8to32(message, message32Bits, modLength*2);
+	if (isBiggerThanOrEqual(message32Bits, modulus, modLength*2)){
+		/* sizeModulusAB = modLength*2 */
+		mod(message32Bits, modulus, message32Bits, modLength*2, sizeModulusAB);
+	}
 }
 
 
@@ -100,7 +106,7 @@ void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint32_t
 
 	uint16_t msgLength[1] = {0};
 	uint32_t signedMessage[sizeModulusAB] = {0};
-
+	
 	/* Sign Message */
 	from8to32(message, signedMessage, sizeMessageAB/4);
 	montExp(signedMessage, modulus, privateExponent, signedMessage, sizeMessageAB/4, sizeModulusAB, sizePrExpAB);

@@ -88,6 +88,19 @@ void copyArray8(uint8_t *original, uint8_t *copiedVersion, uint16_t arrayLength)
 	}
 }
 
+/* Switches the order of the (size) elements of array.
+*/
+void flipArray(uint32_t *input, uint16_t size){
+	int i;
+	uint32_t stock[MAXLENGTH] = {0};
+	for(i=0;i<size;i++){
+		stock[i] = input[size-1-i];
+	}
+	for(i=0;i<size;i++){
+		input[i] = stock[i];
+	}
+}
+
 void divideByTwo(uint32_t *input, uint16_t size){
 	uint32_t newValue = 0x00;
 	uint32_t carrier = 0x00;

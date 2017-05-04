@@ -192,7 +192,7 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 
 /*	Multiple-precision multiplication: product = a*b
 	*/
-void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA, uint16_t sizeB){
+/*void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA, uint16_t sizeB){
 	
 	uint32_t result[MAXLENGTH] = {0};
 	uint16_t w[MAXIMUMLENGTH] = {0};
@@ -223,7 +223,7 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 	n = (sizeA<<5) - AposMSB - 1;
 	t = (sizeB<<5) - BposMSB - 1;
 	
-	/* Step 1 */
+	 Step 1
 	zerosArray16(w,n+t+2);
 	
 	countIndex = sizeB<<5;
@@ -274,7 +274,27 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 	for(i=0;i<sizeResult;i++){
 		product[sizeProduct-1-i] = result[i];
 	}
-}
+}*/
+
+/* a*b mod m.
+	a = sizeA elements
+	b = sizeB elements
+	m = sizeM elements
+	result = sizeM elements (result<m);
+*/
+/*void modMult(uint32_t *a, uint32_t *b, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeB, uint16_t sizeM){
+	
+	uint32_t product[MAXLENGTH] = {0};
+	int i;
+
+	zerosArray(product,sizeA+sizeB);
+	multiplication(a,b,product,sizeA,sizeB);
+
+	modFaster(product, m, sizeA+sizeB, sizeM);
+	for(i=0;i<sizeM;i++){
+		result[i] = product[(sizeA+sizeB-sizeM)+i];
+	}
+}*/
 
 /*	a^2 mod m
 	input:
