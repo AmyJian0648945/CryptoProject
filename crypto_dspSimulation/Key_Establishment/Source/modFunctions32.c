@@ -146,12 +146,12 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 			posIndex -= 1;
 			countIndex -= 1;
 		}
-		xi = (copyOfA[wordIndex]>>(31-posIndex))%2;
+		xi = (copyOfA[wordIndex] >> ( 31-posIndex))%2;
 		tempsum = w[2*i] + xi*xi;
-		v = tempsum%2;
-		u = tempsum>>1;
-		w[2*i] = v;
-		c = u;
+		/*v = tempsum%2; */
+		/*u = tempsum>>1;*/
+		w[2*i] = tempsum%2;
+		c = tempsum>>1;
 		
  		countIndex2 = countIndex;
 		wordIndex2 = wordIndex;
@@ -170,13 +170,12 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 			xj = (copyOfA[wordIndex2]>>(31-posIndex2))%2;
 			
 			tempsum = w[i+j] + 2*xj*xi + c;
-			v = tempsum%2;
-			u = (tempsum>>1);
-			w[i+j] = v;
-			c = u;
+			
+			w[i+j] = tempsum%2;
+			c = (tempsum>>1); 
 		}
 
-		w[i+t] = u;
+		w[i+t] = c;
 	}
 
 	if (2*t%32 == 0)
