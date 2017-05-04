@@ -1,0 +1,25 @@
+montExponentiation32.c
+>> mont
+	got rid of a variable mul, S
+	got rid of some steps
+
+>> ADD
+	got rid of S
+	got rid of extra step
+	
+modFunctions32.c
+>> squareProduct:
+	got rid of intermediete values u,v --> directly subbed them in
+	made if-else statement to just if statement
+	
+>> modFaster:
+	got rid of a for loop
+
+--
+modularInverse32.c
+>> modularInverse: 
+	took out the if-else statements from the for loops
+
+montExponentiation32.c
+>> montExp: 
+	took out the if-else statements from the for loops

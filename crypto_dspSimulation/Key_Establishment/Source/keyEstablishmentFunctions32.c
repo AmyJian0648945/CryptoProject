@@ -165,9 +165,8 @@ void from8to32(uint8_t *input, uint32_t *output, uint16_t size){
 }
 
 void from32to8(uint32_t *input, uint8_t *output, uint16_t size){
-	int k;
 
-	for (k=0;k<size;k++){
+	for (int k=0;k<size;k++){
 		output[k*4] = (uint8_t)(input[k]>>24);
 		output[k*4+1] = (uint8_t)(input[k]>>16);
 		output[k*4+2] = (uint8_t)(input[k]>>8);

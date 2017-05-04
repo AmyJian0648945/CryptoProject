@@ -4,9 +4,9 @@ void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, 
 {
 	int i , j;
 	uint32_t t[MAXLENGTH] = { 0 };
-	uint32_t C = 0, S = 0;
+	uint32_t C = 0;
 	uint32_t m;
-	uint64_t mul;
+	/*uint64_t mul;*/
 	uint64_t sum = 0;
 	int64_t value = 0;
 	
@@ -25,23 +25,22 @@ void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, 
 		for(j = 0; j < SIZE; j++){
 			sum = (uint64_t) t[i+j] + (uint64_t)a[j]*(uint64_t)b[i] + (uint64_t)C;
 
-			S = (uint32_t) sum;
+			t[i+j] = (uint32_t) sum;
 			C = sum >> 32;
-			t[i+j] = S;
 		}
 		t[i + SIZE] = C;
 	}
 
 	for(i = 0; i < SIZE; i++){
 		C = 0;
-		mul =  ((uint64_t)t[i] * value) ;
-		m = (uint32_t) mul;
+		/*mul =  ((uint64_t)t[i] * value) ;*/
+		m = (uint32_t)  ((uint64_t)t[i] * value);
 
 		for(j = 0; j < SIZE; j++){
 			sum = (uint64_t) t[i+j] + (uint64_t)m * (uint64_t)n[j] +(uint64_t)C;
-			S = (uint32_t) sum;
+			/*S = (uint32_t) sum;*/
 			C = sum >> 32;
-			t[i+j] = S;
+			t[i+j] = (uint32_t) sum;
 		}
 		ADD(t, i+SIZE, C);
 	}
@@ -60,15 +59,13 @@ void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, 
 
 
 void ADD(uint32_t *t, int i, uint32_t C){
-	uint64_t sum;
-	uint32_t S;
+	uint64_t sum = 0;
 
 	while(C != 0x00000000){
 		sum = (uint64_t)t[i] + (uint64_t)C;
-		S = (uint32_t) sum;
 		C = sum >> 32;
-
-		t[i] = S;
+		/*S = (uint32_t) sum;*/
+		t[i] = (uint32_t) sum;
 		i++;
 	}
 }
@@ -102,19 +99,17 @@ void SUB_COND(uint32_t *res, uint32_t *n, uint32_t SIZE){
 	uint32_t n2[MAXLENGTH];
 	int i;
 	n2[0] = 0x00;
-	for(i=0;i<SIZE;i++){
-		n2[i+1] = n[SIZE-i-1];
-	}
+
+	for(i=0;i<SIZE;i++) n2[i+1] = n[SIZE-i-1];
+
 	flipArray(res,SIZE+1);
 	if (isBiggerThanOrEqual(res,n2,SIZE+1)){
+
 		subtraction(res,n2,res,SIZE+1);
-		for(i=0;i<SIZE;i++){
-			res[i] = res[i+1];
-		}
-	} else {
-		for(i=0;i<SIZE;i++){
-			res[i] = res[i+1];
-		}
+		for(i=0;i<SIZE;i++) res[i] = res[i+1];
+	} 
+	else {
+		for(i=0;i<SIZE;i++) res[i] = res[i+1];	
 	}
 	flipArray(res,SIZE);
 }
@@ -229,11 +224,9 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	posWord = ePosMSB%32;
 	copyArray32(e,copyOfE,sizeE);
  
-	if (sizeX > sizeM){
-		size = sizeX;
-	} else {
-		size = sizeM;
-	}
+	if (sizeX > sizeM) size = sizeX;
+	else size = sizeM;
+	
 	
 	/* xExt has the same length as m */
 	/*
