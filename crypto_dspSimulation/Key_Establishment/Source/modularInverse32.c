@@ -12,12 +12,8 @@ uint16_t signedSubtraction(uint32_t *x, uint32_t *y, uint16_t arrayLength, uint1
 
 	if (sign1 != 1)
 	{
-		if (sign2 != 1) {
-			sign1 = subtractionWithSign(x,y,x,arrayLength);
-		}
-		else {
-			addition(x,y,x,arrayLength);
-		}
+		if (sign2 != 1) sign1 = subtractionWithSign(x,y,x,arrayLength);
+		else addition(x,y,x,arrayLength);
 	}
 	else
 	{
@@ -71,22 +67,34 @@ void modularInverse(uint32_t *x, uint32_t *y, uint32_t *inverse, uint16_t sizeX,
 		}
 		
 		/* Copy of x */
+		/*
 		for(i=0;i<size;i++){
 			if(i<size-sizeX){
 				copyOfX[i] = 0x00;
 			} else {
 				copyOfX[i] = x[i-(size-sizeX)];
 			}
-		}
+		}*/
 		
+		for(i = 0; i < size-sizeX; i++)
+			copyOfX[i] = 0x00;
+		for(i = size-sizeX; i < size; i++)
+			copyOfX[i] = x[i-(size-sizeX)];
+
 		/* Copy of y */
+		/*
 		for(i=0;i<size;i++){
 			if (i<size-modLength){
 				copyOfY[i] = 0x00;
 			} else {
 				copyOfY[i] = y[i-(size-modLength)];
 			}
-		}
+		}*/
+
+		for(i = 0; i < size - modLength; i++) 
+			copyOfY[i] = 0x00;
+		for(i = size - modLength; i < size; i++) 
+			copyOfY[i] = y[i-(size-modLength)];
 		
 		
 		/* Step 1 */

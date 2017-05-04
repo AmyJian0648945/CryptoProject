@@ -9,21 +9,21 @@ void from2to32(uint16_t *binaryString, uint32_t *output, uint16_t size){
 	uint16_t nbOfHexadecimals = 0;
 	uint32_t remainder = 0;
 	uint32_t tempSum = 0;
-	int k;
-	int m;
+	int k = 0;
+	int m = 0;
 
 	nbOfHexadecimals = size>>5;
 	remainder = size%32;
-	for(k=0;k<nbOfHexadecimals;k++){
+	for(k = 0; k < nbOfHexadecimals; k++){
 		tempSum = 0;
-		for(m=0;m<32;m++){
-			tempSum += binaryString[(k<<5)+m]<<m;
+		for(m = 0; m < 32; m++){
+			tempSum += binaryString[ (k<<5) + m ] << m;
 		}
 		output[k] = tempSum;
 	}
 	tempSum = 0;
-	for(m=0;m<remainder;m++){
-		tempSum += binaryString[(nbOfHexadecimals<<5)+m]<<m;
+	for(m = 0; m < remainder; m++){
+		tempSum += binaryString[ (nbOfHexadecimals<<5) + m ] << m;
 	}
 	output[nbOfHexadecimals] = tempSum;
 }
@@ -43,22 +43,22 @@ uint16_t positionMSB(uint32_t *array, uint16_t size){
 	int index = 0;
 	int lastOne = 0;
 	uint16_t word = 0;
-	int i;
+	int i = 0;
 	
-	for(i=0;i<size;i++){
+	for(i = 0; i < size; i++){
 		if (array[i] != 0){
 			word = array[i];
-			for(index=0;index<32;index++){
-				word = array[i]>>index;
-				if (word%2 != 0)
+			for(index = 0; index < 32; index++){
+				word = array[i] >> index;
+				if (word % 2 != 0)
 					lastOne = index;
 			}
-			result = (i<<5)+(31-lastOne);
+			result = (i<<5) + (31 - lastOne);
 			return result;
 		}
 		/* else: continue*/
 	}
-	return (size<<5)-1;
+	return (size << 5) - 1;
 }
 
 /*	a mod N
@@ -105,6 +105,8 @@ void mod(uint32_t *a, uint32_t *N, uint32_t *result, uint16_t sizeA, uint16_t si
 */
 void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	
+
+
 	uint32_t copyOfA[MAXLENGTH] = {0};
 	uint16_t w[MAXIMUMLENGTH] = {0};
 	uint32_t result[MAXLENGTH] = {0};
@@ -126,6 +128,7 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	uint16_t posIndex2 = 0;
 	int i;
 	int j;
+
 	posMSB = positionMSB(a,sizeX);
 	t = (sizeX<<5) - posMSB;
 	sizeProduct = sizeX<<1;
@@ -136,7 +139,7 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	wordIndex = sizeX;
 	posIndex = 0;
 	
-	for(i=0;i<t;i++){
+	for(i = 0; i < t; i++){
 		
 		if (countIndex%32 == 0){
 			wordIndex -= 1;
@@ -301,14 +304,20 @@ void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint1
 	} */
 	
 	/* zerosArray(squareResult,2*sizeM); */
+		/*
+	printArray32(modA, "--\na", MAXLENGTH);
+	printArray32(squareResult, "product", MAXLENGTH);
+	printf("sizeX = %d\n\n", sizeM);
+*/
 	squareProduct(modA,squareResult,sizeM);
-	
+
 	modFaster(squareResult,m,2*sizeM,sizeM);
 	for(i=0;i<sizeM;i++){
 		result[i] = squareResult[sizeM+i];
 	}
 
 }
+/* https://en.wikipedia.org/wiki/Multiplication_algorithm#Fourier_transform_methods  */
 
 /* x mod m
 	input:
