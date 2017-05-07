@@ -51,6 +51,7 @@
 int main(void){
 
 #ifdef EXE_PKA2
+
 	uint32_t g[baseLength] = {0x285ad063, 0xcb4e158b, 0x19acc462, 0x9dc78b92, 0x5b557200, 0xaf8a2b99, 0xf89bac17, 0xf31c93a9, 0x40ef5755, 0xb08b406e, 0xeb08ec9a, 0x1d0a9ca9, 0xa2a06e3e, 0xd680534c, 0x874f626};
 	uint32_t p[modLength] = {0xCF5A4C9E,0xBE8AFBD3,0xB4C6475A,0x2B03361C,0x0108AA51,0x44E64827,0xAA17A5AD,0xCD093BCE,0xF88B9A0E,0xAC06E7C3,0xE18A5548,0xD2EDE19D,0x3AD4EB54,0x1AE473FF,0x3018B4BA,0xC353BFCB};
 
@@ -76,16 +77,18 @@ int main(void){
 */
 	uint8_t message[sizeMessageAB] = {0};
 	uint8_t encodedMessage[sizeMessageAB] = {0};
-	uint8_t transmittedMessage[sizeMessageAB] = {0};
+//	uint8_t transmittedMessage[sizeMessageAB] = {0};
 /*
 
 	uint16_t identityAVerified = 0;
 	uint16_t identityBVerified = 0;
 */
 	uint16_t identityVerified = 0;
-		
+/*
 	uint8_t K1[encryptKeyLength] = {0};
 	uint8_t K2[encryptKeyLength] = {0};
+*/
+	uint8_t key[encryptKeyLength] = {0};
 
 #endif
 
@@ -108,8 +111,9 @@ int main(void){
 
 #ifdef PRINT_PKA_ControlCheck
     printf("\n\nStart of the STS protocol...\n");
-	printf("A computes g^x mod p\n");
+/*	printf("A computes g^x mod p\n");
 	printf("B computes g^y mod p\n");
+*/
 #endif
 
 #ifdef EXE_PKA2
@@ -119,17 +123,23 @@ int main(void){
 	createExponent(y,expLengthMAX);
 	computePartOfKey(g,p,y,gy);
 
-	calculateKey(gx,p,y,K1);
-	calculateKey(gy,p,x,K2);
+	calculateKey(gx,p,y,key);
 #endif
 
 #ifdef PRINT_Key
 	printf("B receives (g^x) mod p from A and A receives (g^y) mod p from B\n");
 	printf("Key created by B = (g^x)^y mod p:");
-	printArrayNoSpaces(K1, encryptKeyLength);
-	printf("Key created by A = (g^y)^x mod p:");
-	printArrayNoSpaces(K2, encryptKeyLength);
+	printArrayNoSpaces(key, encryptKeyLength);
 	/* K1 = K2 = the secret key */
+#endif
+
+#ifdef EXE_PKA2
+	calculateKey(gy,p,x,key);
+#endif
+
+#ifdef PRINT_Key
+	printf("Key created by A = (g^y)^x mod p:");
+	printArrayNoSpaces(key, encryptKeyLength);
 #endif
 
 /** B - KEY CREATION + ENTITY AUTHENTICATION **/
@@ -142,27 +152,30 @@ int main(void){
 #ifdef EXE_PKA2
  	createMessage(gy, gx, message);
 	signatureMessage(message, encodedMessage);
-	signAndEncryptMessage(encodedMessage, transmittedMessage, modulusB, privateExponentB, K1);
+	signAndEncryptMessage(encodedMessage, encodedMessage, modulusB, privateExponentB, key);
 #endif
 
 #ifdef PRINT_PKA_ControlCheck
  	printf("Original message B->A  (g^y mod p || g^x mod p):");
-	printArrayNoSpaces(messageB,sizeMessageAB);
+/*	printArrayNoSpaces(messageB,sizeMessageAB);
 	printf("Encoded message B sends to A:");
 	printArrayNoSpaces(encodedMessageB, sizeMessageAB);
 	printf("Transmitted message B->A:");
 	printArrayNoSpaces(transmittedMessageB,sizeMessageAB);
 	printf("B sends Ek(Sb(g^y mod p || g^x mod p)) to A\n");
+*/
 #endif
 
 #ifdef EXE_PKA2
 	createMessage(gy, gx, message);
-	decryptAndUnsignMessage(transmittedMessage, encodedMessage, K2, modulusB, publicExponent);
+	decryptAndUnsignMessage(encodedMessage, encodedMessage, key, modulusB, publicExponent);
 #endif
 
-#ifdef PRINT_PKA_ControlCheck
+#ifdef PRINT_PKA
+/*
 	printf("Encoded message A receives from B (after decryption):");
 	printArrayNoSpaces(encodedMessageB, sizeMessageAB);
+*/
 #endif
 #ifdef EXE_PKA2
 	identityVerified = verifySignature(message, encodedMessage);
@@ -182,7 +195,7 @@ int main(void){
 #ifdef EXE_PKA2
 	createMessage(gx, gy, message);
 	signatureMessage(message, encodedMessage);
-	signAndEncryptMessage(encodedMessage, transmittedMessage, modulusA, privateExponentA, K2);
+	signAndEncryptMessage(encodedMessage, encodedMessage, modulusA, privateExponentA, key);
 #endif
 
 #ifdef PRINT_PKA
@@ -197,12 +210,12 @@ int main(void){
 
 #ifdef EXE_PKA2
 	createMessage(gx, gy, message);
-	decryptAndUnsignMessage(transmittedMessage, encodedMessage, K1, modulusA, publicExponent);
+	decryptAndUnsignMessage(encodedMessage, encodedMessage, key, modulusA, publicExponent);
 #endif
 
 #ifdef PRINT_PKA
-	printf("Encoded message B receives from A (after decryption):");
-	printArrayNoSpaces(encodedMessageA, sizeMessageAB);
+/*	printf("Encoded message B receives from A (after decryption):");
+	printArrayNoSpaces(encodedMessageA, sizeMessageAB); */
 #endif
 
 #ifdef EXE_PKA2
