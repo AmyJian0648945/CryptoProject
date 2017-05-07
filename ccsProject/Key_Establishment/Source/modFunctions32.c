@@ -40,9 +40,9 @@ void from2to32(uint16_t *binaryString, uint32_t *output, uint16_t size){
 uint16_t positionMSB(uint32_t *array, uint16_t size){
 	
 	uint32_t result = 0;
+	uint16_t word = 0;
 	int index = 0;
 	int lastOne = 0;
-	uint16_t word = 0;
 	int i;
 	
 	for(i=0;i<size;i++){
@@ -177,11 +177,11 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeM){
 	
 	uint32_t modA[MAXLENGTH] = {0};
-	uint32_t copyOfA[MAXLENGTH] = {0};
+	/* uint32_t copyOfA[MAXLENGTH] = {0}; */
 	uint32_t squareResult[MAXLENGTH] = {0};
 	int i;
 
-	copyArray32(a,copyOfA,sizeA);
+	/* copyArray32(a,copyOfA,sizeA); */
 	mod(a, m, modA, sizeA, sizeM);
 /* 	modFaster(copyOfA,m,sizeA,sizeM);
 	for(i=0;i<sizeM;i++){

@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000
+CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/c6000_7.4.4
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
@@ -25,8 +25,8 @@ $(GEN_CMDS__FLAG) \
 "./library/aes.obj" \
 "./library/PRNG.obj" \
 "./main.obj" \
--l"libc.a" \
 "../C6748.cmd" \
+-l"libc.a" \
 
 -include ../makefile.init
 
@@ -135,7 +135,7 @@ all: ccsProject.out
 ccsProject.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --rom_model -o "ccsProject.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/bin/cl6x" -mv6740 -g --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/lib" -i"C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include" --reread_libs --xml_link_info="ccsProject_linkInfo.xml" --rom_model -o "ccsProject.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -151,3 +151,4 @@ clean:
 .SECONDARY:
 
 -include ../makefile.targets
+

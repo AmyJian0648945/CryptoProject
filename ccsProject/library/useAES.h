@@ -19,9 +19,9 @@
 #define AES_IVlength    16
 
 
-void inline aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
+void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
     /* Performs a single AES decryption */
-void inline aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
+void aesEncrypt(uint8_t*, uint8_t*, uint8_t*);
     /* Performs a single AES Encryption */
 void aesCBCdecrypt(uint8_t*, uint8_t*, uint16_t, uint8_t*, uint8_t*);
     /* Performs complete AES Decryption, CBC Mode */

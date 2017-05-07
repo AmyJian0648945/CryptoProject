@@ -26,11 +26,11 @@ void simpleDecrypt(uint8_t* plaintext, uint8_t* ciphertext, uint16_t* msgLength,
     uint8_t CBCrounds = 0;
     uint16_t i = 0;
 
-    /* Figuring out how many AES_CBC rounds is needed */
+    /* Figuring out how many AES_CBC rounds are needed */
     
     CBCrounds = msgLength[0] / aes_BLOCK_SIZE;
 
-    for(i = 0; i <= CBCrounds; i++){
+    for(i = 0; i < CBCrounds; i++){
         /* Compute a single AES */
         aesDecrypt(plaintext + i*(aes_BLOCK_SIZE), ciphertext + i*(aes_BLOCK_SIZE), key); 
     }
@@ -46,7 +46,7 @@ void simpleEncrypt(uint8_t* ciphertext, uint8_t* inputMsg, uint16_t* msgLength,
     CBCrounds = msgLength[0] / aes_BLOCK_SIZE;
 
     /* Go through all rounds AES, each with input 128bits of message */
-    for(i = 0; i <= CBCrounds; i++){
+    for(i = 0; i < CBCrounds; i++){
         /* Compute a single AES */
         aesEncrypt(ciphertext + i*(aes_BLOCK_SIZE), inputMsg + i*(aes_BLOCK_SIZE), key);
     }

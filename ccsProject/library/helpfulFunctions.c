@@ -87,6 +87,14 @@ void printArrayNoSpaces(uint8_t* output, uint16_t iter){
     }
     printf("\n");
 }
+void printArrayNoSpaces32(uint32_t *output, uint16_t iter){
+    uint16_t i = 0;
+    printf("\n");
+    for(i = 0; i < iter; i++) {
+        printf("%08x", output[i]);
+    }
+    printf("\n");
+}
 
 void printChar(uint8_t* output, uint16_t iter){
     uint16_t i = 0;

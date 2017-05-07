@@ -33,6 +33,7 @@ void copyArrayFrom0(uint8_t*, uint8_t*, uint16_t);
 void printArray(uint8_t*, uint16_t);    
     /* prints the array */
 void printArrayNoSpaces(uint8_t*, uint16_t);
+void printArrayNoSpaces32(uint32_t*, uint16_t);
 
 void printCharNoSpaces(uint8_t*, uint16_t);
 void printChar(uint8_t*, uint16_t);

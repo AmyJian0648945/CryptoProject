@@ -1,6 +1,6 @@
 #include "../Header/montExponentiation32.h"
 
-void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, uint32_t SIZE, uint16_t sizeNInv)
+void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, uint32_t SIZE, uint16_t sizeNInv, uint16_t samePointer)
 {
 	int i , j;
 	uint32_t t[MAXLENGTH] = { 0 };
@@ -49,9 +49,11 @@ void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, 
 		res[j] = t[j+SIZE];
 	}
 	SUB_COND(res, n, SIZE);
-	flipArray(res, SIZE);
+	/* flipArray(res, SIZE); */
 	
-	flipArray(a,SIZE);
+	if (samePointer == 0){
+		flipArray(a,SIZE);
+	}
 	flipArray(b,SIZE);
 	flipArray(n,SIZE);
 	flipArray(nInv,sizeNInv);
@@ -111,7 +113,7 @@ void SUB_COND(uint32_t *res, uint32_t *n, uint32_t SIZE){
 	else {
 		for(i=0;i<SIZE;i++) res[i] = res[i+1];	
 	}
-	flipArray(res,SIZE);
+	/* flipArray(res,SIZE); */
 }
 
 /* x^(e)modm
@@ -126,14 +128,14 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	uint32_t R[MAXLENGTH] = {0};	
 	uint32_t A[MAXLENGTH] = {0};
 	uint32_t mInv[MAXLENGTH] = {0};
-	uint32_t Rmod[MAXLENGTH] = {0};
-	uint32_t R2mod[LENGTH] = {0};
+ 	uint32_t Rmod[MAXLENGTH] = {0};
+/* 	uint32_t R2mod[LENGTH] = {0}; */
+/* 	uint32_t one[LENGTH] = {0}; */
 	uint32_t xtilde[LENGTH] = {0};
 	uint32_t xExt[LENGTH] = {0};
-	uint32_t mExt[LENGTH] = {0};
-	uint32_t tempResult[LENGTH] = {0};
-	uint32_t copyOfA[LENGTH] = {0};
-	uint16_t size = 0;
+	/* uint32_t mExt[LENGTH] = {0}; */
+	uint32_t tempArray[LENGTH] = {0};
+/* 	uint16_t size = 0; */
 	uint16_t ePosMSB = 0;
 	uint16_t t = 0;
 	uint16_t mPosMSB = 0;
@@ -148,17 +150,18 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	t = 32*sizeE - ePosMSB - 1;
 	wordIndex = ePosMSB>>5;
 	posIndex = ePosMSB%32;
- 
-	if (sizeX > sizeM) size = sizeX;
-	else size = sizeM;
+	
+/*  	if (sizeX > sizeM) size = sizeX;
+	else
+		size = sizeM; */
 	
 	
 	/* xExt has the same length as m */
-	for(k=0; k<(size-sizeX); k++) 	 xExt[k] = 0x00;
-	for(k=(size-sizeX); k<size; k++) xExt[k] = x[k-(size-sizeX)];
+	for(k=0; k<(sizeM-sizeX); k++) 	 xExt[k] = 0x00;
+	for(k=(sizeM-sizeX); k<sizeM; k++) xExt[k] = x[k-(sizeM-sizeX)];
 
-	for(k=0; k<(size-sizeM); k++) 	 mExt[k] = 0x00;
-	for(k=(size-sizeM); k<size; k++) mExt[k] = m[k-(size-sizeM)];
+	/* for(k=0; k<(size-sizeM); k++) 	 mExt[k] = 0x00; */
+	/* for(k=(size-sizeM); k<size; k++) mExt[k] = m[k-(size-sizeM)]; */
 	
 	mPosMSB = positionMSB(m,sizeM);
 	mMSBWord = mPosMSB/32;
@@ -167,26 +170,22 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 	R[mMSBWord] = 0x0001;
 	modularInverse(m,R,mInv,sizeM,sizeM+1);
 	
-	zerosArray(Rmod,sizeM+1);
+	zerosArray(Rmod,sizeM);
 	mod(R,m,Rmod,sizeM+1,sizeM);
-	for(k=0; k<(size-sizeM); k++) 	 A[k] = 0x00;
-	for(k=(size-sizeM); k<size; k++) A[k] = Rmod[k-(size-sizeM)];
+	copyArray32(Rmod,A,sizeM);
+/* 	for(k=0; k<(sizeM-sizeM); k++) 	 A[k] = 0x00;
+	for(k=(sizeM-sizeM); k<sizeM; k++) A[k] = Rmod[k-(sizeM-sizeM)]; */
 	
-	modSquare(Rmod,m,tempResult,sizeM,sizeM);
-	for(k=0; k<(size-sizeM); k++) 	 R2mod[k] = 0x00;
-	for(k=(size-sizeM); k<size; k++) R2mod[k] = tempResult[k-(size-sizeM)];
+	modSquare(Rmod,m,tempArray,sizeM,sizeM);
+/* 	for(k=0; k<(sizeM-sizeM); k++) 	 R2mod[k] = 0x00; */
+/* 	for(k=(sizeM-sizeM); k<sizeM; k++) R2mod[k] = tempArray[k-(sizeM-sizeM)]; */
 	
-
-	mont(xExt,R2mod,mExt,mInv,xtilde,size,sizeM+1);
+	mont(xExt,tempArray,m,mInv,xtilde,sizeM,sizeM+1,0);
 	for(i=t;i>=0;i--){
-		for(k=0; k<size; k++){
-			copyOfA[k] = A[k];
+		for(k=0; k<sizeM; k++){
+			tempArray[k] = A[k];
 		}
-		mont(A,copyOfA,mExt,mInv,tempResult,size,sizeM+1);
-		for(k=0;k<size;k++){
-			A[k] = tempResult[k];
-		}
-
+		mont(A,tempArray,m,mInv,A,sizeM,sizeM+1,1);
 		ei = (e[wordIndex]>>(31-posIndex))%2;
 		if ((posIndex+1)%32 == 0){
 			wordIndex += 1;
@@ -195,19 +194,16 @@ void montExp( uint32_t *x, uint32_t *m, uint32_t *e, uint32_t *result, uint16_t 
 			posIndex += 1;
 		}
 		if (ei == 1){
-			mont(A,xtilde,mExt,mInv,tempResult,size,sizeM+1);
-			for(k=0;k<size;k++){
-				A[k] = tempResult[k];
-			}
+			mont(A,xtilde,m,mInv,A,sizeM,sizeM+1,1);
 		}
 	}
-	for(k=0;k<size;k++){
-		xtilde[k] = 0x00;
+	for(k=0;k<sizeM;k++){
+		tempArray[k] = 0x00;
 	}
-	xtilde[size-1] = 0x0001;
-	mont(A,xtilde,mExt,mInv,tempResult,size,sizeM+1);
-	for(k=0;k<size;k++){
-		result[k] = tempResult[k];
+	tempArray[sizeM-1] = 0x0001;
+	mont(A,tempArray,m,mInv,A,sizeM,sizeM+1,1);
+	for(k=0;k<sizeM;k++){
+		result[k] = A[k];
 	}
 }
 

@@ -74,11 +74,11 @@ void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message){
 void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint32_t *modulus, uint32_t *privateExponent, uint8_t *key){
 
 	uint16_t msgLength[1] = {0};
-	uint32_t signedMessage[sizeModulusAB] = {0};
+	uint32_t signedMessage[sizeMessageAB/4] = {0};
 	
 	/* Sign Message */
-	from8to32(message, signedMessage, sizeModulusAB);
-	montExp(signedMessage, modulus, privateExponent, signedMessage, sizeModulusAB, sizeModulusAB, sizePrExpAB);
+	from8to32(message, signedMessage, sizeMessageAB/4);
+	montExp(signedMessage, modulus, privateExponent, signedMessage, sizeMessageAB/4, sizeModulusAB, sizePrExpAB);
 
 	/* Encrypt Message*/
 	msgLength[0] = sizeMessageAB;
