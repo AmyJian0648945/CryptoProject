@@ -25,7 +25,6 @@ Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/comp
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/string.h
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/../Header/modularInverse32.h
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/../Header/modFunctions32.h
-Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/time.h
 
 ../Key_Establishment/Source/keyEstablishmentFunctions32.c: 
 ../Key_Establishment/Source/../Header/keyEstablishmentFunctions32.h: 
@@ -52,4 +51,3 @@ C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/stdio.h:
 C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/string.h: 
 ../Key_Establishment/Source/../Header/modularInverse32.h: 
 ../Key_Establishment/Source/../Header/modFunctions32.h: 
-C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/time.h: 

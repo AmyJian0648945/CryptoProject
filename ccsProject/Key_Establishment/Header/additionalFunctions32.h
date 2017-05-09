@@ -9,6 +9,10 @@
 #define MAXLENGTH 64
 #endif
 
+#ifndef LENGTHLONG
+#define LENGTHLONG 65
+#endif
+
 void printArray32(uint32_t *array, char *word, uint16_t arrayLength);
 void printArray8(uint8_t *array, char *word, uint16_t arrayLength);
 void zerosArray(uint32_t *result, uint16_t arrayLength);

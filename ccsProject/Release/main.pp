@@ -28,7 +28,6 @@ main.obj: C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/string.h
 main.obj: ../Key_Establishment/Header/montExponentiation32.h
 main.obj: ../Key_Establishment/Header/modularInverse32.h
 main.obj: ../Key_Establishment/Header/modFunctions32.h
-main.obj: C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/time.h
 main.obj: ../Key_Establishment/Header/signatureMessage.h
 main.obj: ../Key_Establishment/Header/maskGenerationFunction.h
 main.obj: ../Key_Establishment/Header/verifySignature.h
@@ -62,7 +61,6 @@ C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/string.h:
 ../Key_Establishment/Header/montExponentiation32.h: 
 ../Key_Establishment/Header/modularInverse32.h: 
 ../Key_Establishment/Header/modFunctions32.h: 
-C:/ti/ccsv5/tools/compiler/c6000_7.4.4/include/time.h: 
 ../Key_Establishment/Header/signatureMessage.h: 
 ../Key_Establishment/Header/maskGenerationFunction.h: 
 ../Key_Establishment/Header/verifySignature.h: 

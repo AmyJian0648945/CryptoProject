@@ -106,7 +106,7 @@ void mod(uint32_t *a, uint32_t *N, uint32_t *result, uint16_t sizeA, uint16_t si
 void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	
 	uint16_t w[MAXIMUMLENGTH] = {0};
-	uint32_t result[MAXLENGTH] = {0};
+	uint32_t result[MAXLENGTHLONG] = {0};
 	uint16_t posMSB = 0;
 	uint16_t t = 0;
 	uint16_t sizeProduct = 0;
@@ -131,7 +131,6 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
  	countIndex = sizeX<<5;
 	wordIndex = sizeX;
 	posIndex = 0;
-	
 	for(i=0; i<t; i++){
 		/* Loop statements for array */
 		posIndex -= 1;
@@ -176,21 +175,13 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 
 void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeM){
 	
-	uint32_t modA[MAXLENGTH] = {0};
-	/* uint32_t copyOfA[MAXLENGTH] = {0}; */
-	uint32_t squareResult[MAXLENGTH] = {0};
+	uint32_t modA[MAXLENGTHSHORT] = {0};
+	uint32_t squareResult[MAXLENGTHLONG] = {0};
 	int i;
 
-	/* copyArray32(a,copyOfA,sizeA); */
 	mod(a, m, modA, sizeA, sizeM);
-/* 	modFaster(copyOfA,m,sizeA,sizeM);
-	for(i=0;i<sizeM;i++){
-		modA[i] = copyOfA[(sizeA-sizeM)+i];
-	} */
-	
-	/* zerosArray(squareResult,2*sizeM); */
 	squareProduct(modA,squareResult,sizeM);
-	
+
 	modFaster(squareResult,m,2*sizeM,sizeM);
 	for(i=0;i<sizeM;i++){
 		result[i] = squareResult[sizeM+i];
@@ -209,8 +200,8 @@ void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint1
 */
 void modFaster( uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM){
 	
-	uint32_t mExt[MAXLENGTH] = {0};
-	uint32_t copyOfM[MAXLENGTH] = {0};	
+	uint32_t mExt[MAXLENGTHLONG] = {0};
+	uint32_t copyOfM[MAXLENGTHLONG] = {0};	
 	uint16_t xPosMSB = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t posBackwards = 0;
@@ -249,5 +240,111 @@ void modFaster( uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM){
 		if (isBiggerThan(copyOfM,mExt,sizeX)){
 			variable = 0;
 		}
+	}
+}
+
+/*	Multiple-precision multiplication: product = a*b
+	*/
+void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA, uint16_t sizeB){
+	
+	uint32_t result[MAXLENGTH] = {0};
+	uint16_t w[MAXIMUMLENGTH] = {0};
+	uint16_t sizeProduct = 0;
+	uint16_t AposMSB = 0;
+	uint16_t BposMSB = 0;
+	uint16_t n = 0;
+	uint16_t t = 0;
+	uint16_t u = 0;
+	uint16_t v = 0;
+	uint16_t c = 0;
+	uint16_t tempSum = 0;
+	uint16_t yi = 0;
+	uint16_t xj = 0;
+	uint16_t sizeResult = 0;
+	uint16_t countIndex = 0;
+	uint16_t wordIndex = 0;
+	uint16_t posIndex = 0;
+	uint16_t countIndex2 = 0;
+	uint16_t wordIndex2 = 0;
+	uint16_t posIndex2 = 0;
+	int i;
+	int j;
+	
+	sizeProduct = sizeA + sizeB;
+	AposMSB = positionMSB(a,sizeA);
+	BposMSB = positionMSB(b,sizeB);
+	n = (sizeA<<5) - AposMSB - 1;
+	t = (sizeB<<5) - BposMSB - 1;
+	
+	/* Step 1 */
+	zerosArray16(w,n+t+2);
+	
+	countIndex = sizeB<<5;
+	wordIndex = sizeB;
+	posIndex = 0;
+	
+	for(i=0;i<t+1;i++){
+		if (countIndex%32 == 0){
+			wordIndex -= 1;
+			posIndex = 31;
+		} else {
+			posIndex -= 1;
+		}
+		countIndex -= 1;
+		yi = (b[wordIndex]>>(31-posIndex))%2;
+		c = 0;
+		
+		countIndex2 = sizeA<<5;
+		wordIndex2 = sizeA;
+		posIndex2 = 0;
+		
+		for(j=0;j<n+1;j++){
+			
+			if (countIndex2%32 == 0){
+				wordIndex2 -= 1;
+				posIndex2 = 31;
+			} else {
+				posIndex2 -= 1;
+			}
+			countIndex2 -= 1;
+			xj = (a[wordIndex2]>>(31-posIndex2))%2;
+			tempSum = w[i+j] + xj*yi + c;
+			v = tempSum%2;
+			u = (tempSum>>1);
+			w[i+j] = v;
+			c = u;
+		}
+		
+		w[i+n+1] = u;
+	}
+
+	if ((n+t+2)%32 == 0)
+		sizeResult = (n+t+2)>>5;
+	else
+		sizeResult = ((n+t+2)>>5)+1;
+	from2to32(w,result,n+t+2);
+	zerosArray(product,sizeProduct);
+	for(i=0;i<sizeResult;i++){
+		product[sizeProduct-1-i] = result[i];
+	}
+}
+
+/* a*b mod m.
+	a = sizeA elements
+	b = sizeB elements
+	m = sizeM elements
+	result = sizeM elements (result<m);
+*/
+void modMult(uint32_t *a, uint32_t *b, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeB, uint16_t sizeM){
+	
+	uint32_t product[MAXLENGTH] = {0};
+	int i;
+
+	zerosArray(product,sizeA+sizeB);
+	multiplication(a,b,product,sizeA,sizeB);
+
+	modFaster(product, m, sizeA+sizeB, sizeM);
+	for(i=0;i<sizeM;i++){
+		result[i] = product[(sizeA+sizeB-sizeM)+i];
 	}
 }
