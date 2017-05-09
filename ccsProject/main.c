@@ -2,7 +2,7 @@
 /* #define PRINT_DataTransmission */
 /*#define EXE_PKA*/
 #define EXE_PKA2
-#define PRINT_Key
+/*#define PRINT_Key*/
 /* #define PRINT_PKA */
 /* #define EXE_DataTransmission */
 
@@ -29,7 +29,7 @@
 /*nb of 32 bit size words */
 #define sizeModulusAB 32
 #define sizePrExpAB 32
-//#define sizePuExpAB 1
+#define sizePuExpAB 1
 #endif /* EXE_PKA*/
 
 #include "library/helpfulFunctions.h"
@@ -55,11 +55,11 @@ int main(void){
 	uint32_t g[baseLength] = {0x285ad063, 0xcb4e158b, 0x19acc462, 0x9dc78b92, 0x5b557200, 0xaf8a2b99, 0xf89bac17, 0xf31c93a9, 0x40ef5755, 0xb08b406e, 0xeb08ec9a, 0x1d0a9ca9, 0xa2a06e3e, 0xd680534c, 0x874f626};
 	uint32_t p[modLength] = {0xCF5A4C9E,0xBE8AFBD3,0xB4C6475A,0x2B03361C,0x0108AA51,0x44E64827,0xAA17A5AD,0xCD093BCE,0xF88B9A0E,0xAC06E7C3,0xE18A5548,0xD2EDE19D,0x3AD4EB54,0x1AE473FF,0x3018B4BA,0xC353BFCB};
 
-//	uint32_t publicExponentB[sizePuExpAB] = {0x10001};
+	/* uint32_t publicExponentB[sizePuExpAB] = {0x10001}; */
 	uint32_t privateExponentB[sizePrExpAB] = { 0x4a18c038, 0x32aefc22, 0x6139f6c7, 0x15f753a7, 0xfd0e7916, 0x939b9ff, 0xa252060, 0x631341c7, 0x80943f17, 0xf24cf3f4, 0x63f3dc59, 0x80c3cebb, 0x94d0dd6f, 0xce1e2dcd, 0x633f5d82, 0x0b4745a5, 0x5b6da35c, 0x72bb3775, 0x08c2cc4d, 0x36d3574c, 0xd9f614d8, 0x57fc3ae5, 0x403e7746, 0x2c2c55bd, 0xb5ffec2d, 0xd04794d6, 0x42cb721d, 0xc2db1258, 0xcbebb445, 0x956fc862, 0xb1ae6760, 0x476f3b8d};
 	uint32_t modulusB[sizeModulusAB] = {0xe8d3bb3a, 0x533b8d2e, 0x40c9648c, 0xb80ad232, 0x7482d192, 0xd05640a5, 0x039f756b, 0x807191ef, 0x8210aa05, 0xc931f23e, 0xb8237380, 0xdabd61ed, 0x5cc8fa7f, 0x46c8c72d, 0x96221b4a, 0x4df4d78c, 0x302bd427, 0xd2a2873b, 0x7417bfb6, 0xb20a3d1d, 0x9d787d06, 0xfd98d0bc, 0x18416587, 0xbf65863c, 0x2c704f9e, 0x348e3d17, 0xc0b4c2d1, 0x74b80fb2, 0x024a43ea, 0xa2ceff1d, 0x2695cb72, 0x71a563e5};
 	uint32_t modulusA[sizeModulusAB] = {0xcc70b25c, 0xd644e756, 0x8336c7fe, 0xe148d14c, 0x2839d46b, 0x9bf690b4, 0x6b2073d2, 0xa181a113, 0x6ebbc420, 0x34d52f5c, 0xe0c55f6c, 0xf6aed990, 0xf1a68b1a, 0xa1b5db9f, 0x1f2a0235, 0xa11c0ba0, 0x229664b8, 0x9f0272df, 0x82998679, 0x9f7c64a2, 0x90de6e7d, 0xb47d6fff, 0xe99586da, 0xe9609f47, 0xd749a8dc, 0x642692b6, 0x47f00938, 0x8d221c03, 0xfb482658, 0x2c22945d, 0x5070919f, 0x3065b46f};
-//	uint32_t publicExponentA[sizePuExpAB] = {0x10001};
+	/* uint32_t publicExponentA[sizePuExpAB] = {0x10001}; */
 	uint32_t privateExponentA[sizePrExpAB] = { 0x7af42061, 0x7340777d, 0x7166e5fb, 0x65947cc3, 0xf7c167fe, 0xdc0afb56, 0x76c34ac5, 0x57faf55c, 0x1191fdcf, 0x7cd6e628, 0x4eca85ac, 0xabe3d6d7, 0xb46dfc65, 0x24f291c6, 0x6e60be79, 0x708ec472, 0x13e2f4a6, 0xb5109716, 0x4b5ad5c3, 0xfeefd2eb, 0xdde552bd, 0x2edf499c, 0x41ac15f2, 0xc879c0c1, 0xcaad1c4e, 0xae82c05d, 0xd3e86909, 0x0be6df0e, 0x81beeb96, 0x64783820, 0xf62ab20c, 0x58187671};
 	uint32_t publicExponent[1] = {0x10001};
 	uint32_t x[expLengthMAX] = {0};
@@ -77,7 +77,7 @@ int main(void){
 */
 	uint8_t message[sizeMessageAB] = {0};
 	uint8_t encodedMessage[sizeMessageAB] = {0};
-//	uint8_t transmittedMessage[sizeMessageAB] = {0};
+	/* uint8_t transmittedMessage[sizeMessageAB] = {0}; */
 /*
 
 	uint16_t identityAVerified = 0;
@@ -103,8 +103,40 @@ int main(void){
     /* Processing keys = make sure its in char */
 	/*uint8_t key[encryptKeyLength] = {};*/
 
-    uint16_t keySize = (uint16_t) strlen((char*)key); 	/* Not guaranteed to work if first input is 0 */
+   /* uint16_t keySize = (uint16_t) strlen((char*)key); 	*//* Not guaranteed to work if first input is 0 */
 #endif
+
+
+	uint32_t R[33] = {0};
+	uint32_t m[5] = {0x998E281A,0xC543B079,0x2CE6387F,0xB2B16F3F,0x37AF2027};
+	uint32_t y3[5] = {0x76B78EFD,0x12BC9C42,0x2A764F79,0x6182B5D3,0x7FBAB408};
+	uint32_t x3[5] = {0x45264014,0xD54960DE,0xE62D7186,0x1EE34005,0xCDB7A16A};
+	uint32_t Rinv[5] = {0};
+	uint32_t mInv[33] = {0};
+	uint32_t result[5] = {0};
+	uint32_t R2[4] = {0};
+	uint32_t Rinv2[4] = {0};
+	uint32_t mInv2[4] = {0};
+	uint32_t y2[4] = {0xC09,0x372C2F40,0x9DC6DEB2,0x988CE22F};
+	uint32_t x2[4] = {0x140F,0xCFAAA648,0x2B1FDB47,0xA3F32302};
+	uint32_t m2[4] = {0x1D56,0x10F19B72,0x9DED7165,0xE4D278FB};
+ 	uint32_t e2[2] = {0x12423,0x52312423};
+	uint32_t result2[4] = {0};
+	R[0] = 0x0001;
+	R2[0] = 0x00010000;
+	modularInverse(R,m,Rinv,33,5);
+	printArrayNoSpaces32(Rinv,5);
+	modularInverse(R2,m2,Rinv2,4,4);
+	printArrayNoSpaces32(Rinv2,4);
+	montExp(x2,m2,e2,result2,4,4,2);
+	printArrayNoSpaces32(result2,4);
+	modularInverse(m,R,mInv,5,33);
+	montMultiplication(x3,y3,m,result,mInv[33-1]%2,5,33,0);
+	printArrayNoSpaces32(result,5);
+	modularInverse(m2,R2,mInv2,4,4);
+	montMultiplication(x2,y2,m2,result2,mInv2[4-1]%2,4,4,1);
+	printArrayNoSpaces32(result2,4);
+	
 
 /**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
 /*** STS - Protocol ***/
