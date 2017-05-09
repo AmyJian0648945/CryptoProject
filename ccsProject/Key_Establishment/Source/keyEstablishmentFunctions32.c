@@ -73,7 +73,7 @@ void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message){
 
 void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint32_t *modulus, uint32_t *privateExponent, uint8_t *key){
 
-	/* uint16_t msgLength[1] = {0}; */
+	uint16_t msgLength[1] = {0};
 	uint32_t signedMessage[sizeMessageAB/4] = {0};
 	
 	/* Sign Message */
@@ -81,21 +81,21 @@ void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint32_t
 	montExp(signedMessage, modulus, privateExponent, signedMessage, sizeMessageAB/4, sizeModulusAB, sizePrExpAB);
 
 	/* Encrypt Message*/
-	/* msgLength[0] = sizeMessageAB; */
+	msgLength[0] = sizeMessageAB;
 	from32to8(signedMessage, encryptedMessage, sizeModulusAB);
-	/* simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key); */
+	simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key);
 
 }
 
 void decryptAndUnsignMessage(uint8_t *message, uint8_t *unsignedMessage, uint8_t *key, uint32_t *modulus, uint32_t *publicExponent){
 
-	/* uint16_t msgLength[1] = {0}; */
+	uint16_t msgLength[1] = {0};
 	uint32_t decryptedMessage[sizeModulusAB] = {0};
 	/* sizeModulusAB 32 = sizeMessageAB/4 */
 
 	/* Decrypt Message */
-	/* msgLength[0] = sizeMessageAB; */
-	/* simpleDecrypt(message, message, msgLength, key); */
+	msgLength[0] = sizeMessageAB;
+	simpleDecrypt(message, message, msgLength, key);
 	from8to32(message, decryptedMessage, sizeMessageAB/4);
 
 	/* Unsign Message */

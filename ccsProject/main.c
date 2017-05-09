@@ -2,7 +2,7 @@
 /* #define PRINT_DataTransmission */
 #define EXE_PKA
 #define EXE_PKA2
-/*#define PRINT_Key*/
+#define PRINT_Key
 /* #define PRINT_PKA */
 /* #define EXE_DataTransmission */
 
@@ -76,7 +76,7 @@ int main(void){
 	uint8_t transmittedMessageB[sizeMessageAB] = {0};
 */
 	uint8_t message[sizeMessageAB] = {0};
-	uint8_t encodedMessage[sizeMessageAB] = {0};
+	uint8_t encryptedMessage[sizeMessageAB] = {0};
 	/* uint8_t transmittedMessage[sizeMessageAB] = {0}; */
 /*
 
@@ -93,9 +93,9 @@ int main(void){
 #endif
 
 #ifdef EXE_DataTransmission
-	uint8_t keyInString[encryptKeyLength] = {0};
-	uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};
-    uint8_t data[MAX_MESSAGE_LENGTH] = "AAhello there 0123456789 BBhello there 0123456789 CChello there 0123456789 DDhello there 0123456789 EEhello there 0123456789 FFhello there 0123456789 GGhello there 0123456789 HHhello there 0123456789 IIhello there 0123456789";
+	/*	uint8_t keyInString[encryptKeyLength] = {0}; */
+	/*	uint8_t key[encryptKeyLength] = {0xAA, 0x11, 0x22, 0x33, 0x44, 0xAA, 0XBB};	*/
+    uint8_t data[MAX_MESSAGE_LENGTH] = "Hello there 1234";
     uint8_t ciphertext[IVlength + MAX_TRANSMISSION_BLOCK_LENGTH + SHA256_DIGEST_LENGTH] = {0};
     uint8_t plaintext[MAX_MESSAGE_LENGTH] = {0};
     uint16_t msgSize[1] = {0};
@@ -103,7 +103,7 @@ int main(void){
     /* Processing keys = make sure its in char */
 	/*uint8_t key[encryptKeyLength] = {};*/
 
-   /* uint16_t keySize = (uint16_t) strlen((char*)key); 	*//* Not guaranteed to work if first input is 0 */
+    /* uint16_t keySize = 0; */
 #endif
 
 
@@ -185,8 +185,8 @@ int main(void){
 
 #ifdef EXE_PKA
  	createMessage(gy, gx, message);
-	signatureMessage(message, encodedMessage);
-	signAndEncryptMessage(encodedMessage, encodedMessage, modulusB, privateExponentB, key);
+	signatureMessage(message, encryptedMessage);
+	signAndEncryptMessage(encryptedMessage, encryptedMessage, modulusB, privateExponentB, key);
 #endif
 
 #ifdef PRINT_PKA_ControlCheck
@@ -202,7 +202,7 @@ int main(void){
 
 #ifdef EXE_PKA
 	createMessage(gy, gx, message);
-	decryptAndUnsignMessage(encodedMessage, encodedMessage, key, modulusB, publicExponent);
+	decryptAndUnsignMessage(encryptedMessage, encryptedMessage, key, modulusB, publicExponent);
 #endif
 
 #ifdef PRINT_PKA
@@ -212,7 +212,7 @@ int main(void){
 */
 #endif
 #ifdef EXE_PKA
-	identityVerified = verifySignature(message, encodedMessage);
+	identityVerified = verifySignature(message, encryptedMessage);
 	if (identityVerified == 1)
 		printf("\n--> Authentication B succeeded\n\n");
 	else
@@ -228,8 +228,8 @@ int main(void){
 
 #ifdef EXE_PKA
 	createMessage(gx, gy, message);
-	signatureMessage(message, encodedMessage);
-	signAndEncryptMessage(encodedMessage, encodedMessage, modulusA, privateExponentA, key);
+	signatureMessage(message, encryptedMessage);
+	signAndEncryptMessage(encryptedMessage, encryptedMessage, modulusA, privateExponentA, key);
 #endif
 
 #ifdef PRINT_PKA
@@ -244,7 +244,7 @@ int main(void){
 
 #ifdef EXE_PKA
 	createMessage(gx, gy, message);
-	decryptAndUnsignMessage(encodedMessage, encodedMessage, key, modulusA, publicExponent);
+	decryptAndUnsignMessage(encryptedMessage, encryptedMessage, key, modulusA, publicExponent);
 #endif
 
 #ifdef PRINT_PKA
@@ -253,7 +253,7 @@ int main(void){
 #endif
 
 #ifdef EXE_PKA
-	identityVerified = verifySignature(message, encodedMessage);
+	identityVerified = verifySignature(message, encryptedMessage);
 	if (identityVerified == 1)
 		printf("\n--> Authentication A succeeded\n\n");
 	else
@@ -271,9 +271,12 @@ int main(void){
 #ifdef EXE_DataTransmission
 	/*copyArray8(K1, key, encryptKeyLength);*/
 	msgSize[0] = (uint16_t) strlen((char*)data); 	/* Not guaranteed to work if first input is 0*/
-    hexToString(keyInString, key, keySize);
+    /* keySize = (uint16_t) strlen((char*)key);		*//* Not guaranteed to work if first input is 0 */
+    /* hexToString(keyInString, key, keySize);
 	encryptHMAC(ciphertext, msgSize, data, keyInString, keySize*2);
-	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2);
+	decryptHMAC(plaintext, msgSize, ciphertext, keyInString, keySize*2); */
+    encryptHMAC(ciphertext, msgSize, data, key, encryptKeyLength);
+    decryptHMAC(plaintext, msgSize, ciphertext, key, encryptKeyLength);
 #endif
 	/* Printout operation summary */
 #ifdef PRINT_DataTransmission
