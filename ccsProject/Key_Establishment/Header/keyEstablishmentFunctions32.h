@@ -9,7 +9,7 @@
 #include "montExponentiation32.h"
 /*nb of 32 bit size words */
 #ifndef baseLength
-#define baseLength 15
+#define baseLength 14
 #endif
 /*nb of 32 bit size words */
 #ifndef expLengthMAX
@@ -17,7 +17,7 @@
 #endif
 /*nb of 32 bit size words */
 #ifndef modLength
-#define modLength 16
+#define modLength 15
 #endif
 
 #ifndef MAXSIZE
@@ -33,7 +33,7 @@
 #endif
 
 /*nb of bytes */
-#define sizeMessageAB 128
+#define sizeMessageAB 120
 /*nb of 32 bit size words */
 #define sizeModulusAB 32
 #define sizePrExpAB 32

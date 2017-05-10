@@ -1,7 +1,6 @@
 /* #define PRINT_PKA_ControlCheck */
 /* #define PRINT_DataTransmission */
 #define EXE_PKA
-#define EXE_PKA2
 #define PRINT_Key
 /* #define PRINT_PKA */
 /* #define EXE_DataTransmission */
@@ -10,14 +9,14 @@
 #include<string.h>
 #include<stdio.h>
 
-#ifdef EXE_PKA2
+#ifdef EXE_PKA
 /*nb of 32 bit size words */
 #ifndef baseLength
-#define baseLength 15
+#define baseLength 14
 #endif
 /*nb of 32 bit size words */
 #ifndef modLength
-#define modLength 16
+#define modLength 15
 #endif
 /*nb of 32 bit size words */
 #ifndef expLengthMAX
@@ -25,7 +24,7 @@
 #endif
 
 /*nb of bytes */
-#define sizeMessageAB 128
+#define sizeMessageAB 120
 /*nb of 32 bit size words */
 #define sizeModulusAB 32
 #define sizePrExpAB 32
@@ -40,7 +39,7 @@
 #include "library/hmac.h"
 #include "library/PRNG.h"
 #include "library/encryptDecrypt.h"
-#ifdef EXE_PKA2
+#ifdef EXE_PKA
 #include "Key_Establishment/Header/additionalFunctions32.h"
 #include "Key_Establishment/Header/montExponentiation32.h"
 #include "Key_Establishment/Header/signatureMessage.h"
@@ -52,8 +51,12 @@ int main(void){
 
 #ifdef EXE_PKA
 
+/*
 	uint32_t g[baseLength] = {0x285ad063, 0xcb4e158b, 0x19acc462, 0x9dc78b92, 0x5b557200, 0xaf8a2b99, 0xf89bac17, 0xf31c93a9, 0x40ef5755, 0xb08b406e, 0xeb08ec9a, 0x1d0a9ca9, 0xa2a06e3e, 0xd680534c, 0x874f626};
 	uint32_t p[modLength] = {0xCF5A4C9E,0xBE8AFBD3,0xB4C6475A,0x2B03361C,0x0108AA51,0x44E64827,0xAA17A5AD,0xCD093BCE,0xF88B9A0E,0xAC06E7C3,0xE18A5548,0xD2EDE19D,0x3AD4EB54,0x1AE473FF,0x3018B4BA,0xC353BFCB};
+*/
+	uint32_t g[baseLength] = {0x285ad063, 0xcb4e158b, 0x19acc462, 0x9dc78b92, 0x5b557200, 0xaf8a2b99, 0xf89bac17, 0xf31c93a9, 0x40ef5755, 0xb08b406e, 0xeb08ec9a, 0x1d0a9ca9, 0xa2a06e3e, 0xd680534c};
+	uint32_t p[modLength] = {0xC51CD126,0x2421F27C,0x4798CDB1,0xD725389B,0xE2482950,0x8EAFD836,0x422C011E,0x6401839E,0xB3425517,0x4B255BCB,0xA3E02AF1,0x56A98037,0xEF646E83,0x972E6D24,0xE0399449};
 
 	/* uint32_t publicExponentB[sizePuExpAB] = {0x10001}; */
 	uint32_t privateExponentB[sizePrExpAB] = { 0x4a18c038, 0x32aefc22, 0x6139f6c7, 0x15f753a7, 0xfd0e7916, 0x939b9ff, 0xa252060, 0x631341c7, 0x80943f17, 0xf24cf3f4, 0x63f3dc59, 0x80c3cebb, 0x94d0dd6f, 0xce1e2dcd, 0x633f5d82, 0x0b4745a5, 0x5b6da35c, 0x72bb3775, 0x08c2cc4d, 0x36d3574c, 0xd9f614d8, 0x57fc3ae5, 0x403e7746, 0x2c2c55bd, 0xb5ffec2d, 0xd04794d6, 0x42cb721d, 0xc2db1258, 0xcbebb445, 0x956fc862, 0xb1ae6760, 0x476f3b8d};
@@ -75,8 +78,8 @@ int main(void){
 	uint8_t transmittedMessageA[sizeMessageAB] = {0};
 	uint8_t transmittedMessageB[sizeMessageAB] = {0};
 */
-	uint8_t message[sizeMessageAB] = {0};
-	uint8_t encryptedMessage[sizeMessageAB] = {0};
+	uint8_t message[sizeModulusAB*4] = {0};
+	uint8_t encryptedMessage[sizeModulusAB*4] = {0};
 	/* uint8_t transmittedMessage[sizeMessageAB] = {0}; */
 /*
 
@@ -105,40 +108,6 @@ int main(void){
 
     /* uint16_t keySize = 0; */
 #endif
-
-
-#ifdef TEST_ON
-	uint32_t R[33] = {0};
-	R[0] = 0x0001;
-	uint32_t m[5] = {0x998E281A,0xC543B079,0x2CE6387F,0xB2B16F3F,0x37AF2027};
-	uint32_t y3[5] = {0x76B78EFD,0x12BC9C42,0x2A764F79,0x6182B5D3,0x7FBAB408};
-	uint32_t x3[5] = {0x45264014,0xD54960DE,0xE62D7186,0x1EE34005,0xCDB7A16A};
-	uint32_t Rinv[5] = {0};
-	uint32_t mInv[33] = {0};
-	uint32_t result[6] = {0};
-	uint32_t R2[4] = {0};
-	uint32_t Rinv2[4] = {0};
-	uint32_t mInv2[4] = {0};
-	uint32_t y2[4] = {0xC09,0x372C2F40,0x9DC6DEB2,0x988CE22F};
-	uint32_t x2[4] = {0x140F,0xCFAAA648,0x2B1FDB47,0xA3F32302};
-	uint32_t m2[4] = {0x1D56,0x10F19B72,0x9DED7165,0xE4D278FB};
- 	uint32_t e2[2] = {0x12423,0x52312423};
-	uint32_t result2[5] = {0};
-	R2[0] = 0x00010000;
-	modularInverse(R,m,Rinv,33,5);
-	printArrayNoSpaces32(Rinv,5);
-	modularInverse(R2,m2,Rinv2,4,4);
-	printArrayNoSpaces32(Rinv2,4);
-	montExp(x2,m2,e2,result2,4,4,2);
-	printArrayNoSpaces32(result2,4);
-	modularInverse(m,R,mInv,5,33);
-	mont(x3,y3,m,mInv,result,5,33,0);
-	printArrayNoSpaces32(result,5);
-	modularInverse(m2,R2,mInv2,4,4);
-	mont(x2,y2,m2,mInv2,result2,4,4,0);
-	printArrayNoSpaces32(result2,4);
-#endif /* TEST_ON */
-
 
 /**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
 /*** STS - Protocol ***/
@@ -189,14 +158,14 @@ int main(void){
 	signAndEncryptMessage(encryptedMessage, encryptedMessage, modulusB, privateExponentB, key);
 #endif
 
-#ifdef PRINT_PKA_ControlCheck
+#ifdef PRINT_PKA
  	printf("Original message B->A  (g^y mod p || g^x mod p):");
-/*	printArrayNoSpaces(messageB,sizeMessageAB);
-	printf("Encoded message B sends to A:");
-	printArrayNoSpaces(encodedMessageB, sizeMessageAB);
-	printf("Transmitted message B->A:");
-	printArrayNoSpaces(transmittedMessageB,sizeMessageAB);
-	printf("B sends Ek(Sb(g^y mod p || g^x mod p)) to A\n");
+	printArrayNoSpaces(message,sizeMessageAB);
+/*	printf("Encrypted message B sends to A:");
+	printArrayNoSpaces(encryptedMessage, sizeMessageAB);
+*/	printf("Transmitted message B->A:");
+	printArrayNoSpaces(encryptedMessage,sizeMessageAB);
+/*	printf("B sends Ek(Sb(g^y mod p || g^x mod p)) to A\n");
 */
 #endif
 
@@ -206,11 +175,10 @@ int main(void){
 #endif
 
 #ifdef PRINT_PKA
-/*
 	printf("Encoded message A receives from B (after decryption):");
-	printArrayNoSpaces(encodedMessageB, sizeMessageAB);
-*/
+	printArrayNoSpaces(encryptedMessage, sizeMessageAB);
 #endif
+
 #ifdef EXE_PKA
 	identityVerified = verifySignature(message, encryptedMessage);
 	if (identityVerified == 1)

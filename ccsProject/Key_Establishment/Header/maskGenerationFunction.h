@@ -2,7 +2,7 @@
 #define MASKGENERATIONFUNCTION_H
 
 #ifndef EMLEN
-#define EMLEN 128
+#define EMLEN 120
 #endif
 
 #ifndef HASHLEN

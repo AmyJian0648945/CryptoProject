@@ -74,14 +74,14 @@ void createMessage( uint32_t *gx, uint32_t *gy, uint8_t *message){
 void signAndEncryptMessage(uint8_t *message, uint8_t *encryptedMessage, uint32_t *modulus, uint32_t *privateExponent, uint8_t *key){
 
 	uint16_t msgLength[1] = {0};
-	uint32_t signedMessage[sizeMessageAB/4] = {0};
+	uint32_t signedMessage[sizeModulusAB] = {0};
 	
 	/* Sign Message */
 	from8to32(message, signedMessage, sizeMessageAB/4);
 	montExp(signedMessage, modulus, privateExponent, signedMessage, sizeMessageAB/4, sizeModulusAB, sizePrExpAB);
 
 	/* Encrypt Message*/
-	msgLength[0] = sizeMessageAB;
+	msgLength[0] = sizeModulusAB*4;
 	from32to8(signedMessage, encryptedMessage, sizeModulusAB);
 	simpleEncrypt(encryptedMessage, encryptedMessage, msgLength, key);
 
@@ -91,17 +91,20 @@ void decryptAndUnsignMessage(uint8_t *message, uint8_t *unsignedMessage, uint8_t
 
 	uint16_t msgLength[1] = {0};
 	uint32_t decryptedMessage[sizeModulusAB] = {0};
+	int i;
 	/* sizeModulusAB 32 = sizeMessageAB/4 */
 
 	/* Decrypt Message */
-	msgLength[0] = sizeMessageAB;
+	msgLength[0] = sizeModulusAB*4;
 	simpleDecrypt(message, message, msgLength, key);
-	from8to32(message, decryptedMessage, sizeMessageAB/4);
+	from8to32(message, decryptedMessage, sizeModulusAB);
 
 	/* Unsign Message */
 	montExp(decryptedMessage, modulus, publicExponent, decryptedMessage, sizeModulusAB, sizeModulusAB, sizePuExpAB);
 	from32to8(decryptedMessage, unsignedMessage, sizeModulusAB);
-	
+	for(i=0;i<sizeMessageAB;i++){
+		unsignedMessage[i] = unsignedMessage[i+8];
+	}
 }
 
 
