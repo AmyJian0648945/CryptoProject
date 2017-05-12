@@ -6,17 +6,10 @@
 #ifndef USEAES_H
 #define USEAES_H
 
-#ifndef STDINT_H
 #include <stdint.h>
-#endif 
-#ifndef HELPFULFUNCTIONS_H
 #include "helpfulFunctions.h"
-#endif
-
 #include "aes.h"
 
-#define AES_KEY_SIZE    128
-#define AES_IVlength    16
 
 
 void aesDecrypt(uint8_t*, uint8_t*, uint8_t*);
