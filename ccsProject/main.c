@@ -31,6 +31,16 @@
 #define sizePuExpAB 1
 #endif /* EXE_PKA*/
 
+
+#define DATA_BLOCK_SIZE         		64
+#define MAX_MESSAGE_LENGTH              500 /* CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!! */
+#define MAX_TRANSMISSION_BLOCK_LENGTH   512 /* CURRENTLY A PATCH: needs to be 16x */
+
+#define encryptKeyLength    16 /* Length of the encryption key */
+#define macKeyLength        16 /* Length of MAC key */ 
+#define IVlength            16 /* Length of the IV used in AES CBC mode*/ 
+
+
 #include "library/helpfulFunctions.h"
 #include "library/sha2.h"
 #include "library/useSHA256.h"
