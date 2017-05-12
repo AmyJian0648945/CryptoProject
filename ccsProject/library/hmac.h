@@ -38,9 +38,6 @@ below.
 #ifndef HMAC_H
 #define HMAC_H
 
-#define DATA_BLOCK_SIZE         64
-#define MAX_MESSAGE_LENGTH              500 /* CURRENTLY A PATCH: ADJUST THIS VARIABLE after discussion with the processing group!! */
-#define MAX_TRANSMISSION_BLOCK_LENGTH   512 /* CURRENTLY A PATCH: needs to be 16x */
 
 #ifndef STDLIB_H
 #include <stdint.h>

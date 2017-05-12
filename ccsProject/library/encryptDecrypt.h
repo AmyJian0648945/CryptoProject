@@ -17,10 +17,6 @@ information (HMAC and IV) to allow for decryption.
 #ifndef ENCRYPT_H
 #define ENCRYPT_H
 
-#define encryptKeyLength    16
-#define macKeyLength        16
-#define IVlength            16
-
 #ifndef STDINT
 #include <stdint.h>
 #endif
