@@ -220,3 +220,14 @@ HandlerActivation(commandId=com.ti.dvt.ui.view.end,
 HandlerActivation(commandId=com.ti.dvt.ui.view.end,
 	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$2@1a57914),
 	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 11:34:56.917
+!MESSAGE DS_ERROR: C674X_0: Error connecting to the target: (Error -1180 @ 0x0) Device is held in reset. Take the device out of reset, and retry the operation. (Emulation package 5.0.520.0) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 11:34:56.971
+!MESSAGE DS_ERROR: Error connecting to the target:
+(Error -1180 @ 0x0)
+Device is held in reset. Take the device out of reset, and retry the operation.
+(Emulation package 5.0.520.0)
+

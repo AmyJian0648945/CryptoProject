@@ -81,6 +81,28 @@
                 <void property="childDifferences"> 
                  <void method="add"> 
                   <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
+                   <void property="childDifferences"> 
+                    <void method="add"> 
+                     <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
+                      <void property="name"> 
+                       <string>summary</string> 
+                      </void> 
+                      <void property="refValue"> 
+                       <boolean>false</boolean> 
+                      </void> 
+                      <void property="srcValue"> 
+                       <boolean>true</boolean> 
+                      </void> 
+                     </object> 
+                    </void> 
+                   </void> 
+                   <void property="name"> 
+                    <string>interrupt</string> 
+                   </void> 
+                  </object> 
+                 </void> 
+                 <void method="add"> 
+                  <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
                    <void property="name"> 
                     <string>branch</string> 
                    </void> 
@@ -249,6 +271,46 @@
              </void> 
              <void property="name"> 
               <string>CPU</string> 
+             </void> 
+            </object> 
+           </void> 
+           <void method="add"> 
+            <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
+             <void property="childDifferences"> 
+              <void method="add"> 
+               <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
+                <void property="childDifferences"> 
+                 <void method="add"> 
+                  <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
+                   <void property="childDifferences"> 
+                    <void method="add"> 
+                     <object class="com.ti.dvt.control.engine.types.properties.util.PropertyDifference"> 
+                      <void property="name"> 
+                       <string>cpu_interrupt_34</string> 
+                      </void> 
+                      <void property="refValue"> 
+                       <boolean>false</boolean> 
+                      </void> 
+                      <void property="srcValue"> 
+                       <boolean>true</boolean> 
+                      </void> 
+                     </object> 
+                    </void> 
+                   </void> 
+                   <void property="name"> 
+                    <string>TIMER0</string> 
+                   </void> 
+                  </object> 
+                 </void> 
+                </void> 
+                <void property="name"> 
+                 <string>C64xplus_CORE_WITH_TIMER</string> 
+                </void> 
+               </object> 
+              </void> 
+             </void> 
+             <void property="name"> 
+              <string>System</string> 
              </void> 
             </object> 
            </void> 

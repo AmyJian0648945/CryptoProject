@@ -117,3 +117,10 @@ C:\ti\ccsv5\utils\bin\gmake -k all
 gmake: Nothing to be done for `all'.
 
 **** Build Finished ****
+
+**** Build of configuration Release for project ccsProject ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
