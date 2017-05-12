@@ -1,5 +1,5 @@
 //! 
-//# c6748.cdb 5.25.44
+//# c6748.cdb 5.25.36
 
 object CACHE_L2 :: MEM {
     param iComment :: "Do not delete, in use by cache"
@@ -111,13 +111,13 @@ type GlobalStatus {
         prop Visible :: 0
         prop Writable :: 1
     }
-    global DATE :: "Thu May 11 11:46:27 2017" { 
+    global DATE :: "Fri May 12 13:42:46 2017" { 
         prop Type :: "{21455EA3-B96A-11cf-9BFE-0000C0AC14C7}"
         prop Visible :: 0
         prop Writable :: 0
         prop NoGen :: 1
     }
-    global GCONFVERS :: "@(#)*** xdcutils-g09" { 
+    global GCONFVERS :: "@(#)*** xdcutils-g02" { 
         prop Type :: "{21455EA3-B96A-11cf-9BFE-0000C0AC14C7}"
         prop Visible :: 0
         prop Writable :: 0
@@ -144,7 +144,7 @@ type GlobalStatus {
         prop Writable :: 0
         prop NoGen :: 1
     }
-    global SeedVersion :: = "@(#)*** cuda-u44x" { 
+    global SeedVersion :: = "@(#)*** cuda-u36x" { 
         prop Visible :: 0
         prop Writable :: 0
         prop NoGen :: 1
@@ -697,7 +697,7 @@ type GBL {
     prop Label :: "Global Settings"
     prop IsContainedIn :: SYSTEM
     prop cGen :: 0
-    prop GenLinkPrologue :: ("%10S\nSECTIONS {%4t\n.vers (COPY): {} /* version information */%0t\n}\n\n-priority\n--trampolines\n--\"diag_suppress=16002\"\n%26S%1S%22S-l%2S%23S%3S\n%24S%15S%4S%16S%18S%5S%6S%12S%7S%17S%25S%27S%28S%29S%30S\n\0, _autoInitStr, _board, _librarySuffix, _devLibStr, _biosLibStr, _rtdxLibStr, _rtsLibStr, _librarySuffix, _compilerModel, _lnkCmdStr, _lnkCmdFile, _cslLibStr, _chipType, _librarySuffix, _chipStr, _sioLibStr, _mpcLibStr, _bios6xLibStr, _bios6xClkType, _instStr, _rtsNameStr, _romStr, _biosRomStr, _logLibStr, _pwrmLibStr, _SKLibStr, _psclLibStr, _pmiLibStr, _pmiVoltLibStr, _psclCfgLibStr, _pmiVoltControlLibStr, _psclConfigLibStr")
+    prop GenLinkPrologue :: ("%10S\nSECTIONS {%4t\n.vers (COPY): {} /* version information */%0t\n}\n\n-priority\n--trampolines\n%26S%1S%22S-l%2S%23S%3S\n%24S%15S%4S%16S%18S%5S%6S%12S%7S%17S%25S%27S%28S%29S%30S\n\0, _autoInitStr, _board, _librarySuffix, _devLibStr, _biosLibStr, _rtdxLibStr, _rtsLibStr, _librarySuffix, _compilerModel, _lnkCmdStr, _lnkCmdFile, _cslLibStr, _chipType, _librarySuffix, _chipStr, _sioLibStr, _mpcLibStr, _bios6xLibStr, _bios6xClkType, _instStr, _rtsNameStr, _romStr, _biosRomStr, _logLibStr, _pwrmLibStr, _SKLibStr, _psclLibStr, _pmiLibStr, _pmiVoltLibStr, _psclCfgLibStr, _pmiVoltControlLibStr, _psclConfigLibStr")
     prop poolStr :: (if (self.LINKWITHROM == 0) {""} else {if POOL.USEPOOL {""} else {"_POOL_config=0;\n"}})
     prop msgqStr :: (if (self.LINKWITHROM == 0) {""} else {if MSGQ.USEMSGQ {""} else {"_MSGQ_config=0;\n"}})
     prop bcacheBootStr :: (if (self.C64PL2CONFIGURE) {if (self.C64PL1PCFG != "32k" || self.C64PL1DCFG != "32k" || self.C64PL2MODEOPTS != "0k") {"_BCACHE_bootInit=_BCACHE_setCacheToSram;\n"} else {"_BCACHE_bootInit=_FXN_F_nop;\n"}} else {"_BCACHE_bootInit=_FXN_F_nop;\n"})
@@ -735,7 +735,7 @@ type GBL {
     prop _librarySuffix :: (if (self.DSPSUBTYPE == 6700 || self.DSPSUBTYPE == 6711 || self.DSPSUBTYPE == 6712 || self.DSPSUBTYPE == 6713) {if (self.ENDIAN == "big") {".a67e"} else {".a67"}} else {if (self.DSPSUBTYPE == 6400) {if (self.ENDIAN == "big") {".a64e"} else {".a64"}} else {if (self.DSPSUBTYPE == 6499) {if (self.ENDIAN == "big") {".a64Pe"} else {".a64P"}} else {if (self.DSPSUBTYPE == 6799) {if (self.ENDIAN == "big") {".a67Pe"} else {".a67P"}} else {if ((self.DSPSUBTYPE == 6747) || (self.DSPSUBTYPE == 6748)) {if (self.ENDIAN == "big") {".a674e"} else {".a674"}} else {if (self.ENDIAN == "big") {".a62e"} else {".a62"}}}}}})
     prop _rtdxLibStr :: if RTDX.USERTDX == 0 {""} else {if RTDX.RTDXTYPE == "JTAG" {"-lrtdx64xplus%9S.lib %24t/* RTDX support */%0t\n"} else {if RTDX.RTDXTYPE == "Simulator" {"-lrtdxsim%9S.lib %24t/* RTDX support */%0t\n"} else {"-lrtdx64xplushs%9S.lib %24t/* RTDX support */%0t\n"}}}
     prop _rtsLibStr :: (if self.SPECIFYRTSLIB {"-l%21S%24t/* C and C++ run-time library support */%0t\n"} else {if self.DSPSUBTYPE == 6700 || self.DSPSUBTYPE == 6711 || self.DSPSUBTYPE == 6712 || self.DSPSUBTYPE == 6713 {"-lrts6700%9S.lib%24t/* C and C++ run-time library support */%0t\n"} else {if self.DSPSUBTYPE == 6400 {"-lrts6400%9S.lib%24t/* C and C++ run-time library support */%0t\n"} else {if self.DSPSUBTYPE == 6799 {"-lrts67plus%9S.lib%24t/* C and C++ run-time library support */%0t\n"} else {if self.DSPSUBTYPE == 6499 {"-lrts64plus%9S.lib%24t/* C and C++ run-time library support */%0t\n"} else {if ((self.DSPSUBTYPE == 6747) || (self.DSPSUBTYPE == 6748)) {"-lrts6740%9S.lib%24t/* C and C++ run-time library support */%0t\n"} else {"-lrts6200%9S.lib%24t/* C and C++ run-time library support */%0t\n"}}}}}})
-    prop _bios6xClkType :: (if self.CLKTYPE == 6000 {"C6000"} else {if self.CLKTYPE == 700 {"DA700"} else {if self.CLKTYPE == 420 {if self.USEIDMA0DISPATCHER {"DM420IDMA0"} else {"DM420"}} else {if self.CLKTYPE == 6424 {"6424"} else {if self.CLKTYPE == 2430 {"2430"} else {if self.CLKTYPE == 6482 {"TCI6482"} else {if self.CLKTYPE == 6486 {"TCI6486"} else {if self.CLKTYPE == 6488 {"TCI6488"} else {if self.CLKTYPE == 442 {"DRA442"} else {if self.CLKTYPE == 3430 {"3430"} else {if self.CLKTYPE == 6467 {"DM6467"} else {if self.CLKTYPE == 761990 {"F761990"} else {if self.CLKTYPE == 6747 {"6748"} else {""}}}}}}}}}}}}})
+    prop _bios6xClkType :: (if self.CLKTYPE == 6000 {"C6000"} else {if self.CLKTYPE == 700 {"DA700"} else {if (self.CLKTYPE == 420 || self.CLKTYPE == 6424) {if self.USEIDMA0DISPATCHER {"DM420IDMA0"} else {"DM420"}} else {if self.CLKTYPE == 2430 {"2430"} else {if self.CLKTYPE == 6482 {"TCI6482"} else {if self.CLKTYPE == 6486 {"TCI6486"} else {if self.CLKTYPE == 6488 {"TCI6488"} else {if self.CLKTYPE == 442 {"DRA442"} else {if self.CLKTYPE == 3430 {"3430"} else {if self.CLKTYPE == 6467 {"DM6467"} else {if self.CLKTYPE == 761990 {"F761990"} else {if self.CLKTYPE == 6747 {"6748"} else {""}}}}}}}}}}}})
     prop _bios6xLibStr :: ("-lbios%19S%23S%8S%24t/* BIOS clock specific library */%0t\n")
     prop _chipStr :: ""
     prop _pwrmLibStr :: if PWRM.PWRM_ENABLE == 1 {"-lpwrm.a674"} else {""}
@@ -2734,13 +2734,6 @@ type CLK {
         prop Style :: 0x20
         prop Visible :: 0
         prop Writable :: 0
-        prop NoGen :: 0
-    }
-    global POWERENABLE :: 1 { 
-        prop Type :: "{21455EA0-B96A-11cf-9BFE-0000C0AC14C7}"
-        prop JSName :: "POWERENABLE"
-        prop Visible :: 0
-        prop Writable :: 1
         prop NoGen :: 0
     }
     inst iComment :: if self.iDelUser == "USER" {"<add comments here>"} else {self.iDelMsg} { 

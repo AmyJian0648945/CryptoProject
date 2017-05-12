@@ -1,0 +1,27 @@
+#Fri May 12 13:42:44 CEST 2017
+eclipse.preferences.version=1
+encoding//Debug/libs/subdir_rules.mk=UTF-8
+encoding//Debug/libs/subdir_vars.mk=UTF-8
+encoding//Debug/makefile=UTF-8
+encoding//Debug/objects.mk=UTF-8
+encoding//Debug/sources.mk=UTF-8
+encoding//Debug/src_audio/subdir_rules.mk=UTF-8
+encoding//Debug/src_audio/subdir_vars.mk=UTF-8
+encoding//Debug/src_speech_crypto/Key_Establishment/Source/subdir_vars.mk=UTF-8
+encoding//Debug/src_speech_crypto/library/subdir_rules.mk=UTF-8
+encoding//Debug/src_speech_crypto/library/subdir_vars.mk=UTF-8
+encoding//Debug/subdir_rules.mk=UTF-8
+encoding//Debug/subdir_vars.mk=UTF-8
+encoding//Release/libs/subdir_rules.mk=UTF-8
+encoding//Release/libs/subdir_vars.mk=UTF-8
+encoding//Release/makefile=UTF-8
+encoding//Release/objects.mk=UTF-8
+encoding//Release/sources.mk=UTF-8
+encoding//Release/src_audio/subdir_rules.mk=UTF-8
+encoding//Release/src_audio/subdir_vars.mk=UTF-8
+encoding//Release/src_speech_crypto/Key_Establishment/Source/subdir_rules.mk=UTF-8
+encoding//Release/src_speech_crypto/Key_Establishment/Source/subdir_vars.mk=UTF-8
+encoding//Release/src_speech_crypto/library/subdir_rules.mk=UTF-8
+encoding//Release/src_speech_crypto/library/subdir_vars.mk=UTF-8
+encoding//Release/subdir_rules.mk=UTF-8
+encoding//Release/subdir_vars.mk=UTF-8

@@ -2,52 +2,25 @@
 **** Build of configuration Release for project ccsProject ****
 
 C:\ti\ccsv5\utils\bin\gmake -k all 
-'Building file: ../library/encryptDecrypt.c'
+'Building file: ../library/aes.c'
 'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/encryptDecrypt.pp" --obj_directory="library"  "../library/encryptDecrypt.c"
-"../library/encryptDecrypt.c", line 8: error #20: identifier "encryptKeyLength" is undefined
-"../library/encryptDecrypt.c", line 8: error #20: identifier "macKeyLength" is undefined
-"../library/encryptDecrypt.c", line 10: error #20: identifier "IVlength" is undefined
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/aes.pp" --obj_directory="library"  "../library/aes.c"
 
-"../library/encryptDecrypt.c", line 13: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
-"../library/encryptDecrypt.c", line 9: warning #552-D: variable "macKey_String" was set but never used
-"../library/encryptDecrypt.c", line 10: warning #552-D: variable "IV" was set but never used
-"../library/encryptDecrypt.c", line 13: warning #552-D: variable "IVciphertextConcat" was set but never used
-"../library/encryptDecrypt.c", line 14: warning #552-D: variable "IVciphertextConcat_String" was set but never used
-"../library/encryptDecrypt.c", line 53: error #20: identifier "encryptKeyLength" is undefined
-"../library/encryptDecrypt.c", line 53: error #20: identifier "macKeyLength" is undefined
-"../library/encryptDecrypt.c", line 56: error #20: identifier "IVlength" is undefined
-"../library/encryptDecrypt.c", line 56: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
-"../library/encryptDecrypt.c", line 55: warning #552-D: variable "macKey_String" was set but never used
-"../library/encryptDecrypt.c", line 56: warning #552-D: variable "registKey_String" was set but never used
-"../library/encryptDecrypt.c", line 90: error #20: identifier "encryptKeyLength" is undefined
-"../library/encryptDecrypt.c", line 90: error #20: identifier "macKeyLength" is undefined
-"../library/encryptDecrypt.c", line 92: error #20: identifier "IVlength" is undefined
-"../library/encryptDecrypt.c", line 95: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
-"../library/encryptDecrypt.c", line 91: warning #552-D: variable "macKey_String" was set but never used
-"../library/encryptDecrypt.c", line 92: warning #552-D: variable "IV" was set but never used
-"../library/encryptDecrypt.c", line 95: warning #552-D: variable "IVciphertextConcat" was set but never used
-"../library/encryptDecrypt.c", line 96: warning #552-D: variable "IVciphertextConcat_String" was set but never used
-"../library/encryptDecrypt.c", line 130: error #20: identifier "encryptKeyLength" is undefined
-"../library/encryptDecrypt.c", line 130: error #20: identifier "macKeyLength" is undefined
-"../library/encryptDecrypt.c", line 132: error #20: identifier "IVlength" is undefined
-"../library/encryptDecrypt.c", line 132: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
-"../library/encryptDecrypt.c", line 131: warning #552-D: variable "macKey_String" was set but never used
-"../library/encryptDecrypt.c", line 132: warning #552-D: variable "registKey_String" was set but never used
-16 errors detected in the compilation of "../library/encryptDecrypt.c".
-gmake: *** [library/encryptDecrypt.obj] Error 1
->> Compilation failure
-'Building file: ../library/hmac.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/hmac.pp" --obj_directory="library"  "../library/hmac.c"
-"../library/hmac.c", line 13: error #20: identifier "DATA_BLOCK_SIZE" is undefined
-"../library/hmac.c", line 17: error #20: identifier "MAX_MESSAGE_LENGTH" is undefined
-"../library/hmac.c", line 17: warning #552-D: variable "result1" was set but never used
-"../library/hmac.c", line 18: warning #552-D: variable "result2" was set but never used
-2 errors detected in the compilation of "../library/hmac.c".
+INTERNAL ERROR: C:\ti\ccsv5\tools\compiler\c6000\bin\cg6x.exe experienced a fatal internal fault while
+                processing function _aes_set_decrypt_key
 
->> Compilation failure
-gmake: *** [library/hmac.obj] Error 1
-gmake: Target `all' not remade because of errors.
+This is a serious problem.  Please contact Customer
+Support with this message and a copy of the input file
+and help us to continue to make the tools more robust.
+
+Terminate batch job (Y/N)? 
+^Cgmake: *** [library/aes.obj] Interrupt
+
+**** Build of configuration Release for project ccsProject ****
+
+Command canceled
+Error: Program "C:/ti/ccsv5/utils/bin/gmake" is not found in PATH
+
+PATH=[C:\ti\ccsv5\ccs_base\common\bin;C:\ti\ccsv5\ccs_base\common\uscif;C:\ti\ccsv5\ccs_base\DebugServer\license;C:/ti/ccsv5/eclipse/jre/bin/client;C:/ti/ccsv5/eclipse/jre/bin;C:/ti/ccsv5/eclipse/jre/lib/i386;C:\Program Files (x86)\Microchip\mplabc18\v3.47\mpasm;C:\Program Files (x86)\Microchip\mplabc18\v3.47\bin;C:\Program Files\MATLAB\R2014a\bin\win64;C:\Program Files (x86)\ScanSoft\Vocon3200\EDS_v2_0\tools;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\ia32\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;c:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\;c:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\MATLAB\R2016a\runtime\win64;C:\Program Files\MATLAB\R2016a\bin;C:\Program Files\MATLAB\R2012a\runtime\win64;C:\Program Files\MATLAB\R2012a\bin;C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin;C:\LINGO13\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\;C:\Program Files\IVI Foundation\VISA\Win64\Bin\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;c:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\IVI Foundation\IVI\bin;C:\Program Files\IVI Foundation\IVI\bin;C:\Program Files (x86)\National Instruments\Shared\System\;C:\Program Files (x86)\National Instruments\Motion Assistant\bin\mxwplugins;C:\Xilinx92i\bin\nt;C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice;C:\OrCAD\OrCAD_16.6_Lite\tools\Capture;C:\OrCAD\OrCAD_16.6_Lite\tools\bin;C:\OrCAD\OrCAD_16.6_Lite\OpenAccess\bin\win32\opt;C:\OrCAD\OrCAD_16.6_Lite\tools\fet\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\pcb\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Windows\CCM;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Program Files\TortoiseSVN\bin;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\WINDOWS\CCM;C:\ti\ccsv5\eclipse;]
 
 **** Build Finished ****

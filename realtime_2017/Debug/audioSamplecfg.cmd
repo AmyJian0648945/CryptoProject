@@ -239,7 +239,6 @@ SECTIONS {
 
 -priority
 --trampolines
---"diag_suppress=16002"
 -llnkrtdx.a674
 -llog8.a674
 -ldrivers.a674         /* device drivers support */

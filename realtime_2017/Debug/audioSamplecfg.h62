@@ -8,7 +8,7 @@
 	.asg "audioSample.cdb", VERS$CDB
 	.asg ";", VERS$CDBRELATIVEPATH
 	.asg "audioSamplecfg", VERS$CFG
-	.asg "@(#)*** xdcutils-g09", VERS$TREE
+	.asg "@(#)*** xdcutils-g02", VERS$TREE
 
 ;; EXTERNAL REFERENCES
 	.global	HWI_unused
@@ -159,7 +159,6 @@ CLK_INPUTCLK        .set 05dc0H
 CLK_RESETTIMER      .set 01H
 CLK_TIMMODE         .set 05H
 CLK_HTIMEPERLTIME   .set 0493e0H
-CLK_POWERENABLE     .set 01H
 PRD$                .set 1
 PRD_SCALAR          .set 01H
 RTDX$               .set 1

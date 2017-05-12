@@ -10,11 +10,11 @@
 
 /* Flags */
 /* #define PRINT_PKA_ControlCheck */
-/* #define PRINT_DataTransmission */
+#define PRINT_DataTransmission
 #define EXE_PKA
 #define PRINT_Key
 /* #define PRINT_PKA */
-/* #define EXE_DataTransmission */
+#define EXE_DataTransmission
 
 
 
@@ -142,6 +142,13 @@ void process_audio(int* input_buf, int* output_buf, int nbytes)
 	short input_rot[BUFLEN*2], output_rot[BUFLEN*2];	/* Factor of 2 is because of sizeof(int)/sizeof(short) = 2*/
 	int niters = (BUFLEN*2)/BUFFERSIZE;
 	int stepsize = BUFFERSIZE/2;
+	/* array size has to be updated */
+	uint8_t out_buf[MAXLENGTH] = {0};
+	uint8_t in_buf[MAXLENGTH] = {0};
+	uint16_t bufLength[1] = {BUFLEN*2};
+
+	from32to8(output_buf,out_buf,nbytes/4);
+	from32to8(input_buf,in_buf,nbytes/4);
 
 	/**** KEY ESTABLISHMENT : the Diffie-Hellman scheme ****/
 /*** STS - Protocol ***/
@@ -273,11 +280,16 @@ void process_audio(int* input_buf, int* output_buf, int nbytes)
 	}
 
 	/* Data Transmission */
-	encryptHMAC(output_buf, BUFLEN*2, input_buf, key, encryptKeyLength);
-	decryptHMAC(input_buf, BUFLEN*2, output_buf, key, encryptKeyLength);
+/*	encryptHMAC(output_buf, BUFLEN*2, input_buf, key, encryptKeyLength);
+	decryptHMAC(input_buf, BUFLEN*2, output_buf, key, encryptKeyLength);*/
+	encryptHMAC(out_buf, bufLength, in_buf, key, encryptKeyLength);
+	decryptHMAC(in_buf, bufLength, out_buf, key, encryptKeyLength);
 
-
-	
+#ifdef PRINT_DataTransmission
+	printf("Plaintext before encryption: "); printCharNoSpaces(in_buf, BUFLEN*2);
+	printf("\nCiphertext after encryption: "); printArrayNoSpaces(out_buf, BUFLEN*2 );
+	printf("\nPlaintext after decryption: "); printCharNoSpaces(in_buf, BUFLEN*2);
+#endif
 	/*
 	for (iter=0; iter<niters; iter++){
 		// Extract upper and lower 16 bits from input_buf[i]

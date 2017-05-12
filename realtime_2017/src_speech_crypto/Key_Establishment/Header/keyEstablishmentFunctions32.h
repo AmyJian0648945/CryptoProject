@@ -88,6 +88,8 @@ void from8to32(uint8_t *input, uint32_t *output, uint16_t size);
 			 = 2 * number of elements in output
 */
 void from32to8(uint32_t *input, uint8_t *output, uint16_t size);
+void from8to16(uint8_t *input, uint16_t *output, uint16_t size);
+void from16to8(uint16_t *input, uint8_t *output, uint16_t size);
 
 #endif
 
