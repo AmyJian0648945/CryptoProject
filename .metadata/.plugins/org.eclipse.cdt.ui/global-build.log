@@ -1,12 +1,15 @@
 
-**** Clean-only build of configuration Release for project ccsProject ****
+**** Build of configuration Release for project realtime_2017 ****
 
-C:\ti\ccsv5\utils\bin\gmake -k clean 
-DEL /F  "ccsProject.out"
-DEL /F "main.pp" "library\PRNG.pp" "library\aes.pp" "library\encryptDecrypt.pp" "library\helpfulFunctions.pp" "library\hmac.pp" "library\sha2.pp" "library\useAES.pp" "library\useSHA256.pp" "Key_Establishment\Source\additionalFunctions32.pp" "Key_Establishment\Source\keyEstablishmentFunctions32.pp" "Key_Establishment\Source\maskGenerationFunction.pp" "Key_Establishment\Source\modFunctions32.pp" "Key_Establishment\Source\modularInverse32.pp" "Key_Establishment\Source\montExponentiation32.pp" "Key_Establishment\Source\signatureMessage.pp" "Key_Establishment\Source\verifySignature.pp" 
-DEL /F "main.obj" "library\PRNG.obj" "library\aes.obj" "library\encryptDecrypt.obj" "library\helpfulFunctions.obj" "library\hmac.obj" "library\sha2.obj" "library\useAES.obj" "library\useSHA256.obj" "Key_Establishment\Source\additionalFunctions32.obj" "Key_Establishment\Source\keyEstablishmentFunctions32.obj" "Key_Establishment\Source\maskGenerationFunction.obj" "Key_Establishment\Source\modFunctions32.obj" "Key_Establishment\Source\modularInverse32.obj" "Key_Establishment\Source\montExponentiation32.obj" "Key_Establishment\Source\signatureMessage.obj" "Key_Establishment\Source\verifySignature.obj" 
-'Finished clean'
-' '
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project realtime_2017 ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
 
 **** Build Finished ****
 
@@ -18,95 +21,76 @@ C:\ti\ccsv5\utils\bin\gmake -k all
 "C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
 'Finished building: ../main.c'
 ' '
-'Building file: ../library/PRNG.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/PRNG.pp" --obj_directory="library"  "../library/PRNG.c"
-'Finished building: ../library/PRNG.c'
-' '
-'Building file: ../library/aes.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/aes.pp" --obj_directory="library"  "../library/aes.c"
-'Finished building: ../library/aes.c'
-' '
 'Building file: ../library/encryptDecrypt.c'
 'Invoking: C6000 Compiler'
 "C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/encryptDecrypt.pp" --obj_directory="library"  "../library/encryptDecrypt.c"
-'Finished building: ../library/encryptDecrypt.c'
-' '
-'Building file: ../library/helpfulFunctions.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/helpfulFunctions.pp" --obj_directory="library"  "../library/helpfulFunctions.c"
-'Finished building: ../library/helpfulFunctions.c'
-' '
+"../library/encryptDecrypt.c", line 8: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 8: error #20: identifier "macKeyLength" is undefined
+
+>> Compilation failure
+"../library/encryptDecrypt.c", line 10: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 13: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 9: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 10: warning #552-D: variable "IV" was set but never used
+"../library/encryptDecrypt.c", line 13: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../library/encryptDecrypt.c", line 14: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../library/encryptDecrypt.c", line 53: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 53: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 56: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 56: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 55: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 56: warning #552-D: variable "registKey_String" was set but never used
+"../library/encryptDecrypt.c", line 90: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 90: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 92: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 95: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 91: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 92: warning #552-D: variable "IV" was set but never used
+"../library/encryptDecrypt.c", line 95: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../library/encryptDecrypt.c", line 96: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../library/encryptDecrypt.c", line 130: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 130: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 132: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 132: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 131: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 132: warning #552-D: variable "registKey_String" was set but never used
+16 errors detected in the compilation of "../library/encryptDecrypt.c".
+gmake: *** [library/encryptDecrypt.obj] Error 1
 'Building file: ../library/hmac.c'
 'Invoking: C6000 Compiler'
 "C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/hmac.pp" --obj_directory="library"  "../library/hmac.c"
-'Finished building: ../library/hmac.c'
-' '
-'Building file: ../library/sha2.c'
+"../library/hmac.c", line 13: error #20: identifier "DATA_BLOCK_SIZE" is undefined
+"../library/hmac.c", line 17: error #20: identifier "MAX_MESSAGE_LENGTH" is undefined
+
+"../library/hmac.c", line 17: warning #552-D: variable "result1" was set but never used
+>> Compilation failure
+"../library/hmac.c", line 18: warning #552-D: variable "result2" was set but never used
+2 errors detected in the compilation of "../library/hmac.c".
+gmake: *** [library/hmac.obj] Error 1
+gmake: Target `all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Release for project realtime_2017 ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../src_audio/process_audio.c'
 'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/sha2.pp" --obj_directory="library"  "../library/sha2.c"
-"../library/sha2.c", line 234: warning #83-D: storage class is not first
-"../library/sha2.c", line 254: warning #83-D: storage class is not first
-'Finished building: ../library/sha2.c'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_audio/process_audio.pp" --obj_directory="src_audio"  "../src_audio/process_audio.c"
+"../src_audio/process_audio.c", line 41: warning #179-D: variable "iter" was declared but never referenced
+"../src_audio/process_audio.c", line 42: warning #179-D: variable "pshort" was declared but never referenced
+"../src_audio/process_audio.c", line 43: warning #179-D: variable "nr_elements" was declared but never referenced
+"../src_audio/process_audio.c", line 44: warning #179-D: variable "input_rot" was declared but never referenced
+"../src_audio/process_audio.c", line 44: warning #179-D: variable "output_rot" was declared but never referenced
+"../src_audio/process_audio.c", line 45: warning #179-D: variable "niters" was declared but never referenced
+"../src_audio/process_audio.c", line 46: warning #179-D: variable "stepsize" was declared but never referenced
+'Finished building: ../src_audio/process_audio.c'
 ' '
-'Building file: ../library/useAES.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/useAES.pp" --obj_directory="library"  "../library/useAES.c"
-'Finished building: ../library/useAES.c'
-' '
-'Building file: ../library/useSHA256.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/useSHA256.pp" --obj_directory="library"  "../library/useSHA256.c"
-'Finished building: ../library/useSHA256.c'
-' '
-'Building file: ../Key_Establishment/Source/additionalFunctions32.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/additionalFunctions32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/additionalFunctions32.c"
-'Finished building: ../Key_Establishment/Source/additionalFunctions32.c'
-' '
-'Building file: ../Key_Establishment/Source/keyEstablishmentFunctions32.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/keyEstablishmentFunctions32.c"
-'Finished building: ../Key_Establishment/Source/keyEstablishmentFunctions32.c'
-' '
-'Building file: ../Key_Establishment/Source/maskGenerationFunction.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/maskGenerationFunction.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/maskGenerationFunction.c"
-'Finished building: ../Key_Establishment/Source/maskGenerationFunction.c'
-' '
-'Building file: ../Key_Establishment/Source/modFunctions32.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modFunctions32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/modFunctions32.c"
-'Finished building: ../Key_Establishment/Source/modFunctions32.c'
-' '
-'Building file: ../Key_Establishment/Source/modularInverse32.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modularInverse32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/modularInverse32.c"
-'Finished building: ../Key_Establishment/Source/modularInverse32.c'
-' '
-'Building file: ../Key_Establishment/Source/montExponentiation32.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/montExponentiation32.c"
-"../Key_Establishment/Source/montExponentiation32.c", line 113: warning #552-D: variable "mInvLastBit" was set but never used
-"../Key_Establishment/Source/montExponentiation32.c", line 114: warning #552-D: variable "middleR" was set but never used
-'Finished building: ../Key_Establishment/Source/montExponentiation32.c'
-' '
-'Building file: ../Key_Establishment/Source/signatureMessage.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/signatureMessage.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/signatureMessage.c"
-'Finished building: ../Key_Establishment/Source/signatureMessage.c'
-' '
-'Building file: ../Key_Establishment/Source/verifySignature.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/verifySignature.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/verifySignature.c"
-'Finished building: ../Key_Establishment/Source/verifySignature.c'
-' '
-'Building target: ccsProject.out'
+'Building target: realtime_2017.out'
 'Invoking: C6000 Linker'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --xml_link_info="ccsProject_linkInfo.xml" --rom_model -o "ccsProject.out"  "./Key_Establishment/Source/verifySignature.obj" "./Key_Establishment/Source/signatureMessage.obj" "./Key_Establishment/Source/montExponentiation32.obj" "./Key_Establishment/Source/modularInverse32.obj" "./Key_Establishment/Source/modFunctions32.obj" "./Key_Establishment/Source/maskGenerationFunction.obj" "./Key_Establishment/Source/keyEstablishmentFunctions32.obj" "./Key_Establishment/Source/additionalFunctions32.obj" "./library/useSHA256.obj" "./library/useAES.obj" "./library/sha2.obj" "./library/hmac.obj" "./library/helpfulFunctions.obj" "./library/encryptDecrypt.obj" "./library/aes.obj" "./library/PRNG.obj" "./main.obj" -l"libc.a" "../C6748.cmd" 
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --display_error_number --diag_warning=225 --abi=coffabi -z -m"realtime_2017.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/Users/r0648945/Documents/CryptoProject/realtime_2017/libs" -i"C:/ti/ccsv5/tools/compiler/c6000/include" -i"C:/ti/bios_5_41_11_38/packages/ti/rtdx/lib/c6000" -i"C:/ti/bios_5_41_11_38/packages/ti/bios/lib" --reread_libs --xml_link_info="realtime_2017_linkInfo.xml" --rom_model -o "realtime_2017.out" -l"./audioSamplecfg.cmd"  "./audioSamplecfg_c.obj" "./audioSamplecfg.obj" "./src_audio/process_audio.obj" "./src_audio/audioSample_main.obj" "./src_audio/audioSample_io.obj" -l"libc.a" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\edma3_drv_bios_c674.lib" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\edma3_drv_bios_sample.lib" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\edma3_rm_bios.lib" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\pmi_ctl_evm6748.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\pmi.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\pscl_cfg_evm6748.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\pscl.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.gpio.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.i2c.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.mcasp.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.platforms.codec.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.platforms.evm6748.audio.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.platforms.evm6748.evmInit.a674" -l"C:\Users\r0648945\Documents\CryptoProject\realtime_2017\libs\ti.pspiom.psc.a674" "../libs/edma3_drv_bios_c674.lib" "../libs/edma3_drv_bios_sample.lib" "../libs/edma3_rm_bios.lib" 
 <Linking>
-'Finished building target: ccsProject.out'
+'Finished building target: realtime_2017.out'
 ' '
 
 **** Build Finished ****
@@ -114,13 +98,80 @@ C:\ti\ccsv5\utils\bin\gmake -k all
 **** Build of configuration Release for project ccsProject ****
 
 C:\ti\ccsv5\utils\bin\gmake -k all 
-gmake: Nothing to be done for `all'.
+'Building file: ../library/encryptDecrypt.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/encryptDecrypt.pp" --obj_directory="library"  "../library/encryptDecrypt.c"
+"../library/encryptDecrypt.c", line 8: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 8: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 10: error #20: identifier "IVlength" is undefined
+
+"../library/encryptDecrypt.c", line 13: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 9: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 10: warning #552-D: variable "IV" was set but never used
+"../library/encryptDecrypt.c", line 13: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../library/encryptDecrypt.c", line 14: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../library/encryptDecrypt.c", line 53: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 53: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 56: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 56: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 55: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 56: warning #552-D: variable "registKey_String" was set but never used
+"../library/encryptDecrypt.c", line 90: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 90: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 92: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 95: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 91: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 92: warning #552-D: variable "IV" was set but never used
+"../library/encryptDecrypt.c", line 95: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../library/encryptDecrypt.c", line 96: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../library/encryptDecrypt.c", line 130: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 130: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 132: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 132: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 131: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 132: warning #552-D: variable "registKey_String" was set but never used
+16 errors detected in the compilation of "../library/encryptDecrypt.c".
+gmake: *** [library/encryptDecrypt.obj] Error 1
+>> Compilation failure
+'Building file: ../library/hmac.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/hmac.pp" --obj_directory="library"  "../library/hmac.c"
+"../library/hmac.c", line 13: error #20: identifier "DATA_BLOCK_SIZE" is undefined
+"../library/hmac.c", line 17: error #20: identifier "MAX_MESSAGE_LENGTH" is undefined
+"../library/hmac.c", line 17: warning #552-D: variable "result1" was set but never used
+"../library/hmac.c", line 18: warning #552-D: variable "result2" was set but never used
+2 errors detected in the compilation of "../library/hmac.c".
+
+>> Compilation failure
+gmake: *** [library/hmac.obj] Error 1
+gmake: Target `all' not remade because of errors.
 
 **** Build Finished ****
 
-**** Build of configuration Release for project ccsProject ****
+**** Build of configuration Release for project realtime_2017 ****
 
 C:\ti\ccsv5\utils\bin\gmake -k all 
-gmake: Nothing to be done for `all'.
+'Building file: ../src_audio/process_audio.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_audio/process_audio.pp" --obj_directory="src_audio"  "../src_audio/process_audio.c"
+"../src_audio/process_audio.c", line 32: fatal error #5: could not open source file "../src_speech_crypto/library/helpfulFunctions.h"
+1 fatal error detected in the compilation of "../src_audio/process_audio.c".
+Compilation terminated.
+
+>> Compilation failure
+gmake: *** [src_audio/process_audio.obj] Error 1
+'Building file: ../src_audio/originalFiles/process_audio.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_audio/originalFiles/process_audio.pp" --obj_directory="src_audio/originalFiles"  "../src_audio/originalFiles/process_audio.c"
+"../src_audio/originalFiles/process_audio.c", line 41: warning #179-D: variable "iter" was declared but never referenced
+"../src_audio/originalFiles/process_audio.c", line 42: warning #179-D: variable "pshort" was declared but never referenced
+"../src_audio/originalFiles/process_audio.c", line 43: warning #179-D: variable "nr_elements" was declared but never referenced
+"../src_audio/originalFiles/process_audio.c", line 44: warning #179-D: variable "input_rot" was declared but never referenced
+"../src_audio/originalFiles/process_audio.c", line 44: warning #179-D: variable "output_rot" was declared but never referenced
+"../src_audio/originalFiles/process_audio.c", line 45: warning #179-D: variable "niters" was declared but never referenced
+"../src_audio/originalFiles/process_audio.c", line 46: warning #179-D: variable "stepsize" was declared but never referenced
+'Finished building: ../src_audio/originalFiles/process_audio.c'
+' '
+gmake: Target `all' not remade because of errors.
 
 **** Build Finished ****

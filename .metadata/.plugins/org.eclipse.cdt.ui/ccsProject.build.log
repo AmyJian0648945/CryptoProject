@@ -2,6 +2,52 @@
 **** Build of configuration Release for project ccsProject ****
 
 C:\ti\ccsv5\utils\bin\gmake -k all 
-gmake: Nothing to be done for `all'.
+'Building file: ../library/encryptDecrypt.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/encryptDecrypt.pp" --obj_directory="library"  "../library/encryptDecrypt.c"
+"../library/encryptDecrypt.c", line 8: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 8: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 10: error #20: identifier "IVlength" is undefined
+
+"../library/encryptDecrypt.c", line 13: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 9: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 10: warning #552-D: variable "IV" was set but never used
+"../library/encryptDecrypt.c", line 13: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../library/encryptDecrypt.c", line 14: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../library/encryptDecrypt.c", line 53: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 53: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 56: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 56: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 55: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 56: warning #552-D: variable "registKey_String" was set but never used
+"../library/encryptDecrypt.c", line 90: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 90: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 92: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 95: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 91: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 92: warning #552-D: variable "IV" was set but never used
+"../library/encryptDecrypt.c", line 95: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../library/encryptDecrypt.c", line 96: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../library/encryptDecrypt.c", line 130: error #20: identifier "encryptKeyLength" is undefined
+"../library/encryptDecrypt.c", line 130: error #20: identifier "macKeyLength" is undefined
+"../library/encryptDecrypt.c", line 132: error #20: identifier "IVlength" is undefined
+"../library/encryptDecrypt.c", line 132: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../library/encryptDecrypt.c", line 131: warning #552-D: variable "macKey_String" was set but never used
+"../library/encryptDecrypt.c", line 132: warning #552-D: variable "registKey_String" was set but never used
+16 errors detected in the compilation of "../library/encryptDecrypt.c".
+gmake: *** [library/encryptDecrypt.obj] Error 1
+>> Compilation failure
+'Building file: ../library/hmac.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/hmac.pp" --obj_directory="library"  "../library/hmac.c"
+"../library/hmac.c", line 13: error #20: identifier "DATA_BLOCK_SIZE" is undefined
+"../library/hmac.c", line 17: error #20: identifier "MAX_MESSAGE_LENGTH" is undefined
+"../library/hmac.c", line 17: warning #552-D: variable "result1" was set but never used
+"../library/hmac.c", line 18: warning #552-D: variable "result2" was set but never used
+2 errors detected in the compilation of "../library/hmac.c".
+
+>> Compilation failure
+gmake: *** [library/hmac.obj] Error 1
+gmake: Target `all' not remade because of errors.
 
 **** Build Finished ****

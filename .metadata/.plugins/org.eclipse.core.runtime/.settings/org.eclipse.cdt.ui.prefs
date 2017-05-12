@@ -1,4 +1,6 @@
-eclipse.preferences.version=1
+#Fri May 12 11:46:14 CEST 2017
 spelling_locale_initialized=true
 useAnnotationsPrefPage=true
+content_assist_disabled_computers=org.eclipse.cdt.ui.parserProposalCategory\u0000org.eclipse.cdt.ui.textProposalCategory\u0000
+eclipse.preferences.version=1
 useQuickDiffPrefPage=true

@@ -231,3 +231,203 @@ HandlerActivation(commandId=com.ti.dvt.ui.view.end,
 Device is held in reset. Take the device out of reset, and retry the operation.
 (Emulation package 5.0.520.0)
 
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 11:39:50.543
+!MESSAGE Indexed '2013_realtime_audio' (3 sources, 53 headers) in 0.52 sec: 2,572 declarations; 2,035 references; 8 unresolved inclusions; 2 syntax errors; 83 unresolved names (1.77%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 11:39:51.531
+!MESSAGE Indexed '2013_realtime_audio' (3 sources, 53 headers) in 0.29 sec: 2,572 declarations; 2,035 references; 8 unresolved inclusions; 2 syntax errors; 83 unresolved names (1.77%)
+
+!ENTRY org.eclipse.core.resources 4 1 2017-05-12 11:42:53.333
+!MESSAGE Problems occurred while refreshing local changes
+!SUBENTRY 1 org.eclipse.core.resources 4 1 2017-05-12 11:42:53.333
+!MESSAGE Problems occurred while refreshing local changes
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Errors occurred while refreshing resources with the local file system.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:923)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:904)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1657)
+	at org.eclipse.core.internal.refresh.RefreshJob.runInWorkspace(RefreshJob.java:167)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Contains: The project description file (.project) for '2013_realtime_audio' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SUBENTRY 2 org.eclipse.core.resources 4 271 2017-05-12 11:42:53.334
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+!SUBENTRY 3 org.eclipse.core.resources 4 567 2017-05-12 11:42:53.334
+!MESSAGE The project description file (.project) for '2013_realtime_audio' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 11:43:47.686
+!MESSAGE DS_ERROR: TMS320C64X+_0: GEL: Encountered a problem loading file: C:\Users\r0648945\Documents\2016_realtime_audio\Debug\2013_realtime_audio.out Could not open file
+
+
+!ENTRY org.eclipse.core.resources 2 2 2017-05-12 11:44:50.130
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2017-05-12 11:44:50.130
+!MESSAGE The project description file (.project) for '2013_realtime_audio' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SESSION 2017-05-12 11:46:17.071 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:46:27.852
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:46:27.855
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:46:27.859
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-05-12 11:46:27.860
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+!SESSION 2017-05-12 11:47:48.501 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:47:58.122
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:47:58.125
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:47:58.132
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-05-12 11:47:58.133
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 11:48:20.441
+!MESSAGE Indexed '2013_realtime_audio' (35 sources, 90 headers) in 0.53 sec: 4,900 declarations; 11,524 references; 8 unresolved inclusions; 3 syntax errors; 86 unresolved names (0.52%)
+!SESSION 2017-05-12 11:49:17.202 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:49:26.876
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:49:26.879
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:49:26.883
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-05-12 11:49:26.884
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+!SESSION 2017-05-12 11:49:30.443 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product -data C:\Users\r0648945\Documents\CryptoProject -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:49:40.223
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:49:40.226
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:49:40.229
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-05-12 11:49:40.230
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+!SESSION 2017-05-12 12:02:53.162 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product -data C:\Users\r0648945\Documents\CryptoProject -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 12:03:02.744
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 12:03:02.747
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 12:03:02.751
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-05-12 12:03:02.751
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 12:03:14.758
+!MESSAGE Indexed 'realtime_2017' (5 sources, 64 headers) in 1.02 sec: 2,751 declarations; 2,227 references; 4 unresolved inclusions; 21 syntax errors; 77 unresolved names (1.52%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 12:03:15.686
+!MESSAGE Indexed 'realtime_2017' (5 sources, 64 headers) in 0.33 sec: 2,751 declarations; 2,227 references; 4 unresolved inclusions; 21 syntax errors; 77 unresolved names (1.52%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 12:08:53.702
+!MESSAGE Indexed 'realtime_2017' (37 sources, 101 headers) in 0.62 sec: 5,079 declarations; 11,716 references; 4 unresolved inclusions; 22 syntax errors; 80 unresolved names (0.47%)
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:09:22.845
+!MESSAGE DS_ERROR: C674X_0: Error connecting to the target: (Error -1180 @ 0x0) Device is held in reset. Take the device out of reset, and retry the operation. (Emulation package 5.0.520.0) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:09:22.898
+!MESSAGE DS_ERROR: Error connecting to the target:
+(Error -1180 @ 0x0)
+Device is held in reset. Take the device out of reset, and retry the operation.
+(Emulation package 5.0.520.0)
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:29.859
+!MESSAGE DS_ERROR: C674X_0: GEL: Error loading file 'C:\Users\r0648945\Downloads\C6748.gel': unable to open GEL file 'C:\Users\r0648945\Downloads\C6748.gel'
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:32.180
+!MESSAGE DS_ERROR: C674X_0: Error connecting to the target: (Error -1180 @ 0x0) Device is held in reset. Take the device out of reset, and retry the operation. (Emulation package 5.0.520.0) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:32.202
+!MESSAGE DS_ERROR: Error connecting to the target:
+(Error -1180 @ 0x0)
+Device is held in reset. Take the device out of reset, and retry the operation.
+(Emulation package 5.0.520.0)
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:53.997
+!MESSAGE DS_ERROR: C674X_0: GEL: Error loading file 'C:\Users\r0648945\Downloads\C6748.gel': unable to open GEL file 'C:\Users\r0648945\Downloads\C6748.gel'
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:56.310
+!MESSAGE DS_ERROR: C674X_0: Error connecting to the target: (Error -1180 @ 0x0) Device is held in reset. Take the device out of reset, and retry the operation. (Emulation package 5.0.520.0) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:56.332
+!MESSAGE DS_ERROR: Error connecting to the target:
+(Error -1180 @ 0x0)
+Device is held in reset. Take the device out of reset, and retry the operation.
+(Emulation package 5.0.520.0)
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:59.554
+!MESSAGE DS_ERROR: C674X_0: File Loader: Data verification failed at address 0xC0059C00 Please verify target memory and memory map.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:10:59.557
+!MESSAGE DS_ERROR: C674X_0: GEL: File: C:\Users\r0648945\Documents\CryptoProject\realtime_2017\Release\realtime_2017.out: a data verification error occurred, file load failed.
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:12:21.037
+!MESSAGE DS_ERROR: C674X_0: Error connecting to the target: (Error -1180 @ 0x0) Device is held in reset. Take the device out of reset, and retry the operation. (Emulation package 5.0.520.0) 
+
+
+!ENTRY com.ti.ccstudio.debug 1 0 2017-05-12 12:12:21.056
+!MESSAGE DS_ERROR: Error connecting to the target:
+(Error -1180 @ 0x0)
+Device is held in reset. Take the device out of reset, and retry the operation.
+(Emulation package 5.0.520.0)
+

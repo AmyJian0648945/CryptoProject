@@ -23,6 +23,9 @@
      <void property="contextId"> 
       <string>140670</string> 
      </void> 
+     <void property="orderedItems"> 
+      <object class="java.util.ArrayList"/> 
+     </void> 
     </object> 
    </void> 
   </void> 
