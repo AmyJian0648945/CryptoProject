@@ -2,27 +2,100 @@
 **** Build of configuration Release for project realtime_2017 ****
 
 C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../src_speech_crypto/library/encryptDecrypt.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_speech_crypto/library/encryptDecrypt.pp" --obj_directory="src_speech_crypto/library"  "../src_speech_crypto/library/encryptDecrypt.c"
+"../src_speech_crypto/library/encryptDecrypt.c", line 8: error #20: identifier "encryptKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 8: error #20: identifier "macKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 10: error #20: identifier "IVlength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 13: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 9: warning #552-D: variable "macKey_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 10: warning #552-D: variable "IV" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 13: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 14: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 53: error #20: identifier "encryptKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 53: error #20: identifier "macKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 56: error #20: identifier "IVlength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 56: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 55: warning #552-D: variable "macKey_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 56: warning #552-D: variable "registKey_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 90: error #20: identifier "encryptKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 90: error #20: identifier "macKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 92: error #20: identifier "IVlength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 95: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 91: warning #552-D: variable "macKey_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 92: warning #552-D: variable "IV" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 95: warning #552-D: variable "IVciphertextConcat" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 96: warning #552-D: variable "IVciphertextConcat_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 130: error #20: identifier "encryptKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 130: error #20: identifier "macKeyLength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 132: error #20: identifier "IVlength" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 132: error #20: identifier "MAX_TRANSMISSION_BLOCK_LENGTH" is undefined
+"../src_speech_crypto/library/encryptDecrypt.c", line 131: warning #552-D: variable "macKey_String" was set but never used
+"../src_speech_crypto/library/encryptDecrypt.c", line 132: warning #552-D: variable "registKey_String" was set but never used
+16 errors detected in the compilation of "../src_speech_crypto/library/encryptDecrypt.c".
+
+>> Compilation failure
+gmake: *** [src_speech_crypto/library/encryptDecrypt.obj] Error 1
+'Building file: ../src_speech_crypto/library/hmac.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_speech_crypto/library/hmac.pp" --obj_directory="src_speech_crypto/library"  "../src_speech_crypto/library/hmac.c"
+"../src_speech_crypto/library/hmac.c", line 13: error #20: identifier "DATA_BLOCK_SIZE" is undefined
+"../src_speech_crypto/library/hmac.c", line 17: error #20: identifier "MAX_MESSAGE_LENGTH" is undefined
+"../src_speech_crypto/library/hmac.c", line 17: warning #552-D: variable "result1" was set but never used
+"../src_speech_crypto/library/hmac.c", line 18: warning #552-D: variable "result2" was set but never used
+
+>> Compilation failure
+2 errors detected in the compilation of "../src_speech_crypto/library/hmac.c".
+gmake: *** [src_speech_crypto/library/hmac.obj] Error 1
 'Building file: ../src_audio/process_audio.c'
 'Invoking: C6000 Compiler'
 "C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_audio/process_audio.pp" --obj_directory="src_audio"  "../src_audio/process_audio.c"
-"../src_audio/process_audio.c", line 32: fatal error #5: could not open source file "../src_speech_crypto/library/helpfulFunctions.h"
-1 fatal error detected in the compilation of "../src_audio/process_audio.c".
-Compilation terminated.
+"../src_audio/process_audio.c", line 123: error #29: expected an expression
+"../src_audio/process_audio.c", line 123: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 125: error #29: expected an expression
+"../src_audio/process_audio.c", line 125: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 128: error #29: expected an expression
+"../src_audio/process_audio.c", line 128: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 129: error #29: expected an expression
+"../src_audio/process_audio.c", line 129: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 130: error #29: expected an expression
+"../src_audio/process_audio.c", line 130: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 131: error #29: expected an expression
+"../src_audio/process_audio.c", line 132: error #29: expected an expression
+"../src_audio/process_audio.c", line 132: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 133: error #29: expected an expression
+"../src_audio/process_audio.c", line 133: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 134: error #29: expected an expression
+"../src_audio/process_audio.c", line 134: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 135: error #29: expected an expression
+"../src_audio/process_audio.c", line 135: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 137: error #29: expected an expression
+"../src_audio/process_audio.c", line 137: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 138: error #29: expected an expression
+"../src_audio/process_audio.c", line 138: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 140: error #29: expected an expression
+"../src_audio/process_audio.c", line 140: warning #177-D: subscript out of range
+"../src_audio/process_audio.c", line 157: error #20: identifier "KEY" is undefined
+"../src_audio/process_audio.c", line 157: error #66: expected a ";"
+"../src_audio/process_audio.c", line 168: warning #12-D: parsing restarts here after previous syntax error
+"../src_audio/process_audio.c", line 287: error #169: argument of type "int *" is incompatible with parameter of type "uint8_t *"
+"../src_audio/process_audio.c", line 287: error #169: argument of type "int" is incompatible with parameter of type "uint16_t *"
+"../src_audio/process_audio.c", line 287: error #169: argument of type "int *" is incompatible with parameter of type "uint8_t *"
+"../src_audio/process_audio.c", line 288: error #169: argument of type "int *" is incompatible with parameter of type "uint8_t *"
+"../src_audio/process_audio.c", line 288: error #169: argument of type "int" is incompatible with parameter of type "uint16_t *"
+"../src_audio/process_audio.c", line 288: error #169: argument of type "int *" is incompatible with parameter of type "uint8_t *"
+"../src_audio/process_audio.c", line 150: warning #179-D: variable "iter" was declared but never referenced
+"../src_audio/process_audio.c", line 151: warning #179-D: variable "pshort" was declared but never referenced
+"../src_audio/process_audio.c", line 152: warning #179-D: variable "nr_elements" was declared but never referenced
+"../src_audio/process_audio.c", line 153: warning #179-D: variable "input_rot" was declared but never referenced
+"../src_audio/process_audio.c", line 153: warning #179-D: variable "output_rot" was declared but never referenced
+"../src_audio/process_audio.c", line 154: warning #179-D: variable "niters" was declared but never referenced
+"../src_audio/process_audio.c", line 155: warning #179-D: variable "stepsize" was declared but never referenced
+21 errors detected in the compilation of "../src_audio/process_audio.c".
+gmake: *** [src_audio/process_audio.obj] Error 1
+gmake: Target `all' not remade because of errors.
 
 >> Compilation failure
-gmake: *** [src_audio/process_audio.obj] Error 1
-'Building file: ../src_audio/originalFiles/process_audio.c'
-'Invoking: C6000 Compiler'
-"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/include" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_audio" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto" --include_path="C:/Users/r0648945/Documents/CryptoProject/realtime_2017/Release" --include_path="C:/ti/bios_5_41_11_38/packages/ti/bios/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="src_audio/originalFiles/process_audio.pp" --obj_directory="src_audio/originalFiles"  "../src_audio/originalFiles/process_audio.c"
-"../src_audio/originalFiles/process_audio.c", line 41: warning #179-D: variable "iter" was declared but never referenced
-"../src_audio/originalFiles/process_audio.c", line 42: warning #179-D: variable "pshort" was declared but never referenced
-"../src_audio/originalFiles/process_audio.c", line 43: warning #179-D: variable "nr_elements" was declared but never referenced
-"../src_audio/originalFiles/process_audio.c", line 44: warning #179-D: variable "input_rot" was declared but never referenced
-"../src_audio/originalFiles/process_audio.c", line 44: warning #179-D: variable "output_rot" was declared but never referenced
-"../src_audio/originalFiles/process_audio.c", line 45: warning #179-D: variable "niters" was declared but never referenced
-"../src_audio/originalFiles/process_audio.c", line 46: warning #179-D: variable "stepsize" was declared but never referenced
-'Finished building: ../src_audio/originalFiles/process_audio.c'
-' '
-gmake: Target `all' not remade because of errors.
 
 **** Build Finished ****
