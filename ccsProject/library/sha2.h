@@ -1,6 +1,7 @@
 #ifndef SHA2_H
 #define SHA2_H
 
+#include "macros.h"
 #include "useSHA256.h"
 
 /*

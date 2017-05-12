@@ -8,6 +8,7 @@ src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/t
 src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
 src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
 src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h
+src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/macros.h
 src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/useSHA256.h
 src_speech_crypto/Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
@@ -34,6 +35,7 @@ C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h:
 C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h: 
+../src_speech_crypto/Key_Establishment/Source/../Header/../../library/macros.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/useSHA256.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 

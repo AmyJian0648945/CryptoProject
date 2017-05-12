@@ -3,6 +3,7 @@
 src_speech_crypto/library/encryptDecrypt.obj: ../src_speech_crypto/library/encryptDecrypt.c
 src_speech_crypto/library/encryptDecrypt.obj: ../src_speech_crypto/library/encryptDecrypt.h
 src_speech_crypto/library/encryptDecrypt.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
+src_speech_crypto/library/encryptDecrypt.obj: ../src_speech_crypto/library/macros.h
 src_speech_crypto/library/encryptDecrypt.obj: ../src_speech_crypto/library/useSHA256.h
 src_speech_crypto/library/encryptDecrypt.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
 src_speech_crypto/library/encryptDecrypt.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
@@ -24,6 +25,7 @@ src_speech_crypto/library/encryptDecrypt.obj: ../src_speech_crypto/library/hmac.
 ../src_speech_crypto/library/encryptDecrypt.c: 
 ../src_speech_crypto/library/encryptDecrypt.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h: 
+../src_speech_crypto/library/macros.h: 
 ../src_speech_crypto/library/useSHA256.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h: 

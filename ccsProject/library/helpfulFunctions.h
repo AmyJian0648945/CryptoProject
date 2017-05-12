@@ -1,16 +1,10 @@
 #ifndef HELPFULFUNCTIONS_H
 #define	HELPFULFUNCTIONS_H
 
-#ifndef STDLIB_H
 #include <stdlib.h>
-#endif 
-#ifndef STDINT_H
 #include <stdint.h>
-#endif
-#ifndef STDIO_H
 #include <stdio.h>
-#endif
-
+#include "macros.h"
 #include <time.h>
 
 

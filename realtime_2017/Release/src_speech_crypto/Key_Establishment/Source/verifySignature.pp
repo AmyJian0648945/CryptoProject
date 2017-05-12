@@ -8,6 +8,7 @@ src_speech_crypto/Key_Establishment/Source/verifySignature.obj: C:/ti/ccsv5/tool
 src_speech_crypto/Key_Establishment/Source/verifySignature.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
 src_speech_crypto/Key_Establishment/Source/verifySignature.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
 src_speech_crypto/Key_Establishment/Source/verifySignature.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h
+src_speech_crypto/Key_Establishment/Source/verifySignature.obj: ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/macros.h
 src_speech_crypto/Key_Establishment/Source/verifySignature.obj: ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/helpfulFunctions.h
 src_speech_crypto/Key_Establishment/Source/verifySignature.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h
 src_speech_crypto/Key_Establishment/Source/verifySignature.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
@@ -26,6 +27,7 @@ C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h:
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h: 
+../src_speech_crypto/Key_Establishment/Source/../Header/../../library/macros.h: 
 ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/helpfulFunctions.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 

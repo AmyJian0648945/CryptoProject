@@ -8,6 +8,9 @@
    <void method="add"> 
     <string>C:\ti\ccsv5\ccs_base\DebugServer\..\dvt_3.1.0.201110191212\CodeGen\solutions\CodeGenCoverage</string> 
    </void> 
+   <void method="add"> 
+    <string>C:\ti\ccsv5\ccs_base\DebugServer\..\dvt_3.1.0.201110191212\RTA6\solutions\cce_rta6</string> 
+   </void> 
   </void> 
  </object> 
 </java> 

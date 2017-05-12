@@ -17,24 +17,15 @@ information (HMAC and IV) to allow for decryption.
 #ifndef ENCRYPT_H
 #define ENCRYPT_H
 
-#ifndef STDINT
+
 #include <stdint.h>
-#endif
-#ifndef USESHA256_H
+#include "macros.h"
 #include "useSHA256.h"
-#endif
-#ifndef USEAES_H
 #include "useAES.h"
-#endif
-#ifndef PRNG_H
 #include "PRNG.h"
-#endif
-#ifndef HMAC_H
 #include "hmac.h"
-#endif
-#ifndef HELPFULFUNCTIONS_H
 #include "helpfulFunctions.h"
-#endif
+
 
 
 

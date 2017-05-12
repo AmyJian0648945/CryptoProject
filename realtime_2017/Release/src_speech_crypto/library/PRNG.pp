@@ -2,6 +2,7 @@
 
 src_speech_crypto/library/PRNG.obj: ../src_speech_crypto/library/PRNG.c
 src_speech_crypto/library/PRNG.obj: ../src_speech_crypto/library/PRNG.h
+src_speech_crypto/library/PRNG.obj: ../src_speech_crypto/library/macros.h
 src_speech_crypto/library/PRNG.obj: ../src_speech_crypto/library/useSHA256.h
 src_speech_crypto/library/PRNG.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
 src_speech_crypto/library/PRNG.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
@@ -19,6 +20,7 @@ src_speech_crypto/library/PRNG.obj: C:/ti/ccsv5/tools/compiler/c6000/include/_fm
 
 ../src_speech_crypto/library/PRNG.c: 
 ../src_speech_crypto/library/PRNG.h: 
+../src_speech_crypto/library/macros.h: 
 ../src_speech_crypto/library/useSHA256.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 

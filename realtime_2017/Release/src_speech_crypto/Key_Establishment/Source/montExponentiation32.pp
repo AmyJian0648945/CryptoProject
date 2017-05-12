@@ -13,6 +13,7 @@ src_speech_crypto/Key_Establishment/Source/montExponentiation32.obj: ../src_spee
 src_speech_crypto/Key_Establishment/Source/montExponentiation32.obj: ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/helpfulFunctions.h
 src_speech_crypto/Key_Establishment/Source/montExponentiation32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h
 src_speech_crypto/Key_Establishment/Source/montExponentiation32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
+src_speech_crypto/Key_Establishment/Source/montExponentiation32.obj: ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/macros.h
 src_speech_crypto/Key_Establishment/Source/montExponentiation32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 
 ../src_speech_crypto/Key_Establishment/Source/montExponentiation32.c: 
@@ -28,4 +29,5 @@ C:/ti/ccsv5/tools/compiler/c6000/include/string.h:
 ../src_speech_crypto/Key_Establishment/Source/../Header/../../library/helpfulFunctions.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 
+../src_speech_crypto/Key_Establishment/Source/../Header/../../library/macros.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
