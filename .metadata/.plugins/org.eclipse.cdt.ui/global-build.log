@@ -1,0 +1,119 @@
+
+**** Clean-only build of configuration Release for project ccsProject ****
+
+C:\ti\ccsv5\utils\bin\gmake -k clean 
+DEL /F  "ccsProject.out"
+DEL /F "main.pp" "library\PRNG.pp" "library\aes.pp" "library\encryptDecrypt.pp" "library\helpfulFunctions.pp" "library\hmac.pp" "library\sha2.pp" "library\useAES.pp" "library\useSHA256.pp" "Key_Establishment\Source\additionalFunctions32.pp" "Key_Establishment\Source\keyEstablishmentFunctions32.pp" "Key_Establishment\Source\maskGenerationFunction.pp" "Key_Establishment\Source\modFunctions32.pp" "Key_Establishment\Source\modularInverse32.pp" "Key_Establishment\Source\montExponentiation32.pp" "Key_Establishment\Source\signatureMessage.pp" "Key_Establishment\Source\verifySignature.pp" 
+DEL /F "main.obj" "library\PRNG.obj" "library\aes.obj" "library\encryptDecrypt.obj" "library\helpfulFunctions.obj" "library\hmac.obj" "library\sha2.obj" "library\useAES.obj" "library\useSHA256.obj" "Key_Establishment\Source\additionalFunctions32.obj" "Key_Establishment\Source\keyEstablishmentFunctions32.obj" "Key_Establishment\Source\maskGenerationFunction.obj" "Key_Establishment\Source\modFunctions32.obj" "Key_Establishment\Source\modularInverse32.obj" "Key_Establishment\Source\montExponentiation32.obj" "Key_Establishment\Source\signatureMessage.obj" "Key_Establishment\Source\verifySignature.obj" 
+'Finished clean'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ccsProject ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+'Building file: ../main.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
+'Finished building: ../main.c'
+' '
+'Building file: ../library/PRNG.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/PRNG.pp" --obj_directory="library"  "../library/PRNG.c"
+'Finished building: ../library/PRNG.c'
+' '
+'Building file: ../library/aes.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/aes.pp" --obj_directory="library"  "../library/aes.c"
+'Finished building: ../library/aes.c'
+' '
+'Building file: ../library/encryptDecrypt.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/encryptDecrypt.pp" --obj_directory="library"  "../library/encryptDecrypt.c"
+'Finished building: ../library/encryptDecrypt.c'
+' '
+'Building file: ../library/helpfulFunctions.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/helpfulFunctions.pp" --obj_directory="library"  "../library/helpfulFunctions.c"
+'Finished building: ../library/helpfulFunctions.c'
+' '
+'Building file: ../library/hmac.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/hmac.pp" --obj_directory="library"  "../library/hmac.c"
+'Finished building: ../library/hmac.c'
+' '
+'Building file: ../library/sha2.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/sha2.pp" --obj_directory="library"  "../library/sha2.c"
+"../library/sha2.c", line 234: warning #83-D: storage class is not first
+"../library/sha2.c", line 254: warning #83-D: storage class is not first
+'Finished building: ../library/sha2.c'
+' '
+'Building file: ../library/useAES.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/useAES.pp" --obj_directory="library"  "../library/useAES.c"
+'Finished building: ../library/useAES.c'
+' '
+'Building file: ../library/useSHA256.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="library/useSHA256.pp" --obj_directory="library"  "../library/useSHA256.c"
+'Finished building: ../library/useSHA256.c'
+' '
+'Building file: ../Key_Establishment/Source/additionalFunctions32.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/additionalFunctions32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/additionalFunctions32.c"
+'Finished building: ../Key_Establishment/Source/additionalFunctions32.c'
+' '
+'Building file: ../Key_Establishment/Source/keyEstablishmentFunctions32.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/keyEstablishmentFunctions32.c"
+'Finished building: ../Key_Establishment/Source/keyEstablishmentFunctions32.c'
+' '
+'Building file: ../Key_Establishment/Source/maskGenerationFunction.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/maskGenerationFunction.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/maskGenerationFunction.c"
+'Finished building: ../Key_Establishment/Source/maskGenerationFunction.c'
+' '
+'Building file: ../Key_Establishment/Source/modFunctions32.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modFunctions32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/modFunctions32.c"
+'Finished building: ../Key_Establishment/Source/modFunctions32.c'
+' '
+'Building file: ../Key_Establishment/Source/modularInverse32.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modularInverse32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/modularInverse32.c"
+'Finished building: ../Key_Establishment/Source/modularInverse32.c'
+' '
+'Building file: ../Key_Establishment/Source/montExponentiation32.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation32.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/montExponentiation32.c"
+"../Key_Establishment/Source/montExponentiation32.c", line 113: warning #552-D: variable "mInvLastBit" was set but never used
+"../Key_Establishment/Source/montExponentiation32.c", line 114: warning #552-D: variable "middleR" was set but never used
+'Finished building: ../Key_Establishment/Source/montExponentiation32.c'
+' '
+'Building file: ../Key_Establishment/Source/signatureMessage.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/signatureMessage.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/signatureMessage.c"
+'Finished building: ../Key_Establishment/Source/signatureMessage.c'
+' '
+'Building file: ../Key_Establishment/Source/verifySignature.c'
+'Invoking: C6000 Compiler'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/verifySignature.pp" --obj_directory="Key_Establishment/Source"  "../Key_Establishment/Source/verifySignature.c"
+'Finished building: ../Key_Establishment/Source/verifySignature.c'
+' '
+'Building target: ccsProject.out'
+'Invoking: C6000 Linker'
+"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -O2 --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --xml_link_info="ccsProject_linkInfo.xml" --rom_model -o "ccsProject.out"  "./Key_Establishment/Source/verifySignature.obj" "./Key_Establishment/Source/signatureMessage.obj" "./Key_Establishment/Source/montExponentiation32.obj" "./Key_Establishment/Source/modularInverse32.obj" "./Key_Establishment/Source/modFunctions32.obj" "./Key_Establishment/Source/maskGenerationFunction.obj" "./Key_Establishment/Source/keyEstablishmentFunctions32.obj" "./Key_Establishment/Source/additionalFunctions32.obj" "./library/useSHA256.obj" "./library/useAES.obj" "./library/sha2.obj" "./library/hmac.obj" "./library/helpfulFunctions.obj" "./library/encryptDecrypt.obj" "./library/aes.obj" "./library/PRNG.obj" "./main.obj" -l"libc.a" "../C6748.cmd" 
+<Linking>
+'Finished building target: ccsProject.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Release for project ccsProject ****
+
+C:\ti\ccsv5\utils\bin\gmake -k all 
+gmake: Nothing to be done for `all'.
+
+**** Build Finished ****

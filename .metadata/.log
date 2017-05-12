@@ -24,3 +24,199 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.
 !MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='org.eclipse.cdt.dsf.ui', id='AUTOGEN:::org.eclipse.cdt.dsf.debug.ui.disassemblyRulerActions/org.eclipse.debug.ui.actions.RulerAddBreakpointAction'
 !SUBENTRY 1 org.eclipse.ui 2 0 2017-05-07 11:07:29.944
 !MESSAGE invalid keybinding: Cannot bind to an incomplete key sequence: plug-in='org.eclipse.cdt.dsf.ui', id='org.eclipse.cdt.dsf.debug.ui.disassembly.commands.rulerToggleBreakpoint'
+!SESSION 2017-05-12 11:18:41.117 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product -data C:\Users\r0648945\Documents\CryptoProject -product com.ti.ccstudio.branding.product
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:18:59.949
+!MESSAGE install directory: C:\ti\ccsv5\eclipse
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:18:59.954
+!MESSAGE blocksDirectory directory: C:\ti\ccsv5\ccs_base\c6flo_1.0.0.201110191212\Blocks
+
+!ENTRY com.ti.gde.adapter.c6flo 1 0 2017-05-12 11:19:00.001
+!MESSAGE xdcToolLocation directory: C:/ti/xdctools_3_22_04_46
+
+!ENTRY com.ti.gde.diagram 1 0 2017-05-12 11:19:00.002
+!MESSAGE GDE adapter found: com.ti.gde.adapter.c6flo.C6floAdapter   Supporting extensions: [c6flo] PluginID=com.ti.gde.adapter.c6flo
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 11:19:45.932
+!MESSAGE Indexed 'ccsProject' (17 sources, 44 headers) in 1.70 sec: 1,943 declarations; 5,630 references; 4 unresolved inclusions; 1 syntax errors; 13 unresolved names (0.17%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 11:19:46.602
+!MESSAGE Indexed 'ccsProject' (17 sources, 44 headers) in 0.32 sec: 1,943 declarations; 5,630 references; 4 unresolved inclusions; 1 syntax errors; 13 unresolved names (0.17%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-05-12 11:24:16.277
+!MESSAGE Indexed 'ccsProject' (17 sources, 44 headers) in 0.32 sec: 1,943 declarations; 5,630 references; 4 unresolved inclusions; 1 syntax errors; 13 unresolved names (0.17%)
+
+!ENTRY org.eclipse.ui 4 4 2017-05-12 11:25:30.139
+!MESSAGE Referenced part does not exist yet: org.eclipse.jdt.ui.PackageExplorer.
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.682
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.682
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.groupNew':
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupNew,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$1@4e8742),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupNew,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$1@192097e),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.683
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.683
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.groupDelete':
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupDelete,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$2@f63ef5),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.groupDelete,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.ViewGroupAction$2@9f61fd),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.726
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.726
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.group':
+HandlerActivation(commandId=com.ti.dvt.ui.view.group,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@6d97c4),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.group,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@154853e),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.727
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.727
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.freeze':
+HandlerActivation(commandId=com.ti.dvt.ui.view.freeze,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@b2b353),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.freeze,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1b16b5),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.775
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.775
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.measureMarkDeleteAll':
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMarkDeleteAll,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1eac2fd),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMarkDeleteAll,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1a7720d),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.776
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.776
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.measureMark':
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@3d5802),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.measureMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@15d0826),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.777
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.777
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.bookMark':
+HandlerActivation(commandId=com.ti.dvt.ui.view.bookMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@13ae3d1),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.bookMark,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@142aef8),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.779
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.779
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.vertAxis':
+HandlerActivation(commandId=com.ti.dvt.ui.view.vertAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@12ce7fa),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.vertAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@131f6b2),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.779
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.780
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.horzAxis':
+HandlerActivation(commandId=com.ti.dvt.ui.view.horzAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@1d22f7d),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.horzAxis,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@2bf1ec),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.780
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.781
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.legend':
+HandlerActivation(commandId=com.ti.dvt.ui.view.legend,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@7f9e71),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.legend,
+	handler=ActionHandler(org.eclipse.ui.internal.ViewPluginAction@7b32ed),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.782
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.782
+!MESSAGE Conflict for 'org.eclipse.ui.edit.findReplace':
+HandlerActivation(commandId=org.eclipse.ui.edit.findReplace,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FindAction@195ea42),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.ui.edit.findReplace,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FindAction@14694e4),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.783
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.783
+!MESSAGE Conflict for 'org.eclipse.ui.file.refresh':
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(com.ti.dvt.ui.internal.TreeGrid$6@f033f6),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=org.eclipse.ui.file.refresh,
+	handler=ActionHandler(com.ti.dvt.ui.internal.TreeGrid$6@14a24c5),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.784
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.784
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.filter':
+HandlerActivation(commandId=com.ti.dvt.ui.view.filter,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FilterAction@1264ce7),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.filter,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.FilterAction@183079f),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.784
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.784
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.copy':
+HandlerActivation(commandId=com.ti.dvt.ui.view.copy,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$1@1d8cccf),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.copy,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$1@6e6159),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+
+!ENTRY org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.785
+!MESSAGE A handler conflict occurred.  This may disable some commands.
+!SUBENTRY 1 org.eclipse.ui.workbench 2 0 2017-05-12 11:26:22.785
+!MESSAGE Conflict for 'com.ti.dvt.ui.view.end':
+HandlerActivation(commandId=com.ti.dvt.ui.view.end,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$2@3f7b04),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
+HandlerActivation(commandId=com.ti.dvt.ui.view.end,
+	handler=ActionHandler(com.ti.dvt.ui.views.core.TablePane$2@1a57914),
+	expression=AndExpression(ActivePartExpression(com.ti.dvt.ui.views.core.PaneView@1a50a71),WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@1480773)),sourcePriority=1064960)
