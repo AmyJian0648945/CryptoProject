@@ -7,6 +7,7 @@
 #define USEAES_H
 
 #include <stdint.h>
+#include "macros.h"
 #include "helpfulFunctions.h"
 #include "aes.h"
 

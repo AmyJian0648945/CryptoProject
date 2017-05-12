@@ -39,6 +39,7 @@ below.
 #define HMAC_H
 
 #include <stdint.h>
+#include "macros.h"
 #include "helpfulFunctions.h"
 #include "useSHA256.h"
 

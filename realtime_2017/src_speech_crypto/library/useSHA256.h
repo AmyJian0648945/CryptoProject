@@ -19,6 +19,7 @@ http://www.freeformatter.com/sha256-generator.html
 
 #include <stdint.h>
 #include <stdio.h>
+#include "macros.h"
 #include "helpfulFunctions.h"
 #include <time.h>
 #include "sha2.h"

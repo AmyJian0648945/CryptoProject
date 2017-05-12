@@ -22,6 +22,7 @@ void RNG(Random number output, length of random number in uint8_t);
 #ifndef PRNG_H
 #define PRNG_H
 
+#include "macros.h"
 #include "useSHA256.h"
 
 
