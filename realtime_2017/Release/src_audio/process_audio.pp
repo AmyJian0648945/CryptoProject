@@ -11,10 +11,10 @@ src_audio/process_audio.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
 src_audio/process_audio.obj: C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto/globals.h
 src_audio/process_audio.obj: C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto/encode.h
 src_audio/process_audio.obj: C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto/decode.h
+src_audio/process_audio.obj: ../src_audio/../src_speech_crypto/library/macros.h
 src_audio/process_audio.obj: ../src_audio/../src_speech_crypto/library/helpfulFunctions.h
 src_audio/process_audio.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h
 src_audio/process_audio.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
-src_audio/process_audio.obj: ../src_audio/../src_speech_crypto/library/macros.h
 src_audio/process_audio.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 src_audio/process_audio.obj: ../src_audio/../src_speech_crypto/library/sha2.h
 src_audio/process_audio.obj: ../src_audio/../src_speech_crypto/library/useSHA256.h
@@ -50,10 +50,10 @@ C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h:
 C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto/globals.h: 
 C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto/encode.h: 
 C:/Users/r0648945/Documents/CryptoProject/realtime_2017/src_speech_crypto/decode.h: 
+../src_audio/../src_speech_crypto/library/macros.h: 
 ../src_audio/../src_speech_crypto/library/helpfulFunctions.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 
-../src_audio/../src_speech_crypto/library/macros.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 
 ../src_audio/../src_speech_crypto/library/sha2.h: 
 ../src_audio/../src_speech_crypto/library/useSHA256.h: 

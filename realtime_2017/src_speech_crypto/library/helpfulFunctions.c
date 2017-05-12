@@ -6,7 +6,7 @@
 void concat(uint8_t* base, uint8_t* arrayToAppend, uint16_t baseLength, uint16_t lengthToAppend){
     uint16_t i = 0, j = 0;
 
-    for(i=baseLength; i<baseLength + lengthToAppend; i++){
+    for(i=baseLength; i < (baseLength + lengthToAppend); i++){
         base[i] = arrayToAppend[j];
         j++;
     }
