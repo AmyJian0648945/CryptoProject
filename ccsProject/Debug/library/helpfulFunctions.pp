@@ -7,6 +7,7 @@ library/helpfulFunctions.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
 library/helpfulFunctions.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
 library/helpfulFunctions.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
 library/helpfulFunctions.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h
+library/helpfulFunctions.obj: ../library/macros.h
 library/helpfulFunctions.obj: C:/ti/ccsv5/tools/compiler/c6000/include/time.h
 
 ../library/helpfulFunctions.c: 
@@ -16,4 +17,5 @@ C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h:
 C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h: 
+../library/macros.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/time.h: 

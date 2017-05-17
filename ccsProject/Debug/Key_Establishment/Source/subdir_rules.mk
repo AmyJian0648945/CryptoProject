@@ -6,56 +6,56 @@
 Key_Establishment/Source/additionalFunctions32.obj: ../Key_Establishment/Source/additionalFunctions32.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/additionalFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/additionalFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/keyEstablishmentFunctions32.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/keyEstablishmentFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/maskGenerationFunction.obj: ../Key_Establishment/Source/maskGenerationFunction.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/maskGenerationFunction.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/maskGenerationFunction.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/modFunctions32.obj: ../Key_Establishment/Source/modFunctions32.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modFunctions32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/modularInverse32.obj: ../Key_Establishment/Source/modularInverse32.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modularInverse32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/modularInverse32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/montExponentiation32.obj: ../Key_Establishment/Source/montExponentiation32.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/montExponentiation32.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/signatureMessage.obj: ../Key_Establishment/Source/signatureMessage.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/signatureMessage.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/signatureMessage.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 Key_Establishment/Source/verifySignature.obj: ../Key_Establishment/Source/verifySignature.c $(GEN_OPTS) $(GEN_SRCS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --preproc_with_compile --preproc_dependency="Key_Establishment/Source/verifySignature.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --include_path="C:/ti/ccsv5/tools/compiler/c6000/include" --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline --preproc_with_compile --preproc_dependency="Key_Establishment/Source/verifySignature.pp" --obj_directory="Key_Establishment/Source" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

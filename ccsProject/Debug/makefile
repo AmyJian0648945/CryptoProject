@@ -135,7 +135,7 @@ all: ccsProject.out
 ccsProject.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g --display_error_number --diag_warning=225 --abi=coffabi -z -m"ccsProject.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --xml_link_info="ccsProject_linkInfo.xml" --rom_model -o "ccsProject.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv5/tools/compiler/c6000/bin/cl6x" -mv6740 -g -O2 --display_error_number --diag_warning=225 --abi=coffabi --opt_for_speed=2 --gen_opt_info=2 --call_assumptions=2 --single_inline -z -m"ccsProject.map" --warn_sections -i"C:/ti/ccsv5/tools/compiler/c6000/lib" -i"C:/ti/ccsv5/tools/compiler/c6000/include" --reread_libs --xml_link_info="ccsProject_linkInfo.xml" --rom_model -o "ccsProject.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

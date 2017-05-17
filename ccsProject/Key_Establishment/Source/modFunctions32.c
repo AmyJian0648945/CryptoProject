@@ -69,8 +69,8 @@ uint16_t positionMSB(uint32_t *array, uint16_t size){
 */
 void mod(uint32_t *a, uint32_t *N, uint32_t *result, uint16_t sizeA, uint16_t sizeModulus){
 	
-	uint32_t Nextended[MAXLENGTH] = {0};
-	uint32_t copyOfA[MAXLENGTH] = {0};
+	uint32_t Nextended[MEDIUM] = {0};
+	uint32_t copyOfA[MEDIUM] = {0};
 	uint16_t comparison = 0;
 	uint16_t size = 0;
 	int i;
@@ -106,7 +106,7 @@ void mod(uint32_t *a, uint32_t *N, uint32_t *result, uint16_t sizeA, uint16_t si
 void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 	
 	uint16_t w[MAXIMUMLENGTH] = {0};
-	uint32_t result[MAXLENGTHLONG] = {0};
+	uint32_t result[LONG] = {0};
 	uint16_t posMSB = 0;
 	uint16_t t = 0;
 	uint16_t sizeProduct = 0;
@@ -175,8 +175,8 @@ void squareProduct(uint32_t *a, uint32_t *product, uint16_t sizeX){
 
 void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeM){
 	
-	uint32_t modA[MAXLENGTHSHORT] = {0};
-	uint32_t squareResult[MAXLENGTHLONG] = {0};
+	uint32_t modA[MEDIUM] = {0};
+	uint32_t squareResult[LONG] = {0};
 	int i;
 
 	mod(a, m, modA, sizeA, sizeM);
@@ -200,8 +200,8 @@ void modSquare(uint32_t *a, uint32_t *m, uint32_t *result, uint16_t sizeA, uint1
 */
 void modFaster( uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM){
 	
-	uint32_t mExt[MAXLENGTHLONG] = {0};
-	uint32_t copyOfM[MAXLENGTHLONG] = {0};	
+	uint32_t mExt[LONG] = {0};
+	uint32_t copyOfM[LONG] = {0};	
 	uint16_t xPosMSB = 0;
 	uint16_t mPosMSB = 0;
 	uint16_t posBackwards = 0;
@@ -247,7 +247,7 @@ void modFaster( uint32_t *x, uint32_t *m, uint16_t sizeX, uint16_t sizeM){
 	*/
 void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA, uint16_t sizeB){
 	
-	uint32_t result[MAXLENGTH] = {0};
+	uint32_t result[LONG] = {0};
 	uint16_t w[MAXIMUMLENGTH] = {0};
 	uint16_t sizeProduct = 0;
 	uint16_t AposMSB = 0;
@@ -337,7 +337,7 @@ void multiplication(uint32_t *a, uint32_t *b, uint32_t *product, uint16_t sizeA,
 */
 void modMult(uint32_t *a, uint32_t *b, uint32_t *m, uint32_t *result, uint16_t sizeA, uint16_t sizeB, uint16_t sizeM){
 	
-	uint32_t product[MAXLENGTH] = {0};
+	uint32_t product[VERYLONG] = {0};
 	int i;
 
 	zerosArray(product,sizeA+sizeB);

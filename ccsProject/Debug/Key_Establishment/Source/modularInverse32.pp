@@ -2,6 +2,7 @@
 
 Key_Establishment/Source/modularInverse32.obj: ../Key_Establishment/Source/modularInverse32.c
 Key_Establishment/Source/modularInverse32.obj: ../Key_Establishment/Source/../Header/modularInverse32.h
+Key_Establishment/Source/modularInverse32.obj: ../Key_Establishment/Source/../Header/../../library/macros.h
 Key_Establishment/Source/modularInverse32.obj: ../Key_Establishment/Source/../Header/additionalFunctions32.h
 Key_Establishment/Source/modularInverse32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
 Key_Establishment/Source/modularInverse32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
@@ -11,6 +12,7 @@ Key_Establishment/Source/modularInverse32.obj: C:/ti/ccsv5/tools/compiler/c6000/
 
 ../Key_Establishment/Source/modularInverse32.c: 
 ../Key_Establishment/Source/../Header/modularInverse32.h: 
+../Key_Establishment/Source/../Header/../../library/macros.h: 
 ../Key_Establishment/Source/../Header/additionalFunctions32.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 

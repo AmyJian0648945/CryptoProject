@@ -1,1 +1,0 @@
-#define BUFFERSIZE 10000

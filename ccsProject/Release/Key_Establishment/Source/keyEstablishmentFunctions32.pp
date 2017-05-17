@@ -3,6 +3,7 @@
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/keyEstablishmentFunctions32.c
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/../Header/keyEstablishmentFunctions32.h
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
+Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/../Header/../../library/macros.h
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/Source/../Header/../../library/helpfulFunctions.h
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h
 Key_Establishment/Source/keyEstablishmentFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
@@ -29,6 +30,7 @@ Key_Establishment/Source/keyEstablishmentFunctions32.obj: ../Key_Establishment/S
 ../Key_Establishment/Source/keyEstablishmentFunctions32.c: 
 ../Key_Establishment/Source/../Header/keyEstablishmentFunctions32.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h: 
+../Key_Establishment/Source/../Header/../../library/macros.h: 
 ../Key_Establishment/Source/../Header/../../library/helpfulFunctions.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdlib.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h: 

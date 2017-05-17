@@ -5,6 +5,7 @@ library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/string.h
 library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
 library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/assert.h
 library/sha2.obj: ../library/sha2.h
+library/sha2.obj: ../library/macros.h
 library/sha2.obj: ../library/useSHA256.h
 library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h
 library/sha2.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h
@@ -23,6 +24,7 @@ C:/ti/ccsv5/tools/compiler/c6000/include/string.h:
 C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/assert.h: 
 ../library/sha2.h: 
+../library/macros.h: 
 ../library/useSHA256.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdint.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h: 

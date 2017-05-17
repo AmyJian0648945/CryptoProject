@@ -3,10 +3,10 @@
 
 
 
-void concat(uint8_t* base, uint8_t* arrayToAppend, uint16_t baseLength, uint16_t lengthToAppend){
+void concat(uint8_t* base, uint8_t* arrayToAppend, uint16_t length, uint16_t lengthToAppend){
     uint16_t i = 0, j = 0;
 
-    for(i=baseLength; i<baseLength + lengthToAppend; i++){
+    for(i=length; i<length + lengthToAppend; i++){
         base[i] = arrayToAppend[j];
         j++;
     }
@@ -28,9 +28,6 @@ uint16_t timeData(){
 void hexToString(uint8_t* output, uint8_t* input, size_t lengthOfInput){ /* let the default hashing style of hex be of capital letters*/
     uint16_t i = 0, j = 0;
 
-    /* Clear the output first */
-    for(i=0; i<lengthOfInput*2; i++) output[i] = 0;
-    
     /* Separate the first and second digit of each array element */
     for(i = 0; i < lengthOfInput; i++){
         output[j] = input[i] / 16;

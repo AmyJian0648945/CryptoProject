@@ -1,18 +1,11 @@
 #ifndef	MONTEXPONENTIATION_H
 #define MONTEXPONENTIATION_H
 
+#include "../../library/macros.h"
+#include "../../library/helpfulFunctions.h"
 #include "additionalFunctions32.h"
 #include "modularInverse32.h"
 #include "modFunctions32.h"
-#include "../../library/helpfulFunctions.h"
-
-#ifndef MAXLENGTHLONG
-#define MAXLENGTHLONG 64
-#endif
-
-#ifndef LENGTH
-#define LENGTH 33
-#endif
 
 void mont(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *nInv, uint32_t *res, uint32_t SIZE, uint16_t sizeNInv, uint16_t samePointer);
 void ADD(uint32_t *t, int i, uint32_t C, uint16_t size);

@@ -7,6 +7,7 @@ Key_Establishment/Source/additionalFunctions32.obj: C:/ti/ccsv5/tools/compiler/c
 Key_Establishment/Source/additionalFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h
 Key_Establishment/Source/additionalFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h
 Key_Establishment/Source/additionalFunctions32.obj: C:/ti/ccsv5/tools/compiler/c6000/include/string.h
+Key_Establishment/Source/additionalFunctions32.obj: ../Key_Establishment/Source/../Header/../../library/macros.h
 
 ../Key_Establishment/Source/additionalFunctions32.c: 
 ../Key_Establishment/Source/../Header/additionalFunctions32.h: 
@@ -15,3 +16,4 @@ C:/ti/ccsv5/tools/compiler/c6000/include/stdio.h:
 C:/ti/ccsv5/tools/compiler/c6000/include/linkage.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/stdarg.h: 
 C:/ti/ccsv5/tools/compiler/c6000/include/string.h: 
+../Key_Establishment/Source/../Header/../../library/macros.h: 
